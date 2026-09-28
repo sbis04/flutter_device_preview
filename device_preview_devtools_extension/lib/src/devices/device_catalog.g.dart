@@ -1620,6 +1620,10 @@ const List<Map<String, Object?>> kDeviceSpecs =
           'height': 951,
         },
         'devicePixelRatio': 3.0,
+        'physicalSize': <String, Object?>{
+          'width': 1878,
+          'height': 2670,
+        },
         'portraitPadding': <String, Object?>{
           'left': 0,
           'top': 82,

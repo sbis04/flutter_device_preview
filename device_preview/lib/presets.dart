@@ -48,6 +48,7 @@ class DevicePreset {
     required this.platform,
     required this.portraitSize,
     required this.devicePixelRatio,
+    this.physicalSize,
     this.brand,
     this.year,
     this.frame,
@@ -93,6 +94,9 @@ class DevicePreset {
         json['devicePixelRatio'],
         'devicePixelRatio',
       ),
+      physicalSize: json['physicalSize'] == null
+          ? null
+          : decodeSize(json['physicalSize'], 'physicalSize'),
       portraitPadding: json['portraitPadding'] == null
           ? EdgeInsets.zero
           : decodeEdgeInsets(json['portraitPadding'], 'portraitPadding'),
@@ -186,6 +190,17 @@ class DevicePreset {
 
   /// The device pixel ratio.
   final double devicePixelRatio;
+
+  /// The panel's resolution in physical pixels, portrait, when it is not
+  /// [portraitSize] × [devicePixelRatio] — a screen the device renders at
+  /// that scale and then downsamples, like the iPhone Duo's inner display
+  /// (2007 × 2853 rendered, a 1878 × 2670 panel). Null when the panel is
+  /// exactly the rendered size; [panelSize] answers either way.
+  final ui.Size? physicalSize;
+
+  /// The panel's resolution in physical pixels, portrait: [physicalSize],
+  /// or [portraitSize] × [devicePixelRatio].
+  ui.Size get panelSize => physicalSize ?? portraitSize * devicePixelRatio;
 
   /// The portrait safe-area padding, in logical pixels.
   final EdgeInsets portraitPadding;
@@ -356,6 +371,7 @@ class DevicePreset {
       kind: kind,
       portraitSize: variant.portraitSize ?? portraitSize,
       devicePixelRatio: variant.devicePixelRatio ?? devicePixelRatio,
+      physicalSize: variant.physicalSize ?? (sameScreen ? physicalSize : null),
       frame: variant.frame ?? (sameScreen ? frame : null),
       systemUi: variant.systemUi ?? systemUi,
       portraitPadding:
@@ -457,10 +473,9 @@ class DevicePreset {
     Orientation orientation = Orientation.portrait,
     DevicePosture posture = DevicePosture.open,
   }) {
-    return forPosture(posture)._resolveScreen(
-      orientation,
-      hasPostures ? posture : null,
-    );
+    return forPosture(
+      posture,
+    )._resolveScreen(orientation, hasPostures ? posture : null);
   }
 
   DeviceSimulation _resolveScreen(
@@ -548,6 +563,7 @@ class DevicePreset {
     if (frame != null) 'frame': frame!.toJson(),
     if (systemUi != null) 'systemUi': systemUi!.toJson(),
     'devicePixelRatio': devicePixelRatio,
+    if (physicalSize != null) 'physicalSize': encodeSize(physicalSize!),
     'portraitPadding': encodeEdgeInsets(portraitPadding),
     if (portraitViewPadding != null)
       'portraitViewPadding': encodeEdgeInsets(portraitViewPadding!),
@@ -595,6 +611,7 @@ class DevicePreset {
         other.systemUi == systemUi &&
         other.portraitSize == portraitSize &&
         other.devicePixelRatio == devicePixelRatio &&
+        other.physicalSize == physicalSize &&
         other.portraitPadding == portraitPadding &&
         other.portraitViewPadding == portraitViewPadding &&
         other.landscapePadding == landscapePadding &&
@@ -620,6 +637,7 @@ class DevicePreset {
     systemUi,
     portraitSize,
     devicePixelRatio,
+    physicalSize,
     portraitPadding,
     portraitViewPadding,
     landscapePadding,
@@ -672,6 +690,7 @@ class DevicePostureVariant {
   const DevicePostureVariant({
     this.portraitSize,
     this.devicePixelRatio,
+    this.physicalSize,
     this.frame,
     this.systemUi,
     this.portraitPadding,
@@ -704,6 +723,9 @@ class DevicePostureVariant {
           ? null
           : decodeSize(json['portraitSize'], 'portraitSize'),
       devicePixelRatio: number('devicePixelRatio'),
+      physicalSize: json['physicalSize'] == null
+          ? null
+          : decodeSize(json['physicalSize'], 'physicalSize'),
       frame: json['frame'] == null
           ? null
           : DeviceFrame.fromJson(decodeMap(json['frame'], 'frame')),
@@ -736,6 +758,10 @@ class DevicePostureVariant {
 
   /// See [DevicePreset.devicePixelRatio].
   final double? devicePixelRatio;
+
+  /// See [DevicePreset.physicalSize]. A posture with its own [portraitSize]
+  /// starts from none.
+  final ui.Size? physicalSize;
 
   /// See [DevicePreset.frame].
   final DeviceFrame? frame;
@@ -777,6 +803,7 @@ class DevicePostureVariant {
   Map<String, Object?> toJson() => <String, Object?>{
     if (portraitSize != null) 'portraitSize': encodeSize(portraitSize!),
     if (devicePixelRatio != null) 'devicePixelRatio': devicePixelRatio,
+    if (physicalSize != null) 'physicalSize': encodeSize(physicalSize!),
     if (frame != null) 'frame': frame!.toJson(),
     if (systemUi != null) 'systemUi': systemUi!.toJson(),
     if (portraitPadding != null)
@@ -879,7 +906,8 @@ List<SimulatedDisplayFeature>? _decodeFeatures(Object? json, String context) {
   }
   return List<SimulatedDisplayFeature>.unmodifiable(
     decodeList(json, context).map(
-      (Object? e) => SimulatedDisplayFeature.fromJson(decodeMap(e, '$context[]')),
+      (Object? e) =>
+          SimulatedDisplayFeature.fromJson(decodeMap(e, '$context[]')),
     ),
   );
 }
@@ -890,7 +918,8 @@ List<SimulatedReservedRegion>? _decodeRegions(Object? json, String context) {
   }
   return List<SimulatedReservedRegion>.unmodifiable(
     decodeList(json, context).map(
-      (Object? e) => SimulatedReservedRegion.fromJson(decodeMap(e, '$context[]')),
+      (Object? e) =>
+          SimulatedReservedRegion.fromJson(decodeMap(e, '$context[]')),
     ),
   );
 }

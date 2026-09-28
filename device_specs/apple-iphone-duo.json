@@ -10,6 +10,7 @@
     "height": 951
   },
   "devicePixelRatio": 3.0,
+  "physicalSize": { "width": 1878, "height": 2670 },
   "portraitPadding": {
     "left": 0,
     "top": 82,

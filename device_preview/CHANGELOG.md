@@ -17,6 +17,10 @@ Devices as widgets, and fourteen more of them.
   Pro Max metrics), iPad (9th gen), iPad Air (4th gen), iPad Pro 11" (M2),
   iPad Pro 12.9" (2nd and 4th gen); and the Pixel 9 Pro XL from its
   official emulator skin.
+- **`DevicePreset.physicalSize` / `panelSize`** — the panel's resolution
+  when it is not `portraitSize × devicePixelRatio`: the iPhone Duo's inner
+  display renders at 2007 × 2853 and shows on a 1878 × 2670 panel (Apple's
+  tech specs); every other preset's panel is its render.
 - **iPhone Duo half-open** no longer shades a crease down the screen:
   Xcode's Device Hub draws it continuous, bent only in the body. Android
   folds in `postureHalfOpened` still shade.

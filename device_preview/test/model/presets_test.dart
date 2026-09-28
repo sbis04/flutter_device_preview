@@ -13,6 +13,28 @@ void main() {
       expect(ids, hasLength(47));
     });
 
+    test('the Duo declares its downsampled inner panel, and nothing else', () {
+      // Apple's tech specs: a 1878 × 2670 inner panel behind a 669 × 951 @3
+      // render; the outer display is exactly its render.
+      final duo = DevicePresets.iPhoneDuo;
+      expect(duo.physicalSize, const ui.Size(1878, 2670));
+      expect(duo.panelSize, const ui.Size(1878, 2670));
+      final closed = duo.forPosture(DevicePosture.closed);
+      expect(closed.physicalSize, isNull);
+      expect(closed.panelSize, const ui.Size(1398, 2034));
+      expect(
+        duo.forPosture(DevicePosture.halfOpened).physicalSize,
+        const ui.Size(1878, 2670),
+      );
+      for (final preset in DevicePresets.all.where((p) => p != duo)) {
+        expect(preset.physicalSize, isNull, reason: preset.id);
+      }
+      expect(
+        DevicePreset.fromJson(duo.toJson()).physicalSize,
+        const ui.Size(1878, 2670),
+      );
+    });
+
     test('every device preset declares a release year', () {
       for (final preset in DevicePresets.all) {
         if (preset.kind == DeviceKind.desktop) continue;
@@ -93,10 +115,7 @@ void main() {
     test('key metrics match the researched catalog', () {
       expect(DevicePresets.iPhone16.portraitSize, const ui.Size(393, 852));
       expect(DevicePresets.iPhone16.devicePixelRatio, 3.0);
-      expect(
-        DevicePresets.iPhone16Plus.portraitSize,
-        const ui.Size(430, 932),
-      );
+      expect(DevicePresets.iPhone16Plus.portraitSize, const ui.Size(430, 932));
       expect(DevicePresets.iPhoneSe3.portraitSize, const ui.Size(375, 667));
       expect(DevicePresets.iPhoneSe3.devicePixelRatio, 2.0);
       expect(
@@ -124,21 +143,12 @@ void main() {
       );
       expect(DevicePresets.iPhoneAir.portraitSize, const ui.Size(420, 912));
       expect(DevicePresets.iPhoneAir.year, 2025);
-      expect(
-        DevicePresets.iPadPro13M5.portraitSize,
-        const ui.Size(1032, 1376),
-      );
+      expect(DevicePresets.iPadPro13M5.portraitSize, const ui.Size(1032, 1376));
       expect(DevicePresets.iPadPro13M5.kind, DeviceKind.tablet);
       expect(DevicePresets.iPadPro11M5.portraitSize, const ui.Size(834, 1210));
-      expect(
-        DevicePresets.iPadPro13M4.portraitSize,
-        const ui.Size(1032, 1376),
-      );
+      expect(DevicePresets.iPadPro13M4.portraitSize, const ui.Size(1032, 1376));
       expect(DevicePresets.iPadPro11M4.portraitSize, const ui.Size(834, 1210));
-      expect(
-        DevicePresets.iPadAir13M4.portraitSize,
-        const ui.Size(1024, 1366),
-      );
+      expect(DevicePresets.iPadAir13M4.portraitSize, const ui.Size(1024, 1366));
       expect(DevicePresets.iPadAir11M4.portraitSize, const ui.Size(820, 1180));
       expect(DevicePresets.iPadAir11M4.year, 2026);
       expect(DevicePresets.iPadAir11M2.portraitSize, const ui.Size(820, 1180));
@@ -159,10 +169,7 @@ void main() {
         const ui.Size(876, 1400),
       );
       expect(DevicePresets.galaxyTabS10Plus.kind, DeviceKind.tablet);
-      expect(
-        DevicePresets.galaxyTabS11.portraitSize,
-        const ui.Size(800, 1280),
-      );
+      expect(DevicePresets.galaxyTabS11.portraitSize, const ui.Size(800, 1280));
       expect(DevicePresets.galaxyTabS11.kind, DeviceKind.tablet);
       expect(
         DevicePresets.smallDesktopWindow.portraitSize,
@@ -291,10 +298,14 @@ void main() {
         landscape.displayFeatures!.single.bounds,
         const ui.Rect.fromLTRB(0, 390, 1104, 410),
       );
-      expect(landscape.displayFeatures!.single.type,
-          ui.DisplayFeatureType.hinge);
-      expect(landscape.displayFeatures!.single.state,
-          ui.DisplayFeatureState.postureFlat);
+      expect(
+        landscape.displayFeatures!.single.type,
+        ui.DisplayFeatureType.hinge,
+      );
+      expect(
+        landscape.displayFeatures!.single.state,
+        ui.DisplayFeatureState.postureFlat,
+      );
     });
 
     test('rotatedToLandscape and rotatedToPortrait are exact inverses', () {
@@ -304,8 +315,9 @@ void main() {
         state: ui.DisplayFeatureState.postureHalfOpened,
       );
       // Portrait 800 wide → landscape 800 tall → back.
-      final roundTripped =
-          feature.rotatedToLandscape(800).rotatedToPortrait(800);
+      final roundTripped = feature
+          .rotatedToLandscape(800)
+          .rotatedToPortrait(800);
       expect(roundTripped, feature);
     });
 
@@ -419,8 +431,10 @@ void main() {
         DevicePreset.fromJson(DevicePresets.iPhone17Pro.toJson()).year,
         2025,
       );
-      expect(DevicePresets.smallDesktopWindow.toJson().containsKey('year'),
-          isFalse);
+      expect(
+        DevicePresets.smallDesktopWindow.toJson().containsKey('year'),
+        isFalse,
+      );
     });
 
     test('fromJson throws on a non-integer year', () {

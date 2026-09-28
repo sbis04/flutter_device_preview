@@ -390,9 +390,7 @@ String _emitPreset(Map<String, Object?> spec) {
     if (postures is! Map || postures.isEmpty) {
       throw FormatException('$fileName: "postures" must be a non-empty object');
     }
-    buffer.writeln(
-      '    postures: <DevicePosture, DevicePostureVariant>{',
-    );
+    buffer.writeln('    postures: <DevicePosture, DevicePostureVariant>{');
     for (final MapEntry<Object?, Object?> entry in postures.entries) {
       if (!kPostures.contains(entry.key)) {
         throw FormatException(
@@ -407,9 +405,7 @@ String _emitPreset(Map<String, Object?> spec) {
         );
       }
       buffer
-        ..writeln(
-          '      DevicePosture.${entry.key}: DevicePostureVariant(',
-        )
+        ..writeln('      DevicePosture.${entry.key}: DevicePostureVariant(')
         ..write(
           _emitScreen(
             Map<String, Object?>.from(variant),
@@ -453,6 +449,11 @@ String _emitScreen(
     buffer.writeln(
       '${pad}devicePixelRatio: '
       '${_emitNumber(spec['devicePixelRatio'], fileName)},',
+    );
+  }
+  if (spec['physicalSize'] != null) {
+    buffer.writeln(
+      '${pad}physicalSize: ${_emitSize(spec['physicalSize'], fileName)},',
     );
   }
   for (final String key in <String>[
@@ -526,7 +527,9 @@ String _emitReservedRegion(Object? region, String fileName, int indent) {
   }
   final Object? bounds = region['bounds'];
   if (bounds is! Map) {
-    throw FormatException('$fileName: reserved region "bounds" must be an object');
+    throw FormatException(
+      '$fileName: reserved region "bounds" must be an object',
+    );
   }
   final Object? active = region['active'];
   if (active != null && active is! bool) {

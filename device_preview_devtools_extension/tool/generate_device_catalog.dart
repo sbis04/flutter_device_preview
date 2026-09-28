@@ -27,6 +27,7 @@ const Set<String> kSpecKeys = <String>{
   'kind',
   'portraitSize',
   'devicePixelRatio',
+  'physicalSize',
   'portraitPadding',
   'portraitViewPadding',
   'landscapePadding',
@@ -47,6 +48,7 @@ const Set<String> kSpecKeys = <String>{
 const Set<String> kPostureVariantKeys = <String>{
   'portraitSize',
   'devicePixelRatio',
+  'physicalSize',
   'portraitPadding',
   'portraitViewPadding',
   'landscapePadding',
@@ -203,13 +205,12 @@ String generateDeviceCatalog(Directory specs) {
   return buffer.toString();
 }
 
-List<File> _specFiles(Directory specs) =>
-    specs
-        .listSync()
-        .whereType<File>()
-        .where((File file) => file.path.endsWith('.json'))
-        .toList()
-      ..sort((File a, File b) => a.path.compareTo(b.path));
+List<File> _specFiles(Directory specs) => specs
+    .listSync()
+    .whereType<File>()
+    .where((File file) => file.path.endsWith('.json'))
+    .toList()
+  ..sort((File a, File b) => a.path.compareTo(b.path));
 
 void _validate(Map<String, Object?> spec, String name) {
   for (final String key in spec.keys) {
@@ -283,10 +284,14 @@ void _validateScreen(
   if (full || spec['portraitSize'] != null) {
     _validateSize(spec['portraitSize'], '$name: portraitSize');
   }
+  if (spec['physicalSize'] != null) {
+    _validateSize(spec['physicalSize'], '$name: physicalSize');
+  }
   if ((full || spec['devicePixelRatio'] != null) &&
       (spec['devicePixelRatio'] is! num ||
           (spec['devicePixelRatio']! as num) <= 0)) {
-    throw FormatException('$name: "devicePixelRatio" must be a positive number');
+    throw FormatException(
+        '$name: "devicePixelRatio" must be a positive number');
   }
   for (final String key in <String>[
     'portraitPadding',
@@ -629,7 +634,6 @@ String _defaultSpecsPath() =>
     Directory.fromUri(Platform.script.resolve('../../device_specs')).path;
 
 /// `<package>/lib/src/devices/device_catalog.g.dart`.
-String _defaultOutputPath() =>
-    File.fromUri(
+String _defaultOutputPath() => File.fromUri(
       Platform.script.resolve('../lib/src/devices/device_catalog.g.dart'),
     ).path;

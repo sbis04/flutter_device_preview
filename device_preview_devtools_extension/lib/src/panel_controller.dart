@@ -64,6 +64,7 @@ const List<String> _kScreenBoundKeys = <String>[
   'portraitReservedRegions',
   'landscapeReservedRegions',
   'frame',
+  'physicalSize',
 ];
 
 /// The seven tri-state accessibility flags of the protocol, in display order.

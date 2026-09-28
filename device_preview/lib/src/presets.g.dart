@@ -2127,6 +2127,7 @@ abstract final class DevicePresets {
     platform: TargetPlatform.iOS,
     portraitSize: ui.Size(669, 951),
     devicePixelRatio: 3.0,
+    physicalSize: ui.Size(1878, 2670),
     portraitPadding: EdgeInsets.only(top: 82, bottom: 34),
     landscapePadding: EdgeInsets.only(right: 84, bottom: 34),
     portraitKeyboardHeight: 350,
