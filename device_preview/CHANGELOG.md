@@ -17,6 +17,9 @@ Devices as widgets, and fourteen more of them.
   Pro Max metrics), iPad (9th gen), iPad Air (4th gen), iPad Pro 11" (M2),
   iPad Pro 12.9" (2nd and 4th gen); and the Pixel 9 Pro XL from its
   official emulator skin.
+- **iPhone Duo half-open** no longer shades a crease down the screen:
+  Xcode's Device Hub draws it continuous, bent only in the body. Android
+  folds in `postureHalfOpened` still shade.
 - **Pixel screen corners** now come from the emulator skin's mask — the
   shape the emulator draws — rather than the layout's `corner_radius`
   (which is what the OS is told for insets and is much tighter): Pixel 9,

@@ -452,9 +452,10 @@ void paintReservedRegions(
 }
 
 /// The creases of a partially open foldable: the lines along which its
-/// screen is currently bent, from what the simulation says of its folds —
-/// an active division region (iOS), or a fold or hinge display feature in
-/// `postureHalfOpened` (Android). Empty for a device lying flat.
+/// screen is currently bent — a fold or hinge display feature in
+/// `postureHalfOpened` (Android). Empty for a device lying flat, and for
+/// the iPhone Duo: its hinge is a reserved-region division, which Xcode's
+/// Device Hub draws without any crease on the screen.
 ///
 /// Each crease is the center line of its feature, along the feature's
 /// longer side.
@@ -469,11 +470,11 @@ List<(ui.Offset, ui.Offset)> foldCreases({
         : (ui.Offset(rect.left, c.dy), ui.Offset(rect.right, c.dy));
   }
 
+  // Reserved-region divisions (the iPhone Duo's hinge) draw no crease:
+  // Xcode's Device Hub shows the half-open Duo as one continuous screen,
+  // bent only in the body around it. `regions` stays in the signature so
+  // callers pass what they have; only Android's half-opened folds shade.
   return <(ui.Offset, ui.Offset)>[
-    for (final SimulatedReservedRegion region
-        in regions ?? const <SimulatedReservedRegion>[])
-      if (region.kind == ReservedRegionKind.division && region.isActive)
-        centerLine(region.core),
     for (final SimulatedDisplayFeature feature
         in features ?? const <SimulatedDisplayFeature>[])
       if ((feature.type == ui.DisplayFeatureType.fold ||

@@ -215,7 +215,7 @@ void main() {
   });
 
   group('fold creases', () {
-    test('come from active divisions and half-opened folds only', () {
+    test('come from half-opened folds only, never from divisions', () {
       expect(
         foldCreases(
           regions: const <SimulatedReservedRegion>[
@@ -247,8 +247,9 @@ void main() {
             ),
           ],
         ),
+        // The Duo's division draws nothing: Device Hub shows its half-open
+        // screen continuous, bent only in the body.
         <(Offset, Offset)>[
-          (const Offset(0, 400), const Offset(400, 400)),
           (const Offset(200, 0), const Offset(200, 800)),
         ],
       );
