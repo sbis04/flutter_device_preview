@@ -151,6 +151,173 @@ void main() {
     });
   });
 
+  group('SystemUiPainter side bar', () {
+    late _Recorder recorder;
+
+    setUp(() => recorder = _Recorder());
+    tearDown(() => recorder.dispose());
+
+    final SystemUiSimulation sideBarUi = SystemUiSimulation(
+      sideBar: SystemUiBar(
+        leading: block(20, 10),
+        trailing: block(30, 10),
+        inset: 12,
+      ),
+    );
+
+    void paint(EdgeInsets padding, {TextDirection? textDirection}) {
+      SystemUiPainter(sideBarUi).paint(
+        recorder.canvas,
+        screenSize: const ui.Size(400, 800),
+        padding: padding,
+        colors: const SystemUiColors(
+          statusBarIcons: ui.Color(0xFF00FF00),
+          navigationBarIcons: ui.Color(0xFFFF0000),
+        ),
+        textDirection: textDirection ?? TextDirection.ltr,
+      );
+    }
+
+    test('stacks its pieces down the right safe area, centered across it', () {
+      paint(const EdgeInsets.only(right: 60, bottom: 30));
+      // Leading below the top edge, trailing above the bottom bar.
+      expect(recorder.rects[0], const Rect.fromLTWH(360, 12, 20, 10));
+      expect(recorder.rects[1], const Rect.fromLTWH(355, 748, 30, 10));
+      // Tinted like the status bar it is.
+      expect(recorder.colors, <int>[0xFF00FF00, 0xFF00FF00]);
+    });
+
+    test('stays on the right under a right-to-left directionality', () {
+      paint(
+        const EdgeInsets.only(right: 60, bottom: 30),
+        textDirection: TextDirection.rtl,
+      );
+      expect(recorder.rects[0], const Rect.fromLTWH(360, 12, 20, 10));
+    });
+
+    test('is not drawn without a right safe area', () {
+      // The Duo's cover in landscape: the inset is on the left, iOS hides
+      // its status bar there.
+      paint(const EdgeInsets.only(left: 84, bottom: 34));
+      expect(recorder.rects, isEmpty);
+      paint(const EdgeInsets.only(top: 82, bottom: 34));
+      expect(recorder.rects, isEmpty);
+    });
+
+    test('round-trips through JSON', () {
+      expect(SystemUiSimulation.fromJson(sideBarUi.toJson()), sideBarUi);
+      expect(sideBarUi.isEmpty, isFalse);
+      expect(
+        sideBarUi.withPlatform(TargetPlatform.iOS).sideBar,
+        sideBarUi.sideBar,
+      );
+    });
+  });
+
+  group('fold creases', () {
+    test('come from active divisions and half-opened folds only', () {
+      expect(
+        foldCreases(
+          regions: const <SimulatedReservedRegion>[
+            SimulatedReservedRegion(
+              kind: ReservedRegionKind.division,
+              bounds: Rect.fromLTRB(0, 380, 400, 420),
+              margins: EdgeInsets.only(top: 20, bottom: 20),
+            ),
+            SimulatedReservedRegion(
+              kind: ReservedRegionKind.division,
+              bounds: Rect.fromLTRB(180, 0, 220, 800),
+              isActive: false,
+            ),
+            SimulatedReservedRegion(
+              kind: ReservedRegionKind.occlusion,
+              bounds: Rect.fromLTRB(0, 0, 50, 50),
+            ),
+          ],
+          features: const <SimulatedDisplayFeature>[
+            SimulatedDisplayFeature(
+              bounds: Rect.fromLTRB(200, 0, 200, 800),
+              type: ui.DisplayFeatureType.fold,
+              state: ui.DisplayFeatureState.postureHalfOpened,
+            ),
+            SimulatedDisplayFeature(
+              bounds: Rect.fromLTRB(0, 400, 400, 400),
+              type: ui.DisplayFeatureType.fold,
+              state: ui.DisplayFeatureState.postureFlat,
+            ),
+          ],
+        ),
+        <(Offset, Offset)>[
+          (const Offset(0, 400), const Offset(400, 400)),
+          (const Offset(200, 0), const Offset(200, 800)),
+        ],
+      );
+      expect(foldCreases(), isEmpty);
+    });
+
+    test('shade a band across each crease and mark its line', () {
+      final _Recorder recorder = _Recorder();
+      addTearDown(recorder.dispose);
+      paintFoldCreases(recorder.canvas, const <(Offset, Offset)>[
+        (Offset(200, 0), Offset(200, 800)),
+      ]);
+      expect(recorder.fills.single.$1, const Rect.fromLTRB(164, 0, 236, 800));
+      expect(
+        recorder.lines.single.$1,
+        const Rect.fromLTRB(200, 0, 200, 800),
+      );
+    });
+  });
+
+  group('paintReservedRegions', () {
+    late _Recorder recorder;
+
+    setUp(() => recorder = _Recorder());
+    tearDown(() => recorder.dispose());
+
+    test('fills active regions, outlines inactive ones', () {
+      paintReservedRegions(recorder.canvas, const <SimulatedReservedRegion>[
+        SimulatedReservedRegion(
+          kind: ReservedRegionKind.occlusion,
+          bounds: Rect.fromLTRB(300, 0, 400, 80),
+        ),
+        SimulatedReservedRegion(
+          kind: ReservedRegionKind.occlusion,
+          bounds: Rect.fromLTRB(20, 200, 60, 260),
+          isActive: false,
+        ),
+      ]);
+      // Active: area, core, outline. Inactive: the outline only.
+      expect(recorder.fills.map(((Rect, int) f) => f.$1).toList(), <Rect>[
+        const Rect.fromLTRB(300, 0, 400, 80),
+        const Rect.fromLTRB(300, 0, 400, 80),
+        const Rect.fromLTRB(300.5, 0.5, 399.5, 79.5),
+        const Rect.fromLTRB(20.5, 200.5, 59.5, 259.5),
+      ]);
+      // Occlusions are red.
+      expect(
+        recorder.fills.every(((Rect, int) f) => (f.$2 & 0xFFFFFF) == 0xFF453A),
+        isTrue,
+      );
+      expect(recorder.lines, isEmpty);
+    });
+
+    test('draws an active fold as a crease between its margins', () {
+      paintReservedRegions(recorder.canvas, const <SimulatedReservedRegion>[
+        SimulatedReservedRegion(
+          kind: ReservedRegionKind.division,
+          bounds: Rect.fromLTRB(0, 380, 400, 420),
+          margins: EdgeInsets.only(top: 20, bottom: 20),
+        ),
+      ]);
+      // A zero-area core: the margins' band and the outline, no core fill.
+      expect(recorder.fills, hasLength(2));
+      expect(recorder.lines.single.$1, const Rect.fromLTRB(0, 400, 400, 400));
+      // Divisions are blue.
+      expect(recorder.lines.single.$2 & 0xFFFFFF, 0x0A84FF);
+    });
+  });
+
   group('paintSimulatedKeyboard', () {
     late _Recorder recorder;
 

@@ -5,6 +5,7 @@ import 'package:flutter/widgets.dart';
 
 import 'device_frame.dart';
 import 'device_kind.dart';
+import 'device_posture.dart';
 import 'json_utils.dart';
 import 'system_ui.dart';
 
@@ -42,6 +43,9 @@ class DeviceSimulation {
     this.systemGestureInsets,
     this.keyboardInset,
     this.displayFeatures,
+    this.posture,
+    this.reservedRegions,
+    this.showReservedRegions = false,
     this.locales,
     this.platformBrightness,
     this.textScaleFactor,
@@ -107,6 +111,21 @@ class DeviceSimulation {
                 ),
               ),
             ),
+      posture: json['posture'] == null
+          ? null
+          : decodeEnum(json['posture'], DevicePosture.values, 'posture'),
+      reservedRegions: json['reservedRegions'] == null
+          ? null
+          : List<SimulatedReservedRegion>.unmodifiable(
+              decodeList(json['reservedRegions'], 'reservedRegions').map(
+                (Object? e) => SimulatedReservedRegion.fromJson(
+                  decodeMap(e, 'reservedRegions[]'),
+                ),
+              ),
+            ),
+      showReservedRegions: json['showReservedRegions'] == null
+          ? false
+          : decodeBool(json['showReservedRegions'], 'showReservedRegions'),
       locales: json['locales'] == null
           ? null
           : List<ui.Locale>.unmodifiable(
@@ -251,6 +270,45 @@ class DeviceSimulation {
   /// Simulated display features (folds, hinges, cutouts), in logical pixels.
   final List<SimulatedDisplayFeature>? displayFeatures;
 
+  /// The posture of the simulated foldable, or null for a device that does
+  /// not fold.
+  ///
+  /// Purely informational, like [presetId] and [orientation]: the metric
+  /// fields are already resolved for it — the cover display's size and safe
+  /// areas when [DevicePosture.closed], a half-opened fold in
+  /// [displayFeatures] when the device's platform reports one. It is what
+  /// the controller (`DevicePreviewController.setPosture`) and the DevTools
+  /// panel read to know which screen is showing.
+  final DevicePosture? posture;
+
+  /// The screen areas the simulated device reserves — its camera, its
+  /// system controls, its fold — already resolved for [orientation] and
+  /// [posture], in logical pixels; null when the device declares none.
+  ///
+  /// This is the iOS 27.1 *reserved region* model (`UIView.ReservedRegion`),
+  /// which covers more than a safe area can say: an iPhone Duo's cover camera
+  /// sits in a corner, its status bar and Dynamic Island in a column along
+  /// the side, and its fold only splits the inner display while the device is
+  /// partially open. The safe areas ([padding], [viewPadding]) stay what they
+  /// are — the insets that bound the whole region set — and remain the only
+  /// part a Flutter app observes.
+  ///
+  /// **Not reported to the app.** Flutter's iOS embedder does not read
+  /// reserved regions (as of Flutter 3.47), so on a real device
+  /// `MediaQuery.displayFeatures` stays empty in every posture, and the
+  /// simulation reproduces exactly that. The regions are here for tooling —
+  /// the overlay [showReservedRegions] draws, tests that want to assert a
+  /// layout keeps clear of the fold — and read from
+  /// `DevicePreview.controller.simulation`.
+  final List<SimulatedReservedRegion>? reservedRegions;
+
+  /// Whether [reservedRegions] are drawn over the app as a tinted overlay.
+  /// False by default.
+  ///
+  /// A pure display switch, like [showSystemUi]: it changes nothing the app
+  /// can observe, and it survives switching device.
+  final bool showReservedRegions;
+
   /// The simulated locale list; the first entry becomes
   /// `PlatformDispatcher.locale`.
   final List<ui.Locale>? locales;
@@ -289,6 +347,8 @@ class DeviceSimulation {
       systemGestureInsets == null &&
       keyboardInset == null &&
       displayFeatures == null &&
+      posture == null &&
+      reservedRegions == null &&
       locales == null &&
       platformBrightness == null &&
       textScaleFactor == null &&
@@ -346,6 +406,9 @@ class DeviceSimulation {
     Object? systemGestureInsets = _unset,
     Object? keyboardInset = _unset,
     Object? displayFeatures = _unset,
+    Object? posture = _unset,
+    Object? reservedRegions = _unset,
+    bool? showReservedRegions,
     Object? locales = _unset,
     Object? platformBrightness = _unset,
     Object? textScaleFactor = _unset,
@@ -390,6 +453,13 @@ class DeviceSimulation {
       displayFeatures: identical(displayFeatures, _unset)
           ? this.displayFeatures
           : displayFeatures as List<SimulatedDisplayFeature>?,
+      posture: identical(posture, _unset)
+          ? this.posture
+          : posture as DevicePosture?,
+      reservedRegions: identical(reservedRegions, _unset)
+          ? this.reservedRegions
+          : reservedRegions as List<SimulatedReservedRegion>?,
+      showReservedRegions: showReservedRegions ?? this.showReservedRegions,
       locales: identical(locales, _unset)
           ? this.locales
           : locales as List<ui.Locale>?,
@@ -435,6 +505,13 @@ class DeviceSimulation {
         'displayFeatures': displayFeatures!
             .map((SimulatedDisplayFeature f) => f.toJson())
             .toList(),
+      if (posture != null) 'posture': posture!.name,
+      if (reservedRegions != null)
+        'reservedRegions': reservedRegions!
+            .map((SimulatedReservedRegion r) => r.toJson())
+            .toList(),
+      // Absent means "hidden": only the non-default travels.
+      if (showReservedRegions) 'showReservedRegions': true,
       if (locales != null) 'locales': locales!.map(encodeLocale).toList(),
       if (platformBrightness != null)
         'platformBrightness': platformBrightness!.name,
@@ -466,6 +543,9 @@ class DeviceSimulation {
         other.systemGestureInsets == systemGestureInsets &&
         other.keyboardInset == keyboardInset &&
         listEquals(other.displayFeatures, displayFeatures) &&
+        other.posture == posture &&
+        listEquals(other.reservedRegions, reservedRegions) &&
+        other.showReservedRegions == showReservedRegions &&
         listEquals(other.locales, locales) &&
         other.platformBrightness == platformBrightness &&
         other.textScaleFactor == textScaleFactor &&
@@ -475,7 +555,7 @@ class DeviceSimulation {
   }
 
   @override
-  int get hashCode => Object.hash(
+  int get hashCode => Object.hashAll(<Object?>[
     presetId,
     orientation,
     screenSize,
@@ -490,13 +570,16 @@ class DeviceSimulation {
     systemGestureInsets,
     keyboardInset,
     displayFeatures == null ? null : Object.hashAll(displayFeatures!),
+    posture,
+    reservedRegions == null ? null : Object.hashAll(reservedRegions!),
+    showReservedRegions,
     locales == null ? null : Object.hashAll(locales!),
     platformBrightness,
     textScaleFactor,
     accessibility,
     alwaysUse24HourFormat,
     targetPlatform,
-  );
+  ]);
 
   @override
   String toString() {
@@ -516,6 +599,9 @@ class DeviceSimulation {
         'systemGestureInsets: $systemGestureInsets',
       if (keyboardInset != null) 'keyboardInset: $keyboardInset',
       if (displayFeatures != null) 'displayFeatures: $displayFeatures',
+      if (posture != null) 'posture: ${posture!.name}',
+      if (reservedRegions != null) 'reservedRegions: $reservedRegions',
+      if (showReservedRegions) 'showReservedRegions: true',
       if (locales != null) 'locales: $locales',
       if (platformBrightness != null)
         'platformBrightness: ${platformBrightness!.name}',
@@ -769,4 +855,170 @@ class SimulatedDisplayFeature {
   String toString() =>
       'SimulatedDisplayFeature(bounds: $bounds, type: ${type.name}, '
       'state: ${state.name})';
+}
+
+/// The two kinds of reserved region, as iOS 27.1 names them
+/// (`UIView.ReservedRegion.Kind`).
+enum ReservedRegionKind {
+  /// An area hardware or system controls cover, so content there is hidden
+  /// or unreachable: a camera, the Dynamic Island, a status bar column.
+  occlusion,
+
+  /// An area that splits the screen into separate parts — the fold of a
+  /// hinge.
+  division,
+}
+
+/// One area of the screen the simulated device reserves, in logical pixels —
+/// a `dart:ui`-free, JSON-serializable mirror of iOS 27.1's
+/// `UIView.ReservedRegion`.
+///
+/// Safe areas can only say how far content must stay from each *edge*; a
+/// reserved region says *which part* of the screen is taken, and whether it
+/// currently is. An iPhone Duo's cover camera is an [ReservedRegionKind.occlusion]
+/// in one corner, its side status bar another along the trailing edge, and
+/// its fold a [ReservedRegionKind.division] across the inner display that is
+/// only [isActive] while the device is partially open.
+///
+/// See [DeviceSimulation.reservedRegions] for how the simulation uses them
+/// (it draws them; it never reports them to the app).
+@immutable
+class SimulatedReservedRegion {
+  /// Creates a reserved region.
+  const SimulatedReservedRegion({
+    required this.kind,
+    required this.bounds,
+    this.margins = EdgeInsets.zero,
+    this.isActive = true,
+  });
+
+  /// Decodes a region from the JSON produced by [toJson].
+  ///
+  /// Unknown keys are ignored; malformed values throw a [FormatException].
+  factory SimulatedReservedRegion.fromJson(Map<String, Object?> json) {
+    return SimulatedReservedRegion(
+      kind: decodeEnum(json['kind'], ReservedRegionKind.values, 'kind'),
+      bounds: decodeRect(json['bounds'], 'bounds'),
+      margins: json['margins'] == null
+          ? EdgeInsets.zero
+          : decodeEdgeInsets(json['margins'], 'margins'),
+      isActive: json['active'] == null
+          ? true
+          : decodeBool(json['active'], 'active'),
+    );
+  }
+
+  /// Whether the region hides content or divides the screen.
+  final ReservedRegionKind kind;
+
+  /// The region's rectangle, margins included — iOS's `frame`.
+  final ui.Rect bounds;
+
+  /// The part of [bounds] that is breathing room rather than the reserved
+  /// area itself: a fold's `margins` are the strips either side of the crease
+  /// where interactive content should not sit.
+  final EdgeInsets margins;
+
+  /// The reserved area proper: [bounds] deflated by [margins].
+  ui.Rect get core => margins.deflateRect(bounds);
+
+  /// Whether the region currently takes its area.
+  ///
+  /// An inactive region is still reported, full size, so a layout can
+  /// prepare for it: the inner display's camera while it is off, the fold
+  /// while the device lies flat.
+  final bool isActive;
+
+  /// This region with [isActive] replaced.
+  SimulatedReservedRegion withActive(bool active) => active == isActive
+      ? this
+      : SimulatedReservedRegion(
+          kind: kind,
+          bounds: bounds,
+          margins: margins,
+          isActive: active,
+        );
+
+  /// Returns this region mapped through the 90° portrait → landscape
+  /// rotation, for a portrait screen [portraitWidth] logical pixels wide —
+  /// the same mapping [SimulatedDisplayFeature.rotatedToLandscape] applies,
+  /// margins included (the portrait top margin becomes the landscape left
+  /// one). Exact inverse of [rotatedToPortrait].
+  ///
+  /// Only hardware regions rotate this way. A system region follows the
+  /// software, which may re-lay it out — the iPhone Duo keeps its status
+  /// column on the right in every orientation — so a device declares its
+  /// landscape regions explicitly (`DevicePreset.landscapeReservedRegions`)
+  /// whenever they differ from the rotated portrait ones.
+  SimulatedReservedRegion rotatedToLandscape(double portraitWidth) {
+    return SimulatedReservedRegion(
+      kind: kind,
+      bounds: ui.Rect.fromLTRB(
+        bounds.top,
+        portraitWidth - bounds.right,
+        bounds.bottom,
+        portraitWidth - bounds.left,
+      ),
+      margins: EdgeInsets.fromLTRB(
+        margins.top,
+        margins.right,
+        margins.bottom,
+        margins.left,
+      ),
+      isActive: isActive,
+    );
+  }
+
+  /// Returns this region mapped through the 90° landscape → portrait
+  /// rotation, for a landscape screen [landscapeHeight] logical pixels tall.
+  ///
+  /// Exact inverse of [rotatedToLandscape].
+  SimulatedReservedRegion rotatedToPortrait(double landscapeHeight) {
+    return SimulatedReservedRegion(
+      kind: kind,
+      bounds: ui.Rect.fromLTRB(
+        landscapeHeight - bounds.bottom,
+        bounds.left,
+        landscapeHeight - bounds.top,
+        bounds.right,
+      ),
+      margins: EdgeInsets.fromLTRB(
+        margins.bottom,
+        margins.left,
+        margins.top,
+        margins.right,
+      ),
+      isActive: isActive,
+    );
+  }
+
+  /// Encodes this region as JSON. Zero margins and an active state — the
+  /// defaults — are absent.
+  Map<String, Object?> toJson() => <String, Object?>{
+    'kind': kind.name,
+    'bounds': encodeRect(bounds),
+    if (margins != EdgeInsets.zero) 'margins': encodeEdgeInsets(margins),
+    if (!isActive) 'active': false,
+  };
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    return other is SimulatedReservedRegion &&
+        other.kind == kind &&
+        other.bounds == bounds &&
+        other.margins == margins &&
+        other.isActive == isActive;
+  }
+
+  @override
+  int get hashCode => Object.hash(kind, bounds, margins, isActive);
+
+  @override
+  String toString() =>
+      'SimulatedReservedRegion(${kind.name}, bounds: $bounds'
+      '${margins == EdgeInsets.zero ? '' : ', margins: $margins'}'
+      '${isActive ? '' : ', inactive'})';
 }

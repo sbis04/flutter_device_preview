@@ -1,6 +1,6 @@
 ---
 name: extract-cupertino-specs
-description: Rebuild the Apple device specs in device_specs/ from the locally installed iOS Simulator — frame artwork from Xcode's bezel chrome, plus screen size, scale and safe areas probed from a booted simulator. Use when iPhone/iPad specs need to be (re)derived from Apple's own definitions.
+description: Rebuild the Apple device specs in device_specs/ from the locally installed iOS Simulator — frame artwork from Xcode's bezel chrome, plus screen size, scale and safe areas probed from a booted simulator (and, for the foldable iPhone Duo, per-posture metrics and reserved regions). Use when iPhone/iPad specs need to be (re)derived from Apple's own definitions.
 ---
 
 # iOS Simulator → device specs
@@ -211,9 +211,93 @@ cd ../device_preview && flutter test          # package suite
 ../tool/build_demo.sh                         # docs demo
 ```
 
+## 6. iPhone Duo (foldables)
+
+The Duo is not in `extract_specs.py`'s table: it has two displays, postures,
+and chrome that assumes nothing the phone pipeline assumes. Two tools cover
+it instead.
+
+**Frames — `extract_duo.py`.** `capabilities.plist` lists the displays:
+`primary` is the cover (466 × 678 @3, `phone15` chrome), `primary-1` the
+inner display (669 × 951 @3, `phone14` chrome). Their chrome bundles live
+system-wide in `/Library/Developer/DeviceKit/Chrome/` (installed with the
+iOS 27.1 platform — Xcode 27 is the first to ship chrome again). What is
+unusual, and why shapes are converted path by path:
+
+- the cover's bezel is asymmetric (left 26 / right 22 in `chrome.json`, a
+  separate spine strip along the hinge, nearly square hinge-side corners)
+  and its composite puts the screen at x = 25;
+- the inner composite surrounds the **physical** 626 × 890 pt panel
+  (1878 × 2670 px, 430 ppi) that iOS downsamples 669 × 951 pt onto — the
+  artwork is scaled by 669 / 626 onto the logical screen;
+- strokes become fills of their outline offset outward by half the stroke
+  width (Tiller–Hanson on each cubic), clipped fills become their clip path;
+- the half-open frame is the inner one with its bezel pinched into a V at
+  the fold (`HALF_OPEN_PINCH`, Device Hub's look at the default angle), the
+  screen left rectangular — the app is laid out flat on the device.
+
+The cover camera is not in the mask (iOS draws it, like the Dynamic
+Island); it comes from UIKit's own occlusion region for it.
+
+```sh
+/tmp/specs-venv/bin/python .claude/skills/extract-cupertino-specs/extract_duo.py
+```
+
+**Metrics — `posture_probe.swift`, by hand.** No `simctl` command changes a
+posture; Device Hub (Xcode ▸ Open Developer Tool ▸ Device Hub) does, with
+its closed / half-open / open buttons and a rotate button. Install the probe
+on the booted Duo, launch it with `SIMCTL_CHILD_PASSIVE=1 xcrun simctl
+launch --console-pty booted dev.devicepreview.duoprobe`, then set each pose
+in Device Hub and read the `DUOPROBE` line it prints. What it found on iOS
+27.1, and what `apple-iphone-duo.json` records:
+
+| Pose | Size | Safe area | Keyboard |
+|---|---|---|---|
+| open, portrait | 669 × 951 | top 82, bottom 34 | 350 |
+| open, landscape (either) | 951 × 669 | right 84, bottom 34 | 264 |
+| half-open, portrait | 669 × 951 | top 82, bottom 34 | 495.5 (split) |
+| closed, portrait | 466 × 678 | right 84, bottom 34 | 289 |
+| closed, landscapeRight | 678 × 466 | left 84, bottom 34 | 230 |
+
+Traps: iOS refuses `requestGeometryUpdate` on the inner display (rotate in
+Device Hub); the status bar lives in a column on the **trailing** edge on the
+cover and on the open display in landscape (both landscapes — it does not
+turn with the hardware, so landscape regions are declared, not rotated);
+the reserved regions (`occlusion` for the cameras and the status column,
+`division` for the fold, 40 pt with 20 pt margins, active only half-open)
+lag the hinge by up to a second, so read a pose after it settles; iOS 27
+draws **no home indicator** on the Duo, though the 34 pt bottom inset stays.
+
+**Status bar — `duo_status_bar.py`.** The Duo's status bar is iOS 27's:
+the clock over (or beside) the wifi glyph inside the battery level ring,
+with the cellular bars as four dots under it — in a column along the trailing
+edge, or in a row on the open display in portrait. The artwork is Apple's
+own: the iOS and iPadOS 27 UI kit (Apple Design Resources, Figma) ▸ page
+*Status Bars and Menu Bars* ▸ *Status bar - iPhone Duo*, both variants
+exported as SVG. The script keeps the path data verbatim, turns the stroked
+ring into a filled arc, and writes the placement fitted against the
+simulator (template matching at 3x with the status bar pinned to 9:41 by
+`xcrun simctl status_bar booted override`; `clear` afterwards). The fit is
+within one physical pixel in every pose.
+
+```sh
+python3 .claude/skills/extract-cupertino-specs/duo_status_bar.py \
+  ~/Downloads/Type=Horizontal.svg ~/Downloads/Type=Vertical.svg
+```
+
+Cross-check against Flutter itself: a stock app on the booted Duo reports the
+same sizes, `viewPadding` and keyboard `viewInsets`, and an **empty**
+`MediaQuery.displayFeatures` in every pose — Flutter's iOS embedder does not
+read reserved regions (flutter/flutter#192515, #193025) — which is why the
+spec declares no display feature.
+
 ## Licensing note
 
-The artwork inside Xcode is Apple's copyrighted material. This process does
+The artwork inside Xcode is Apple's copyrighted material. So is the UI kit
+the Duo's status bar glyphs come from: unlike every other frame here, those
+paths are Apple's drawing reproduced verbatim (as the existing iPhone status
+bar glyphs are, from their reference drawing), downloaded under the Apple
+Design Resources license — check it covers your use before publishing. This process does
 not redistribute it: it derives geometry (sizes, radii, paths, insets) and a
 handful of flat colors, and the drawn frames are our own minimal SVG. For
 marketing-grade imagery use the official Apple Design Resources ("Product

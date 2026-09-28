@@ -35,12 +35,45 @@ const Set<String> kSpecKeys = <String>{
   'portraitKeyboardHeight',
   'landscapeKeyboardHeight',
   'displayFeatures',
+  'portraitReservedRegions',
+  'landscapeReservedRegions',
+  'postures',
   'frame',
   'systemUi',
 };
 
+/// Keys a posture variant (`postures.<posture>`) may declare: the metric and
+/// appearance keys of a spec, nothing that names the device.
+const Set<String> kPostureVariantKeys = <String>{
+  'portraitSize',
+  'devicePixelRatio',
+  'portraitPadding',
+  'portraitViewPadding',
+  'landscapePadding',
+  'landscapeViewPadding',
+  'systemGestureInsets',
+  'portraitKeyboardHeight',
+  'landscapeKeyboardHeight',
+  'displayFeatures',
+  'portraitReservedRegions',
+  'landscapeReservedRegions',
+  'frame',
+  'systemUi',
+};
+
+/// `DevicePosture` names a spec's `postures` may declare; the top level is
+/// the open posture.
+const Set<String> kPostures = <String>{'halfOpened', 'closed'};
+
+/// `ReservedRegionKind` member names.
+const Set<String> kRegionKinds = <String>{'occlusion', 'division'};
+
 /// Keys of the optional `systemUi` object, and of each bar inside it.
-const Set<String> kSystemUiKeys = <String>{'statusBar', 'navigationBar'};
+const Set<String> kSystemUiKeys = <String>{
+  'statusBar',
+  'navigationBar',
+  'sideBar',
+};
 
 /// Keys of one system bar.
 const Set<String> kBarKeys = <String>{
@@ -210,9 +243,49 @@ void _validate(Map<String, Object?> spec, String name) {
       '(expected one of ${kKinds.join(', ')})',
     );
   }
-  _validateSize(spec['portraitSize'], '$name: portraitSize');
-  if (spec['devicePixelRatio'] is! num ||
-      (spec['devicePixelRatio']! as num) <= 0) {
+  _validateScreen(spec, name, full: true);
+  final Object? postures = spec['postures'];
+  if (postures != null) {
+    if (postures is! Map || postures.isEmpty) {
+      throw FormatException('$name: "postures" must be a non-empty object');
+    }
+    postures.forEach((Object? posture, Object? variant) {
+      if (!kPostures.contains(posture)) {
+        throw FormatException(
+          '$name: unknown posture "$posture" (expected one of '
+          '${kPostures.join(', ')}; the top level is the open posture)',
+        );
+      }
+      if (variant is! Map) {
+        throw FormatException('$name: postures.$posture must be an object');
+      }
+      for (final Object? key in variant.keys) {
+        if (!kPostureVariantKeys.contains(key)) {
+          throw FormatException('$name: unknown postures.$posture key "$key"');
+        }
+      }
+      _validateScreen(
+        Map<String, Object?>.from(variant),
+        '$name: postures.$posture',
+        full: false,
+      );
+    });
+  }
+}
+
+/// Validates the metric and appearance keys a spec and a posture variant
+/// share. [full] is the spec itself, where the size and ratio are required.
+void _validateScreen(
+  Map<String, Object?> spec,
+  String name, {
+  required bool full,
+}) {
+  if (full || spec['portraitSize'] != null) {
+    _validateSize(spec['portraitSize'], '$name: portraitSize');
+  }
+  if ((full || spec['devicePixelRatio'] != null) &&
+      (spec['devicePixelRatio'] is! num ||
+          (spec['devicePixelRatio']! as num) <= 0)) {
     throw FormatException('$name: "devicePixelRatio" must be a positive number');
   }
   for (final String key in <String>[
@@ -248,6 +321,35 @@ void _validate(Map<String, Object?> spec, String name) {
         throw FormatException(
           '$name: every display feature needs "bounds", "type" and "state"',
         );
+      }
+    }
+  }
+  for (final String key in <String>[
+    'portraitReservedRegions',
+    'landscapeReservedRegions',
+  ]) {
+    final Object? regions = spec[key];
+    if (regions == null) {
+      continue;
+    }
+    if (regions is! List) {
+      throw FormatException('$name: "$key" must be an array');
+    }
+    for (final Object? region in regions) {
+      if (region is! Map ||
+          !kRegionKinds.contains(region['kind']) ||
+          region['bounds'] is! Map) {
+        throw FormatException(
+          '$name: every $key entry needs a "kind" (occlusion or division) '
+          'and "bounds"',
+        );
+      }
+      _validateInsets(region['bounds'], '$name: $key[].bounds');
+      if (region['margins'] != null) {
+        _validateInsets(region['margins'], '$name: $key[].margins');
+      }
+      if (region['active'] != null && region['active'] is! bool) {
+        throw FormatException('$name: $key[].active must be a bool');
       }
     }
   }
@@ -367,10 +469,27 @@ String _joinLines(Object? value, String context) {
 
 /// Normalizes a spec into the wire shape: multi-line artwork joined, numbers
 /// left as authored, key order stabilized.
-Map<String, Object?> _normalize(Map<String, Object?> spec) {
+Map<String, Object?> _normalize(Map<String, Object?> spec) =>
+    _normalizeKeys(spec, kSpecKeys);
+
+Map<String, Object?> _normalizeKeys(
+  Map<String, Object?> spec,
+  Set<String> keys,
+) {
   final Map<String, Object?> result = <String, Object?>{};
-  for (final String key in kSpecKeys) {
+  for (final String key in keys) {
     if (!spec.containsKey(key) || spec[key] == null) {
+      continue;
+    }
+    if (key == 'postures') {
+      final Map<String, Object?> postures = <String, Object?>{};
+      (spec['postures']! as Map).forEach((Object? posture, Object? variant) {
+        postures['$posture'] = _normalizeKeys(
+          Map<String, Object?>.from(variant! as Map),
+          kPostureVariantKeys,
+        );
+      });
+      result[key] = postures;
       continue;
     }
     if (key == 'systemUi') {

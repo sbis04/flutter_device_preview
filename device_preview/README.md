@@ -20,7 +20,8 @@ Control it from **Flutter DevTools**, from **Dart**, or from your **tests**.
 | **Screen size & pixel ratio** | Any resolution and density; the app is scaled to fit your window, so a screen bigger than your monitor still previews whole. |
 | **Safe areas** | Notches, punch-holes and home indicators, per device and per orientation. |
 | **Orientation** | Portrait ⇄ landscape, with safe areas rotating as the real device rotates them. |
-| **Folds & hinges** | Display features for foldables. |
+| **Folds & postures** | Foldables open, half-open and closed — the cover display when shut, a bent fold when half-open — with each posture's own size, safe areas, keyboard and frame. Folds reach the app as display features exactly where the platform reports them (Android does, Flutter on iOS does not). |
+| **Reserved regions** | Cameras, side status bars and folds as iOS 27.1 describes them — which part of the screen is taken, and whether it currently is — drawn as an optional overlay for checking a layout against them. |
 | **Keyboard** | The device's software keyboard, raised on demand at the height it really covers, in either orientation — so a form can be checked against it from a desktop, which has no keyboard of its own. Probed per device for iPhones and iPads, one shared default for Android, and the only thing `viewInsets` reports while simulating: the host's own keyboard stays out of the simulated screen. |
 | **Locales** | An ordered locale list; locale resolution, translations and `Intl` formatting follow. |
 | **Brightness** | Light and dark, applied live. |
@@ -311,6 +312,55 @@ phone's own keyboard — raise the simulated one instead, which is the keyboard
 the layout should be checked against anyway. The
 host's own keyboard, if it has one, still maps into simulated space as it
 always did; the two never stack — the deeper inset wins.
+
+## Foldables and postures
+
+A foldable preset describes every way the device can be held. The preset's
+own fields are its **open** posture; `DevicePreset.postures` holds how the
+others differ — a whole other screen for `DevicePosture.closed` (the cover
+display, with its own size, safe areas, keyboard and frame), the same screen
+with a bent fold for `DevicePosture.halfOpened`:
+
+```dart
+final c = DevicePreview.controller;
+await c.applyPreset(DevicePresets.iPhoneDuo, posture: DevicePosture.closed);
+await c.setPosture(DevicePosture.halfOpened); // keeps the orientation
+await c.setOrientation(Orientation.landscape); // keeps the posture
+```
+
+A raised keyboard follows the posture it is in — the iPhone Duo's splits
+around the fold, and grows, when half-open. The DevTools panel shows an
+**Open / Half / Closed** control for any device that has postures.
+
+What reaches the app is what the platform reports on that device, nothing
+more. On Android, a fold is a `DisplayFeature` — `postureFlat` when open,
+`postureHalfOpened` when bent — the way Jetpack WindowManager reports it.
+Flutter's iOS embedder reports no display features at all (as of Flutter
+3.47), so on the iPhone Duo `MediaQuery.displayFeatures` stays empty in
+every posture, exactly as it is on the device; what changes is the screen,
+the safe areas and the keyboard.
+
+### Reserved regions
+
+iOS 27.1 describes the parts of the screen a device takes as *reserved
+regions*: **occlusions** a camera, the Dynamic Island or a status bar column
+cover, and **divisions** a fold splits the screen along — each with margins,
+and each active or not (the iPhone Duo's fold only divides the inner display
+while it is partially open; its inner camera only occludes while in use).
+Presets carry them (`portraitReservedRegions`, `landscapeReservedRegions`),
+the simulation resolves them per orientation and posture
+(`DeviceSimulation.reservedRegions`), and the **Reserved regions** switch —
+`showReservedRegions` — draws them over the app: occlusions red, divisions
+blue, inactive regions outlined only.
+
+They are for you, not for the app: Flutter does not read reserved regions on
+iOS, so reporting them would make the preview disagree with the device. Read
+them from `DevicePreview.controller.simulation` when a test should assert a
+layout keeps clear of the fold.
+
+The iPhone Duo also keeps its status bar in a column along the trailing edge
+whenever the screen is wider than tall enough to spare a top bar; that
+column is `SystemUiSimulation.sideBar`, drawn in the right-hand safe area.
 
 ## Migrating from 2.x
 

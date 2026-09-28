@@ -249,11 +249,57 @@ class RenderDevicePreviewFrame extends RenderProxyBox {
     canvas.restore();
   }
 
-  /// Paints the app and, over it, the simulated keyboard and system UI.
+  /// Paints the reserved region overlay over everything else on the screen,
+  /// when the simulation asks for it
+  /// ([DeviceSimulation.showReservedRegions]).
+  ///
+  /// A diagnostic, not decoration: it is drawn even with the system UI
+  /// hidden, and — like the bars — changes nothing the app can observe.
+  void _paintReservedRegions(PaintingContext context, Offset offset) {
+    final DeviceSimulation? simulation = _simulation.value;
+    final List<SimulatedReservedRegion>? regions = simulation?.reservedRegions;
+    if (simulation == null ||
+        regions == null ||
+        regions.isEmpty ||
+        !simulation.showReservedRegions) {
+      return;
+    }
+    final Canvas canvas = context.canvas;
+    canvas.save();
+    canvas.translate(offset.dx, offset.dy);
+    paintReservedRegions(canvas, regions);
+    canvas.restore();
+  }
+
+  /// Shades the creases of a partially open foldable over the app — part of
+  /// the device's look, so it is drawn with the frame and only with it.
+  void _paintCreases(PaintingContext context, Offset offset) {
+    final DeviceSimulation? simulation = _simulation.value;
+    if (simulation == null || simulation.frame == null) {
+      return;
+    }
+    final List<(ui.Offset, ui.Offset)> creases = foldCreases(
+      regions: simulation.reservedRegions,
+      features: simulation.displayFeatures,
+    );
+    if (creases.isEmpty) {
+      return;
+    }
+    final Canvas canvas = context.canvas;
+    canvas.save();
+    canvas.translate(offset.dx, offset.dy);
+    paintFoldCreases(canvas, creases);
+    canvas.restore();
+  }
+
+  /// Paints the app and, over it, the fold creases, the simulated keyboard,
+  /// system UI and reserved region overlay.
   void _paintContents(PaintingContext context, Offset offset) {
     super.paint(context, offset);
+    _paintCreases(context, offset);
     _paintKeyboard(context, offset);
     _paintSystemUi(context, offset);
+    _paintReservedRegions(context, offset);
   }
 
   @override

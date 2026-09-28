@@ -229,6 +229,12 @@ mixin DevicePreviewBindingMixin
             // The keyboard inset is reported by the wrapper view, so it does
             // not need the frame wrapper — any enabled simulation has it.
             'keyboard': simulationEnabled,
+            // Postures are resolved by whoever builds the simulation (the
+            // panel or the controller); the app only needs to round-trip
+            // the label, which any enabled simulation does.
+            'posture': simulationEnabled,
+            // The reserved region overlay is painted by the frame wrapper.
+            'reservedRegions': simulationEnabled && _controller != null,
           },
         ),
         screenshot: screenshot,

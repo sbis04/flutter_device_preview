@@ -1,5 +1,45 @@
 # Changelog
 
+## 3.1.0
+
+Foldables that fold, and the iPhone Duo.
+
+- **iPhone Duo** (`DevicePresets.iPhoneDuo`) — Apple's first foldable, from
+  the iOS 27.1 simulator (Xcode 27.1): both frames converted from the
+  simulator's own chrome (the cover's hinge spine and square hinge-side
+  corners included), and every posture's metrics — size, safe areas,
+  keyboard heights, reserved regions — measured on the booted device and
+  checked against what a Flutter 3.47.5 app reports on it.
+- **Postures**: `DevicePosture` (open, halfOpened, closed),
+  `DevicePreset.postures` / `DevicePostureVariant` / `forPosture`,
+  `resolve(posture:)`, `applyPreset(posture:)`, `applyJson(posture:)` and
+  `DevicePreviewController.setPosture`. A posture with its own size is
+  another screen and inherits nothing screen-bound; half-opened bends every
+  flat fold (`postureHalfOpened`) and activates divisions. Rotation keeps
+  the posture, folding keeps the orientation, a raised keyboard follows both.
+- **Reserved regions**: `SimulatedReservedRegion` (occlusion / division,
+  margins, active), on presets and resolved on `DeviceSimulation`, with a
+  `showReservedRegions` overlay. Never reported to the app — Flutter's iOS
+  embedder does not read them.
+- **Side status bar**: `SystemUiSimulation.sideBar`, a vertical status bar in
+  the right-hand safe area. The Duo's status bar is iOS 27's own — clock, wifi inside the battery
+  ring, four cellular dots — from Apple's iOS 27 UI kit, placed within one
+  pixel of the simulator in every pose. The Duo draws no home indicator.
+- **Half-open looks half-open**: the Duo's half-open posture has its own frame,
+  the body bent into a V at the hinge, and every foldable's active fold —
+  a division region, or a `postureHalfOpened` fold feature — is shaded as a
+  crease over the screen. Decoration only: the app stays laid out flat.
+- DevTools: a Posture control and a Reserved regions switch. Protocol 5
+  (`posture`, `reservedRegions`, `showReservedRegions`, the `posture` and
+  `reservedRegions` capabilities) — additive, older panels and apps ignore it.
+- Landing-page demo: the same controls; its landscape `viewPadding` now falls
+  back to the device's landscape padding like the app does (it rotated the
+  portrait one, which put a portrait home-indicator inset on landscape
+  iPhones).
+- `DevicePreviewController` gained `setPosture`, and `applyPreset` /
+  `applyJson` a `posture` parameter: implementers of the interface (test
+  fakes) need both.
+
 ## 3.0.0
 
 The stable 3.0 release — a from-scratch rebuild of Device Preview. If you are

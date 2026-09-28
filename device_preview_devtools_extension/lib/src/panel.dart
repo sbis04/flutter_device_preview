@@ -341,6 +341,27 @@ class _DeviceSection extends StatelessWidget {
             ),
           ],
         ),
+        if (controller.supportedPostures.isNotEmpty) ...[
+          const SizedBox(height: denseSpacing),
+          _LabeledRow(
+            label: 'Posture',
+            child: SegmentedButton<String>(
+              key: const Key('device_preview_posture_toggle'),
+              segments: [
+                for (final posture in controller.supportedPostures)
+                  ButtonSegment(
+                    value: posture,
+                    label: Text(_postureLabels[posture] ?? posture),
+                    tooltip: _postureTooltips[posture],
+                  ),
+              ],
+              selected: {controller.posture ?? 'open'},
+              showSelectedIcon: false,
+              onSelectionChanged: (selection) =>
+                  controller.setPosture(selection.first),
+            ),
+          ),
+        ],
         const SizedBox(height: denseSpacing),
         _LabeledRow(
           label: 'System UI',
@@ -363,6 +384,17 @@ class _DeviceSection extends StatelessWidget {
                 : null,
           ),
         ),
+        if (controller.hasReservedRegions) ...[
+          const SizedBox(height: denseSpacing),
+          _LabeledRow(
+            label: 'Reserved regions',
+            child: Switch(
+              key: const Key('device_preview_reserved_regions_switch'),
+              value: controller.showReservedRegions,
+              onChanged: (value) => controller.setShowReservedRegions(value),
+            ),
+          ),
+        ],
         const SizedBox(height: denseSpacing),
         _TriStateRow(
           label: 'Touch input',
@@ -377,6 +409,18 @@ class _DeviceSection extends StatelessWidget {
     );
   }
 }
+
+const Map<String, String> _postureLabels = <String, String>{
+  'open': 'Open',
+  'halfOpened': 'Half',
+  'closed': 'Closed',
+};
+
+const Map<String, String> _postureTooltips = <String, String>{
+  'open': 'Fully open: the inner display, hinge flat',
+  'halfOpened': 'Partially open: the inner display, divided by the fold',
+  'closed': 'Folded shut: the cover display',
+};
 
 class _PresetPickerButton extends StatelessWidget {
   const _PresetPickerButton({required this.controller});

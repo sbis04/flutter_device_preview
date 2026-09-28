@@ -27,7 +27,12 @@ import 'json_utils.dart';
 @immutable
 class SystemUiSimulation {
   /// Creates a system UI description.
-  const SystemUiSimulation({this.statusBar, this.navigationBar, this.platform});
+  const SystemUiSimulation({
+    this.statusBar,
+    this.navigationBar,
+    this.sideBar,
+    this.platform,
+  });
 
   /// Decodes a description from the JSON produced by [toJson].
   factory SystemUiSimulation.fromJson(Map<String, Object?> json) {
@@ -40,6 +45,9 @@ class SystemUiSimulation {
           : SystemUiBar.fromJson(
               decodeMap(json['navigationBar'], 'navigationBar'),
             ),
+      sideBar: json['sideBar'] == null
+          ? null
+          : SystemUiBar.fromJson(decodeMap(json['sideBar'], 'sideBar')),
       platform: json['platform'] == null
           ? null
           : decodeEnum(
@@ -56,6 +64,25 @@ class SystemUiSimulation {
   /// The navigation bar or gesture pill, drawn in the bottom safe area.
   final SystemUiBar? navigationBar;
 
+  /// A status bar laid out **vertically**, in the right-hand safe area — how
+  /// the iPhone Duo shows its clock and status icons whenever the screen is
+  /// wider than it is tall enough to spare a top bar (the cover display in
+  /// portrait, the inner display in landscape).
+  ///
+  /// It is drawn only while the right safe area is non-zero, so it
+  /// disappears by itself where the device keeps no column there (the Duo's
+  /// cover in landscape hides its status bar, as every iPhone does). It
+  /// stays on the right under a right-to-left directionality: the column is
+  /// aligned with the hardware — the camera sits above it — not with the
+  /// reading direction.
+  ///
+  /// The bar's pieces stack along the column instead of across it:
+  /// [SystemUiBar.leading] at the top, [SystemUiBar.inset] below the top
+  /// edge; [SystemUiBar.center] in the middle; [SystemUiBar.trailing] at the
+  /// bottom, [SystemUiBar.inset] above the bottom edge. Each is centered
+  /// across the column's width.
+  final SystemUiBar? sideBar;
+
   /// The platform whose system drew this furniture — the **simulated
   /// device's** operating system, not the app's `defaultTargetPlatform`.
   ///
@@ -65,9 +92,21 @@ class SystemUiSimulation {
   /// platform; left null, painting falls back to the app's own platform.
   final TargetPlatform? platform;
 
+  /// This description with [platform] replaced — how a preset stamps its
+  /// own platform onto bars that do not name one.
+  SystemUiSimulation withPlatform(TargetPlatform? platform) =>
+      SystemUiSimulation(
+        statusBar: statusBar,
+        navigationBar: navigationBar,
+        sideBar: sideBar,
+        platform: platform,
+      );
+
   /// Whether nothing would be drawn.
   bool get isEmpty =>
-      (statusBar?.isEmpty ?? true) && (navigationBar?.isEmpty ?? true);
+      (statusBar?.isEmpty ?? true) &&
+      (navigationBar?.isEmpty ?? true) &&
+      (sideBar?.isEmpty ?? true);
 
   /// Encodes this description as JSON. Empty bars are absent.
   Map<String, Object?> toJson() => <String, Object?>{
@@ -75,6 +114,7 @@ class SystemUiSimulation {
       'statusBar': statusBar!.toJson(),
     if (navigationBar != null && !navigationBar!.isEmpty)
       'navigationBar': navigationBar!.toJson(),
+    if (sideBar != null && !sideBar!.isEmpty) 'sideBar': sideBar!.toJson(),
     if (platform != null) 'platform': platform!.name,
   };
 
@@ -86,16 +126,17 @@ class SystemUiSimulation {
     return other is SystemUiSimulation &&
         other.statusBar == statusBar &&
         other.navigationBar == navigationBar &&
+        other.sideBar == sideBar &&
         other.platform == platform;
   }
 
   @override
-  int get hashCode => Object.hash(statusBar, navigationBar, platform);
+  int get hashCode => Object.hash(statusBar, navigationBar, sideBar, platform);
 
   @override
   String toString() =>
       'SystemUiSimulation(statusBar: $statusBar, '
-      'navigationBar: $navigationBar, platform: $platform)';
+      'navigationBar: $navigationBar, sideBar: $sideBar, platform: $platform)';
 }
 
 /// One system bar: up to three pieces of artwork laid out inside the safe area

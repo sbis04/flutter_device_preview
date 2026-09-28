@@ -42,6 +42,28 @@ const List<String> kMetricSimulationKeys = <String>[
   'systemGestureInsets',
   'keyboardInset',
   'displayFeatures',
+  'posture',
+  'reservedRegions',
+];
+
+/// The `DevicePosture` names, in the order the panel offers them.
+const List<String> kPostures = <String>['open', 'halfOpened', 'closed'];
+
+/// Keys a posture variant does not inherit when it declares its own
+/// `portraitSize` — everything bound to the open screen. Mirrors
+/// `DevicePreset.forPosture` app-side.
+const List<String> _kScreenBoundKeys = <String>[
+  'portraitPadding',
+  'portraitViewPadding',
+  'landscapePadding',
+  'landscapeViewPadding',
+  'systemGestureInsets',
+  'portraitKeyboardHeight',
+  'landscapeKeyboardHeight',
+  'displayFeatures',
+  'portraitReservedRegions',
+  'landscapeReservedRegions',
+  'frame',
 ];
 
 /// The seven tri-state accessibility flags of the protocol, in display order.
@@ -151,6 +173,105 @@ class PresetView {
   /// Display features (foldables), when provided.
   List<Object?>? get displayFeatures =>
       json['displayFeatures'] as List<Object?>?;
+
+  /// Reserved regions in portrait, when provided.
+  List<Object?>? get portraitReservedRegions =>
+      json['portraitReservedRegions'] as List<Object?>?;
+
+  /// Reserved regions in landscape, when the device declares them rather
+  /// than letting the portrait ones rotate.
+  List<Object?>? get landscapeReservedRegions =>
+      json['landscapeReservedRegions'] as List<Object?>?;
+
+  /// The raw posture variants, keyed by posture name; empty for a device
+  /// that does not fold.
+  Map<String, Object?> get postures =>
+      _asMap(json['postures']) ?? const <String, Object?>{};
+
+  /// The postures the device supports, `open` first; empty when it has no
+  /// postures at all.
+  List<String> get supportedPostures => postures.isEmpty
+      ? const <String>[]
+      : <String>[
+          for (final posture in kPostures)
+            if (posture == 'open' || postures.containsKey(posture)) posture,
+        ];
+
+  /// Whether the device can take [posture] (`open` always).
+  bool supportsPosture(String posture) =>
+      posture == 'open' || postures.containsKey(posture);
+
+  /// The device as it is in [posture]: its variant merged over its open
+  /// metrics by the rules `DevicePreset.forPosture` applies app-side — the
+  /// two writers of the protocol must produce identical metrics. Returns
+  /// this view for `open` or an unsupported posture.
+  PresetView forPosture(String posture) {
+    final variant = _asMap(postures[posture]);
+    if (posture == 'open' || variant == null) return this;
+    final merged = <String, Object?>{...json}..remove('postures');
+    final sameScreen = variant['portraitSize'] == null;
+    if (!sameScreen) {
+      for (final key in _kScreenBoundKeys) {
+        merged.remove(key);
+      }
+    }
+    // Pairs travel together: a variant's own portrait value brings its
+    // landscape half (or the rotation rule) with it.
+    void pair(String portrait, List<String> landscape) {
+      if (variant[portrait] == null) return;
+      for (final key in landscape) {
+        merged.remove(key);
+      }
+    }
+
+    pair('portraitPadding', const [
+      'portraitViewPadding',
+      'landscapePadding',
+      'landscapeViewPadding',
+    ]);
+    pair('portraitViewPadding', const ['landscapeViewPadding']);
+    pair('portraitReservedRegions', const ['landscapeReservedRegions']);
+    if (sameScreen && posture == 'halfOpened') {
+      // Folds report half-opened and divisions become active — unless the
+      // variant spells those lists out itself.
+      if (variant['displayFeatures'] == null) {
+        final features = merged['displayFeatures'];
+        if (features is List) {
+          merged['displayFeatures'] = [
+            for (final feature in features)
+              if (feature is Map &&
+                  (feature['type'] == 'fold' || feature['type'] == 'hinge') &&
+                  feature['state'] == 'postureFlat')
+                {...feature, 'state': 'postureHalfOpened'}
+              else
+                feature,
+          ];
+        }
+      }
+      for (final key in const [
+        'portraitReservedRegions',
+        'landscapeReservedRegions',
+      ]) {
+        if (variant[key] != null || variant['portraitReservedRegions'] != null) {
+          continue;
+        }
+        final regions = merged[key];
+        if (regions is List) {
+          merged[key] = [
+            for (final region in regions)
+              if (region is Map && region['kind'] == 'division')
+                ({...region}..remove('active'))
+              else
+                region,
+          ];
+        }
+      }
+    }
+    variant.forEach((key, value) {
+      if (value != null) merged[key] = value;
+    });
+    return PresetView(merged);
+  }
 }
 
 /// Raw-JSON-backed view over the protocol state shape (§4 of the design).
@@ -191,6 +312,14 @@ class StateView {
 
   /// Whether the app can raise a simulated software keyboard (protocol 4).
   bool get canKeyboard => capabilities['keyboard'] == true;
+
+  /// Whether the app round-trips a foldable's posture (protocol 5). An older
+  /// app still takes the metrics of any posture it is sent, but reports no
+  /// posture back, so the panel would lose track of which one is showing.
+  bool get canPosture => capabilities['posture'] == true;
+
+  /// Whether the app can draw the reserved region overlay (protocol 5).
+  bool get canReservedRegions => capabilities['reservedRegions'] == true;
 }
 
 Map<String, Object?>? _asMap(Object? value) =>
@@ -343,6 +472,33 @@ class PanelController extends ChangeNotifier {
   /// Whether that system UI is currently shown (the default).
   bool get showSystemUi => simulation?['showSystemUi'] != false;
 
+  /// The posture the simulated foldable is in (`open`, `halfOpened`,
+  /// `closed`), or null for a device that does not fold.
+  String? get posture => simulation?['posture'] as String?;
+
+  /// The postures the selected device offers — empty unless it folds and
+  /// the app can round-trip a posture.
+  List<String> get supportedPostures => (state?.canPosture ?? false)
+      ? activePreset?.supportedPostures ?? const <String>[]
+      : const <String>[];
+
+  /// Whether the selected device reserves screen regions — cameras, a side
+  /// status bar, a fold — that the overlay can show.
+  bool get hasReservedRegions =>
+      (state?.canReservedRegions ?? false) &&
+      simulation?['reservedRegions'] is List &&
+      (simulation!['reservedRegions'] as List).isNotEmpty;
+
+  /// Whether the reserved region overlay is shown (off by default).
+  bool get showReservedRegions => simulation?['showReservedRegions'] == true;
+
+  /// The active preset as it is in its current posture.
+  PresetView? get _activeScreen {
+    final preset = activePreset;
+    final current = posture;
+    return current == null ? preset : preset?.forPosture(current);
+  }
+
   /// The height a simulated keyboard currently covers, or null when none is
   /// raised.
   double? get keyboardInset =>
@@ -353,7 +509,7 @@ class PanelController extends ChangeNotifier {
   bool get hasKeyboard =>
       (state?.canKeyboard ?? false) &&
       hasSimulatedScreen &&
-      activePreset?.keyboardHeight(
+      _activeScreen?.keyboardHeight(
             landscape: simulation?['orientation'] == 'landscape',
           ) !=
           null;
@@ -533,7 +689,15 @@ class PanelController extends ChangeNotifier {
     return _enqueueWrite(() {
       final current = _currentSimulation();
       final orientation = current['orientation'] as String? ?? 'portrait';
-      return _applyPresetSimulation(preset, orientation, current);
+      // Switching between foldables keeps the posture when the new device
+      // has it; anything else starts open.
+      final posture = current['posture'] as String? ?? 'open';
+      return _applyPresetSimulation(
+        preset,
+        orientation,
+        current,
+        posture: preset.supportsPosture(posture) ? posture : 'open',
+      );
     });
   }
 
@@ -636,7 +800,12 @@ class PanelController extends ChangeNotifier {
       if (sim['orientation'] == orientation) return;
       final preset = activePreset;
       if (preset != null) {
-        await _applyPresetSimulation(preset, orientation, sim);
+        await _applyPresetSimulation(
+          preset,
+          orientation,
+          sim,
+          posture: sim['posture'] as String? ?? 'open',
+        );
         return;
       }
       final toLandscape = orientation == 'landscape';
@@ -644,12 +813,21 @@ class PanelController extends ChangeNotifier {
       // Display features are geometry: map their bounds through the 90°
       // rotation (before the size swap, using the pre-rotation extents).
       final features = sim['displayFeatures'];
-      if (features is List && size != null) {
-        final extent = ((toLandscape ? size['width'] : size['height']) as num?)
-            ?.toDouble();
-        if (extent != null) {
+      final regions = sim['reservedRegions'];
+      final extent =
+          ((toLandscape ? (size?['width']) : (size?['height'])) as num?)
+              ?.toDouble();
+      if (extent != null) {
+        if (features is List) {
           sim['displayFeatures'] = _rotateDisplayFeatures(
             features,
+            toLandscape: toLandscape,
+            extent: extent,
+          );
+        }
+        if (regions is List) {
+          sim['reservedRegions'] = _rotateReservedRegions(
+            regions,
             toLandscape: toLandscape,
             extent: extent,
           );
@@ -675,6 +853,37 @@ class PanelController extends ChangeNotifier {
     });
   }
 
+  /// Folds or unfolds the selected device to [posture] (`open`,
+  /// `halfOpened`, `closed`), keeping its orientation.
+  ///
+  /// A no-op for a device that does not support [posture]. Like a device
+  /// switch, a raised keyboard stays up with the new posture's height.
+  Future<void> setPosture(String posture) {
+    return _enqueueWrite(() async {
+      final sim = _currentSimulation();
+      final preset = activePreset;
+      if (preset == null ||
+          preset.postures.isEmpty ||
+          !preset.supportsPosture(posture) ||
+          sim['posture'] == posture) {
+        return;
+      }
+      await _applyPresetSimulation(
+        preset,
+        sim['orientation'] as String? ?? 'portrait',
+        sim,
+        posture: posture,
+      );
+    });
+  }
+
+  /// Shows or hides the reserved region overlay.
+  ///
+  /// Not a metric field: the choice survives switching device, like the
+  /// system UI switch.
+  Future<void> setShowReservedRegions(bool value) =>
+      _mutate('showReservedRegions', value ? true : null);
+
   /// Shows or hides the simulated system UI.
   ///
   /// Not a metric field: the choice survives switching device, exactly like
@@ -695,7 +904,7 @@ class PanelController extends ChangeNotifier {
         sim.remove('keyboardInset');
         return _pushSimulation(sim.isEmpty ? null : sim);
       }
-      final height = activePreset?.keyboardHeight(
+      final height = _activeScreen?.keyboardHeight(
         landscape: sim['orientation'] == 'landscape',
       );
       if (height == null) return Future<void>.value();
@@ -829,10 +1038,15 @@ class PanelController extends ChangeNotifier {
   }
 
   Future<void> _applyPresetSimulation(
-    PresetView preset,
+    PresetView device,
     String orientation,
-    Map<String, Object?> current,
-  ) {
+    Map<String, Object?> current, {
+    String posture = 'open',
+  }) {
+    // Same resolution as `DevicePreset.resolve(posture:)` app-side: the
+    // posture's metrics, the device's id, and the posture recorded only for
+    // a device that has postures.
+    final preset = device.forPosture(posture);
     final sim = Map<String, Object?>.from(current);
     // A raised keyboard survives the switch, but its height is the new
     // device's, for the orientation it lands in — the same rule the app-side
@@ -843,6 +1057,7 @@ class PanelController extends ChangeNotifier {
     }
     sim['presetId'] = preset.id;
     sim['orientation'] = orientation;
+    if (device.postures.isNotEmpty) sim['posture'] = posture;
     sim['deviceKind'] = preset.kind;
     // The frame is described in portrait and rotated app-side, so it is the
     // one metric field orientation never touches.
@@ -914,7 +1129,76 @@ class PanelController extends ChangeNotifier {
             )
           : displayFeatures;
     }
+    final portraitRegions = preset.portraitReservedRegions;
+    if (portraitRegions != null && portraitRegions.isNotEmpty) {
+      final portraitWidth = (size?['width'] as num?)?.toDouble();
+      final regions = !landscape
+          ? portraitRegions
+          : preset.landscapeReservedRegions ??
+              (portraitWidth == null
+                  ? null
+                  : _rotateReservedRegions(
+                      portraitRegions,
+                      toLandscape: true,
+                      extent: portraitWidth,
+                    ));
+      if (regions != null && regions.isNotEmpty) {
+        sim['reservedRegions'] = regions;
+      }
+    }
     return _pushSimulation(sim);
+  }
+
+  /// Maps reserved-region bounds and margins through the 90° rotation, the
+  /// way `SimulatedReservedRegion.rotatedToLandscape` does app-side: bounds
+  /// like display features, margins turning with them (the portrait top
+  /// margin becomes the landscape left one).
+  List<Object?> _rotateReservedRegions(
+    List<Object?> regions, {
+    required bool toLandscape,
+    required double extent,
+  }) {
+    return <Object?>[
+      for (final region in regions)
+        if (region is Map)
+          _rotateRegion(
+            Map<String, Object?>.from(region),
+            toLandscape: toLandscape,
+            extent: extent,
+          )
+        else
+          region,
+    ];
+  }
+
+  Map<String, Object?> _rotateRegion(
+    Map<String, Object?> region, {
+    required bool toLandscape,
+    required double extent,
+  }) {
+    final rotated = _rotateFeatureBounds(
+      region,
+      toLandscape: toLandscape,
+      extent: extent,
+    );
+    final margins = _asMap(rotated['margins']);
+    if (margins != null) {
+      double side(String key) => (margins[key] as num?)?.toDouble() ?? 0;
+      rotated['margins'] = toLandscape
+          ? <String, Object?>{
+              'left': side('top'),
+              'top': side('right'),
+              'right': side('bottom'),
+              'bottom': side('left'),
+            }
+          : <String, Object?>{
+              'left': side('bottom'),
+              'top': side('left'),
+              'right': side('top'),
+              'bottom': side('right'),
+            };
+    }
+    return rotated;
   }
 
   /// Maps display-feature bounds through the 90° rotation.

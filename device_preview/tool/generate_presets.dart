@@ -44,6 +44,13 @@ const Set<String> kFeatureStates = <String>{
   'postureHalfOpened',
 };
 
+/// `DevicePosture` member names a spec's `postures` may declare (`open` is
+/// the spec's own top level).
+const Set<String> kPostures = <String>{'halfOpened', 'closed'};
+
+/// `ReservedRegionKind` member names.
+const Set<String> kRegionKinds = <String>{'occlusion', 'division'};
+
 /// Ids whose Dart name cannot be derived from the id itself.
 const Map<String, String> kNameOverrides = <String, String>{
   'desktop-small': 'smallDesktopWindow',
@@ -72,6 +79,10 @@ const Map<String, String> kDescriptions = <String, String>{
       'iPhone 17 Pro Max — Dynamic Island, 6.9" display.',
   'apple-iphone-17e': 'iPhone 17e — notch, the 6.1" entry model.',
   'apple-iphone-air': 'iPhone Air — Dynamic Island, 6.5" display.',
+  'apple-iphone-duo':
+      'iPhone Duo — foldable: 7.6" inner display (open, half-opened) and a '
+      '5.4" cover display (closed), status bar on the trailing side, fold '
+      'and cameras as reserved regions.',
   'apple-iphone-se-3':
       'iPhone SE (3rd generation) — Home button, 4.7" display, no safe area '
       'beyond the 20 pt status bar.',
@@ -337,13 +348,95 @@ String _emitPreset(Map<String, Object?> spec) {
   if (!kPlatforms.contains(platform)) {
     throw FormatException('$fileName: unknown platform "$platform"');
   }
+  buffer.writeln('    platform: TargetPlatform.$platform,');
+  final Object? kind = spec['kind'];
+  if (kind != null && kind != 'phone' && !kKinds.contains(kind)) {
+    throw FormatException('$fileName: unknown kind "$kind"');
+  }
+  buffer.write(
+    _emitScreen(
+      spec,
+      platform,
+      fileName,
+      indent: 4,
+      full: true,
+      // Emitted where it always was, between the metrics and the artwork,
+      // so adding a field never reshuffles every preset of the output.
+      beforeAppearance: kind != null && kind != 'phone'
+          ? '    kind: DeviceKind.$kind,\n'
+          : '',
+    ),
+  );
+  final Object? postures = spec['postures'];
+  if (postures != null) {
+    if (postures is! Map || postures.isEmpty) {
+      throw FormatException('$fileName: "postures" must be a non-empty object');
+    }
+    buffer.writeln(
+      '    postures: <DevicePosture, DevicePostureVariant>{',
+    );
+    for (final MapEntry<Object?, Object?> entry in postures.entries) {
+      if (!kPostures.contains(entry.key)) {
+        throw FormatException(
+          '$fileName: unknown posture "${entry.key}" (the top level is the '
+          'open posture)',
+        );
+      }
+      final Object? variant = entry.value;
+      if (variant is! Map) {
+        throw FormatException(
+          '$fileName: postures.${entry.key} must be an object',
+        );
+      }
+      buffer
+        ..writeln(
+          '      DevicePosture.${entry.key}: DevicePostureVariant(',
+        )
+        ..write(
+          _emitScreen(
+            Map<String, Object?>.from(variant),
+            platform,
+            '$fileName: postures.${entry.key}',
+            indent: 8,
+            full: false,
+          ),
+        )
+        ..writeln('      ),');
+    }
+    buffer.writeln('    },');
+  }
   buffer
-    ..writeln('    platform: TargetPlatform.$platform,')
-    ..writeln('    portraitSize: ${_emitSize(spec['portraitSize'], fileName)},')
-    ..writeln(
-      '    devicePixelRatio: '
+    ..writeln('  );')
+    ..writeln();
+  return buffer.toString();
+}
+
+/// Emits the metric and appearance arguments a preset and a posture
+/// variant share, at [indent].
+///
+/// [full] is the preset itself, where `portraitSize` and `devicePixelRatio`
+/// are required; a posture variant may omit anything.
+String _emitScreen(
+  Map<String, Object?> spec,
+  String platform,
+  String fileName, {
+  required int indent,
+  required bool full,
+  String beforeAppearance = '',
+}) {
+  final String pad = ' ' * indent;
+  final StringBuffer buffer = StringBuffer();
+  if (full || spec['portraitSize'] != null) {
+    buffer.writeln(
+      '${pad}portraitSize: ${_emitSize(spec['portraitSize'], fileName)},',
+    );
+  }
+  if (full || spec['devicePixelRatio'] != null) {
+    buffer.writeln(
+      '${pad}devicePixelRatio: '
       '${_emitNumber(spec['devicePixelRatio'], fileName)},',
     );
+  }
   for (final String key in <String>[
     'portraitPadding',
     'portraitViewPadding',
@@ -352,7 +445,7 @@ String _emitPreset(Map<String, Object?> spec) {
     'systemGestureInsets',
   ]) {
     if (spec[key] != null) {
-      buffer.writeln('    $key: ${_emitInsets(spec[key], fileName)},');
+      buffer.writeln('$pad$key: ${_emitInsets(spec[key], fileName)},');
     }
   }
   for (final String key in <String>[
@@ -364,7 +457,7 @@ String _emitPreset(Map<String, Object?> spec) {
       if (height is! num || height <= 0) {
         throw FormatException('$fileName: "$key" must be a positive number');
       }
-      buffer.writeln('    $key: ${_emitNumber(height, fileName)},');
+      buffer.writeln('$pad$key: ${_emitNumber(height, fileName)},');
     }
   }
   final Object? features = spec['displayFeatures'];
@@ -372,45 +465,93 @@ String _emitPreset(Map<String, Object?> spec) {
     if (features is! List) {
       throw FormatException('$fileName: "displayFeatures" must be an array');
     }
-    buffer.writeln('    displayFeatures: <SimulatedDisplayFeature>[');
+    buffer.writeln('${pad}displayFeatures: <SimulatedDisplayFeature>[');
     for (final Object? feature in features) {
-      buffer.write(_emitDisplayFeature(feature, fileName));
+      buffer.write(_emitDisplayFeature(feature, fileName, indent + 2));
     }
-    buffer.writeln('    ],');
+    buffer.writeln('$pad],');
   }
-  final Object? kind = spec['kind'];
-  if (kind != null && kind != 'phone') {
-    if (!kKinds.contains(kind)) {
-      throw FormatException('$fileName: unknown kind "$kind"');
+  for (final String key in <String>[
+    'portraitReservedRegions',
+    'landscapeReservedRegions',
+  ]) {
+    final Object? regions = spec[key];
+    if (regions == null) {
+      continue;
     }
-    buffer.writeln('    kind: DeviceKind.$kind,');
+    if (regions is! List) {
+      throw FormatException('$fileName: "$key" must be an array');
+    }
+    buffer.writeln('$pad$key: <SimulatedReservedRegion>[');
+    for (final Object? region in regions) {
+      buffer.write(_emitReservedRegion(region, fileName, indent + 2));
+    }
+    buffer.writeln('$pad],');
   }
+  buffer.write(beforeAppearance);
   if (spec['frame'] != null) {
-    buffer.write(_emitFrame(spec['frame'], fileName));
+    buffer.write(_emitFrame(spec['frame'], fileName, indent));
   }
   if (spec['systemUi'] != null) {
-    buffer.write(_emitSystemUi(spec['systemUi'], platform, fileName));
+    buffer.write(_emitSystemUi(spec['systemUi'], platform, fileName, indent));
   }
-  buffer
-    ..writeln('  );')
-    ..writeln();
   return buffer.toString();
 }
 
-String _emitFrame(Object? frame, String fileName) {
+String _emitReservedRegion(Object? region, String fileName, int indent) {
+  if (region is! Map) {
+    throw FormatException('$fileName: every reserved region must be an object');
+  }
+  final Object? kind = region['kind'];
+  if (!kRegionKinds.contains(kind)) {
+    throw FormatException('$fileName: unknown reserved region kind "$kind"');
+  }
+  final Object? bounds = region['bounds'];
+  if (bounds is! Map) {
+    throw FormatException('$fileName: reserved region "bounds" must be an object');
+  }
+  final Object? active = region['active'];
+  if (active != null && active is! bool) {
+    throw FormatException('$fileName: reserved region "active" must be a bool');
+  }
+  final String pad = ' ' * indent;
+  final StringBuffer buffer = StringBuffer()
+    ..writeln('${pad}SimulatedReservedRegion(')
+    ..writeln('$pad  kind: ReservedRegionKind.$kind,')
+    ..writeln(
+      '$pad  bounds: ui.Rect.fromLTRB('
+      '${_emitNumber(bounds['left'], fileName)}, '
+      '${_emitNumber(bounds['top'], fileName)}, '
+      '${_emitNumber(bounds['right'], fileName)}, '
+      '${_emitNumber(bounds['bottom'], fileName)}),',
+    );
+  if (region['margins'] != null) {
+    buffer.writeln(
+      '$pad  margins: ${_emitInsets(region['margins'], fileName)},',
+    );
+  }
+  if (active == false) {
+    buffer.writeln('$pad  isActive: false,');
+  }
+  buffer.writeln('$pad),');
+  return buffer.toString();
+}
+
+String _emitFrame(Object? frame, String fileName, int indent) {
   if (frame is! Map) {
     throw FormatException('$fileName: "frame" must be an object');
   }
+  final String pad = ' ' * indent;
   final StringBuffer buffer = StringBuffer()
-    ..writeln('    frame: DeviceFrame(')
-    ..writeln('      size: ${_emitSize(frame['size'], fileName)},');
+    ..writeln('${pad}frame: DeviceFrame(')
+    ..writeln('$pad  size: ${_emitSize(frame['size'], fileName)},');
   if (frame['screenOffset'] != null) {
     final Object? offset = frame['screenOffset'];
     if (offset is! Map || offset['x'] is! num || offset['y'] is! num) {
       throw FormatException('$fileName: frame.screenOffset needs x and y');
     }
     buffer.writeln(
-      '      screenOffset: ui.Offset('
+      '$pad  screenOffset: ui.Offset('
       '${_emitNumber(offset['x'], fileName)}, '
       '${_emitNumber(offset['y'], fileName)}),',
     );
@@ -422,8 +563,8 @@ String _emitFrame(Object? frame, String fileName) {
     }
     if (screenPath.isNotEmpty) {
       buffer
-        ..writeln('      screenPath:')
-        ..write(_emitMultiline(screenPath, 10))
+        ..writeln('$pad  screenPath:')
+        ..write(_emitMultiline(screenPath, indent + 6))
         ..writeln(',');
     }
   }
@@ -432,26 +573,36 @@ String _emitFrame(Object? frame, String fileName) {
     final String joined = _joinLines(body, '$fileName: frame.body');
     if (joined.isNotEmpty) {
       buffer
-        ..writeln('      body:')
-        ..write(_emitMultiline(joined, 10))
+        ..writeln('$pad  body:')
+        ..write(_emitMultiline(joined, indent + 6))
         ..writeln(',');
     }
   }
-  buffer.writeln('    ),');
+  buffer.writeln('$pad),');
   return buffer.toString();
 }
 
-String _emitSystemUi(Object? systemUi, String platform, String fileName) {
+String _emitSystemUi(
+  Object? systemUi,
+  String platform,
+  String fileName,
+  int indent,
+) {
   if (systemUi is! Map) {
     throw FormatException('$fileName: "systemUi" must be an object');
   }
+  final String pad = ' ' * indent;
   final StringBuffer buffer = StringBuffer()
-    ..writeln('    systemUi: SystemUiSimulation(')
+    ..writeln('${pad}systemUi: SystemUiSimulation(')
     // The bars belong to the simulated device's operating system; the
     // platform decides paint-time behavior (Android tints bar backgrounds
     // from the app's SystemUiOverlayStyle, iOS never does).
-    ..writeln('      platform: TargetPlatform.$platform,');
-  for (final String barName in <String>['statusBar', 'navigationBar']) {
+    ..writeln('$pad  platform: TargetPlatform.$platform,');
+  for (final String barName in <String>[
+    'statusBar',
+    'navigationBar',
+    'sideBar',
+  ]) {
     final Object? bar = systemUi[barName];
     if (bar == null) {
       continue;
@@ -459,7 +610,7 @@ String _emitSystemUi(Object? systemUi, String platform, String fileName) {
     if (bar is! Map) {
       throw FormatException('$fileName: systemUi.$barName must be an object');
     }
-    buffer.writeln('      $barName: SystemUiBar(');
+    buffer.writeln('$pad  $barName: SystemUiBar(');
     for (final String slot in <String>['leading', 'center', 'trailing']) {
       final Object? artwork = bar[slot];
       if (artwork == null) {
@@ -468,23 +619,23 @@ String _emitSystemUi(Object? systemUi, String platform, String fileName) {
       final String joined = _joinLines(artwork, '$fileName: $barName.$slot');
       if (joined.isNotEmpty) {
         buffer
-          ..writeln('        $slot:')
-          ..write(_emitMultiline(joined, 12))
+          ..writeln('$pad    $slot:')
+          ..write(_emitMultiline(joined, indent + 8))
           ..writeln(',');
       }
     }
     for (final String key in <String>['inset', 'bottomInset']) {
       if (bar[key] != null) {
-        buffer.writeln('        $key: ${_emitNumber(bar[key], fileName)},');
+        buffer.writeln('$pad    $key: ${_emitNumber(bar[key], fileName)},');
       }
     }
-    buffer.writeln('      ),');
+    buffer.writeln('$pad  ),');
   }
-  buffer.writeln('    ),');
+  buffer.writeln('$pad),');
   return buffer.toString();
 }
 
-String _emitDisplayFeature(Object? feature, String fileName) {
+String _emitDisplayFeature(Object? feature, String fileName, int indent) {
   if (feature is! Map) {
     throw FormatException('$fileName: every display feature must be an object');
   }
@@ -503,15 +654,16 @@ String _emitDisplayFeature(Object? feature, String fileName) {
   if (!kFeatureStates.contains(state)) {
     throw FormatException('$fileName: unknown display feature state "$state"');
   }
-  return '      SimulatedDisplayFeature(\n'
-      '        bounds: ui.Rect.fromLTRB('
+  final String pad = ' ' * indent;
+  return '${pad}SimulatedDisplayFeature(\n'
+      '$pad  bounds: ui.Rect.fromLTRB('
       '${_emitNumber(bounds['left'], fileName)}, '
       '${_emitNumber(bounds['top'], fileName)}, '
       '${_emitNumber(bounds['right'], fileName)}, '
       '${_emitNumber(bounds['bottom'], fileName)}),\n'
-      '        type: ui.DisplayFeatureType.$type,\n'
-      '        state: ui.DisplayFeatureState.$state,\n'
-      '      ),\n';
+      '$pad  type: ui.DisplayFeatureType.$type,\n'
+      '$pad  state: ui.DisplayFeatureState.$state,\n'
+      '$pad),\n';
 }
 
 String _emitSize(Object? value, String fileName) {

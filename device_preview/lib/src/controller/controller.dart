@@ -46,11 +46,15 @@ abstract class DevicePreviewController implements Listenable {
 
   /// Builds a simulation from [preset] and applies it, preserving active
   /// non-metric overrides (locale, brightness, text scale, accessibility,
-  /// platform, touch input, system UI visibility) unless [resetOverrides] is
-  /// true.
+  /// platform, touch input, system UI and reserved region visibility)
+  /// unless [resetOverrides] is true.
+  ///
+  /// A foldable starts in [posture]; throws an [ArgumentError] when the
+  /// preset does not support it ([DevicePreset.supportsPosture]).
   Future<void> applyPreset(
     DevicePreset preset, {
     Orientation orientation = Orientation.portrait,
+    DevicePosture posture = DevicePosture.open,
     bool resetOverrides = false,
   });
 
@@ -63,8 +67,18 @@ abstract class DevicePreviewController implements Listenable {
   Future<void> applyJson(
     Object json, {
     Orientation orientation = Orientation.portrait,
+    DevicePosture posture = DevicePosture.open,
     bool resetOverrides = false,
   });
+
+  /// Folds or unfolds the simulated foldable to [posture], keeping its
+  /// orientation — the cover display's metrics when [DevicePosture.closed],
+  /// a half-opened fold when [DevicePosture.halfOpened].
+  ///
+  /// Like a device switch, a raised keyboard stays up with the height the
+  /// device has in the new posture. A no-op when no preset is active, or
+  /// when the active one does not support [posture].
+  Future<void> setPosture(DevicePosture posture);
 
   /// Swaps screen dimensions and rotates safe areas (uses the preset's
   /// per-orientation safe areas when [DeviceSimulation.presetId] resolves,
@@ -253,13 +267,22 @@ class DevicePreviewControllerImpl implements DevicePreviewController {
   Future<void> applyPreset(
     DevicePreset preset, {
     Orientation orientation = Orientation.portrait,
+    DevicePosture posture = DevicePosture.open,
     bool resetOverrides = false,
   }) {
+    if (!preset.supportsPosture(posture)) {
+      throw ArgumentError.value(
+        posture,
+        'posture',
+        '${preset.name} does not support this posture',
+      );
+    }
     return _enqueue(
       () => _applyNow(
         _resolvePresetSimulation(
           preset,
           orientation: orientation,
+          posture: posture,
           resetOverrides: resetOverrides,
         ),
         source: 'programmatic',
@@ -271,6 +294,7 @@ class DevicePreviewControllerImpl implements DevicePreviewController {
   Future<void> applyJson(
     Object json, {
     Orientation orientation = Orientation.portrait,
+    DevicePosture posture = DevicePosture.open,
     bool resetOverrides = false,
   }) {
     final DevicePreset preset = DevicePreset.fromJson(_decodeJsonMap(json));
@@ -281,6 +305,7 @@ class DevicePreviewControllerImpl implements DevicePreviewController {
     return applyPreset(
       preset,
       orientation: orientation,
+      posture: posture,
       resetOverrides: resetOverrides,
     );
   }
@@ -317,9 +342,13 @@ class DevicePreviewControllerImpl implements DevicePreviewController {
   DeviceSimulation _resolvePresetSimulation(
     DevicePreset preset, {
     required Orientation orientation,
+    required DevicePosture posture,
     required bool resetOverrides,
   }) {
-    DeviceSimulation next = preset.resolve(orientation: orientation);
+    DeviceSimulation next = preset.resolve(
+      orientation: orientation,
+      posture: posture,
+    );
     final DeviceSimulation? current = state.simulation;
     if (!resetOverrides && current != null) {
       // The override set mirrors the DevTools panel's non-metric keys
@@ -334,13 +363,14 @@ class DevicePreviewControllerImpl implements DevicePreviewController {
         targetPlatform: current.targetPlatform,
         touchInput: current.touchInput,
         showSystemUi: current.showSystemUi,
+        showReservedRegions: current.showReservedRegions,
         // A raised keyboard survives a device switch, but its height is the
         // new device's: what carries over is "the keyboard is up", not how
         // tall the previous one was. A device that declares no keyboard
         // height drops it.
         keyboardInset: current.keyboardInset == null
             ? null
-            : preset.keyboardHeight(orientation),
+            : preset.keyboardHeight(orientation, posture: posture),
       );
     }
     return next;
@@ -369,6 +399,7 @@ class DevicePreviewControllerImpl implements DevicePreviewController {
             _resolvePresetSimulation(
               preset,
               orientation: orientation,
+              posture: _postureOf(preset, current),
               resetOverrides: false,
             ).copyWith(frame: current.frame, systemUi: current.systemUi),
             source: 'programmatic',
@@ -395,6 +426,7 @@ class DevicePreviewControllerImpl implements DevicePreviewController {
       // rotate to, and no rule derives one (see
       // [DevicePreset.landscapeKeyboardHeight]).
       final List<SimulatedDisplayFeature>? features = current.displayFeatures;
+      final List<SimulatedReservedRegion>? regions = current.reservedRegions;
       return _applyNow(
         current.copyWith(
           orientation: orientation,
@@ -414,10 +446,63 @@ class DevicePreviewControllerImpl implements DevicePreviewController {
                               f.rotatedToPortrait(size.height),
                         ),
                 ),
+          reservedRegions: regions == null
+              ? null
+              : List<SimulatedReservedRegion>.unmodifiable(
+                  orientation == Orientation.landscape
+                      ? regions.map(
+                          (SimulatedReservedRegion r) =>
+                              r.rotatedToLandscape(size.width),
+                        )
+                      : regions.map(
+                          (SimulatedReservedRegion r) =>
+                              r.rotatedToPortrait(size.height),
+                        ),
+                ),
         ),
         source: 'programmatic',
       );
     });
+  }
+
+  @override
+  Future<void> setPosture(DevicePosture posture) {
+    return _enqueue(() {
+      final DeviceSimulation? current = state.simulation;
+      final String? presetId = current?.presetId;
+      if (current == null || presetId == null) {
+        return Future<void>.value();
+      }
+      final DevicePreset? preset = _presetById(presetId);
+      if (preset == null ||
+          !preset.hasPostures ||
+          !preset.supportsPosture(posture) ||
+          current.posture == posture) {
+        return Future<void>.value();
+      }
+      // Unlike a rotation, a posture change can move the app to another
+      // screen with another body, so the frame and bars are the preset's.
+      return _applyNow(
+        _resolvePresetSimulation(
+          preset,
+          orientation: current.orientation,
+          posture: posture,
+          resetOverrides: false,
+        ),
+        source: 'programmatic',
+      );
+    });
+  }
+
+  /// The posture [current] shows [preset] in, when the preset supports it.
+  static DevicePosture _postureOf(
+    DevicePreset preset,
+    DeviceSimulation current,
+  ) {
+    final DevicePosture? posture = current.posture;
+    return posture != null && preset.supportsPosture(posture)
+        ? posture
+        : DevicePosture.open;
   }
 
   DevicePreset? _presetById(String id) {

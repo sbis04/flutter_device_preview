@@ -4,7 +4,7 @@ description: >-
   metrics, safe areas, locale, brightness, text scale, accessibility flags,
   target platform) at the engine-abstraction level. No in-app UI — driven
   programmatically and by a DevTools extension.
-version: 3.0.0
+version: 3.1.0
 homepage: https://github.com/aloisdeniel/flutter_device_preview
 repository: https://github.com/aloisdeniel/flutter_device_preview
 issue_tracker: https://github.com/aloisdeniel/flutter_device_preview/issues
@@ -31,8 +31,8 @@ screenshots:
     path: doc/screenshots/iphone-16-pro-dark-200-text.png
 
 environment:
-  sdk: '>=3.8.0 <4.0.0'
-  flutter: '>=3.47.0'
+  sdk: ">=3.8.0 <4.0.0"
+  flutter: ">=3.47.0"
 
 dependencies:
   flutter:

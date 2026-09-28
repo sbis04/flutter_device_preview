@@ -69,10 +69,16 @@ class FakeGateway implements DevicePreviewGateway {
   /// Whether the app can raise a simulated software keyboard.
   bool canKeyboard = true;
 
+  /// Whether the app round-trips a foldable's posture.
+  bool canPosture = true;
+
+  /// Whether the app draws the reserved region overlay.
+  bool canReservedRegions = true;
+
   // Keep in sync with `DevicePreviewProtocol.protocolVersion` app-side —
   // the fake must advertise what a real 3.0 app sends.
   Map<String, Object?> stateShape() => <String, Object?>{
-        'protocolVersion': 4,
+        'protocolVersion': 5,
         'enabled': enabled,
         'simulation': simulation == null
             ? null
@@ -100,6 +106,8 @@ class FakeGateway implements DevicePreviewGateway {
           'screenshot': canScreenshot,
           'frame': canFrame,
           'keyboard': canKeyboard,
+          'posture': canPosture,
+          'reservedRegions': canReservedRegions,
         },
       };
 

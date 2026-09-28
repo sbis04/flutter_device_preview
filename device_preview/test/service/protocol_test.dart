@@ -50,18 +50,24 @@ class _FakeController implements DevicePreviewController {
   Future<void> applyPreset(
     DevicePreset preset, {
     Orientation orientation = Orientation.portrait,
+    DevicePosture posture = DevicePosture.open,
     bool resetOverrides = false,
-  }) async => current = preset.resolve(orientation: orientation);
+  }) async =>
+      current = preset.resolve(orientation: orientation, posture: posture);
 
   @override
   Future<void> applyJson(
     Object json, {
     Orientation orientation = Orientation.portrait,
+    DevicePosture posture = DevicePosture.open,
     bool resetOverrides = false,
   }) async {}
 
   @override
   Future<void> setOrientation(Orientation orientation) async {}
+
+  @override
+  Future<void> setPosture(DevicePosture posture) async {}
 
   @override
   Future<void> reset() async => current = null;

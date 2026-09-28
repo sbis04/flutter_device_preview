@@ -7,10 +7,10 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group('DevicePresets catalog', () {
-    test('contains the 33 documented presets with unique ids', () {
-      expect(DevicePresets.all, hasLength(33));
+    test('contains the 34 documented presets with unique ids', () {
+      expect(DevicePresets.all, hasLength(34));
       final ids = DevicePresets.all.map((p) => p.id).toSet();
-      expect(ids, hasLength(33));
+      expect(ids, hasLength(34));
     });
 
     test('every device preset declares a release year', () {
@@ -21,9 +21,25 @@ void main() {
       }
     });
 
-    test('every foldable preset reports a flat fold spanning its screen', () {
+    test('every Android foldable reports a flat fold spanning its screen', () {
+      // An iOS foldable reports none: Flutter's iOS embedder does not
+      // populate `displayFeatures` (see iphone_duo_test.dart).
+      expect(
+        DevicePresets.all
+            .where(
+              (p) =>
+                  p.kind == DeviceKind.foldable &&
+                  p.platform == TargetPlatform.iOS,
+            )
+            .expand((p) => p.displayFeatures),
+        isEmpty,
+      );
       final foldables = DevicePresets.all
-          .where((p) => p.kind == DeviceKind.foldable)
+          .where(
+            (p) =>
+                p.kind == DeviceKind.foldable &&
+                p.platform == TargetPlatform.android,
+          )
           .toList();
       expect(foldables.map((p) => p.id), <String>[
         'google-pixel-10-pro-fold',

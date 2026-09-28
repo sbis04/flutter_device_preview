@@ -11,12 +11,15 @@ import 'package:flutter/widgets.dart';
 
 import 'src/model/device_frame.dart';
 import 'src/model/device_kind.dart';
+import 'src/model/device_posture.dart';
 import 'src/model/json_utils.dart';
 import 'src/model/simulation.dart';
 import 'src/model/system_ui.dart';
 
 export 'src/model/device_kind.dart';
-export 'src/model/simulation.dart' show SimulatedDisplayFeature;
+export 'src/model/device_posture.dart';
+export 'src/model/simulation.dart'
+    show ReservedRegionKind, SimulatedDisplayFeature, SimulatedReservedRegion;
 
 part 'src/presets.g.dart';
 
@@ -26,6 +29,9 @@ part 'src/presets.g.dart';
 /// Metric fields are expressed for the portrait orientation; landscape
 /// values are either provided explicitly or derived by the documented
 /// rotation rule (see [rotateToLandscape]).
+///
+/// A foldable describes its **open** posture with these fields and every
+/// other posture it can take in [postures] — see [forPosture].
 ///
 /// The built-in [DevicePresets] carry the complete spec — [frame] artwork
 /// and [systemUi] included. They are generated from the device spec catalog
@@ -54,6 +60,9 @@ class DevicePreset {
     this.portraitKeyboardHeight,
     this.landscapeKeyboardHeight,
     this.displayFeatures = const <SimulatedDisplayFeature>[],
+    this.portraitReservedRegions = const <SimulatedReservedRegion>[],
+    this.landscapeReservedRegions,
+    this.postures = const <DevicePosture, DevicePostureVariant>{},
     this.kind = DeviceKind.phone,
   });
 
@@ -67,20 +76,6 @@ class DevicePreset {
       TargetPlatform.values,
       'platform',
     );
-    // Bars that do not name their platform get the device's: paint-time
-    // behavior (Android tints bar backgrounds, iOS never does) must follow
-    // the simulated device, not the app's host. Specs in `device_specs/`
-    // rely on this — they never repeat the platform inside `systemUi`.
-    SystemUiSimulation? systemUi = json['systemUi'] == null
-        ? null
-        : SystemUiSimulation.fromJson(decodeMap(json['systemUi'], 'systemUi'));
-    if (systemUi != null && systemUi.platform == null) {
-      systemUi = SystemUiSimulation(
-        statusBar: systemUi.statusBar,
-        navigationBar: systemUi.navigationBar,
-        platform: platform,
-      );
-    }
     return DevicePreset(
       id: decodeString(json['id'], 'id'),
       name: decodeString(json['name'], 'name'),
@@ -92,7 +87,7 @@ class DevicePreset {
       frame: json['frame'] == null
           ? null
           : DeviceFrame.fromJson(decodeMap(json['frame'], 'frame')),
-      systemUi: systemUi,
+      systemUi: _decodeSystemUi(json['systemUi'], platform, 'systemUi'),
       portraitSize: decodeSize(json['portraitSize'], 'portraitSize'),
       devicePixelRatio: decodeDouble(
         json['devicePixelRatio'],
@@ -134,15 +129,22 @@ class DevicePreset {
               json['landscapeKeyboardHeight'],
               'landscapeKeyboardHeight',
             ),
-      displayFeatures: json['displayFeatures'] == null
-          ? const <SimulatedDisplayFeature>[]
-          : List<SimulatedDisplayFeature>.unmodifiable(
-              decodeList(json['displayFeatures'], 'displayFeatures').map(
-                (Object? e) => SimulatedDisplayFeature.fromJson(
-                  decodeMap(e, 'displayFeatures[]'),
-                ),
-              ),
-            ),
+      displayFeatures:
+          _decodeFeatures(json['displayFeatures'], 'displayFeatures') ??
+          const <SimulatedDisplayFeature>[],
+      portraitReservedRegions:
+          _decodeRegions(
+            json['portraitReservedRegions'],
+            'portraitReservedRegions',
+          ) ??
+          const <SimulatedReservedRegion>[],
+      landscapeReservedRegions: _decodeRegions(
+        json['landscapeReservedRegions'],
+        'landscapeReservedRegions',
+      ),
+      postures: json['postures'] == null
+          ? const <DevicePosture, DevicePostureVariant>{}
+          : _decodePostures(json['postures'], platform),
       kind: json['kind'] == null
           ? DeviceKind.phone
           : decodeEnum(json['kind'], DeviceKind.values, 'kind'),
@@ -222,10 +224,61 @@ class DevicePreset {
   final double? landscapeKeyboardHeight;
 
   /// Display features (folds, hinges, cutouts), in portrait logical pixels.
+  ///
+  /// What the device's *platform* reports to a Flutter app as
+  /// `MediaQuery.displayFeatures` — which is not always what the hardware
+  /// has: Flutter's iOS embedder reports none at all, so an iPhone Duo
+  /// declares no display feature even though it folds. Its fold lives in
+  /// [portraitReservedRegions] instead.
   final List<SimulatedDisplayFeature> displayFeatures;
+
+  /// The screen areas the device reserves in portrait — cameras, a side
+  /// status bar, a fold — in portrait logical pixels. See
+  /// [DeviceSimulation.reservedRegions] for what they are and why the app
+  /// never sees them.
+  final List<SimulatedReservedRegion> portraitReservedRegions;
+
+  /// The reserved regions in landscape, in landscape logical pixels; when
+  /// null, [portraitReservedRegions] mapped through the 90° rotation
+  /// ([SimulatedReservedRegion.rotatedToLandscape]).
+  ///
+  /// Declare them whenever the system re-lays a region out on rotation
+  /// rather than turning it with the hardware — the iPhone Duo's status
+  /// column stays on the right in both orientations.
+  final List<SimulatedReservedRegion>? landscapeReservedRegions;
+
+  /// The postures this device can take besides [DevicePosture.open], each
+  /// described by how it differs from the open one; empty for a device that
+  /// does not fold.
+  ///
+  /// The fields of the preset itself are the open posture. See
+  /// [DevicePostureVariant] for how a posture inherits from them and
+  /// [forPosture] for the resolved result.
+  final Map<DevicePosture, DevicePostureVariant> postures;
 
   /// The broad category of the device.
   final DeviceKind kind;
+
+  /// Whether this device can take several postures — whether it folds in a
+  /// way the simulation can switch.
+  bool get hasPostures => postures.isNotEmpty;
+
+  /// The postures this device supports, [DevicePosture.open] first; empty
+  /// when it has no postures at all.
+  List<DevicePosture> get supportedPostures => postures.isEmpty
+      ? const <DevicePosture>[]
+      : <DevicePosture>[
+          DevicePosture.open,
+          for (final DevicePosture posture in DevicePosture.values)
+            if (posture != DevicePosture.open && postures.containsKey(posture))
+              posture,
+        ];
+
+  /// Whether [posture] is one this device can take. Every device can take
+  /// [DevicePosture.open] — for a device that does not fold, it is simply
+  /// the only one.
+  bool supportsPosture(DevicePosture posture) =>
+      posture == DevicePosture.open || postures.containsKey(posture);
 
   /// The documented rotation rule for deriving landscape safe areas from
   /// portrait ones:
@@ -243,8 +296,8 @@ class DevicePreset {
     bottom: portrait.bottom,
   );
 
-  /// The keyboard height for [orientation], or null when this device
-  /// declares none.
+  /// The keyboard height for [orientation] — and, on a foldable, [posture] —
+  /// or null when this device declares none.
   ///
   /// The value to pass to `DeviceSimulation.copyWith(keyboardInset: …)` to
   /// raise this device's keyboard:
@@ -254,10 +307,133 @@ class DevicePreset {
   ///   (s) => s.copyWith(keyboardInset: preset.keyboardHeight(s.orientation)),
   /// );
   /// ```
-  double? keyboardHeight(Orientation orientation) =>
-      orientation == Orientation.portrait
-      ? portraitKeyboardHeight
-      : landscapeKeyboardHeight;
+  double? keyboardHeight(
+    Orientation orientation, {
+    DevicePosture posture = DevicePosture.open,
+  }) {
+    final DevicePreset screen = posture == DevicePosture.open
+        ? this
+        : forPosture(posture);
+    return orientation == Orientation.portrait
+        ? screen.portraitKeyboardHeight
+        : screen.landscapeKeyboardHeight;
+  }
+
+  /// This device as it is in [posture]: a preset with the same [id],
+  /// [name] and [platform] and the metric and appearance fields of that
+  /// posture.
+  ///
+  /// [DevicePosture.open] returns this preset itself. Any other posture
+  /// merges its [DevicePostureVariant] over this preset by the rules that
+  /// class documents, into a snapshot that has no [postures] of its own —
+  /// it describes one screen, so it cannot be asked for another. Throws an
+  /// [ArgumentError] when the device does not support [posture].
+  DevicePreset forPosture(DevicePosture posture) {
+    if (posture == DevicePosture.open) {
+      return this;
+    }
+    final DevicePostureVariant? variant = postures[posture];
+    if (variant == null) {
+      throw ArgumentError.value(
+        posture,
+        'posture',
+        '$name does not support this posture',
+      );
+    }
+    // A posture with a size of its own is another screen: nothing bound to
+    // the open screen's geometry carries over.
+    final bool sameScreen = variant.portraitSize == null;
+    final bool halfOpened = posture == DevicePosture.halfOpened;
+    final bool ownPadding = variant.portraitPadding != null;
+    final bool ownViewPadding = variant.portraitViewPadding != null;
+    final bool ownRegions = variant.portraitReservedRegions != null;
+    return DevicePreset(
+      id: id,
+      name: name,
+      brand: brand,
+      year: year,
+      platform: platform,
+      kind: kind,
+      portraitSize: variant.portraitSize ?? portraitSize,
+      devicePixelRatio: variant.devicePixelRatio ?? devicePixelRatio,
+      frame: variant.frame ?? (sameScreen ? frame : null),
+      systemUi: variant.systemUi ?? systemUi,
+      portraitPadding:
+          variant.portraitPadding ??
+          (sameScreen ? portraitPadding : EdgeInsets.zero),
+      // The landscape half of a pair follows its portrait half: a posture
+      // that declares its own portrait padding takes its landscape padding
+      // from itself (or the rotation rule), never from another layout.
+      landscapePadding: ownPadding || !sameScreen
+          ? variant.landscapePadding
+          : (variant.landscapePadding ?? landscapePadding),
+      portraitViewPadding:
+          variant.portraitViewPadding ??
+          (sameScreen && !ownPadding ? portraitViewPadding : null),
+      landscapeViewPadding: ownViewPadding || ownPadding || !sameScreen
+          ? variant.landscapeViewPadding
+          : (variant.landscapeViewPadding ?? landscapeViewPadding),
+      systemGestureInsets:
+          variant.systemGestureInsets ??
+          (sameScreen ? systemGestureInsets : EdgeInsets.zero),
+      portraitKeyboardHeight:
+          variant.portraitKeyboardHeight ??
+          (sameScreen ? portraitKeyboardHeight : null),
+      landscapeKeyboardHeight:
+          variant.landscapeKeyboardHeight ??
+          (sameScreen ? landscapeKeyboardHeight : null),
+      displayFeatures:
+          variant.displayFeatures ??
+          (!sameScreen
+              ? const <SimulatedDisplayFeature>[]
+              : halfOpened
+              ? _halfOpenedFeatures(displayFeatures)
+              : displayFeatures),
+      portraitReservedRegions:
+          variant.portraitReservedRegions ??
+          (!sameScreen
+              ? const <SimulatedReservedRegion>[]
+              : halfOpened
+              ? _activateDivisions(portraitReservedRegions)
+              : portraitReservedRegions),
+      landscapeReservedRegions: ownRegions || !sameScreen
+          ? variant.landscapeReservedRegions
+          : (variant.landscapeReservedRegions ??
+                (halfOpened && landscapeReservedRegions != null
+                    ? _activateDivisions(landscapeReservedRegions!)
+                    : landscapeReservedRegions)),
+    );
+  }
+
+  /// A fold or hinge the platform reports flat is reported half-opened once
+  /// the device bends — what Android's `FoldingFeature` does.
+  static List<SimulatedDisplayFeature> _halfOpenedFeatures(
+    List<SimulatedDisplayFeature> features,
+  ) => List<SimulatedDisplayFeature>.unmodifiable(
+    features.map(
+      (SimulatedDisplayFeature f) =>
+          (f.type == ui.DisplayFeatureType.fold ||
+                  f.type == ui.DisplayFeatureType.hinge) &&
+              f.state == ui.DisplayFeatureState.postureFlat
+          ? SimulatedDisplayFeature(
+              bounds: f.bounds,
+              type: f.type,
+              state: ui.DisplayFeatureState.postureHalfOpened,
+            )
+          : f,
+    ),
+  );
+
+  /// A fold divides the screen only while the device is partially open —
+  /// what iOS reports for the iPhone Duo's division region.
+  static List<SimulatedReservedRegion> _activateDivisions(
+    List<SimulatedReservedRegion> regions,
+  ) => List<SimulatedReservedRegion>.unmodifiable(
+    regions.map(
+      (SimulatedReservedRegion r) =>
+          r.kind == ReservedRegionKind.division ? r.withActive(true) : r,
+    ),
+  );
 
   /// Resolves this preset into a metrics-only [DeviceSimulation] with
   /// [DeviceSimulation.presetId] set.
@@ -267,10 +443,30 @@ class DevicePreset {
   /// otherwise they are derived by [rotateToLandscape]. Display features
   /// (expressed in portrait coordinates) are mapped through the 90° rotation
   /// ([SimulatedDisplayFeature.rotatedToLandscape]) so hinge/fold geometry
-  /// stays physically correct. [systemGestureInsets] intentionally pass
-  /// through unrotated: their edge semantics (back-gesture side edges, home
-  /// area at the bottom) are orientation-invariant on real devices.
-  DeviceSimulation resolve({Orientation orientation = Orientation.portrait}) {
+  /// stays physically correct; reserved regions too, unless the preset
+  /// declares [landscapeReservedRegions]. [systemGestureInsets]
+  /// intentionally pass through unrotated: their edge semantics
+  /// (back-gesture side edges, home area at the bottom) are
+  /// orientation-invariant on real devices.
+  ///
+  /// A foldable resolves in [posture] ([forPosture]), which the simulation
+  /// records as [DeviceSimulation.posture]; a device without postures leaves
+  /// it null. Throws an [ArgumentError] for a posture the device does not
+  /// support.
+  DeviceSimulation resolve({
+    Orientation orientation = Orientation.portrait,
+    DevicePosture posture = DevicePosture.open,
+  }) {
+    return forPosture(posture)._resolveScreen(
+      orientation,
+      hasPostures ? posture : null,
+    );
+  }
+
+  DeviceSimulation _resolveScreen(
+    Orientation orientation,
+    DevicePosture? posture,
+  ) {
     final EdgeInsets effectivePortraitViewPadding =
         portraitViewPadding ?? portraitPadding;
     // The bars belong to the simulated device's operating system: stamp the
@@ -281,15 +477,12 @@ class DevicePreset {
         ? null
         : (systemUi!.platform != null
               ? systemUi
-              : SystemUiSimulation(
-                  statusBar: systemUi!.statusBar,
-                  navigationBar: systemUi!.navigationBar,
-                  platform: platform,
-                ));
+              : systemUi!.withPlatform(platform));
     if (orientation == Orientation.portrait) {
       return DeviceSimulation(
         presetId: id,
         deviceKind: kind,
+        posture: posture,
         screenSize: portraitSize,
         frame: frame,
         systemUi: resolvedSystemUi,
@@ -298,6 +491,9 @@ class DevicePreset {
         viewPadding: effectivePortraitViewPadding,
         systemGestureInsets: systemGestureInsets,
         displayFeatures: displayFeatures.isEmpty ? null : displayFeatures,
+        reservedRegions: portraitReservedRegions.isEmpty
+            ? null
+            : portraitReservedRegions,
       );
     }
     final EdgeInsets resolvedLandscapePadding =
@@ -306,9 +502,18 @@ class DevicePreset {
         landscapeViewPadding ??
         landscapePadding ??
         rotateToLandscape(effectivePortraitViewPadding);
+    final List<SimulatedReservedRegion> landscapeRegions =
+        landscapeReservedRegions ??
+        List<SimulatedReservedRegion>.unmodifiable(
+          portraitReservedRegions.map(
+            (SimulatedReservedRegion region) =>
+                region.rotatedToLandscape(portraitSize.width),
+          ),
+        );
     return DeviceSimulation(
       presetId: id,
       deviceKind: kind,
+      posture: posture,
       orientation: Orientation.landscape,
       screenSize: ui.Size(portraitSize.height, portraitSize.width),
       // Frames are described in portrait and rotated at paint time.
@@ -327,6 +532,7 @@ class DevicePreset {
                     feature.rotatedToLandscape(portraitSize.width),
               ),
             ),
+      reservedRegions: landscapeRegions.isEmpty ? null : landscapeRegions,
     );
   }
 
@@ -358,6 +564,20 @@ class DevicePreset {
       'displayFeatures': displayFeatures
           .map((SimulatedDisplayFeature f) => f.toJson())
           .toList(),
+    if (portraitReservedRegions.isNotEmpty)
+      'portraitReservedRegions': portraitReservedRegions
+          .map((SimulatedReservedRegion r) => r.toJson())
+          .toList(),
+    if (landscapeReservedRegions != null)
+      'landscapeReservedRegions': landscapeReservedRegions!
+          .map((SimulatedReservedRegion r) => r.toJson())
+          .toList(),
+    if (postures.isNotEmpty)
+      'postures': <String, Object?>{
+        for (final MapEntry<DevicePosture, DevicePostureVariant> entry
+            in postures.entries)
+          entry.key.name: entry.value.toJson(),
+      },
   };
 
   @override
@@ -383,11 +603,14 @@ class DevicePreset {
         other.portraitKeyboardHeight == portraitKeyboardHeight &&
         other.landscapeKeyboardHeight == landscapeKeyboardHeight &&
         listEquals(other.displayFeatures, displayFeatures) &&
+        listEquals(other.portraitReservedRegions, portraitReservedRegions) &&
+        listEquals(other.landscapeReservedRegions, landscapeReservedRegions) &&
+        mapEquals(other.postures, postures) &&
         other.kind == kind;
   }
 
   @override
-  int get hashCode => Object.hash(
+  int get hashCode => Object.hashAll(<Object?>[
     id,
     name,
     brand,
@@ -405,9 +628,296 @@ class DevicePreset {
     portraitKeyboardHeight,
     landscapeKeyboardHeight,
     Object.hashAll(displayFeatures),
+    Object.hashAll(portraitReservedRegions),
+    landscapeReservedRegions == null
+        ? null
+        : Object.hashAll(landscapeReservedRegions!),
+    Object.hashAllUnordered(
+      postures.entries.map(
+        (MapEntry<DevicePosture, DevicePostureVariant> e) =>
+            Object.hash(e.key, e.value),
+      ),
+    ),
     kind,
-  );
+  ]);
 
   @override
   String toString() => 'DevicePreset($id, $name)';
+}
+
+/// How one posture of a foldable differs from its open posture — an entry of
+/// [DevicePreset.postures].
+///
+/// Every field is optional: a null field is inherited from the preset, by
+/// three rules.
+///
+/// * **Another screen.** A variant that declares its own [portraitSize] —
+///   [DevicePosture.closed], which moves the app to the cover display —
+///   inherits nothing bound to the open screen: safe areas, gesture insets,
+///   keyboard heights, display features, reserved regions and the [frame]
+///   start from scratch (zero, none, the rotation rule). Only
+///   [devicePixelRatio] and [systemUi] — properties of the device rather
+///   than of one panel — carry over.
+/// * **The same screen.** A variant without a size —
+///   [DevicePosture.halfOpened] — inherits everything and overrides what it
+///   declares. Its folds and hinges report `postureHalfOpened`, and its
+///   division regions become active, unless it declares those lists itself.
+/// * **Pairs travel together.** A variant that declares a portrait padding,
+///   view padding or reserved-region list takes the landscape half of that
+///   pair from itself too — its own value, or the rotation rule — never
+///   from the open posture's layout.
+@immutable
+class DevicePostureVariant {
+  /// Creates a posture variant.
+  const DevicePostureVariant({
+    this.portraitSize,
+    this.devicePixelRatio,
+    this.frame,
+    this.systemUi,
+    this.portraitPadding,
+    this.portraitViewPadding,
+    this.landscapePadding,
+    this.landscapeViewPadding,
+    this.systemGestureInsets,
+    this.portraitKeyboardHeight,
+    this.landscapeKeyboardHeight,
+    this.displayFeatures,
+    this.portraitReservedRegions,
+    this.landscapeReservedRegions,
+  });
+
+  /// Decodes a variant from the JSON produced by [toJson] — the same keys as
+  /// a device spec's metric and appearance fields.
+  ///
+  /// [platform] is stamped onto a [systemUi] that does not name its own, as
+  /// [DevicePreset.fromJson] does. Unknown keys are ignored.
+  factory DevicePostureVariant.fromJson(
+    Map<String, Object?> json, {
+    TargetPlatform? platform,
+  }) {
+    EdgeInsets? insets(String key) =>
+        json[key] == null ? null : decodeEdgeInsets(json[key], key);
+    double? number(String key) =>
+        json[key] == null ? null : decodeDouble(json[key], key);
+    return DevicePostureVariant(
+      portraitSize: json['portraitSize'] == null
+          ? null
+          : decodeSize(json['portraitSize'], 'portraitSize'),
+      devicePixelRatio: number('devicePixelRatio'),
+      frame: json['frame'] == null
+          ? null
+          : DeviceFrame.fromJson(decodeMap(json['frame'], 'frame')),
+      systemUi: _decodeSystemUi(json['systemUi'], platform, 'systemUi'),
+      portraitPadding: insets('portraitPadding'),
+      portraitViewPadding: insets('portraitViewPadding'),
+      landscapePadding: insets('landscapePadding'),
+      landscapeViewPadding: insets('landscapeViewPadding'),
+      systemGestureInsets: insets('systemGestureInsets'),
+      portraitKeyboardHeight: number('portraitKeyboardHeight'),
+      landscapeKeyboardHeight: number('landscapeKeyboardHeight'),
+      displayFeatures: _decodeFeatures(
+        json['displayFeatures'],
+        'displayFeatures',
+      ),
+      portraitReservedRegions: _decodeRegions(
+        json['portraitReservedRegions'],
+        'portraitReservedRegions',
+      ),
+      landscapeReservedRegions: _decodeRegions(
+        json['landscapeReservedRegions'],
+        'landscapeReservedRegions',
+      ),
+    );
+  }
+
+  /// See [DevicePreset.portraitSize]. Declaring it makes this posture
+  /// another screen (see the class documentation).
+  final ui.Size? portraitSize;
+
+  /// See [DevicePreset.devicePixelRatio].
+  final double? devicePixelRatio;
+
+  /// See [DevicePreset.frame].
+  final DeviceFrame? frame;
+
+  /// See [DevicePreset.systemUi].
+  final SystemUiSimulation? systemUi;
+
+  /// See [DevicePreset.portraitPadding].
+  final EdgeInsets? portraitPadding;
+
+  /// See [DevicePreset.portraitViewPadding].
+  final EdgeInsets? portraitViewPadding;
+
+  /// See [DevicePreset.landscapePadding].
+  final EdgeInsets? landscapePadding;
+
+  /// See [DevicePreset.landscapeViewPadding].
+  final EdgeInsets? landscapeViewPadding;
+
+  /// See [DevicePreset.systemGestureInsets].
+  final EdgeInsets? systemGestureInsets;
+
+  /// See [DevicePreset.portraitKeyboardHeight].
+  final double? portraitKeyboardHeight;
+
+  /// See [DevicePreset.landscapeKeyboardHeight].
+  final double? landscapeKeyboardHeight;
+
+  /// See [DevicePreset.displayFeatures].
+  final List<SimulatedDisplayFeature>? displayFeatures;
+
+  /// See [DevicePreset.portraitReservedRegions].
+  final List<SimulatedReservedRegion>? portraitReservedRegions;
+
+  /// See [DevicePreset.landscapeReservedRegions].
+  final List<SimulatedReservedRegion>? landscapeReservedRegions;
+
+  /// Encodes this variant as JSON. Null fields are absent.
+  Map<String, Object?> toJson() => <String, Object?>{
+    if (portraitSize != null) 'portraitSize': encodeSize(portraitSize!),
+    if (devicePixelRatio != null) 'devicePixelRatio': devicePixelRatio,
+    if (frame != null) 'frame': frame!.toJson(),
+    if (systemUi != null) 'systemUi': systemUi!.toJson(),
+    if (portraitPadding != null)
+      'portraitPadding': encodeEdgeInsets(portraitPadding!),
+    if (portraitViewPadding != null)
+      'portraitViewPadding': encodeEdgeInsets(portraitViewPadding!),
+    if (landscapePadding != null)
+      'landscapePadding': encodeEdgeInsets(landscapePadding!),
+    if (landscapeViewPadding != null)
+      'landscapeViewPadding': encodeEdgeInsets(landscapeViewPadding!),
+    if (systemGestureInsets != null)
+      'systemGestureInsets': encodeEdgeInsets(systemGestureInsets!),
+    if (portraitKeyboardHeight != null)
+      'portraitKeyboardHeight': portraitKeyboardHeight,
+    if (landscapeKeyboardHeight != null)
+      'landscapeKeyboardHeight': landscapeKeyboardHeight,
+    if (displayFeatures != null)
+      'displayFeatures': displayFeatures!
+          .map((SimulatedDisplayFeature f) => f.toJson())
+          .toList(),
+    if (portraitReservedRegions != null)
+      'portraitReservedRegions': portraitReservedRegions!
+          .map((SimulatedReservedRegion r) => r.toJson())
+          .toList(),
+    if (landscapeReservedRegions != null)
+      'landscapeReservedRegions': landscapeReservedRegions!
+          .map((SimulatedReservedRegion r) => r.toJson())
+          .toList(),
+  };
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    return other is DevicePostureVariant &&
+        other.portraitSize == portraitSize &&
+        other.devicePixelRatio == devicePixelRatio &&
+        other.frame == frame &&
+        other.systemUi == systemUi &&
+        other.portraitPadding == portraitPadding &&
+        other.portraitViewPadding == portraitViewPadding &&
+        other.landscapePadding == landscapePadding &&
+        other.landscapeViewPadding == landscapeViewPadding &&
+        other.systemGestureInsets == systemGestureInsets &&
+        other.portraitKeyboardHeight == portraitKeyboardHeight &&
+        other.landscapeKeyboardHeight == landscapeKeyboardHeight &&
+        listEquals(other.displayFeatures, displayFeatures) &&
+        listEquals(other.portraitReservedRegions, portraitReservedRegions) &&
+        listEquals(other.landscapeReservedRegions, landscapeReservedRegions);
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    portraitSize,
+    devicePixelRatio,
+    frame,
+    systemUi,
+    portraitPadding,
+    portraitViewPadding,
+    landscapePadding,
+    landscapeViewPadding,
+    systemGestureInsets,
+    portraitKeyboardHeight,
+    landscapeKeyboardHeight,
+    displayFeatures == null ? null : Object.hashAll(displayFeatures!),
+    portraitReservedRegions == null
+        ? null
+        : Object.hashAll(portraitReservedRegions!),
+    landscapeReservedRegions == null
+        ? null
+        : Object.hashAll(landscapeReservedRegions!),
+  );
+}
+
+/// Decodes a `systemUi` object, stamping [platform] onto bars that do not
+/// name their own: paint-time behavior (Android tints bar backgrounds, iOS
+/// never does) must follow the simulated device, not the app's host. Specs
+/// in `device_specs/` rely on this — they never repeat the platform inside
+/// `systemUi`.
+SystemUiSimulation? _decodeSystemUi(
+  Object? json,
+  TargetPlatform? platform,
+  String context,
+) {
+  if (json == null) {
+    return null;
+  }
+  final SystemUiSimulation systemUi = SystemUiSimulation.fromJson(
+    decodeMap(json, context),
+  );
+  return systemUi.platform == null && platform != null
+      ? systemUi.withPlatform(platform)
+      : systemUi;
+}
+
+List<SimulatedDisplayFeature>? _decodeFeatures(Object? json, String context) {
+  if (json == null) {
+    return null;
+  }
+  return List<SimulatedDisplayFeature>.unmodifiable(
+    decodeList(json, context).map(
+      (Object? e) => SimulatedDisplayFeature.fromJson(decodeMap(e, '$context[]')),
+    ),
+  );
+}
+
+List<SimulatedReservedRegion>? _decodeRegions(Object? json, String context) {
+  if (json == null) {
+    return null;
+  }
+  return List<SimulatedReservedRegion>.unmodifiable(
+    decodeList(json, context).map(
+      (Object? e) => SimulatedReservedRegion.fromJson(decodeMap(e, '$context[]')),
+    ),
+  );
+}
+
+Map<DevicePosture, DevicePostureVariant> _decodePostures(
+  Object? json,
+  TargetPlatform platform,
+) {
+  final Map<String, Object?> map = decodeMap(json, 'postures');
+  final Map<DevicePosture, DevicePostureVariant> postures =
+      <DevicePosture, DevicePostureVariant>{};
+  for (final MapEntry<String, Object?> entry in map.entries) {
+    final DevicePosture posture = decodeEnum(
+      entry.key,
+      DevicePosture.values,
+      'postures key',
+    );
+    if (posture == DevicePosture.open) {
+      throw const FormatException(
+        'postures must not declare "open": the top-level fields are the open '
+        'posture',
+      );
+    }
+    postures[posture] = DevicePostureVariant.fromJson(
+      decodeMap(entry.value, 'postures.${entry.key}'),
+      platform: platform,
+    );
+  }
+  return Map<DevicePosture, DevicePostureVariant>.unmodifiable(postures);
 }

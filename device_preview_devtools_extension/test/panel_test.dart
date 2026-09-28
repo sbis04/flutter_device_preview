@@ -207,6 +207,44 @@ void main() {
       expect(gateway.simulation, isNot(contains('keyboardInset')));
     });
 
+    testWidgets('a foldable offers its postures and reserved regions', (
+      tester,
+    ) async {
+      await pumpPanel(tester);
+      const postureKey = Key('device_preview_posture_toggle');
+      const regionsKey = Key('device_preview_reserved_regions_switch');
+      // A phone does not fold and reserves nothing.
+      await controller.selectPreset(const PresetView(testPhonePresetJson));
+      await tester.pumpAndSettle();
+      expect(find.byKey(postureKey), findsNothing);
+      expect(find.byKey(regionsKey), findsNothing);
+
+      final duo = kBuiltInPresets.singleWhere(
+        (p) => p.id == 'apple-iphone-duo',
+      );
+      await controller.selectPreset(duo);
+      await tester.pumpAndSettle();
+      expect(find.byKey(postureKey), findsOneWidget);
+      expect(
+        tester.widget<SegmentedButton<String>>(find.byKey(postureKey)).selected,
+        {'open'},
+      );
+
+      await tester.tap(find.text('Closed'));
+      await tester.pumpAndSettle();
+      expect(gateway.simulation?['posture'], 'closed');
+      expect(gateway.simulation?['screenSize'], {'width': 466, 'height': 678});
+      expect(
+        tester.widget<SegmentedButton<String>>(find.byKey(postureKey)).selected,
+        {'closed'},
+      );
+
+      await tester.ensureVisible(find.byKey(regionsKey));
+      await tester.tap(find.byKey(regionsKey));
+      await tester.pumpAndSettle();
+      expect(gateway.simulation?['showReservedRegions'], isTrue);
+    });
+
     testWidgets('touch input tri-state sends auto/on/off', (tester) async {
       await pumpPanel(tester);
       final toggle = find.byKey(const Key('device_preview_touch_input_toggle'));

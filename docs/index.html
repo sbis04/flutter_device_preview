@@ -322,6 +322,7 @@ h1 .outline {
   color: var(--ink-faint);
 }
 .dp-row { display: flex; align-items: center; gap: 10px; padding: 5px 14px; }
+.dp-row[hidden], .dp-seg button[hidden] { display: none; }
 .dp-lbl { flex: 0 0 98px; }
 .dp-ctl { flex: 1; display: flex; align-items: center; justify-content: flex-end; gap: 8px; min-width: 0; }
 .dp-val { color: var(--ink); font-size: 11.5px; min-width: 52px; text-align: right; }
@@ -688,6 +689,16 @@ footer { border-top: 1px solid var(--line); margin-top: 40px; }
               </span>
             </span>
           </div>
+          <div class="dp-row" id="dpPostureRow" hidden>
+            <span class="dp-lbl">Posture</span>
+            <span class="dp-ctl">
+              <span class="dp-seg" id="dpPosture" role="group" aria-label="Posture">
+                <button type="button" data-value="open" title="Fully open: the inner display, hinge flat">open</button>
+                <button type="button" data-value="halfOpened" title="Partially open: the inner display, divided by the fold">half</button>
+                <button type="button" data-value="closed" title="Folded shut: the cover display">closed</button>
+              </span>
+            </span>
+          </div>
           <div class="dp-row">
             <label class="dp-lbl" for="dpSystemUi">System UI</label>
             <span class="dp-ctl"><input type="checkbox" class="dp-switch" id="dpSystemUi"></span>
@@ -695,6 +706,10 @@ footer { border-top: 1px solid var(--line); margin-top: 40px; }
           <div class="dp-row">
             <label class="dp-lbl" for="dpKeyboard">Keyboard</label>
             <span class="dp-ctl"><input type="checkbox" class="dp-switch" id="dpKeyboard"></span>
+          </div>
+          <div class="dp-row" id="dpRegionsRow" hidden>
+            <label class="dp-lbl" for="dpRegions">Reserved regions</label>
+            <span class="dp-ctl"><input type="checkbox" class="dp-switch" id="dpRegions"></span>
           </div>
           <div class="dp-row">
             <span class="dp-lbl">Touch input</span>
@@ -1071,7 +1086,14 @@ document.getElementById('year').textContent = new Date().getFullYear();
   // exactly this set and preserves every other override.
   const METRIC_KEYS = ['presetId', 'orientation', 'screenSize', 'frame', 'systemUi',
     'deviceKind', 'devicePixelRatio', 'padding', 'viewPadding', 'systemGestureInsets',
-    'keyboardInset', 'displayFeatures'];
+    'keyboardInset', 'displayFeatures', 'posture', 'reservedRegions'];
+  // Keys a posture variant with its own screen size does not inherit — the
+  // same rule as `DevicePreset.forPosture` app-side.
+  const SCREEN_BOUND_KEYS = ['portraitPadding', 'portraitViewPadding', 'landscapePadding',
+    'landscapeViewPadding', 'systemGestureInsets', 'portraitKeyboardHeight',
+    'landscapeKeyboardHeight', 'displayFeatures', 'portraitReservedRegions',
+    'landscapeReservedRegions', 'frame'];
+  const POSTURES = ['open', 'halfOpened', 'closed'];
   const A11Y_FLAGS = [
     ['accessibleNavigation', 'Accessible nav'],
     ['invertColors', 'Invert colors'],
@@ -1243,13 +1265,69 @@ document.getElementById('year').textContent = new Date().getFullYear();
     });
   }
 
+  function rotateRegions(regions, toLandscape, extent) {
+    return rotateFeatures(regions, toLandscape, extent).map((region) => {
+      const m = region.margins;
+      if (!m) return region;
+      const side = (key) => Number(m[key]) || 0;
+      const margins = toLandscape
+        ? { left: side('top'), top: side('right'), right: side('bottom'), bottom: side('left') }
+        : { left: side('bottom'), top: side('left'), right: side('top'), bottom: side('right') };
+      return Object.assign({}, region, { margins });
+    });
+  }
+
+  function supportedPostures(preset) {
+    const postures = preset && preset.postures;
+    if (!postures || !Object.keys(postures).length) return [];
+    return POSTURES.filter((p) => p === 'open' || postures[p]);
+  }
+
+  /** The device as it is in `posture`: `DevicePreset.forPosture`, in JS. */
+  function forPosture(preset, posture) {
+    const variant = preset && preset.postures && preset.postures[posture];
+    if (!variant || posture === 'open') return preset;
+    const merged = Object.assign({}, preset);
+    delete merged.postures;
+    const sameScreen = variant.portraitSize == null;
+    if (!sameScreen) SCREEN_BOUND_KEYS.forEach((key) => delete merged[key]);
+    const pair = (portrait, landscape) => {
+      if (variant[portrait] != null) landscape.forEach((key) => delete merged[key]);
+    };
+    pair('portraitPadding', ['portraitViewPadding', 'landscapePadding', 'landscapeViewPadding']);
+    pair('portraitViewPadding', ['landscapeViewPadding']);
+    pair('portraitReservedRegions', ['landscapeReservedRegions']);
+    if (sameScreen && posture === 'halfOpened') {
+      if (variant.displayFeatures == null && merged.displayFeatures) {
+        merged.displayFeatures = merged.displayFeatures.map((f) =>
+          (f.type === 'fold' || f.type === 'hinge') && f.state === 'postureFlat'
+            ? Object.assign({}, f, { state: 'postureHalfOpened' }) : f);
+      }
+      if (variant.portraitReservedRegions == null) {
+        ['portraitReservedRegions', 'landscapeReservedRegions'].forEach((key) => {
+          if (variant[key] != null || !merged[key]) return;
+          merged[key] = merged[key].map((r) => {
+            if (r.kind !== 'division') return r;
+            const active = Object.assign({}, r);
+            delete active.active;
+            return active;
+          });
+        });
+      }
+    }
+    Object.keys(variant).forEach((key) => { if (variant[key] != null) merged[key] = variant[key]; });
+    return merged;
+  }
+
   function keyboardHeight(preset, landscape) {
     if (!preset) return null;
     const height = landscape ? preset.landscapeKeyboardHeight : preset.portraitKeyboardHeight;
     return height != null ? height : null;
   }
 
-  function applyPreset(preset, orientation, extra) {
+  function applyPreset(device, orientation, extra, posture) {
+    posture = posture || 'open';
+    const preset = forPosture(device, posture);
     const sim = currentSim();
     // A raised keyboard survives the switch, at the new device's height for
     // the orientation it lands in.
@@ -1258,6 +1336,7 @@ document.getElementById('year').textContent = new Date().getFullYear();
     Object.assign(sim, extra || {});
     sim.presetId = preset.id;
     sim.orientation = orientation;
+    if (supportedPostures(device).length) sim.posture = posture;
     sim.deviceKind = preset.kind || 'phone';
     // The frame and the bars are described in portrait and resolved app-side,
     // so rotation never touches them.
@@ -1281,8 +1360,11 @@ document.getElementById('year').textContent = new Date().getFullYear();
       : portraitPadding;
     if (padding) sim.padding = padding;
     const portraitViewPadding = preset.portraitViewPadding || portraitPadding;
+    // landscapeViewPadding ?? landscapePadding ?? rotated portrait — the
+    // chain `DevicePreset.resolve` applies app-side.
     const viewPadding = landscape
-      ? preset.landscapeViewPadding || (portraitViewPadding ? rotateInsets(portraitViewPadding, true) : null)
+      ? preset.landscapeViewPadding || preset.landscapePadding ||
+        (portraitViewPadding ? rotateInsets(portraitViewPadding, true) : null)
       : portraitViewPadding;
     if (viewPadding) sim.viewPadding = viewPadding;
     const gestures = preset.systemGestureInsets;
@@ -1299,7 +1381,24 @@ document.getElementById('year').textContent = new Date().getFullYear();
         ? rotateFeatures(features, true, size.width)
         : features;
     }
+    const regions = preset.portraitReservedRegions;
+    if (regions && regions.length) {
+      sim.reservedRegions = !landscape
+        ? regions
+        : preset.landscapeReservedRegions || (size ? rotateRegions(regions, true, size.width) : regions);
+    }
     return push(sim);
+  }
+
+  function setPosture(posture) {
+    return enqueue(() => {
+      const sim = currentSim();
+      const preset = presetById(sim.presetId);
+      if (!preset || !supportedPostures(preset).includes(posture) || sim.posture === posture) {
+        return Promise.resolve();
+      }
+      return applyPreset(preset, sim.orientation || 'portrait', null, posture);
+    });
   }
 
   function selectRealDevice() {
@@ -1315,12 +1414,15 @@ document.getElementById('year').textContent = new Date().getFullYear();
       const sim = currentSim();
       if (!sim.screenSize || sim.orientation === orientation) return Promise.resolve();
       const preset = presetById(sim.presetId);
-      if (preset) return applyPreset(preset, orientation);
+      if (preset) return applyPreset(preset, orientation, null, sim.posture);
       const landscape = orientation === 'landscape';
       const size = sim.screenSize;
+      const extent = Number(landscape ? size.width : size.height) || 0;
       if (sim.displayFeatures) {
-        const extent = Number(landscape ? size.width : size.height) || 0;
         sim.displayFeatures = rotateFeatures(sim.displayFeatures, landscape, extent);
+      }
+      if (sim.reservedRegions) {
+        sim.reservedRegions = rotateRegions(sim.reservedRegions, landscape, extent);
       }
       sim.screenSize = { width: size.height, height: size.width };
       if (sim.padding) sim.padding = rotateInsets(sim.padding, landscape);
@@ -1453,9 +1555,23 @@ document.getElementById('year').textContent = new Date().getFullYear();
     systemUi.checked = !sim || sim.showSystemUi !== false;
     systemUi.disabled = !(sim && sim.systemUi);
 
+    const postures = sim ? supportedPostures(presetById(sim.presetId)) : [];
+    $('dpPostureRow').hidden = postures.length === 0;
+    if (postures.length) {
+      $('dpPosture').querySelectorAll('button').forEach((button) => {
+        button.hidden = !postures.includes(button.dataset.value);
+      });
+      segValue($('dpPosture'), sim.posture || 'open');
+    }
+
+    const regionsRow = $('dpRegionsRow');
+    regionsRow.hidden = !(sim && sim.reservedRegions && sim.reservedRegions.length);
+    $('dpRegions').checked = !!(sim && sim.showReservedRegions);
+
     const keyboard = $('dpKeyboard');
     keyboard.checked = !!(sim && sim.keyboardInset != null);
-    keyboard.disabled = !(sim && keyboardHeight(presetById(sim.presetId),
+    keyboard.disabled = !(sim && keyboardHeight(
+      forPosture(presetById(sim.presetId), sim.posture || 'open'),
       sim.orientation === 'landscape') != null);
 
     const touch = sim && sim.touchInput;
@@ -1533,8 +1649,20 @@ document.getElementById('year').textContent = new Date().getFullYear();
     const preset = presetById(id);
     if (preset) {
       const sim = simulation();
-      enqueue(() => applyPreset(preset, (sim && sim.orientation) || 'portrait'));
+      // Between foldables the posture carries over when the new device has it.
+      const posture = sim && sim.posture;
+      enqueue(() => applyPreset(preset, (sim && sim.orientation) || 'portrait', null,
+        supportedPostures(preset).includes(posture) ? posture : 'open'));
     }
+  });
+
+  $('dpPosture').addEventListener('click', (event) => {
+    const button = event.target.closest('button');
+    if (button && !button.disabled) setPosture(button.dataset.value);
+  });
+
+  $('dpRegions').addEventListener('change', (event) => {
+    mutate('showReservedRegions', event.target.checked ? true : null);
   });
 
   $('dpOrientation').addEventListener('click', (event) => {
@@ -1548,7 +1676,7 @@ document.getElementById('year').textContent = new Date().getFullYear();
 
   $('dpKeyboard').addEventListener('change', (event) => {
     const sim = currentSim();
-    const height = keyboardHeight(presetById(sim.presetId),
+    const height = keyboardHeight(forPosture(presetById(sim.presetId), sim.posture || 'open'),
       sim.orientation === 'landscape');
     mutate('keyboardInset', event.target.checked && height != null ? height : null);
   });

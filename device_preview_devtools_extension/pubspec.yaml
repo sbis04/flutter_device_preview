@@ -4,7 +4,7 @@ description: >-
   into device_preview/extension/devtools/build via `dart run
   devtools_extensions build_and_copy`; never published to pub.dev.
 publish_to: none
-version: 3.0.0
+version: 3.1.0
 
 environment:
   sdk: ">=3.6.0 <4.0.0"
@@ -21,6 +21,10 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  # Only for the parity tests: the panel and the app are the two writers of
+  # the simulation protocol and must resolve every device identically.
+  device_preview:
+    path: ../device_preview
   flutter_lints: ^6.0.0
 
 flutter:

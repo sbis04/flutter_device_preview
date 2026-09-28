@@ -52,7 +52,10 @@ await DevicePreview.controller.applyPreset(preset);
 | `systemGestureInsets` | insets | Orientation-invariant. |
 | `portraitKeyboardHeight` | number | What the device's stock software keyboard covers in portrait — measured on the device, see below. Omit for a device with no software keyboard. |
 | `landscapeKeyboardHeight` | number | The same in landscape. No rotation rule derives one from the other: a keyboard is not a rotated keyboard. |
-| `displayFeatures` | array | `{bounds: {left, top, right, bottom}, type, state}`, in portrait coordinates. |
+| `displayFeatures` | array | `{bounds: {left, top, right, bottom}, type, state}`, in portrait coordinates — what the **platform reports** to a Flutter app, which is not always what the hardware has (see [Foldables](#foldables)). |
+| `portraitReservedRegions` | array | `{kind, bounds, margins?, active?}` — the screen areas the device reserves, portrait. See [Reserved regions](#reserved-regions). |
+| `landscapeReservedRegions` | array | The same in landscape. Defaults to the portrait regions turned a quarter turn. |
+| `postures` | object | A foldable's other postures (`halfOpened`, `closed`), each described by how it differs from the top level, which is the open posture. See [Foldables](#foldables). |
 | `frame` | object | The device's appearance — see below. |
 | `systemUi` | object | The device's status bar and gesture pill — see below. Its optional `platform` key is stamped from `platform` above; specs leave it out. |
 
@@ -160,6 +163,15 @@ and the DevTools panel. That stamp is what makes the bars paint like the
 happens to run on (see [Colors](#colors)) — a hand-built `SystemUiSimulation`
 that leaves it null falls back to the app's own platform.
 
+A third bar, `sideBar`, lays a status bar out **vertically** in the
+right-hand safe area — the iPhone Duo's, whose clock and status icons sit in
+a column along the trailing edge on the cover display and on the inner
+display in landscape. Its `leading` artwork is drawn `inset` below the top
+edge, `center` in the middle, `trailing` `inset` above the bottom edge, each
+centered across the column. It is drawn only while the right safe area is
+non-zero and never mirrored for right-to-left layouts: the column follows the
+hardware.
+
 Neither bar declares a height or a position. Each fills the **safe area** on
 its side of the screen — the padding already resolved for the current
 orientation — so an iPhone's status bar disappears in landscape, a
@@ -208,6 +220,76 @@ one an `AppBar` installs:
 
 Use `fill-opacity` for secondary detail (a battery outline, an empty signal
 bar): it is preserved through the tint.
+
+## Foldables
+
+A foldable's top-level metrics are its **open** posture — the inner display,
+hinge flat. `postures` holds the others, keyed `halfOpened` and `closed`, each
+a partial spec with any of the metric and appearance keys above
+(`portraitSize`, the paddings, keyboard heights, `displayFeatures`, the
+reserved regions, `frame`, `systemUi`):
+
+```jsonc
+"postures": {
+  "halfOpened": { "portraitKeyboardHeight": 495.5 },  // the same screen
+  "closed": {                                           // another screen
+    "portraitSize": { "width": 466, "height": 678 },
+    "portraitPadding": { "left": 0, "top": 0, "right": 84, "bottom": 34 },
+    "frame": { … }, "systemUi": { … }
+  }
+}
+```
+
+Three rules decide what a posture inherits from the top level
+(`DevicePostureVariant` documents them; the DevTools panel and the landing
+page apply the same ones):
+
+- **Another screen.** A posture with its own `portraitSize` (the cover
+  display) inherits nothing bound to the open screen — paddings, gesture
+  insets, keyboard heights, display features, reserved regions and the frame
+  start from scratch. Only `devicePixelRatio` and `systemUi` carry over.
+- **The same screen.** A posture without a size inherits everything and
+  overrides what it declares. `halfOpened` also turns every flat `fold` /
+  `hinge` feature into `postureHalfOpened` and makes every `division` region
+  active, unless it lists those arrays itself.
+- **Pairs travel together.** A posture that declares a portrait padding,
+  view padding or reserved-region list takes the landscape half of the pair
+  from itself (or the rotation rule), never from the open posture.
+
+`displayFeatures` is what the platform tells a Flutter app. Android reports a
+fold (Jetpack WindowManager's `FoldingFeature`, `postureFlat` or
+`postureHalfOpened`), so the Android foldables declare one. Flutter's iOS
+embedder reports none (Flutter 3.47), so `apple-iphone-duo` declares none —
+on the device `MediaQuery.displayFeatures` is empty in every posture — and
+carries its fold as a reserved region instead.
+
+## Reserved regions
+
+iOS 27.1's `UIView.ReservedRegion`: the parts of the screen a device takes,
+with the one thing a safe area cannot say — *which* part.
+
+```jsonc
+{ "kind": "division",                                    // or "occlusion"
+  "bounds": { "left": 0, "top": 455.5, "right": 669, "bottom": 495.5 },
+  "margins": { "left": 0, "top": 20, "right": 0, "bottom": 20 },
+  "active": false }                                      // default true
+```
+
+- `occlusion` — something covers the content: a camera, the Dynamic Island,
+  a status bar column. `division` — something splits it: a fold.
+- `bounds` is iOS's `frame`, margins included; the region proper is `bounds`
+  deflated by `margins`. A fold's core is usually zero wide.
+- `active: false` for a region the device reports but does not currently
+  apply — the inner camera while it is off, the fold while the device lies
+  flat.
+
+They are measured, not modelled: `reservedRegions(kind:options:
+.includeInactive)` on a booted simulator, per posture and orientation (see
+`.claude/skills/extract-cupertino-specs/SKILL.md`). Declare
+`landscapeReservedRegions` whenever the system re-lays a region out on
+rotation rather than turning it with the hardware — the Duo's status column
+stays on the right in both orientations. The app never sees them: they drive
+the DevTools **Reserved regions** overlay and `DeviceSimulation.reservedRegions`.
 
 ## Keyboard heights
 

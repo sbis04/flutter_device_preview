@@ -47,7 +47,13 @@ class DevicePreviewProtocol {
   ///   bars fall back to the app's own platform).
   /// * 4 — `simulation.keyboardInset` (the simulated software keyboard) and
   ///   the `keyboard` capability flag.
-  static const int protocolVersion = 4;
+  /// * 5 — foldable postures and reserved regions: `simulation.posture`,
+  ///   `simulation.reservedRegions`, `simulation.showReservedRegions`,
+  ///   `simulation.systemUi.sideBar` and presets' `postures` /
+  ///   `portraitReservedRegions` / `landscapeReservedRegions`, plus the
+  ///   `posture` and `reservedRegions` capability flags. All additive: an
+  ///   older app ignores them and keeps the metrics it is sent.
+  static const int protocolVersion = 5;
 
   /// The active controller, or null when simulation is disabled.
   final DevicePreviewController? controller;

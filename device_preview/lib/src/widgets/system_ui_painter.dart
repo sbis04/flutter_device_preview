@@ -3,6 +3,7 @@ import 'dart:ui' as ui;
 
 import 'package:flutter/widgets.dart';
 
+import '../model/simulation.dart';
 import '../model/system_ui.dart';
 import '../svg/svg_drawing.dart';
 
@@ -64,6 +65,67 @@ class SystemUiPainter {
         dividerAtTop: true,
         tint: colors.navigationBarIcons,
         textDirection: textDirection,
+      );
+    }
+    final SystemUiBar? sideBar = systemUi.sideBar;
+    if (sideBar != null && padding.right > 0) {
+      // Clipped to the space between the top and bottom bars, so the
+      // column never overlaps the gesture pill.
+      _paintSideBar(
+        canvas,
+        bar: sideBar,
+        region: ui.Rect.fromLTRB(
+          screenSize.width - padding.right,
+          padding.top,
+          screenSize.width,
+          screenSize.height - padding.bottom,
+        ),
+        tint: colors.statusBarIcons,
+      );
+    }
+  }
+
+  /// A status bar laid out down a side column: leading at the top, center
+  /// in the middle, trailing at the bottom, each centered across the
+  /// column. Never mirrored — the column follows the hardware (see
+  /// [SystemUiSimulation.sideBar]).
+  void _paintSideBar(
+    ui.Canvas canvas, {
+    required SystemUiBar bar,
+    required ui.Rect region,
+    required ui.Color tint,
+  }) {
+    for (final (String source, int alignment) in <(String, int)>[
+      (bar.leading, -1),
+      (bar.center, 0),
+      (bar.trailing, 1),
+    ]) {
+      if (source.isEmpty) {
+        continue;
+      }
+      final SvgDrawing? drawing = _drawing(source);
+      if (drawing == null || drawing.isEmpty || drawing.size.isEmpty) {
+        continue;
+      }
+      final ui.Size size = drawing.size;
+      final double top = switch (alignment) {
+        < 0 => region.top + bar.inset,
+        0 => region.center.dy - size.height / 2,
+        _ => region.bottom - bar.inset - size.height,
+      };
+      final double clampedTop = math.max(
+        region.top,
+        math.min(top, region.bottom - size.height),
+      );
+      drawing.paintInto(
+        canvas,
+        ui.Rect.fromLTWH(
+          region.center.dx - size.width / 2,
+          clampedTop,
+          size.width,
+          size.height,
+        ),
+        currentColor: tint,
       );
     }
   }
@@ -323,4 +385,154 @@ void _paintKeyboardMark(ui.Canvas canvas) {
     const ui.Offset(10.5, 10.6),
     stroke,
   );
+}
+
+/// Paints [regions] — a simulated device's reserved regions — as a
+/// translucent overlay: what `DeviceSimulation.showReservedRegions` turns on.
+///
+/// Occlusions are red, divisions blue, matching the "keep out" and "split
+/// here" readings of the two kinds:
+///
+/// * an **active** region is filled — its core strongly, its margins (the
+///   breathing room around a fold) faintly — and a division's crease is
+///   drawn as a line, since a fold's core is often zero wide;
+/// * an **inactive** region, one the device reports but does not currently
+///   apply (the inner camera while it is off, the fold while the device lies
+///   flat), is only outlined, so a layout can be checked against where it
+///   *will* be.
+///
+/// The canvas origin must be the screen's top-left corner; [regions] are in
+/// the same (simulated logical) pixels.
+void paintReservedRegions(
+  ui.Canvas canvas,
+  List<SimulatedReservedRegion> regions,
+) {
+  for (final SimulatedReservedRegion region in regions) {
+    final bool division = region.kind == ReservedRegionKind.division;
+    final ui.Color hue = division
+        ? const ui.Color(0xFF0A84FF)
+        : const ui.Color(0xFFFF453A);
+    final ui.Rect core = region.core;
+    if (region.isActive) {
+      canvas.drawRect(
+        region.bounds,
+        ui.Paint()..color = hue.withValues(alpha: 0.14),
+      );
+      if (!core.isEmpty) {
+        canvas.drawRect(core, ui.Paint()..color = hue.withValues(alpha: 0.30));
+      }
+      if (division) {
+        final ui.Paint line = ui.Paint()
+          ..color = hue.withValues(alpha: 0.9)
+          ..strokeWidth = 1.5;
+        final ui.Offset center = core.center;
+        if (core.width <= core.height) {
+          canvas.drawLine(
+            ui.Offset(center.dx, core.top),
+            ui.Offset(center.dx, core.bottom),
+            line,
+          );
+        } else {
+          canvas.drawLine(
+            ui.Offset(core.left, center.dy),
+            ui.Offset(core.right, center.dy),
+            line,
+          );
+        }
+      }
+    }
+    canvas.drawRect(
+      region.bounds.deflate(0.5),
+      ui.Paint()
+        ..style = ui.PaintingStyle.stroke
+        ..strokeWidth = 1
+        ..color = hue.withValues(alpha: region.isActive ? 0.9 : 0.55),
+    );
+  }
+}
+
+/// The creases of a partially open foldable: the lines along which its
+/// screen is currently bent, from what the simulation says of its folds —
+/// an active division region (iOS), or a fold or hinge display feature in
+/// `postureHalfOpened` (Android). Empty for a device lying flat.
+///
+/// Each crease is the center line of its feature, along the feature's
+/// longer side.
+List<(ui.Offset, ui.Offset)> foldCreases({
+  List<SimulatedReservedRegion>? regions,
+  List<SimulatedDisplayFeature>? features,
+}) {
+  (ui.Offset, ui.Offset) centerLine(ui.Rect rect) {
+    final ui.Offset c = rect.center;
+    return rect.width <= rect.height
+        ? (ui.Offset(c.dx, rect.top), ui.Offset(c.dx, rect.bottom))
+        : (ui.Offset(rect.left, c.dy), ui.Offset(rect.right, c.dy));
+  }
+
+  return <(ui.Offset, ui.Offset)>[
+    for (final SimulatedReservedRegion region
+        in regions ?? const <SimulatedReservedRegion>[])
+      if (region.kind == ReservedRegionKind.division && region.isActive)
+        centerLine(region.core),
+    for (final SimulatedDisplayFeature feature
+        in features ?? const <SimulatedDisplayFeature>[])
+      if ((feature.type == ui.DisplayFeatureType.fold ||
+              feature.type == ui.DisplayFeatureType.hinge) &&
+          feature.state == ui.DisplayFeatureState.postureHalfOpened)
+        centerLine(feature.bounds),
+  ];
+}
+
+/// Shades each crease of a bent screen — [foldCreases] — the way light
+/// falls off across a fold: darkest on the crease, fading out over
+/// [halfWidth] on either side.
+///
+/// Decoration only, like the bent body the half-open frame draws around the
+/// screen: the app stays laid out flat and unshaded underneath, exactly as
+/// the device lays it out. The canvas origin must be the screen's top-left
+/// corner.
+void paintFoldCreases(
+  ui.Canvas canvas,
+  List<(ui.Offset, ui.Offset)> creases, {
+  double halfWidth = 36,
+}) {
+  for (final (ui.Offset from, ui.Offset to) in creases) {
+    final bool vertical = (to.dx - from.dx).abs() < (to.dy - from.dy).abs();
+    final ui.Rect band = vertical
+        ? ui.Rect.fromLTRB(
+            from.dx - halfWidth,
+            from.dy,
+            from.dx + halfWidth,
+            to.dy,
+          )
+        : ui.Rect.fromLTRB(
+            from.dx,
+            from.dy - halfWidth,
+            to.dx,
+            from.dy + halfWidth,
+          );
+    final ui.Offset start = vertical ? band.centerLeft : band.topCenter;
+    final ui.Offset end = vertical ? band.centerRight : band.bottomCenter;
+    canvas.drawRect(
+      band,
+      ui.Paint()
+        ..shader = ui.Gradient.linear(
+          start,
+          end,
+          const <ui.Color>[
+            ui.Color(0x00000000),
+            ui.Color(0x38000000),
+            ui.Color(0x00000000),
+          ],
+          const <double>[0, 0.5, 1],
+        ),
+    );
+    canvas.drawLine(
+      from,
+      to,
+      ui.Paint()
+        ..color = const ui.Color(0x33000000)
+        ..strokeWidth = 1,
+    );
+  }
 }
