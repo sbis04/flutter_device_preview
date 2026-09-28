@@ -13,6 +13,7 @@ Requires Pillow (`pip install pillow`). Usage:
 import argparse
 import glob
 import json
+import math
 import os
 import re
 import shutil
@@ -39,6 +40,19 @@ DEVICES = {
     "google-pixel-10-pro-fold": {"skin": "pixel_10_pro_fold/default",
                                  "avd_device": "pixel_9_pro_fold",
                                  "soft_probe": True},
+    # Android Studio defines the Pixel 9 Pro XL (sdklib's nexus.xml:
+    # 1344x2992, xxhdpi -> 448x997.33 @3) but the command-line tools do not:
+    # the probe AVD is a stand-in profile with that official panel written
+    # into its config. Its spec was first built without a probe (`donor`):
+    # no bootable system image was installed, so the bar insets are the
+    # Pixel 9's Android 16 ones (54 dp status bar, 24 dp gesture bar). Drop
+    # `donor` to probe it once an image boots.
+    "google-pixel-9-pro-xl": {"skin": "pixel_9_pro_xl",
+                              "avd_device": "pixel_7_pro",
+                              "hardware": {"hw.lcd.width": 1344,
+                                           "hw.lcd.height": 2992,
+                                           "hw.lcd.density": 480},
+                              "donor": True},
 }
 
 SKILL_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -193,6 +207,57 @@ def analyze_back(back_path, screen_pos, screen_px):
     return {"bounds": bounds, "radius": radius, "edge": edge, "face": face}
 
 
+def fit_corner_radius(grid, w):
+    """Least-squares circle through the top-left overlay's inner edge —
+    per row, the first pixel the overlay leaves uncovered — or None when
+    the edge is no arc (residual over a pixel) or too short to fit."""
+    points = []
+    for y, row in enumerate(grid[:w // 2]):
+        x = 0
+        while x < w // 2 and row[x]:
+            x += 1
+        if x >= w // 2:
+            continue
+        if x <= 1 and points:
+            break  # past the arc: the straight edge
+        if x > 1:
+            points.append((float(x), float(y)))
+    if len(points) < 12:
+        return None
+    # Algebraic fit: x² + y² = 2ax + 2by + c, solved by normal equations.
+    sums = [[0.0] * 3 for _ in range(3)]
+    rhs = [0.0] * 3
+    for x, y in points:
+        row = (2 * x, 2 * y, 1.0)
+        target = x * x + y * y
+        for i in range(3):
+            rhs[i] += row[i] * target
+            for j in range(3):
+                sums[i][j] += row[i] * row[j]
+    try:
+        a, b, c = solve3(sums, rhs)
+    except ZeroDivisionError:
+        return None
+    r = math.sqrt(max(0.0, c + a * a + b * b))
+    residual = max(abs(math.hypot(x - a, y - b) - r) for x, y in points)
+    return round(r) if r > 0 and residual <= 1.5 else None
+
+
+def solve3(m, v):
+    """Gaussian elimination for a 3×3 system."""
+    m = [row[:] + [v[i]] for i, row in enumerate(m)]
+    for col in range(3):
+        pivot = max(range(col, 3), key=lambda r: abs(m[r][col]))
+        if abs(m[pivot][col]) < 1e-12:
+            raise ZeroDivisionError
+        m[col], m[pivot] = m[pivot], m[col]
+        for r in range(3):
+            if r != col:
+                f = m[r][col] / m[col][col]
+                m[r] = [a - f * b for a, b in zip(m[r], m[col])]
+    return [m[i][3] / m[i][i] for i in range(3)]
+
+
 def analyze_mask(mask_path, screen_px):
     """Screen corner radius and camera punch hole from the mask overlay:
     opaque pixels are what covers the screen. Corner overlays touch the
@@ -207,17 +272,22 @@ def analyze_mask(mask_path, screen_px):
     grid = [[alpha.getpixel((x, y)) >= OPAQUE for x in range(w)]
             for y in range(strip_h)]
 
-    # The corner radius, when the layout does not declare it: the extent of
-    # the top-left overlay along row 0 (tolerating a few transparent
-    # antialiased pixels before it starts).
-    radius = 0
-    x = 0
-    while x < w // 2 and not grid[0][x]:
-        x += 1
-    if x < 8:
-        while x < w // 2 and grid[0][x]:
+    # The corner radius: the circle the top-left overlay's inner edge
+    # traces. This is what the emulator window shows — its `corner_radius`
+    # in the layout is what the OS is told for insets and is smaller on
+    # the Pixels (87 px vs the ~137 px the Pixel 9's mask draws).
+    radius = fit_corner_radius(grid, w)
+    if radius is None:
+        # No usable arc: fall back to the extent of the overlay along
+        # row 0 (tolerating a few transparent antialiased pixels first).
+        radius = 0
+        x = 0
+        while x < w // 2 and not grid[0][x]:
             x += 1
-        radius = x
+        if x < 8:
+            while x < w // 2 and grid[0][x]:
+                x += 1
+            radius = x
 
     seen = [[False] * w for _ in range(strip_h)]
     hole = None
@@ -272,7 +342,7 @@ def build_frame(skin_dir, dpr):
     back = analyze_back(geometry["back"], geometry["screen_pos"],
                         geometry["screen_px"])
     mask = analyze_mask(geometry["mask"], geometry["screen_px"])
-    if geometry["corner_radius"] is not None:
+    if not mask["radius"] and geometry["corner_radius"] is not None:
         mask["radius"] = geometry["corner_radius"]
     bx0, by0, bx1, by1 = back["bounds"]
     sw, sh = geometry["screen_px"]
@@ -345,6 +415,31 @@ class EmulatorProbe:
             sys.exit("error: no emulator system images installed")
         return max(images)[1]
 
+    def _write_avd(self):
+        image = self.system_image()  # system-images;android-N;tag;abi
+        _, platform, tag, abi = image.split(";")
+        avd_root = os.path.expanduser("~/.android/avd")
+        avd_dir = os.path.join(avd_root, "specprobe-tmp.avd")
+        os.makedirs(avd_dir, exist_ok=True)
+        open(os.path.join(avd_root, "specprobe-tmp.ini"), "w").write(
+            f"avd.ini.encoding=UTF-8\npath={avd_dir}\n"
+            f"path.rel=avd/specprobe-tmp.avd\ntarget={platform}\n")
+        open(os.path.join(avd_dir, "config.ini"), "w").write("\n".join([
+            "avd.ini.encoding=UTF-8",
+            f"abi.type={abi}",
+            f"hw.cpu.arch={'arm64' if 'arm64' in abi else 'x86_64'}",
+            f"image.sysdir.1=system-images/{platform}/{tag}/{abi}/",
+            f"tag.id={tag}",
+            f"PlayStore.enabled={'true' if 'playstore' in tag else 'false'}",
+            "hw.ramSize=2048",
+            "disk.dataPartition.size=6G",
+            "hw.keyboard=yes",
+            "hw.initialOrientation=portrait",
+            "hw.gpu.enabled=yes",
+            "hw.gpu.mode=auto",
+            "showDeviceFrame=no",
+        ]) + "\n")
+
     def shell(self, *args, timeout=60):
         return subprocess.run([self.adb, "shell", *args], capture_output=True,
                               text=True, timeout=timeout).stdout
@@ -400,21 +495,38 @@ class EmulatorProbe:
                 insets["right"] = max(insets["right"], round((r - l) / dpr))
         return insets, dw > dh
 
-    def probe(self, avd_device):
-        if avd_device in self.cache:
-            return self.cache[avd_device]
-        metrics = self._probe(avd_device)
-        self.cache[avd_device] = metrics
+    def probe(self, avd_device, hardware=None):
+        key = (avd_device, tuple(sorted((hardware or {}).items())))
+        if key in self.cache:
+            return self.cache[key]
+        metrics = self._probe(avd_device, hardware or {})
+        self.cache[key] = metrics
         return metrics
 
-    def _probe(self, avd_device):
+    def _probe(self, avd_device, hardware):
         create = subprocess.run(
             [self.avdmanager, "create", "avd", "-n", "specprobe-tmp",
              "-k", self.system_image(), "-d", avd_device, "--force"],
             input="no\n", capture_output=True, text=True)
         if create.returncode != 0:
-            sys.exit(f"error: avdmanager create failed for {avd_device!r}:\n"
-                     f"{create.stderr.strip()}")
+            if not hardware:
+                sys.exit(f"error: avdmanager create failed for "
+                         f"{avd_device!r}:\n{create.stderr.strip()}")
+            # Command-line tools older than the installed system images
+            # ("only understands SDK XML versions up to 3") cannot create an
+            # AVD at all — but an AVD is two small files, and with the
+            # panel given explicitly nothing else is needed from a profile.
+            print(f"  avdmanager unusable ({create.stderr.strip().splitlines()[0]}"
+                  f"); writing the probe AVD directly")
+            self._write_avd()
+        if hardware:
+            # The official panel of a device the local tools do not define.
+            config = os.path.join(os.path.expanduser("~/.android/avd"),
+                                  "specprobe-tmp.avd", "config.ini")
+            lines = [line for line in open(config).read().splitlines()
+                     if line.split("=", 1)[0].strip() not in hardware]
+            lines += [f"{k}={v}" for k, v in hardware.items()]
+            open(config, "w").write("\n".join(lines) + "\n")
         process = subprocess.Popen(
             [self.emulator, "-avd", "specprobe-tmp", "-no-window", "-no-audio",
              "-no-boot-anim", "-no-snapshot"],
@@ -465,6 +577,11 @@ class EmulatorProbe:
             process.wait(timeout=30)
             subprocess.run([self.avdmanager, "delete", "avd", "-n",
                             "specprobe-tmp"], capture_output=True)
+            avd_root = os.path.expanduser("~/.android/avd")
+            shutil.rmtree(os.path.join(avd_root, "specprobe-tmp.avd"),
+                          ignore_errors=True)
+            if os.path.exists(os.path.join(avd_root, "specprobe-tmp.ini")):
+                os.remove(os.path.join(avd_root, "specprobe-tmp.ini"))
 
 
 # --- spec update -------------------------------------------------------------
@@ -508,7 +625,7 @@ def update_spec(spec_id, mapping, roots, probe, dry_run):
           f"{', probed' if probe and not donor else ''})")
 
     if probe is not None and not donor:
-        metrics = probe.probe(mapping["avd_device"])
+        metrics = probe.probe(mapping["avd_device"], mapping.get("hardware"))
         size = spec["portraitSize"]
         mismatched = abs(metrics["width"] - size["width"]) > 1 or \
             abs(metrics["height"] - size["height"]) > 1

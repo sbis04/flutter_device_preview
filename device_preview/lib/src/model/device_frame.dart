@@ -100,6 +100,73 @@ class DeviceFrame {
     );
   }
 
+  /// A desktop window around a screen of [screenSize] — the same artwork as
+  /// the catalog's desktop windows (`device_specs/desktop-*.json`), in the
+  /// style of [platform]'s windows:
+  ///
+  /// * macOS (the default, `desktop-large`): a 28 pt title bar with the three
+  ///   window controls on the left, 12 pt corners;
+  /// * Windows (`desktop-small`): a 32 pt title bar with minimize, maximize
+  ///   and close on the right, 8 pt corners;
+  ///
+  /// both with a title pill centered in the bar. For windows of arbitrary
+  /// size — a design tool's desktop breakpoints, a custom canvas — that no
+  /// spec describes.
+  factory DeviceFrame.desktopWindow(
+    ui.Size screenSize, {
+    TargetPlatform platform = TargetPlatform.macOS,
+  }) {
+    String n(double v) {
+      final double r = (v * 100).roundToDouble() / 100;
+      return r == r.roundToDouble() ? '${r.toInt()}' : '$r';
+    }
+
+    final bool mac = platform == TargetPlatform.macOS ||
+        platform == TargetPlatform.iOS;
+    final double bar = mac ? 28 : 32;
+    final double r = mac ? 12 : 8;
+    final String fill = mac ? '#26282c' : '#202226';
+    final double w = screenSize.width;
+    final double h = screenSize.height;
+    final double bw = w + 2;
+    final double bh = h + bar + 1;
+    final double c = bar / 2;
+    return DeviceFrame(
+      size: ui.Size(bw, bh),
+      screenOffset: ui.Offset(1, bar),
+      screenPath:
+          'M 0,0 H ${n(w)} V ${n(h - r)} A ${n(r)},${n(r)} 0 0 1 '
+          '${n(w - r)},${n(h)} H ${n(r)} A ${n(r)},${n(r)} 0 0 1 0,${n(h - r)} Z',
+      body: <String>[
+        '<svg viewBox="0 0 ${n(bw)} ${n(bh)}">',
+        '  <path d="M ${n(r)},0 H ${n(bw - r)} A ${n(r)},${n(r)} 0 0 1 '
+            '${n(bw)},${n(r)} V ${n(bh - r)} A ${n(r)},${n(r)} 0 0 1 '
+            '${n(bw - r)},${n(bh)} H ${n(r)} A ${n(r)},${n(r)} 0 0 1 '
+            '0,${n(bh - r)} V ${n(r)} A ${n(r)},${n(r)} 0 0 1 ${n(r)},0 Z" '
+            'fill="$fill"/>',
+        if (mac) ...<String>[
+          '  <circle cx="16" cy="${n(c)}" r="6" fill="#ff5f57"/>',
+          '  <circle cx="36" cy="${n(c)}" r="6" fill="#febc2e"/>',
+          '  <circle cx="56" cy="${n(c)}" r="6" fill="#28c840"/>',
+        ] else
+          for (final double x in <double>[bw - 46, bw - 32, bw - 18])
+            '  <rect x="${n(x)}" y="${n(c - 1)}" width="10" height="2" '
+                'fill="#c9ccd1"/>',
+        '  <rect x="${n(bw / 2 - 70)}" y="${n(c - 5)}" width="140" height="10" '
+            'rx="5" fill="#c9ccd1" fill-opacity="0.35"/>',
+        '</svg>',
+      ].join('\n'),
+    );
+  }
+
+  /// This frame without its body artwork: the same screen outline and
+  /// placement, so the screen still clips, but nothing drawn around it.
+  DeviceFrame copyWithoutBody() => DeviceFrame(
+    size: size,
+    screenOffset: screenOffset,
+    screenPath: screenPath,
+  );
+
   /// Encodes this frame as JSON. Empty artwork fields are absent.
   Map<String, Object?> toJson() => <String, Object?>{
     'size': encodeSize(size),

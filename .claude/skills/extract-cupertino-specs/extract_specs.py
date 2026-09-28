@@ -56,6 +56,13 @@ DEVICES = {
     "apple-iphone-17": {"sim": "iPhone 17"},
     "apple-iphone-17-pro": {"sim": "iPhone 17 Pro"},
     "apple-iphone-17-pro-max": {"sim": "iPhone 17 Pro Max"},
+    # Xcode 27.1 declares the iPhone 18 Pro / Pro Max (its profiles: the
+    # 17 Pro / Pro Max screen, corner radii, chrome and sensor-bar class)
+    # but no installed runtime boots them yet: their own chrome, the 17
+    # Pro / Pro Max metrics probed on iOS 27.1. Drop `donor` once a
+    # runtime supports them.
+    "apple-iphone-18-pro": {"sim": "iPhone 18 Pro", "donor": True},
+    "apple-iphone-18-pro-max": {"sim": "iPhone 18 Pro Max", "donor": True},
     "apple-iphone-17e": {"sim": "iPhone 17e"},
     "apple-iphone-air": {"sim": "iPhone Air"},
     "apple-iphone-se-3": {"sim": "iPhone SE (3rd generation)"},
@@ -70,6 +77,21 @@ DEVICES = {
     "apple-ipad-a16": {"sim": "iPad (A16)"},
     "apple-ipad-10": {"sim": "iPad (10th generation)"},
     "apple-ipad-mini": {"sim": "iPad mini (A17 Pro)"},
+    # Earlier generations still offered by design tools (FlutterFlow's
+    # device picker), each from its own simulator profile and chrome.
+    "apple-iphone-13": {"sim": "iPhone 13"},
+    "apple-iphone-14-pro": {"sim": "iPhone 14 Pro"},
+    "apple-iphone-14-pro-max": {"sim": "iPhone 14 Pro Max"},
+    "apple-iphone-15-pro": {"sim": "iPhone 15 Pro"},
+    "apple-iphone-15-pro-max": {"sim": "iPhone 15 Pro Max"},
+    "apple-ipad-9": {"sim": "iPad (9th generation)"},
+    "apple-ipad-air-4": {"sim": "iPad Air (4th generation)"},
+    "apple-ipad-pro-11-m2": {"sim": "iPad Pro (11-inch) (4th generation)"},
+    "apple-ipad-pro-12-9-gen4": {"sim": "iPad Pro (12.9-inch) (4th generation)"},
+    # No installed runtime boots it (its profile stops at iOS 17): its
+    # own frame, the home-button iPad metrics of apple-ipad-9.
+    "apple-ipad-pro-12-9-gen2": {"sim": "iPad Pro (12.9-inch) (2nd generation)",
+                                 "donor": True},
 }
 
 # Chrome classes newer profiles declare but no installed Xcode ships art
@@ -149,13 +171,16 @@ def chrome_resources(dev, chrome_id):
     for name in (short, CHROME_FALLBACKS.get(short)):
         if name is None:
             continue
-        for root in [dev] + [os.path.join(app, "Contents/Developer")
-                             for app in
-                             sorted(glob.glob("/Applications/Xcode*.app"))]:
-            path = os.path.join(
-                root, "Platforms/iPhoneOS.platform/Library/Developer/"
-                      "DeviceKit/Chrome", f"{name}.devicechrome",
-                "Contents/Resources")
+        roots = [os.path.join(root, "Platforms/iPhoneOS.platform/Library/"
+                                    "Developer/DeviceKit/Chrome")
+                 for root in [dev] + [os.path.join(app, "Contents/Developer")
+                                      for app in sorted(glob.glob(
+                                          "/Applications/Xcode*.app"))]]
+        # Xcode 27 installs chrome system-wide again, with the platform.
+        roots.append("/Library/Developer/DeviceKit/Chrome")
+        for root in roots:
+            path = os.path.join(root, f"{name}.devicechrome",
+                                "Contents/Resources")
             if os.path.isdir(path):
                 if name != short:
                     print(f"  chrome {short} has no artwork anywhere; "
@@ -209,6 +234,14 @@ class Simctl:
             sys.exit(f"error: simctl knows no device type named {name!r}")
         return self._device_types[name]
 
+    def ios_runtimes_newest_first(self):
+        listing = json.loads(self.run("list", "runtimes", "-j").stdout)
+        ios = [r for r in listing["runtimes"]
+               if r["isAvailable"] and r["platform"] == "iOS"]
+        ios.sort(key=lambda r: [int(p) for p in r["version"].split(".")],
+                 reverse=True)
+        return [r["identifier"] for r in ios]
+
     def newest_ios_runtime(self):
         listing = json.loads(self.run("list", "runtimes", "-j").stdout)
         ios = [r for r in listing["runtimes"]
@@ -244,9 +277,18 @@ class Simctl:
     def probe(self, sim_name):
         """Boot a throwaway simulator of `sim_name` and run the probe app."""
         device_type = self.device_type_id(sim_name)
-        runtime = self.newest_ios_runtime()
-        udid = self.run("create", "specprobe-tmp", device_type,
-                        runtime).stdout.strip()
+        # Newest runtime first; a newer iOS drops older hardware (iOS 27
+        # refuses the iPhone 13), so fall back to the newest that accepts it.
+        udid = None
+        for runtime in self.ios_runtimes_newest_first():
+            created = self.run("create", "specprobe-tmp", device_type,
+                               runtime, check=False)
+            if created.returncode == 0:
+                udid = created.stdout.strip()
+                print(f"  probing on {runtime.rsplit('.', 1)[-1]}")
+                break
+        if udid is None:
+            sys.exit(f"error: no installed iOS runtime supports {sim_name}")
         try:
             # The first boot of a freshly downloaded runtime can take
             # several minutes (dyld cache setup and friends).
@@ -571,6 +613,15 @@ def update_spec(dev, spec_id, mapping, simctl, dry_run):
     profile = plistlib.load(
         open(os.path.join(device_type, "Contents/Resources/profile.plist"),
              "rb"))
+    if "mainScreenScale" not in profile:
+        # Profiles shipped with Xcode 27 moved the screen dimensions into
+        # capabilities.plist.
+        caps = plistlib.load(open(os.path.join(
+            device_type, "Contents/Resources/capabilities.plist"), "rb"))
+        dims = caps["capabilities"]["ScreenDimensionsCapability"]
+        profile.update(mainScreenScale=dims["main-screen-scale"],
+                       mainScreenWidth=dims["main-screen-width"],
+                       mainScreenHeight=dims["main-screen-height"])
     scale = profile["mainScreenScale"]
     donor = (profile["mainScreenWidth"] / scale,
              profile["mainScreenHeight"] / scale)

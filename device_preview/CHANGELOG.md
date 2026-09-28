@@ -1,5 +1,27 @@
 # Changelog
 
+## 3.2.0
+
+Devices as widgets, and fourteen more of them.
+
+- **`SimulatedDevice`** — a binding-free widget that draws one device, frame
+  and system UI included, inside another app's layout (a design tool's
+  canvas, a gallery, a golden), with the `MediaQuery` the device would give
+  its child. `SimulatedDevice.sizeOf` / `screenRectOf` give its geometry.
+- **`DeviceFrame.desktopWindow`** — the macOS and Windows window chrome the
+  `desktop-*` presets draw, for any size.
+- **New presets**, from the iOS 26.5 / 27.1 simulators and Xcode's device
+  chrome: iPhone 13, 14 Pro, 14 Pro Max, 15 Pro, 15 Pro Max, 18 Pro and
+  18 Pro Max (Xcode 27.1 declares the last two with the 17 Pro / Pro Max
+  screen and chrome; no runtime boots them yet, so they carry the 17 Pro /
+  Pro Max metrics), iPad (9th gen), iPad Air (4th gen), iPad Pro 11" (M2),
+  iPad Pro 12.9" (2nd and 4th gen); and the Pixel 9 Pro XL from its
+  official emulator skin.
+- **Pixel screen corners** now come from the emulator skin's mask — the
+  shape the emulator draws — rather than the layout's `corner_radius`
+  (which is what the OS is told for insets and is much tighter): Pixel 9,
+  9 Pro XL, 10 and 10 Pro Fold.
+
 ## 3.1.0
 
 Foldables that fold, and the iPhone Duo.

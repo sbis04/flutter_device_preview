@@ -61,6 +61,7 @@ const Map<String, String> kNameOverrides = <String, String>{
 const Map<String, String> kTokenSpellings = <String, String>{
   'iphone': 'iPhone',
   'ipad': 'iPad',
+  'xl': 'XL',
 };
 
 /// Doc comment for each preset, keyed by device id.
@@ -98,6 +99,23 @@ const Map<String, String> kDescriptions = <String, String>{
   'apple-ipad-10': 'iPad (10th generation).',
   'apple-ipad-mini': 'iPad mini (A17 Pro).',
   'google-pixel-9': 'Google Pixel 9 — gesture navigation.',
+  'google-pixel-9-pro-xl':
+      'Google Pixel 9 Pro XL — 6.8" display, punch-hole, gesture navigation.',
+  'apple-iphone-13': 'iPhone 13 — notch, 6.1" display.',
+  'apple-iphone-14-pro': 'iPhone 14 Pro — Dynamic Island, 6.1" display.',
+  'apple-iphone-14-pro-max':
+      'iPhone 14 Pro Max — Dynamic Island, 6.7" display.',
+  'apple-iphone-15-pro': 'iPhone 15 Pro — Dynamic Island, 6.1" display.',
+  'apple-iphone-15-pro-max':
+      'iPhone 15 Pro Max — Dynamic Island, 6.7" display.',
+  'apple-ipad-9': 'iPad (9th generation) — Home button, 10.2" display.',
+  'apple-ipad-air-4': 'iPad Air (4th generation) — 10.9" display.',
+  'apple-ipad-pro-11-m2': 'iPad Pro 11" (M2, 4th generation).',
+  'apple-ipad-pro-12-9-gen4': 'iPad Pro 12.9" (4th generation).',
+  'apple-ipad-pro-12-9-gen2':
+      'iPad Pro 12.9" (2nd generation) — Home button. Frame from its own '
+      'simulator chrome; metrics of the home-button iPads (no current '
+      'runtime boots it), no measured keyboard.',
   'google-pixel-10': 'Google Pixel 10 — gesture navigation.',
   'google-pixel-10-pro-fold':
       'Google Pixel 10 Pro Fold — 8" inner display, book-style fold with a '

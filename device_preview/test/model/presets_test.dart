@@ -7,10 +7,10 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group('DevicePresets catalog', () {
-    test('contains the 34 documented presets with unique ids', () {
-      expect(DevicePresets.all, hasLength(34));
+    test('contains the 47 documented presets with unique ids', () {
+      expect(DevicePresets.all, hasLength(47));
       final ids = DevicePresets.all.map((p) => p.id).toSet();
-      expect(ids, hasLength(34));
+      expect(ids, hasLength(47));
     });
 
     test('every device preset declares a release year', () {

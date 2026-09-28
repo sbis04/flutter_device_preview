@@ -20,4 +20,6 @@ export 'src/binding/binding.dart' show DevicePreview, DevicePreviewBindingMixin;
 export 'src/controller/controller.dart' show DevicePreviewController;
 export 'src/widgets/device_preview_frame.dart'
     show DevicePreviewFrame, RenderDevicePreviewFrame;
+export 'src/widgets/device_frame_painter.dart' show DeviceFramePainter;
 export 'src/widgets/dot_grid_decoration.dart';
+export 'src/widgets/simulated_device.dart';
