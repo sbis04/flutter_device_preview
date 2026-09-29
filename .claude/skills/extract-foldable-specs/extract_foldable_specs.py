@@ -452,6 +452,55 @@ def samsung_skin(samsung_dir, path):
     return os.path.join(target, path)
 
 
+def open_buttons(frame, skin_dir, dpr, turn):
+    """Redraws the open frame's side buttons where the main skin has them
+    (its layout's `buttons`), in the frame's own style: 6-wide keys
+    standing 4 proud of the body. The Fold8's main skin is drawn wide, so
+    its right-edge keys turn to the bottom edge of the spec's portrait —
+    the frame then grows 4 at the bottom to show them proud."""
+    _, (sw, sh), (sx, sy) = samsung_layout(skin_dir)
+    body = frame["body"]
+    text = "\n".join(body)
+    shell = re.search(r'<clipPath id="shell">\s*<path d="([^"]+)"', text).group(1)
+    pairs = [tuple(map(float, m)) for m in
+             re.findall(r"(-?[\d.]+),(-?[\d.]+)", shell)]
+    body_w = max(x for x, _ in pairs) + 4  # the keys' margin
+    body_h = max(y for _, y in pairs)
+    ox, oy = frame["screenOffset"]["x"], frame["screenOffset"]["y"]
+    fill = re.search(r'<g fill="(#[0-9a-f]{6})">', text).group(1)
+    rects = []
+    for x, top, bottom in samsung_buttons(skin_dir):
+        right = x > sx + sw / 2
+        length = (bottom - top) / dpr
+        if turn and right:
+            left = ox + (sh - (bottom - sy)) / dpr
+            rects.append(f'    <rect x="{fmt(left)}" y="{fmt(body_h - 2)}"'
+                         f' width="{fmt(length)}" height="6" rx="2"/>')
+        else:
+            kx = body_w - 6 if right else 0
+            rects.append(f'    <rect x="{fmt(kx)}" y="{fmt(oy + (top - sy) / dpr)}"'
+                         f' width="6" height="{fmt(length)}" rx="2"/>')
+    height = body_h + 4 if turn else body_h
+    new = []
+    skip = False
+    for line in body:
+        if line.startswith("<svg viewBox="):
+            line = f'<svg viewBox="0 0 {fmt(body_w)} {fmt(height)}">'
+        if line.strip().startswith(f'<g fill="{fill}">'):
+            new.append(line)
+            new.extend(rects)
+            skip = True
+            continue
+        if skip:
+            if line.strip() == "</g>":
+                skip = False
+                new.append(line)
+            continue
+        new.append(line)
+    frame["body"] = new
+    frame["size"] = {"width": fmt_json(body_w), "height": fmt_json(height)}
+
+
 def samsung_fold(spec_id, entry, measurements, samsung_dir):
     """The Samsung spec's open posture keeps its hand-drawn frame and bars,
     gaining the inner camera from the main skin's mask (punched through the
@@ -477,6 +526,8 @@ def samsung_fold(spec_id, entry, measurements, samsung_dir):
         outline += " " + pixel.circle_ccw_path(
             (a + c) / 2, (b + d) / 2, max(c - a, d - b) / 2)
     spec["frame"]["screenPath"] = outline
+    open_buttons(spec["frame"], samsung_skin(samsung_dir, entry["main"]),
+                 dpr, entry.get("turn", False))
 
     skin_dir = samsung_skin(samsung_dir, entry["cover"])
     frame, size, holes = samsung_cover_frame(skin_dir, dpr, spec["frame"])

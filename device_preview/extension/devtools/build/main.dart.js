@@ -381,7 +381,7 @@ break
 default:s=null}s=A.S(s,t.N)
 return s},
 b_i(){var s=A.d4().b,r=s==null?null:s.canvasKitVariant
-s=A.b2_(A.aSJ(B.Mt,r==null?"auto":r))
+s=A.b2_(A.aSJ(B.Mu,r==null?"auto":r))
 return new A.A(s,new A.az8(),A.Q(s).i("A<1,e>"))},
 b19(a,b){return b+a},
 a0T(){var s=0,r=A.L(t.m),q,p,o,n
@@ -1457,11 +1457,11 @@ aDP(a){var s=!1
 if($.bf().gd1()===B.aO||$.bf().gd1()===B.bX)if(a!=null)s=a===".SF Pro Text"||a===".SF Pro Display"||a===".SF UI Text"||a===".SF UI Display"
 return s},
 aL0(){if(A.aMe())return B.pL
-if($.bf().gd1()===B.aO||$.bf().gd1()===B.bX)return B.L7
+if($.bf().gd1()===B.aO||$.bf().gd1()===B.bX)return B.L8
 throw A.j(A.ap("Should only be called on Mac or iOS."))},
 b0x(){if(A.aMe())return B.pL
 if($.bf().gd1()===B.aO||$.bf().gd1()===B.bX)return A.aL0()
-return B.L4},
+return B.L5},
 aLP(a,b){var s,r,q,p,o=new A.cp("")
 A.aLu(a,o)
 if(!A.aDQ(a)&&!A.aDP(a)){s=b==null
@@ -8699,7 +8699,7 @@ this.b=b},
 aAt:function aAt(){},
 aAG:function aAG(){},
 aRN(a){var s,r
-for(s=0;s<9;++s){r=B.MK[s]
+for(s=0;s<9;++s){r=B.ML[s]
 if(r.b===a)return r}return B.oP},
 fZ:function fZ(a,b,c){this.c=a
 this.a=b
@@ -12130,8 +12130,8 @@ break
 case 4:s=l.a
 s===$&&A.a()
 s=A.bx(s,200)
-r=A.bx(A.a5h(l,B.pV,B.La),24)
-q=A.bx(A.a5h(l,B.pV,B.ME),32)
+r=A.bx(A.a5h(l,B.pV,B.Lb),24)
+q=A.bx(A.a5h(l,B.pV,B.MF),32)
 p=A.bx(l.a,10)
 o=A.bx(l.a,12)
 l.d===$&&A.a()
@@ -12141,8 +12141,8 @@ break
 case 5:s=l.a
 s===$&&A.a()
 s=A.bx(A.C6(s+240),40)
-r=A.bx(A.a5h(l,B.pX,B.Nj),24)
-q=A.bx(A.a5h(l,B.pX,B.Nk),32)
+r=A.bx(A.a5h(l,B.pX,B.Nk),24)
+q=A.bx(A.a5h(l,B.pX,B.Nl),32)
 p=A.bx(l.a+15,8)
 o=A.bx(l.a+15,12)
 l.d===$&&A.a()
@@ -20893,7 +20893,7 @@ r.toString
 A.eU(r)
 q=a.h(0,"swipeEdge")
 q.toString
-return new A.nW(s,r,B.Mj[A.ey(q)])},
+return new A.nW(s,r,B.Mk[A.ey(q)])},
 Em:function Em(a,b){this.a=a
 this.b=b},
 nW:function nW(a,b,c){this.a=a
@@ -23146,7 +23146,7 @@ if(a.as!==q)return q?-1:1
 return 0},
 aSx(a,b){var s=A.Q(b).i("A<1,dJ>")
 s=A.S(new A.A(b,new A.a6c(),s),s.i("a2.E"))
-return A.aRP(!0,s,a,B.MW,!0,B.HS,null)},
+return A.aRP(!0,s,a,B.MX,!0,B.HS,null)},
 aBI(a){var s
 try{a.eh()}catch(s){a.QN()}a.w=B.a5C
 try{a.bo(A.b1W())}catch(s){}},
@@ -23672,7 +23672,7 @@ _.as=!0
 _.at=!1
 _.$ti=d},
 Bs(a,b){var s
-if(a.j(0,b))return new A.Ll(B.MX)
+if(a.j(0,b))return new A.Ll(B.MY)
 s=A.b([],t.fJ)
 A.c7()
 a.o_(new A.a8X(b,A.aw(t.u),s))
@@ -24040,7 +24040,7 @@ t.Dn.a(a)
 s=J.bo(a)
 r=s.h(a,0)
 r.toString
-switch(B.KN[A.ey(r)].a){case 0:s=s.hC(a,1)
+switch(B.KO[A.ey(r)].a){case 0:s=s.hC(a,1)
 r=s[0]
 r.toString
 A.ey(r)
@@ -27551,7 +27551,7 @@ if(c==null){s=$.aNz().h(0,b)
 s=s==null?null:s.d}else s=c
 return new A.ja(a,b,s==null?"Unknown error":s,d)},
 aSV(a){return a==null?null:new A.q5(a)},
-aQk(a){var s,r,q="dateLastAccumulatorReset",p="dateLastServiceGC",o=A.bn(a.h(0,"members"),B.Ld,t.cJ)
+aQk(a){var s,r,q="dateLastAccumulatorReset",p="dateLastServiceGC",o=A.bn(a.h(0,"members"),B.Le,t.cJ)
 if(o==null)o=A.b([],t.Wa)
 s=t.XW.a(A.Y(a.h(0,"memoryUsage"),B.ls))
 r=typeof a.h(0,q)=="string"?A.du(a.h(0,q),null):a.h(0,q)
@@ -27561,7 +27561,7 @@ aQz(a){var s=t.Vm.a(A.Y(a.h(0,"decl"),B.lq)),r=A.Y(a.h(0,"name"),B.q0),q=A.Y(a.h
 return new A.mY(s,r,q)},
 aQA(a){var s,r,q,p,o=a.h(0,"name")
 if(o==null)o=""
-s=A.Y(a.h(0,"value"),B.LB)
+s=A.Y(a.h(0,"value"),B.LC)
 r=a.h(0,"declarationTokenPos")
 if(r==null)r=-1
 q=a.h(0,"scopeStartTokenPos")
@@ -27576,7 +27576,7 @@ if(s==null)s=!1
 r=a.h(0,"resolved")
 if(r==null)r=!1
 q=a.h(0,"isSyntheticAsyncContinuation")
-p=A.Y(a.h(0,"location"),B.MC)
+p=A.Y(a.h(0,"location"),B.MD)
 o=a.h(0,"id")
 if(o==null)o=""
 o=new A.i8(n,s,r,q,p,o,a.h(0,"fixedId"),t.T.a(A.Y(a.h(0,"class"),B.a1)),a.h(0,"size"),a)
@@ -27675,7 +27675,7 @@ return r},
 aRl(a){var s,r,q,p=a.h(0,"length")
 if(p==null)p=-1
 s=t.Xh.a(A.Y(a.h(0,"parent"),B.fl))
-r=A.bn(a.h(0,"variables"),B.Lf,t.y_)
+r=A.bn(a.h(0,"variables"),B.Lg,t.y_)
 if(r==null)r=A.b([],t.KL)
 q=a.h(0,"id")
 if(q==null)q=""
@@ -27835,12 +27835,12 @@ if(r==null)r=!1
 r=new A.lr(q,s,r,a.h(0,"valueAsString"))
 q=r
 return q},
-aT_(a){var s=A.bn(a.h(0,"flags"),B.Ll,t.Vf)
+aT_(a){var s=A.bn(a.h(0,"flags"),B.Lm,t.Vf)
 s=new A.v_(s==null?A.b([],t.ZZ):s,a)
 return s},
 aTp(a){var s=a.h(0,"index")
 if(s==null)s=-1
-s=new A.iW(s,t.Si.a(A.Y(a.h(0,"function"),B.cM)),t.Ha.a(A.Y(a.h(0,"code"),B.pN)),t.U1.a(A.Y(a.h(0,"location"),B.cN)),A.bn(a.h(0,"vars"),B.L8,t.xa),a.h(0,"kind"),a)
+s=new A.iW(s,t.Si.a(A.Y(a.h(0,"function"),B.cM)),t.Ha.a(A.Y(a.h(0,"code"),B.pN)),t.U1.a(A.Y(a.h(0,"location"),B.cN)),A.bn(a.h(0,"vars"),B.L9,t.xa),a.h(0,"kind"),a)
 return s},
 aTr(a){var s,r,q,p,o,n,m,l,k,j=a.h(0,"name")
 if(j==null)j=""
@@ -27995,7 +27995,7 @@ q=a.h(0,"isSystemIsolate")
 if(q==null)q=!1
 p=a.h(0,"isolateGroupId")
 if(p==null)p=""
-o=A.bn(a.h(0,"isolateFlags"),B.Lv,t.V9)
+o=A.bn(a.h(0,"isolateFlags"),B.Lw,t.V9)
 if(o==null)o=A.b([],t.yd)
 n=a.h(0,"startTime")
 if(n==null)n=-1
@@ -28011,7 +28011,7 @@ h=A.bn(a.h(0,"libraries"),B.e7,t.k9)
 if(h==null)h=A.b([],t.xn)
 g=A.bn(a.h(0,"breakpoints"),B.co,t.jG)
 if(g==null)g=A.b([],t.At)
-f=t.LD.a(A.Y(a.h(0,"error"),B.Lj))
+f=t.LD.a(A.Y(a.h(0,"error"),B.Lk))
 e=a.h(0,"exceptionPauseMode")
 if(e==null)e=""
 c=new A.ka(c,s,r,q,p,o,n,m,l,k,j,i,h,g,f,e,a.h(0,d)==null?null:A.cn(a.h(0,d),!0,t.N),a)
@@ -28041,10 +28041,10 @@ if(q==null)q=!1
 p=A.bn(a.h(0,"isolates"),B.fo,t.Pr)
 o=new A.qv(o,s,r,q,p==null?A.b([],t.Vt):p,a)
 return o},
-aTF(a){var s=A.bn(a.h(0,"references"),B.Lr,t.y4)
+aTF(a){var s=A.bn(a.h(0,"references"),B.Ls,t.y4)
 s=new A.va(s==null?A.b([],t.nu):s,a)
 return s},
-aTE(a){var s=t.VN.a(A.Y(a.h(0,"source"),B.bn)),r=a.h(0,"parentListIndex"),q=A.Y(a.h(0,"parentField"),B.Lk)
+aTE(a){var s=t.VN.a(A.Y(a.h(0,"source"),B.bn)),r=a.h(0,"parentListIndex"),q=A.Y(a.h(0,"parentField"),B.Ll)
 return new A.lC(s,r,q)},
 aTO(a){var s,r,q=a.h(0,"totalCount")
 if(q==null)q=-1
@@ -28269,7 +28269,7 @@ if(q==null)q=""
 q=new A.lZ(p,s,r,q,A.Y(a.h(0,"function"),B.ik))
 p=q
 return p},
-aVO(a){var s=A.bn(a.h(0,"protocols"),B.M1,t.dj)
+aVO(a){var s=A.bn(a.h(0,"protocols"),B.M2,t.dj)
 s=new A.w0(s==null?A.b([],t.SR):s,a)
 return s},
 aVP(a){var s,r,q=a.h(0,"protocolName")
@@ -28292,7 +28292,7 @@ p=new A.kv(p,s,r,q==null?A.b([],t.Yq):q)
 return p},
 aVQ(a){var s,r=a.h(0,"timestamp")
 if(r==null)r=-1
-s=A.bn(a.h(0,"microtasks"),B.LO,t.vM)
+s=A.bn(a.h(0,"microtasks"),B.LP,t.vM)
 r=new A.w1(r,s==null?A.b([],t.jo):s,a)
 return r},
 aW5(a){var s=a.h(0,"success")
@@ -28306,7 +28306,7 @@ aWk(a){var s,r,q=a.h(0,"length")
 if(q==null)q=-1
 s=a.h(0,"gcRootType")
 if(s==null)s=""
-r=A.bn(a.h(0,"elements"),B.M9,t.Bl)
+r=A.bn(a.h(0,"elements"),B.Ma,t.Bl)
 q=new A.wf(q,s,r==null?A.b([],t.q_):r,a)
 return q},
 aWh(a){return a==null?null:new A.aD(a)},
@@ -28370,14 +28370,14 @@ if(q==null)q=!1
 p=t.ec.a(A.Y(a.h(0,"error"),B.pQ))
 o=A.a0G(a.h(0,"coverage"),A.aMI())
 n=a.h(0,m)==null?null:A.cn(a.h(0,m),!0,t.S)
-n=new A.ok(l,s,r,q,p,o,n,t.Br.a(A.Y(a.h(0,"branchCoverage"),B.Mf)))
+n=new A.ok(l,s,r,q,p,o,n,t.Br.a(A.Y(a.h(0,"branchCoverage"),B.Mg)))
 l=n
 return l},
 aXl(a){var s,r,q,p=t.OL,o=A.bn(a.h(0,"frames"),B.fm,p)
 if(o==null)o=A.b([],t.sR)
 s=A.bn(a.h(0,"asyncCausalFrames"),B.fm,p)
 p=A.bn(a.h(0,"awaiterFrames"),B.fm,p)
-r=A.bn(a.h(0,"messages"),B.LN,t.yr)
+r=A.bn(a.h(0,"messages"),B.LO,t.yr)
 if(r==null)r=A.b([],t.n_)
 q=a.h(0,"truncated")
 p=new A.wI(o,s,p,r,q==null?!1:q,a)
@@ -29819,7 +29819,7 @@ a8w(a){var s=a/100
 return(s<=0.0031308?s*12.92:1.055*Math.pow(s,0.4166666666666667)-0.055)*255},
 aBV(a){var s=Math.pow(Math.abs(a),0.42)
 return A.qR(a)*400*s/(s+27.13)},
-aBW(a){var s=A.aCf(a,B.Ni),r=A.aBV(s[0]),q=A.aBV(s[1]),p=A.aBV(s[2])
+aBW(a){var s=A.aCf(a,B.Nj),r=A.aBV(s[0]),q=A.aBV(s[1]),p=A.aBV(s[2])
 return Math.atan2((r+q-2*p)/9,(11*r+-12*q+p)/11)},
 aTz(a,b){var s,r,q,p,o,n=B.j.c7(b,4)<=1?0:100,m=(b&1)===0?0:100
 if(b<4){s=(a-n*0.7152-m*0.0722)/0.2126
@@ -29896,7 +29896,7 @@ if(p!==0)return p
 return A.aGe(A.aTw(q,r))},
 aGf(a,b,c){return((a&255)<<16|(b&255)<<8|c&255|4278190080)>>>0},
 aGe(a){return A.aGf(A.a3t(a[0]),A.a3t(a[1]),A.a3t(a[2]))},
-A4(a){return A.aCf(A.b([A.A3(B.j.hK(a,16)&255),A.A3(B.j.hK(a,8)&255),A.A3(a&255)],t.n),B.KP)},
+A4(a){return A.aCf(A.b([A.A3(B.j.hK(a,16)&255),A.A3(B.j.hK(a,8)&255),A.A3(a&255)],t.n),B.KQ)},
 pJ(a){return 100*A.aRg((a+16)/116)},
 aGg(a){return A.pI(a/100)*116-16},
 A3(a){var s=a/255
@@ -30180,7 +30180,7 @@ return b instanceof A.zN&&b.a.j(0,this.a)&&b.b===this.b},
 l(a){return"ColorFilter.mode("+this.a.l(0)+", "+this.b.l(0)+")"}}
 A.zR.prototype={
 gai1(){var s,r,q=new Float32Array(20)
-for(s=this.a,r=0;r<20;++r)if(B.b.n(B.KD,r))q[r]=s[r]/255
+for(s=this.a,r=0;r<20;++r)if(B.b.n(B.KE,r))q[r]=s[r]/255
 else q[r]=s[r]
 return q},
 zn(){return $.bd.bB().ColorFilter.MakeMatrix(this.gai1())},
@@ -30850,7 +30850,7 @@ xM(){var s=this.as
 s===$&&A.a()
 return s},
 xN(a,b,c,d){var s,r,q,p
-if(a<0||b<0)return B.MR
+if(a<0||b<0)return B.MS
 s=this.a
 s===$&&A.a()
 s=s.a
@@ -30869,7 +30869,7 @@ l.push(new A.ej(n[0],n[1],n[2],n[3],B.lu[m]))}return l},
 d3(a){var s,r,q=this.a
 q===$&&A.a()
 s=q.a.getGlyphPositionAtCoordinate(a.a,a.b)
-r=B.Ml[J.aK(s.affinity.value)]
+r=B.Mm[J.aK(s.affinity.value)]
 return new A.ah(J.aK(s.pos),r)},
 N7(a){var s=this.a
 s===$&&A.a()
@@ -31116,7 +31116,7 @@ if(b==null)return!1
 if(!(b instanceof A.AO))return!1
 return b.d===s.d&&J.d(b.a,s.a)&&b.b==s.b&&A.fR(b.c,s.c)},
 gu(a){var s=this,r=s.c
-return A.U(s.d,s.a,s.b,A.bw(r==null?B.MN:r),B.a,B.a,B.a,B.a,B.a,B.a,B.a,B.a,B.a,B.a,B.a,B.a,B.a,B.a,B.a,B.a)},
+return A.U(s.d,s.a,s.b,A.bw(r==null?B.MO:r),B.a,B.a,B.a,B.a,B.a,B.a,B.a,B.a,B.a,B.a,B.a,B.a,B.a,B.a,B.a,B.a)},
 $ihD:1}
 A.zI.prototype={
 WR(a,b){var s=this.Ql(a),r=A.b0(new A.a2A(this,b,s))
@@ -31655,7 +31655,7 @@ p.toString
 p=p>0}else p=!1
 if(p)return q}o=this.ac2(a,b)
 if(o.length===1)return B.b.gZ(o)
-for(r=0;r<7;++r){q=A.aGU(o,new A.a75(B.Lo[r]))
+for(r=0;r<7;++r){q=A.aGU(o,new A.a75(B.Lp[r]))
 if(q!=null)return q}return B.b.gZ(o)},
 acP(a){var s,r,q
 if(B.iF.ag(a)){s=B.iF.h(0,a)
@@ -32935,7 +32935,7 @@ if(e.b){q=t.f
 d=q.a(q.a(B.cf.hl(a2)).h(0,"data"))
 c=A.be(d.h(0,"message"))
 if(c!=null&&c.length!==0){b=A.aC4(d,"assertiveness")
-e.a.X6(c,B.L5[b==null?0:b])}}a.fg(a3,B.cf.bZ(!0))
+e.a.X6(c,B.L6[b==null?0:b])}}a.fg(a3,B.cf.bZ(!0))
 return
 case"flutter/navigation":q=a.gd_().b
 p=t.e8
@@ -35933,7 +35933,7 @@ if(m.f!==B.pq){m.f=B.pq
 m.SZ()}}return m.d.a.a3g(a)},
 SZ(){var s,r
 for(s=this.w,r=0;r<s.length;++r)s[r].$1(this.f)},
-a3f(a){if(B.b.n(B.MH,a))return this.f===B.i9
+a3f(a){if(B.b.n(B.MI,a))return this.f===B.i9
 return!1}}
 A.a6J.prototype={
 $0(){return new A.jV(Date.now(),0,!1)},
@@ -37514,7 +37514,7 @@ o=A.ey(s.h(0,"textAlignIndex"))
 n=A.ey(s.h(0,"textDirectionIndex"))
 m=A.hm(s.h(0,"fontWeightIndex"))
 l=m!=null?A.aM1(m):"normal"
-p=new A.am5(new A.a68(A.a9u(s,"fontSize"),l,A.be(s.h(0,"fontFamily")),B.L_[o],B.lu[n],A.a9u(s,"letterSpacing"),A.a9u(s,"wordSpacing"),A.a9u(s,"lineHeight")))
+p=new A.am5(new A.a68(A.a9u(s,"fontSize"),l,A.be(s.h(0,"fontFamily")),B.L0[o],B.lu[n],A.a9u(s,"letterSpacing"),A.a9u(s,"wordSpacing"),A.a9u(s,"lineHeight")))
 break
 case"TextInput.clearClient":p=B.Fb
 break
@@ -43296,7 +43296,7 @@ if(s==null||s.length<a)s=this.c=new Uint8Array(a)
 return J.iN(B.a8.gck(s),s.byteOffset,a)}}
 A.aop.prototype={
 C(a,b){this.yO(b,0,J.cs(b),!1)},
-aB(){this.yO(B.MM,0,0,!0)},
+aB(){this.yO(B.MN,0,0,!0)},
 fW(a,b,c,d){A.eK(b,c,a.length,null,null)
 this.yO(a,b,c,d)}}
 A.aoc.prototype={
@@ -46026,7 +46026,7 @@ e=A.AR(new A.X3(f,i))
 s=t.N
 r=A.bP([d],s)
 q=t.p
-r=A.b([A.kz(A.b([e,B.YQ,A.ahS(B.a4y,f.gL8()?new A.aq7(j):i,B.N2,r,!1,s)],q),B.aI,B.b4,B.b5,0)],q)
+r=A.b([A.kz(A.b([e,B.YQ,A.ahS(B.a4y,f.gL8()?new A.aq7(j):i,B.N3,r,!1,s)],q),B.aI,B.b4,B.b5,0)],q)
 if(f.gyu().length!==0){e=A.b([],t.CK)
 for(p=f.gyu(),o=p.length,n=t.Zx,m=0;m<p.length;p.length===o||(0,A.B)(p),++m){l=p[m]
 k=B.Qp.h(0,l)
@@ -46320,7 +46320,7 @@ g=(g==null?B.cQ:g).h(0,k)}A.fb(g)
 if(g==null)g=l
 q=g==null?1:g}g=f==null?"system":f
 r=t.N
-r=A.ahS(B.a4Z,new A.aql(j),B.Lg,A.bP([g],r),!1,r)
+r=A.ahS(B.a4Z,new A.aql(j),B.Lh,A.bP([g],r),!1,r)
 g=A.AR(new A.E7(B.d.er(q,0.5,3),new A.aqm(m),new A.aqn(m,j),0.5,3,25,B.d.af(q,1),B.a4C))
 p=e==null
 o=p?"system":"\xd7"+B.d.af(q,1)
@@ -46400,7 +46400,7 @@ return s.Tp(s.d.a.a)},
 $S:0}
 A.asF.prototype={
 $1(a){var s,r,q,p=null,o=A.b([],t.Do)
-for(s=t.wI,r=0;r<15;++r){q=B.Mg[r]
+for(s=t.wI,r=0;r<15;++r){q=B.Mh[r]
 o.push(new A.nV(q,p,!0,48,p,p,p,A.cL(q,p,p,p,p,p,p),p,s))}return o},
 $S:297}
 A.asG.prototype={
@@ -46432,7 +46432,7 @@ s=i===!0
 j=j.geC()
 r=A.be(j==null?l:j.h(0,"platform"))
 j=A.b([B.HY],t.oD)
-for(i=t.YQ,q=0;q<6;++q){p=B.L1[q]
+for(i=t.YQ,q=0;q<6;++q){p=B.L2[q]
 j.push(new A.ne(p,A.cL(p,l,l,l,l,l,l),B.d3,l,i))}i=s?new A.atz(this):l
 o=new A.uM(j,r,i,!0,B.a4B,t.e0)
 j=s?o:A.RM(o,l,!0,"Target platform simulation requires a debug build of the app.",l,l,l,l,l)
@@ -46490,7 +46490,7 @@ return s==null?B.cQ:s},
 gyu(){var s,r,q,p,o,n,m,l=this.gtq()
 if(l.gaa(l))l=B.bo
 else{l=A.b([],t.s)
-for(s=t.f,r=this.a,q=t.N,p=t.X,o=0;o<3;++o){n=B.Ne[o]
+for(s=t.f,r=this.a,q=t.N,p=t.X,o=0;o<3;++o){n=B.Nf[o]
 if(n!=="open"){m=r.h(0,"postures")
 m=s.b(m)?A.fz(m,q,p):null
 m=(m==null?B.cQ:m).ag(n)}else m=!0
@@ -46500,11 +46500,11 @@ if(a==="open"||b==null)return this
 s=A.bY(this.a,t.N,t.X)
 s.F(0,"postures")
 r=b.h(0,"portraitSize")==null
-if(!r){for(q=0;q<12;++q)s.F(0,B.Kd[q])
+if(!r){for(q=0;q<12;++q)s.F(0,B.Ke[q])
 r=!1}p=new A.afa(b,s)
-p.$2("portraitPadding",B.LW)
-p.$2("portraitViewPadding",B.Nc)
-p.$2(d,B.Nb)
+p.$2("portraitPadding",B.LX)
+p.$2("portraitViewPadding",B.Nd)
+p.$2(d,B.Nc)
 if(r&&a==="halfOpened"){if(b.h(0,c)==null){o=s.h(0,c)
 if(t.j.b(o)){n=[]
 for(m=J.br(o),l=t.f,k=t.z;m.B();){j=m.gL()
@@ -46513,7 +46513,7 @@ else i=!1
 if(i){i=A.aa6(k,k)
 i.R(0,j)
 i.k(0,"state","postureHalfOpened")
-n.push(i)}else n.push(j)}s.k(0,c,n)}}for(n=t.j,m=t.f,l=t.z,q=0;q<2;++q){h=B.Nd[q]
+n.push(i)}else n.push(j)}s.k(0,c,n)}}for(n=t.j,m=t.f,l=t.z,q=0;q<2;++q){h=B.Ne[q]
 if(b.h(0,h)!=null||b.h(0,d)!=null)continue
 g=s.h(0,h)
 if(n.b(g)){k=[]
@@ -48917,7 +48917,7 @@ o=t.Pr
 n=t.Hl
 m=t.cc
 l=t.ob
-k=A.S(B.MQ,o)
+k=A.S(B.MR,o)
 j=new A.BU(k,s,t.Jz)
 j.b=new A.qs(k,k.length,t.iU)
 k=t.aU
@@ -50184,7 +50184,7 @@ r=A.nK(B.Up,B.f,r==null?1:r)
 r.toString
 q=p.aj(q.gp())
 if(q==null)q=1
-return A.aJB(A.aIv(null,B.P,new A.vr(q,B.M5,new A.dj(B.Dc,this.e)),s,1,B.YM),r)}}
+return A.aJB(A.aIv(null,B.P,new A.vr(q,B.M6,new A.dj(B.Dc,this.e)),s,1,B.YM),r)}}
 A.Jv.prototype={
 m(){var s=this,r=s.bP$
 if(r!=null)r.I(s.ghL())
@@ -53422,7 +53422,7 @@ A.xE.prototype={
 J(){return"_CornerId."+this.b}}
 A.mx.prototype={}
 A.vv.prototype={
-lt(){var s,r,q,p=this,o=A.b0o(B.MB,new A.acy(p,p.b.gaX().a3(0,p.a.gaX()))),n=p.a
+lt(){var s,r,q,p=this,o=A.b0o(B.MC,new A.acy(p,p.b.gaX().a3(0,p.a.gaX()))),n=p.a
 n.toString
 s=o.a
 r=p.qH(n,s)
@@ -54299,7 +54299,7 @@ A.auZ.prototype={
 $2(a,b){return this.a.q$.c2(a,this.b)},
 $S:16}
 A.T8.prototype={
-gEl(){return B.Ln},
+gEl(){return B.Lo},
 Jl(a){var s
 switch(a.a){case 0:s=this.d.b
 break
@@ -58015,7 +58015,7 @@ A.avd.prototype={
 $0(){return A.b([],t.q1)},
 $S:273}
 A.TT.prototype={
-gEl(){return B.LC},
+gEl(){return B.LD},
 Jl(a){var s,r=this
 switch(a.a){case 0:s=r.d.ax
 break
@@ -58728,7 +58728,7 @@ return s.b}}
 A.jw.prototype={
 J(){return"_ListTileSlot."+this.b}}
 A.VD.prototype={
-gEl(){return B.Mx},
+gEl(){return B.My},
 Jl(a){var s,r=this
 switch(a.a){case 0:s=r.d
 break
@@ -59057,7 +59057,7 @@ r.f=s.d},
 $S:0}
 A.Oh.prototype={
 K(a){var s=this.c.P(0,new A.i(0,40.95))
-return A.aIv(A.a3u(null,B.GY,!0),B.ad,new A.vr(1,B.N5,new A.dj(B.Db,B.q)),s,1.25,B.YO)}}
+return A.aIv(A.a3u(null,B.GY,!0),B.ad,new A.vr(1,B.N6,new A.dj(B.Db,B.q)),s,1.25,B.YO)}}
 A.qQ.prototype={
 J(){return"MaterialType."+this.b}}
 A.C1.prototype={
@@ -59505,7 +59505,7 @@ $3(a,b,c){return new A.p1(b,this.a,!1,c,null)},
 $S:136}
 A.OV.prototype={
 a8K(a){var s=t.Tr
-s=A.S(new A.A(B.MA,new A.adG(a),s),s.i("a2.E"))
+s=A.S(new A.A(B.MB,new A.adG(a),s),s.i("a2.E"))
 return s},
 j(a,b){if(b==null)return!1
 if(this===b)return!0
@@ -59725,7 +59725,7 @@ A.apb.prototype={
 $0(){},
 $S:0}
 A.yh.prototype={
-ao(){return new A.Hm(B.MZ,this.$ti.i("Hm<1>"))}}
+ao(){return new A.Hm(B.N_,this.$ti.i("Hm<1>"))}}
 A.Hm.prototype={
 aG(){this.aZ()
 this.UL()},
@@ -63172,7 +63172,7 @@ gbV(){return new A.bj(new A.axf(this),t.mN)},
 gAv(){return 14},
 gCe(){return 14},
 gD6(){return 14},
-gDr(){return B.Nn},
+gDr(){return B.No},
 gtF(){return 31},
 gtH(){return 51},
 gDy(){return B.YH},
@@ -66297,7 +66297,7 @@ return new A.no(r.a.cA(s.giB()),r.b,r.c)},
 d3(a){var s=this.b
 return s.a.c.d3(a.a3(0,s.giB()))},
 rE(){var s,r,q=this.b,p=q.giB()
-if(!isFinite(p.a)||!isFinite(p.b))return B.MY
+if(!isFinite(p.a)||!isFinite(p.b))return B.MZ
 s=q.f
 if(s==null){s=q.a.c.rE()
 q.f=s}if(p.j(0,B.f))r=s
@@ -75600,7 +75600,7 @@ break
 case 1:return A.J(q,r)}})
 return A.K($async$GG,r)},
 acl(a,b){var s,r,q,p
-if(a===b)return B.MU
+if(a===b)return B.MV
 s=A.b([],t.QP)
 if(a==null)s.push(b)
 else{r=B.b.fc(B.fq,a)
@@ -77617,7 +77617,7 @@ A.lY.prototype={}
 A.Pf.prototype={
 m6(a,b){var s,r,q,p,o,n=$.a8.a9$.d.c
 if(n==null||n.e==null)return!1
-for(s=t.d,r=0;r<2;++r){q=B.MI[r]
+for(s=t.d,r=0;r<2;++r){q=B.MJ[r]
 p=n.e
 p.toString
 o=A.aB5(p,q,s)
@@ -77956,7 +77956,7 @@ r=n.gagJ()
 q=n.a
 q=q.ch
 q.toString
-l.a=A.aTb(!0,A.aI1(B.P,r,s,q,A.aMk(),n.gaik(),m,n.gaiV(),B.MP,!0,"nav",B.a3l),"Navigator Scope",!0,m,m,m,m)}else n.a.toString
+l.a=A.aTb(!0,A.aI1(B.P,r,s,q,A.aMk(),n.gaik(),m,n.gaiV(),B.MQ,!0,"nav",B.a3l),"Navigator Scope",!0,m,m,m,m)}else n.a.toString
 l.b=null
 s=n.a
 s.toString
@@ -79421,7 +79421,7 @@ q.bG()
 q.cn$.C(0,s.gai5())
 s.e=q}return q},
 gSw(){var s=this.f
-return s===$?this.f=new A.aqi(1,B.KZ,B.cc):s},
+return s===$?this.f=new A.aqi(1,B.L_,B.cc):s},
 gfS(){var s=this.z
 s=s==null?null:$.c9().d===s
 return s===!0},
@@ -80136,7 +80136,7 @@ h.IC()
 r=h.gad9()
 q=q.ww
 h.e!==$&&A.aL()
-h.e=new A.Qx(f,new A.aU(B.OX,l,t.kr),new A.qM(),p,B.cx,0,j,h.gafr(),h.gaft(),r,B.cx,0,i,h.gafl(),h.gafn(),r,k,B.MO,s,g.CW,g.cx,g.cy,o,g,n,m,g.x,q,new A.LR(),new A.LR())
+h.e=new A.Qx(f,new A.aU(B.OX,l,t.kr),new A.qM(),p,B.cx,0,j,h.gafr(),h.gaft(),r,B.cx,0,i,h.gafl(),h.gafn(),r,k,B.MP,s,g.CW,g.cx,g.cy,o,g,n,m,g.x,q,new A.LR(),new A.LR())
 return h},
 yW(a,b){var s,r,q,p=this,o=p.a.c,n=o.a.a.length
 if(n<a.b||n<a.a)return
@@ -83384,7 +83384,7 @@ j(a,b){var s=this
 if(b==null)return!1
 if(J.X(b)!==A.w(s))return!1
 return b instanceof A.cO&&b.a===s.a&&b.b==s.b&&b.d===s.d&&A.cr(null,null)},
-gu(a){return A.U(this.a,this.b,null,this.d,A.bw(B.MV),B.a,B.a,B.a,B.a,B.a,B.a,B.a,B.a,B.a,B.a,B.a,B.a,B.a,B.a,B.a)},
+gu(a){return A.U(this.a,this.b,null,this.d,A.bw(B.MW),B.a,B.a,B.a,B.a,B.a,B.a,B.a,B.a,B.a,B.a,B.a,B.a,B.a,B.a,B.a)},
 l(a){return"IconData(U+"+B.c.xf(B.j.nV(this.a,16).toUpperCase(),5,"0")+")"}}
 A.qq.prototype={
 cu(a){return!this.w.j(0,a.w)},
@@ -84227,7 +84227,7 @@ b=r?a1:a3.fr
 if(b==null)b=a2.b.c.z
 a3=r?a1:a3.fx
 if(a3==null)a3=a2.b.c.Q
-a=new A.C9(a4,s,q,p,m,o,n,a5,g===!0,a6,a7,i,h,l,k,j,f,new A.uI(a1),B.MS,e===!0,d,c,b,a3,A.aUv(a2))
+a=new A.C9(a4,s,q,p,m,o,n,a5,g===!0,a6,a7,i,h,l,k,j,f,new A.uI(a1),B.MT,e===!0,d,c,b,a3,A.aUv(a2))
 if(!a.j(0,a0.e))a0.ak(new A.at5(a0,a))},
 Yt(){if(this.d==null)this.rg()},
 JY(){this.rg()},
@@ -90512,7 +90512,7 @@ r.Al()
 return s.bf()},
 m(){var s,r,q,p,o=this
 for(s=o.b,r=s.length,q=o.gGI(),p=0;p<s.length;s.length===r||(0,A.B)(s),++p)s[p].I(q)
-o.b=B.MT
+o.b=B.MU
 o.y=!1
 o.dl()},
 eu(a,b){return a.ni(b)},
@@ -100988,7 +100988,7 @@ B.Fj=new A.an7()
 B.ac=new A.RZ()
 B.dS=new A.S0()
 B.eE=new A.S5(0,0,0,0)
-B.MS=s([],A.as("r<a4U>"))
+B.MT=s([],A.as("r<a4U>"))
 B.a70=new A.anj()
 B.hp=new A.So()
 B.bQ=new A.Sp()
@@ -101612,20 +101612,378 @@ B.K6=new A.qI(2,"top")
 B.pH=new A.qI(3,"center")
 B.K7=new A.qI(4,"bottom")
 B.Ka=s([0,6,12,18],t.t)
-B.MD=s([1373.2198709594231,-1100.4251190754821,-7.278681089101213],t.n)
-B.M3=s([-271.815969077903,559.6580465940733,-32.46047482791194],t.n)
+B.ME=s([1373.2198709594231,-1100.4251190754821,-7.278681089101213],t.n)
+B.M4=s([-271.815969077903,559.6580465940733,-32.46047482791194],t.n)
 B.Nu=s([1.9622899599665666,-57.173814538844006,308.7233197812385],t.n)
-B.Kc=s([B.MD,B.M3,B.Nu],t.zg)
+B.Kc=s([B.ME,B.M4,B.Nu],t.zg)
+B.M={id:0,name:1,brand:2,year:3,platform:4,kind:5,portraitSize:6,devicePixelRatio:7,portraitPadding:8,landscapePadding:9,portraitKeyboardHeight:10,landscapeKeyboardHeight:11,frame:12,systemUi:13}
+B.n={width:0,height:1}
+B.fE=new A.m(B.n,[820,1180],t.J)
+B.w={left:0,top:1,right:2,bottom:3}
+B.a7=new A.m(B.w,[0,32,0,25],t.J)
+B.N={size:0,screenOffset:1,screenPath:2,body:3}
+B.wd=new A.m(B.n,[938,1298],t.J)
+B.ae={x:0,y:1}
+B.lS=new A.m(B.ae,[59,59],t.J)
+B.wk=new A.m(B.N,[B.wd,B.lS,"M 817.06,11.25 L 817.26,11.64 L 817.46,12.02 L 817.65,12.41 L 817.83,12.81 L 818,13.21 L 818.17,13.62 C 818.23,13.75 818.28,13.89 818.33,14.04 L 818.48,14.47 C 818.53,14.61 818.58,14.76 818.63,14.91 L 818.77,15.37 L 818.9,15.85 L 819.02,16.34 L 819.14,16.86 L 819.25,17.39 L 819.35,17.96 L 819.45,18.54 L 819.54,19.16 C 819.55,19.26 819.56,19.37 819.58,19.47 L 819.65,20.13 L 819.72,20.82 L 819.78,21.55 L 819.84,22.3 L 819.88,23.1 C 819.89,23.23 819.9,23.37 819.9,23.51 L 819.94,24.36 C 819.94,24.51 819.95,24.66 819.95,24.81 L 819.98,25.72 L 820,26.68 L 820,27.68 L 820,1152.32 L 820,1153.32 L 819.98,1154.28 L 819.95,1155.19 L 819.92,1156.07 C 819.92,1156.21 819.91,1156.35 819.9,1156.49 L 819.86,1157.3 L 819.81,1158.08 L 819.75,1158.82 C 819.74,1158.94 819.73,1159.06 819.72,1159.18 L 819.65,1159.87 L 819.58,1160.52 L 819.49,1161.15 C 819.48,1161.26 819.46,1161.36 819.45,1161.46 L 819.35,1162.04 L 819.25,1162.61 L 819.14,1163.14 L 819.02,1163.66 L 818.9,1164.15 L 818.77,1164.63 L 818.63,1165.09 C 818.58,1165.24 818.53,1165.39 818.48,1165.53 L 818.33,1165.96 C 818.3,1166.04 818.28,1166.11 818.25,1166.18 L 818.09,1166.59 L 817.92,1166.99 C 817.89,1167.06 817.86,1167.13 817.83,1167.19 L 817.65,1167.59 L 817.46,1167.98 L 817.26,1168.36 L 817.06,1168.75 C 815.14,1172.33 812.33,1175.15 808.75,1177.06 L 808.36,1177.26 L 807.98,1177.46 L 807.59,1177.65 L 807.19,1177.83 L 806.79,1178 L 806.38,1178.17 C 806.25,1178.22 806.11,1178.28 805.96,1178.33 L 805.53,1178.48 C 805.39,1178.53 805.24,1178.58 805.09,1178.63 L 804.63,1178.77 L 804.15,1178.9 L 803.66,1179.02 L 803.14,1179.14 L 802.61,1179.25 L 802.04,1179.35 L 801.46,1179.45 L 800.84,1179.54 C 800.74,1179.55 800.63,1179.56 800.52,1179.58 L 799.87,1179.65 L 799.18,1179.72 L 798.45,1179.78 L 797.7,1179.84 L 796.9,1179.88 C 796.77,1179.89 796.63,1179.9 796.49,1179.9 L 795.64,1179.94 C 795.49,1179.94 795.34,1179.95 795.2,1179.95 L 794.28,1179.98 L 793.32,1180 L 792.32,1180 L 27.68,1180 L 26.68,1180 L 25.72,1179.98 L 24.81,1179.95 L 23.93,1179.92 C 23.79,1179.92 23.65,1179.91 23.51,1179.9 L 22.7,1179.86 L 21.92,1179.81 L 21.18,1179.75 C 21.06,1179.74 20.94,1179.73 20.82,1179.72 L 20.13,1179.65 L 19.48,1179.58 L 18.85,1179.49 C 18.74,1179.48 18.64,1179.46 18.54,1179.45 L 17.96,1179.35 L 17.39,1179.25 L 16.86,1179.14 L 16.34,1179.02 L 15.85,1178.9 L 15.37,1178.77 L 14.91,1178.63 C 14.76,1178.58 14.61,1178.53 14.47,1178.48 L 14.04,1178.33 C 13.96,1178.3 13.89,1178.28 13.82,1178.25 L 13.41,1178.09 L 13.01,1177.92 C 12.94,1177.89 12.87,1177.86 12.81,1177.83 L 12.41,1177.65 L 12.02,1177.46 L 11.64,1177.26 L 11.25,1177.06 C 7.67,1175.15 4.85,1172.33 2.94,1168.75 L 2.74,1168.36 L 2.54,1167.98 L 2.35,1167.59 L 2.17,1167.19 L 2,1166.79 L 1.83,1166.38 C 1.78,1166.25 1.72,1166.11 1.67,1165.96 L 1.52,1165.53 C 1.47,1165.39 1.42,1165.24 1.37,1165.09 L 1.23,1164.63 L 1.1,1164.15 L 0.98,1163.66 L 0.86,1163.14 L 0.75,1162.61 L 0.65,1162.04 L 0.55,1161.46 L 0.46,1160.84 C 0.45,1160.74 0.44,1160.63 0.42,1160.52 L 0.35,1159.87 L 0.28,1159.18 L 0.22,1158.45 L 0.16,1157.7 L 0.12,1156.9 C 0.11,1156.77 0.1,1156.63 0.1,1156.49 L 0.06,1155.64 C 0.06,1155.49 0.05,1155.34 0.05,1155.19 L 0.02,1154.28 L 0,1153.32 L 0,1152.32 L 0,27.68 L 0,26.68 L 0.02,25.72 L 0.05,24.81 L 0.08,23.93 C 0.08,23.79 0.09,23.65 0.1,23.51 L 0.14,22.7 L 0.19,21.92 L 0.25,21.18 C 0.26,21.06 0.27,20.94 0.28,20.82 L 0.35,20.13 L 0.42,19.47 L 0.51,18.85 C 0.52,18.74 0.54,18.64 0.55,18.54 L 0.65,17.96 L 0.75,17.39 L 0.86,16.86 L 0.98,16.34 L 1.1,15.85 L 1.23,15.37 L 1.37,14.91 C 1.42,14.76 1.47,14.61 1.52,14.47 L 1.67,14.04 C 1.7,13.96 1.72,13.89 1.75,13.82 L 1.91,13.41 L 2.08,13.01 C 2.11,12.94 2.14,12.87 2.17,12.81 L 2.35,12.41 L 2.54,12.02 L 2.74,11.64 L 2.94,11.25 C 4.85,7.67 7.67,4.86 11.25,2.94 L 11.64,2.74 L 12.02,2.54 L 12.41,2.35 L 12.81,2.17 L 13.21,2 L 13.62,1.83 C 13.75,1.78 13.89,1.72 14.04,1.67 L 14.47,1.52 C 14.61,1.47 14.76,1.42 14.91,1.37 L 15.37,1.23 L 15.85,1.1 L 16.34,0.98 L 16.86,0.86 L 17.39,0.75 L 17.96,0.65 L 18.54,0.55 L 19.16,0.46 C 19.26,0.45 19.37,0.44 19.48,0.42 L 20.13,0.35 L 20.82,0.28 L 21.55,0.22 L 22.3,0.16 L 23.1,0.12 C 23.23,0.11 23.37,0.1 23.51,0.1 L 24.36,0.06 C 24.51,0.06 24.66,0.05 24.81,0.05 L 25.72,0.02 L 26.68,0 L 27.68,0 L 792.32,0 L 793.32,0 L 794.28,0.02 L 795.2,0.05 L 796.07,0.08 C 796.21,0.08 796.35,0.09 796.49,0.1 L 797.3,0.14 L 798.08,0.19 L 798.82,0.25 C 798.94,0.26 799.06,0.27 799.18,0.28 L 799.87,0.35 L 800.52,0.42 L 801.15,0.51 C 801.26,0.52 801.36,0.54 801.46,0.55 L 802.04,0.65 L 802.61,0.75 L 803.14,0.86 L 803.66,0.98 L 804.15,1.1 L 804.63,1.23 L 805.09,1.37 C 805.24,1.42 805.39,1.47 805.53,1.52 L 805.96,1.67 C 806.04,1.7 806.11,1.72 806.18,1.75 L 806.59,1.91 L 806.99,2.08 C 807.06,2.11 807.13,2.14 807.19,2.17 L 807.59,2.35 L 807.98,2.54 L 808.36,2.74 L 808.75,2.94 C 812.33,4.86 815.14,7.67 817.06,11.25 Z",u.v],t.J)
+B.bL={statusBar:0,navigationBar:1}
+B.dv={leading:0,trailing:1,inset:2}
+B.SV=new A.m(B.dv,[u.W,u.c,42],t.J)
+B.bK={center:0,bottomInset:1}
+B.T4=new A.m(B.bK,['<svg viewBox="0 0 320 5">\n  <path d="M 2.5,0 H 317.5 A 2.5,2.5 0 0 1 320,2.5 V 2.5 A 2.5,2.5 0 0 1 317.5,5 H 2.5 A 2.5,2.5 0 0 1 0,2.5 V 2.5 A 2.5,2.5 0 0 1 2.5,0 Z" fill="currentColor"/>\n</svg>',8],t.J)
+B.be=new A.m(B.bL,[B.SV,B.T4],t.J)
+B.Rj=new A.m(B.M,["apple-ipad-10","iPad (10th gen)","Apple",2022,"iOS","tablet",B.fE,2,B.a7,B.a7,337,422,B.wk,B.be],t.J)
+B.PZ=new A.m(B.n,[810,1080],t.J)
+B.iB=new A.m(B.w,[0,32,0,0],t.J)
+B.Ps=new A.m(B.n,[904,1246],t.J)
+B.wg=new A.m(B.ae,[47,83],t.J)
+B.QH=new A.m(B.N,[B.Ps,B.wg,"M 0,0 L 810,0 L 810,1080 L 0,1080 Z",'<svg viewBox="0 0 904 1246">\n  <rect x="0" y="0" width="904" height="1246" rx="48" fill="#000000" fill-opacity="0.15"/>\n  <rect x="1" y="1" width="902" height="1244" rx="47" fill="#7e7e7e"/>\n  <rect x="2" y="2" width="900" height="1242" rx="46" fill="#2c2c2c"/>\n  <rect x="7" y="7" width="890" height="1232" rx="41" fill="#010101"/>\n  <circle cx="452" cy="1203" r="22" fill="#3a3a3a"/>\n  <circle cx="452" cy="1203" r="18" fill="#010101"/>\n</svg>'],t.J)
+B.R7=new A.m(B.M,["apple-ipad-9","iPad (9th gen)","Apple",2021,"iOS","tablet",B.PZ,2,B.iB,B.iB,320,408,B.QH,B.be],t.J)
+B.Rh=new A.m(B.M,["apple-ipad-a16","iPad (A16)","Apple",2025,"iOS","tablet",B.fE,2,B.a7,B.a7,337,422,B.wk,B.be],t.J)
+B.wh=new A.m(B.N,[B.wd,B.lS,u.V,u.v],t.J)
+B.Rk=new A.m(B.M,["apple-ipad-air-11-m2",'iPad Air 11" (M2)',"Apple",2024,"iOS","tablet",B.fE,2,B.a7,B.a7,337,422,B.wh,B.be],t.J)
+B.QX=new A.m(B.M,["apple-ipad-air-11-m4",'iPad Air 11" (M4)',"Apple",2026,"iOS","tablet",B.fE,2,B.a7,B.a7,337,422,B.wh,B.be],t.J)
+B.iy=new A.m(B.n,[1024,1366],t.J)
+B.PV=new A.m(B.n,[1142,1484],t.J)
+B.wn=new A.m(B.N,[B.PV,B.lS,u.R,'<svg viewBox="0 0 1142 1484">\n  <rect x="-1" y="-1" width="1144" height="1486" rx="82" fill="#000000" fill-opacity="0.15"/>\n  <rect x="0" y="0" width="1142" height="1484" rx="81" fill="#7e7e7e"/>\n  <rect x="1" y="1" width="1140" height="1482" rx="80" fill="#2c2c2c"/>\n  <rect x="6" y="6" width="1130" height="1472" rx="75" fill="#010101"/>\n</svg>'],t.J)
+B.R2=new A.m(B.M,["apple-ipad-air-13-m2",'iPad Air 13" (M2)',"Apple",2024,"iOS","tablet",B.iy,2,B.a7,B.a7,403,498,B.wn,B.be],t.J)
+B.R0=new A.m(B.M,["apple-ipad-air-13-m4",'iPad Air 13" (M4)',"Apple",2026,"iOS","tablet",B.iy,2,B.a7,B.a7,403,498,B.wn,B.be],t.J)
+B.PQ=new A.m(B.n,[912,1272],t.J)
+B.fF=new A.m(B.ae,[46,46],t.J)
+B.QK=new A.m(B.N,[B.PQ,B.fF,u.V,'<svg viewBox="0 0 912 1272">\n  <rect x="-4" y="-4" width="920" height="1280" rx="65" fill="#000000" fill-opacity="0.15"/>\n  <rect x="-3" y="-3" width="918" height="1278" rx="64" fill="#7e7e7e"/>\n  <rect x="-2" y="-2" width="916" height="1276" rx="63" fill="#2c2c2c"/>\n  <rect x="3" y="3" width="906" height="1266" rx="58" fill="#010101"/>\n</svg>'],t.J)
+B.Rr=new A.m(B.M,["apple-ipad-air-4","iPad Air (4th gen)","Apple",2020,"iOS","tablet",B.fE,2,B.a7,B.a7,337,422,B.QK,B.be],t.J)
+B.PR=new A.m(B.n,[744,1133],t.J)
+B.Pk=new A.m(B.n,[864,1253],t.J)
+B.Qc=new A.m(B.ae,[60,60],t.J)
+B.QQ=new A.m(B.N,[B.Pk,B.Qc,"M 0,1101.2 C 0,1102.79 0,1104.38 0,1105.97 C 0.01,1107.56 0.02,1109.15 0.09,1110.74 C 0.3,1115.21 1.07,1118.54 2.58,1121.56 C 4.02,1124.42 6.13,1126.9 8.73,1128.78 C 11.01,1130.39 13.58,1131.54 16.31,1132.15 C 19.05,1132.72 21.84,1133 24.64,1132.98 C 27.03,1133 29.41,1133 31.8,1133 L 712.2,1133 C 713.79,1133 715.38,1133 716.97,1133 C 718.56,1133 720.15,1132.98 721.74,1132.91 C 726.21,1132.69 729.54,1131.93 732.56,1130.42 C 735.43,1128.98 737.9,1126.87 739.78,1124.27 C 741.4,1121.99 742.54,1119.42 743.15,1116.69 C 743.72,1113.95 744,1111.16 743.97,1108.36 C 744,1105.97 744,1103.59 744,1101.2 L 744,31.8 C 744,30.21 744,28.62 744,27.03 C 743.99,25.44 743.98,23.85 743.91,22.26 C 743.7,17.79 742.93,14.46 741.42,11.44 C 739.98,8.58 737.87,6.1 735.27,4.22 C 732.99,2.61 730.42,1.46 727.69,0.85 C 724.95,0.28 722.16,0 719.36,0.03 C 716.97,0 714.59,0 712.2,0 L 31.8,0 C 30.21,0 28.62,0 27.03,0 C 25.44,0.01 23.85,0.02 22.26,0.09 C 17.79,0.31 14.46,1.07 11.44,2.58 C 8.57,4.02 6.1,6.13 4.22,8.73 C 2.6,11.01 1.46,13.58 0.85,16.31 C 0.28,19.05 0,21.84 0.02,24.64 C 0,27.03 0,29.41 0,31.8 L 0,1101.2 C 0,1103.6 0,1106 0.02,1108.4 C 0.03,1110.47 0.17,1112.53 0.45,1114.57 C 1.14,1119.22 2.94,1123.35 6.29,1126.7 C 9.41,1129.78 13.42,1131.78 17.75,1132.44 C 20.07,1132.81 22.41,1132.98 24.76,1132.98 C 26.54,1133 30.01,1133 31.8,1133 L 712.2,1133 C 714.6,1133 717.01,1133 719.4,1132.98 C 721.7,1132.98 723.99,1132.8 726.25,1132.44 C 730.58,1131.78 734.59,1129.78 737.71,1126.7 C 741.06,1123.35 742.86,1119.22 743.55,1114.57 C 743.81,1112.72 743.95,1110.85 743.97,1108.97 C 744,1107.45 743.99,1105.93 744,1104.41 C 744,1103.34 744,1102.27 744,1101.2 L 744,31.8 C 744,29.4 744,27 743.97,24.6 C 743.97,22.53 743.83,20.47 743.55,18.43 C 742.86,13.78 741.06,9.65 737.71,6.29 C 734.59,3.22 730.58,1.22 726.25,0.56 C 723.93,0.19 721.59,0.02 719.24,0.02 C 717.46,0 713.99,0 712.2,0 L 31.8,0 C 29.4,0 27,0 24.59,0.03 C 22.3,0.02 20.01,0.2 17.75,0.56 C 13.42,1.22 9.41,3.22 6.29,6.29 C 2.94,9.65 1.14,13.78 0.45,18.43 C 0.19,20.28 0.05,22.15 0.03,24.03 C 0,25.55 0.01,27.07 0,28.59 C 0,29.66 0,30.73 0,31.8 L 0,1101.2 Z",'<svg viewBox="0 0 864 1253">\n  <rect x="-1" y="-1" width="866" height="1255" rx="82" fill="#000000" fill-opacity="0.15"/>\n  <rect x="0" y="0" width="864" height="1253" rx="81" fill="#7e7e7e"/>\n  <rect x="1" y="1" width="862" height="1251" rx="80" fill="#2c2c2c"/>\n  <rect x="5" y="5" width="854" height="1243" rx="76" fill="#010101"/>\n</svg>'],t.J)
+B.ST=new A.m(B.dv,[u.W,u.c,34],t.J)
+B.Tb=new A.m(B.bK,['<svg viewBox="0 0 230 5">\n  <path d="M 2.5,0 H 227.5 A 2.5,2.5 0 0 1 230,2.5 V 2.5 A 2.5,2.5 0 0 1 227.5,5 H 2.5 A 2.5,2.5 0 0 1 0,2.5 V 2.5 A 2.5,2.5 0 0 1 2.5,0 Z" fill="currentColor"/>\n</svg>',8],t.J)
+B.St=new A.m(B.bL,[B.ST,B.Tb],t.J)
+B.Rq=new A.m(B.M,["apple-ipad-mini","iPad mini (A17 Pro)","Apple",2024,"iOS","tablet",B.PR,2,B.a7,B.a7,340,428,B.QQ,B.St],t.J)
+B.PK=new A.m(B.n,[834,1194],t.J)
+B.PX=new A.m(B.n,[926,1286],t.J)
+B.Qu=new A.m(B.N,[B.PX,B.fF,"M 808.45,1194 C 816.52,1194 822.96,1194.35 828.66,1188.66 C 834.35,1182.96 834,1176.52 834,1168.45 L 834,25.55 C 834,17.49 834.35,11.04 828.66,5.34 C 822.96,-0.35 816.52,0.01 808.45,0.01 L 25.55,0.01 C 17.48,0.01 11.04,-0.35 5.34,5.34 C -0.35,11.04 0,17.49 0,25.55 L 0,1168.45 C 0,1176.52 -0.35,1182.96 5.34,1188.66 C 11.04,1194.35 17.48,1194 25.55,1194 L 808.45,1194 Z",'<svg viewBox="0 0 926 1286">\n  <rect x="-4" y="-4" width="934" height="1294" rx="65" fill="#000000" fill-opacity="0.15"/>\n  <rect x="-3" y="-3" width="932" height="1292" rx="64" fill="#7e7e7e"/>\n  <rect x="-2" y="-2" width="930" height="1290" rx="63" fill="#2c2c2c"/>\n  <rect x="3" y="3" width="920" height="1280" rx="58" fill="#010101"/>\n</svg>'],t.J)
+B.R9=new A.m(B.M,["apple-ipad-pro-11-m2",'iPad Pro 11" (M2)',"Apple",2022,"iOS","tablet",B.PK,2,B.a7,B.a7,340,428,B.Qu,B.be],t.J)
+B.w9=new A.m(B.n,[834,1210],t.J)
+B.P2=new A.m(B.n,[926,1302],t.J)
+B.wp=new A.m(B.N,[B.P2,B.fF,"M 38.46,0 L 795.54,0 C 808.91,0 813.76,1.39 818.65,4.01 C 823.54,6.62 827.38,10.46 829.99,15.35 C 832.61,20.24 834,25.09 834,38.46 L 834,1171.54 C 834,1184.91 832.61,1189.76 829.99,1194.65 C 827.38,1199.54 823.54,1203.38 818.65,1205.99 C 813.76,1208.61 808.91,1210 795.54,1210 L 38.46,1210 C 25.09,1210 20.24,1208.61 15.35,1205.99 C 10.46,1203.38 6.62,1199.54 4.01,1194.65 C 1.39,1189.76 0,1184.91 0,1171.54 L 0,38.46 C 0,25.09 1.39,20.24 4.01,15.35 C 6.62,10.46 10.46,6.62 15.35,4.01 C 20.24,1.39 25.09,0 38.46,0 Z",'<svg viewBox="0 0 926 1302">\n  <rect x="0" y="0" width="926" height="1302" rx="75" fill="#000000" fill-opacity="0.15"/>\n  <rect x="1" y="1" width="924" height="1300" rx="74" fill="#7e7e7e"/>\n  <rect x="2" y="2" width="922" height="1298" rx="73" fill="#2c2c2c"/>\n  <rect x="7" y="7" width="912" height="1288" rx="68" fill="#010101"/>\n</svg>'],t.J)
+B.Rv=new A.m(B.M,["apple-ipad-pro-11-m4",'iPad Pro 11" (M4)',"Apple",2024,"iOS","tablet",B.w9,2,B.a7,B.a7,340,428,B.wp,B.be],t.J)
+B.R1=new A.m(B.M,["apple-ipad-pro-11-m5",'iPad Pro 11" (M5)',"Apple",2025,"iOS","tablet",B.w9,2,B.a7,B.a7,340,428,B.wp,B.be],t.J)
+B.Ub={id:0,name:1,brand:2,year:3,platform:4,kind:5,portraitSize:6,devicePixelRatio:7,portraitPadding:8,landscapePadding:9,frame:10,systemUi:11}
+B.Pn=new A.m(B.n,[1118,1532],t.J)
+B.QV=new A.m(B.N,[B.Pn,B.wg,"M 0,0 L 1024,0 L 1024,1366 L 0,1366 Z",'<svg viewBox="0 0 1118 1532">\n  <rect x="0" y="0" width="1118" height="1532" rx="48" fill="#000000" fill-opacity="0.15"/>\n  <rect x="1" y="1" width="1116" height="1530" rx="47" fill="#7e7e7e"/>\n  <rect x="2" y="2" width="1114" height="1528" rx="46" fill="#2c2c2c"/>\n  <rect x="7" y="7" width="1104" height="1518" rx="41" fill="#010101"/>\n  <circle cx="559" cy="1489" r="22" fill="#3a3a3a"/>\n  <circle cx="559" cy="1489" r="18" fill="#010101"/>\n</svg>'],t.J)
+B.P1=new A.m(B.Ub,["apple-ipad-pro-12-9-gen2",'iPad Pro 12.9" (2nd gen)',"Apple",2017,"iOS","tablet",B.iy,2,B.iB,B.iB,B.QV,B.be],t.J)
+B.Pf=new A.m(B.n,[1116,1458],t.J)
+B.Qv=new A.m(B.N,[B.Pf,B.fF,u.R,'<svg viewBox="0 0 1116 1458">\n  <rect x="-4" y="-4" width="1124" height="1466" rx="65" fill="#000000" fill-opacity="0.15"/>\n  <rect x="-3" y="-3" width="1122" height="1464" rx="64" fill="#7e7e7e"/>\n  <rect x="-2" y="-2" width="1120" height="1462" rx="63" fill="#2c2c2c"/>\n  <rect x="3" y="3" width="1110" height="1452" rx="58" fill="#010101"/>\n</svg>'],t.J)
+B.Rw=new A.m(B.M,["apple-ipad-pro-12-9-gen4",'iPad Pro 12.9" (4th gen)',"Apple",2020,"iOS","tablet",B.iy,2,B.a7,B.a7,403,498,B.Qv,B.be],t.J)
+B.w7=new A.m(B.n,[1032,1376],t.J)
+B.PI=new A.m(B.n,[1124,1468],t.J)
+B.wj=new A.m(B.N,[B.PI,B.fF,"M 38.46,0 L 993.54,0 C 1006.91,0 1011.76,1.39 1016.65,4.01 C 1021.54,6.62 1025.38,10.46 1027.99,15.35 C 1030.61,20.24 1032,25.09 1032,38.46 L 1032,1337.54 C 1032,1350.91 1030.61,1355.76 1027.99,1360.65 C 1025.38,1365.54 1021.54,1369.38 1016.65,1371.99 C 1011.76,1374.61 1006.91,1376 993.54,1376 L 38.46,1376 C 25.09,1376 20.24,1374.61 15.35,1371.99 C 10.46,1369.38 6.62,1365.54 4.01,1360.65 C 1.39,1355.76 0,1350.91 0,1337.54 L 0,38.46 C 0,25.09 1.39,20.24 4.01,15.35 C 6.62,10.46 10.46,6.62 15.35,4.01 C 20.24,1.39 25.09,0 38.46,0 Z",'<svg viewBox="0 0 1124 1468">\n  <rect x="0" y="0" width="1124" height="1468" rx="75" fill="#000000" fill-opacity="0.15"/>\n  <rect x="1" y="1" width="1122" height="1466" rx="74" fill="#7e7e7e"/>\n  <rect x="2" y="2" width="1120" height="1464" rx="73" fill="#2c2c2c"/>\n  <rect x="7" y="7" width="1110" height="1454" rx="68" fill="#010101"/>\n</svg>'],t.J)
+B.QW=new A.m(B.M,["apple-ipad-pro-13-m4",'iPad Pro 13" (M4)',"Apple",2024,"iOS","tablet",B.w7,2,B.a7,B.a7,403,498,B.wj,B.be],t.J)
+B.Rf=new A.m(B.M,["apple-ipad-pro-13-m5",'iPad Pro 13" (M5)',"Apple",2025,"iOS","tablet",B.w7,2,B.a7,B.a7,403,498,B.wj,B.be],t.J)
+B.wa=new A.m(B.n,[390,844],t.J)
+B.wt=new A.m(B.w,[0,47,0,34],t.J)
+B.wr=new A.m(B.w,[47,0,47,20],t.J)
+B.PO=new A.m(B.n,[434,888],t.J)
+B.lT=new A.m(B.ae,[22,22],t.J)
+B.wl=new A.m(B.N,[B.PO,B.lT,"M 283.88,0 L 322.54,0 C 326.96,0 332.4,0.02 336.78,0.16 C 341.51,0.32 346.29,0.65 350.97,1.48 C 360.58,3.18 369.19,6.9 376.15,13.85 C 383.11,20.81 386.83,29.43 388.52,39.03 C 389.35,43.71 389.69,48.5 389.84,53.22 C 389.99,57.6 390,63.04 390,67.47 L 390,776.54 C 390,780.97 389.99,786.41 389.84,790.78 C 389.69,795.51 389.35,800.29 388.52,804.98 C 386.83,814.58 383.11,823.2 376.15,830.15 C 369.19,837.11 360.58,840.83 350.97,842.53 C 346.29,843.35 341.51,843.69 336.78,843.85 C 332.4,843.99 326.96,844 322.54,844 L 67.46,844 C 63.03,844 57.6,843.99 53.22,843.85 C 48.49,843.69 43.71,843.35 39.03,842.53 C 29.42,840.83 20.81,837.11 13.85,830.15 C 6.89,823.2 3.17,814.58 1.48,804.98 C 0.65,800.29 0.31,795.51 0.15,790.78 C 0.01,786.41 0,780.97 0,776.54 L 0,67.47 C 0,63.04 0.01,57.6 0.15,53.22 C 0.31,48.5 0.65,43.71 1.48,39.03 C 3.17,29.43 6.89,20.81 13.85,13.85 C 20.81,6.9 29.42,3.18 39.03,1.48 C 43.71,0.65 48.49,0.32 53.22,0.16 C 57.6,0.02 63.03,0 67.46,0 L 106.12,0 C 107.17,0 108.27,-0.05 109.46,0.18 C 110.61,0.39 111.61,0.83 112.38,1.58 C 113.15,2.34 113.61,3.32 113.85,4.47 C 114.1,5.65 114.08,6.75 114.11,7.8 C 114.19,10.17 114.22,12.38 114.61,14.83 C 114.99,17.19 115.66,19.34 116.72,21.43 C 118.01,23.94 119.83,26.24 122.03,28.14 C 124.28,30.08 126.83,31.52 129.58,32.4 C 134.09,33.86 138.57,33.67 143.32,33.67 L 246.68,33.67 C 251.43,33.67 255.91,33.86 260.42,32.4 C 263.17,31.52 265.71,30.08 267.97,28.14 C 270.17,26.24 271.99,23.94 273.28,21.43 C 274.34,19.34 275.01,17.19 275.39,14.83 C 275.78,12.38 275.81,10.17 275.88,7.8 C 275.92,6.75 275.9,5.65 276.15,4.47 C 276.39,3.32 276.85,2.34 277.62,1.58 C 278.39,0.83 279.39,0.39 280.54,0.18 C 281.73,-0.05 282.83,0 283.88,0 Z",'<svg viewBox="0 0 434 888">\n  <rect x="-4" y="-4" width="442" height="896" rx="72" fill="#000000" fill-opacity="0.15"/>\n  <rect x="-3" y="-3" width="440" height="894" rx="71" fill="#7e7e7e"/>\n  <rect x="-2" y="-2" width="438" height="892" rx="70" fill="#2c2c2c"/>\n  <rect x="2" y="2" width="430" height="884" rx="66" fill="#010101"/>\n</svg>'],t.J)
+B.fH=new A.m(B.dv,['<svg viewBox="0 0 30.75 11.62">\n  <g transform="scale(0.36) translate(-118.17, -47.03)" fill="currentColor">\n    <path d="M129.206 79.3125C126.038 79.3125 123.439 78.446 121.408 76.7131C119.376 74.9801 118.297 72.75 118.169 70.0227H123.325C123.496 71.429 124.128 72.5653 125.222 73.4318C126.315 74.2983 127.658 74.7315 129.249 74.7315C131.053 74.7315 132.509 74.1776 133.616 73.0696C134.739 71.9474 135.3 70.4702 135.3 68.6378C135.3 66.8054 134.739 65.321 133.616 64.1847C132.509 63.0341 131.067 62.4588 129.291 62.4588C128.041 62.4588 126.926 62.7216 125.946 63.2472C124.98 63.7727 124.213 64.5185 123.645 65.4844H118.659L120.257 47.7997H138.773V52.4446H124.518L123.773 61.0739H124.135C125.555 59.1562 127.722 58.1974 130.634 58.1974C133.545 58.1974 135.932 59.1634 137.793 61.0952C139.668 63.027 140.605 65.4986 140.605 68.5099C140.605 71.7202 139.554 74.3267 137.452 76.3295C135.364 78.3182 132.615 79.3125 129.206 79.3125Z"/>\n    <path d="M149.862 75.2855C148.868 75.2855 148.051 74.9659 147.412 74.3267C146.773 73.6875 146.453 72.8849 146.453 71.919C146.453 70.9389 146.773 70.1364 147.412 69.5114C148.051 68.8722 148.868 68.5526 149.862 68.5526C150.871 68.5526 151.688 68.8722 152.313 69.5114C152.952 70.1364 153.271 70.9389 153.271 71.919C153.271 72.8849 152.952 73.6875 152.313 74.3267C151.688 74.9659 150.871 75.2855 149.862 75.2855ZM149.862 59.3054C148.868 59.3054 148.051 58.9929 147.412 58.3679C146.773 57.7287 146.453 56.9261 146.453 55.9602C146.453 54.9801 146.773 54.1776 147.412 53.5526C148.051 52.9134 148.868 52.5937 149.862 52.5937C150.871 52.5937 151.688 52.9134 152.313 53.5526C152.952 54.1776 153.271 54.9801 153.271 55.9602C153.271 56.9261 152.952 57.7287 152.313 58.3679C151.688 58.9929 150.871 59.3054 149.862 59.3054Z"/>\n    <path d="M167.195 78.5455V53.3395H166.833L159.183 58.7088V53.4247L167.216 47.7997H172.692V78.5455H167.195Z"/>\n    <path d="M188 64.9091V60.6477H191.75C193.313 60.6477 194.584 60.2216 195.564 59.3693C196.544 58.5028 197.034 57.3807 197.034 56.0028C197.034 54.6392 196.551 53.5526 195.586 52.7429C194.634 51.919 193.355 51.5071 191.75 51.5071C190.159 51.5071 188.867 51.9261 187.872 52.7642C186.892 53.6023 186.353 54.7457 186.253 56.1946H181.118C181.26 53.3679 182.297 51.1378 184.229 49.5043C186.161 47.8565 188.725 47.0327 191.921 47.0327C194.904 47.0327 197.382 47.8139 199.357 49.3764C201.346 50.9247 202.34 52.8778 202.34 55.2358C202.34 57.0398 201.836 58.581 200.827 59.8594C199.833 61.1378 198.483 61.9545 196.779 62.3097V62.6719C198.881 62.9134 200.536 63.7017 201.743 65.0369C202.965 66.3722 203.576 68.0625 203.576 70.108C203.576 72.75 202.468 74.9446 200.252 76.6918C198.05 78.4389 195.28 79.3125 191.942 79.3125C188.632 79.3125 185.934 78.4673 183.846 76.777C181.772 75.0866 180.664 72.8352 180.522 70.0227H185.784C185.898 71.4432 186.516 72.5795 187.638 73.4318C188.76 74.2699 190.209 74.6889 191.985 74.6889C193.746 74.6889 195.181 74.2344 196.289 73.3253C197.411 72.402 197.972 71.2159 197.972 69.767C197.972 68.2614 197.425 67.0753 196.331 66.2088C195.238 65.3423 193.746 64.9091 191.857 64.9091H188Z"/>\n  </g>\n</svg>','<svg viewBox="0 0 70.53 13.62">\n  <g transform="scale(0.36) translate(-826.18, -43.64)" fill="currentColor">\n    <path d="M826.182 68.8112C826.182 67.2663 827.434 66.014 828.979 66.014H831.776C833.321 66.014 834.573 67.2663 834.573 68.8112V74.4056C834.573 75.9505 833.321 77.2028 831.776 77.2028H828.979C827.434 77.2028 826.182 75.9505 826.182 74.4056V68.8112Z"/>\n    <path d="M840.168 61.8182C840.168 60.2733 841.42 59.021 842.965 59.021H845.762C847.307 59.021 848.559 60.2733 848.559 61.8182V74.4056C848.559 75.9505 847.307 77.2028 845.762 77.2028H842.965C841.42 77.2028 840.168 75.9505 840.168 74.4056V61.8182Z"/>\n    <path d="M854.154 52.028C854.154 50.4831 855.406 49.2308 856.951 49.2308H859.748C861.293 49.2308 862.545 50.4831 862.545 52.028V74.4056C862.545 75.9505 861.293 77.2028 859.748 77.2028H856.951C855.406 77.2028 854.154 75.9505 854.154 74.4056V52.028Z"/>\n    <path d="M868.14 46.4336C868.14 44.8887 869.392 43.6364 870.937 43.6364H873.734C875.279 43.6364 876.531 44.8887 876.531 46.4336V74.4056C876.531 75.9505 875.279 77.2028 873.734 77.2028H870.937C869.392 77.2028 868.14 75.9505 868.14 74.4056V46.4336Z"/>\n    <path d="M913.959 50.8742C920.859 50.8745 927.494 53.5806 932.495 58.4331C932.871 58.8077 933.473 58.803 933.844 58.4225L937.443 54.7146C937.631 54.5216 937.736 54.2601 937.734 53.9882C937.733 53.7162 937.625 53.456 937.435 53.2653C924.311 40.4267 903.606 40.4267 890.482 53.2653C890.291 53.4559 890.184 53.7159 890.182 53.9879C890.18 54.2599 890.285 54.5214 890.472 54.7146L894.073 58.4225C894.443 58.8035 895.046 58.8083 895.422 58.4331C900.423 53.5802 907.059 50.8742 913.959 50.8742ZM914.059 62.0682C917.849 62.068 921.505 63.5062 924.315 66.1035C924.695 66.4721 925.294 66.4641 925.664 66.0855L929.259 62.3775C929.449 62.1831 929.554 61.9192 929.551 61.645C929.548 61.3709 929.438 61.1093 929.245 60.9187C920.688 52.794 907.436 52.794 898.88 60.9187C898.686 61.1093 898.576 61.371 898.573 61.6453C898.571 61.9195 898.676 62.1833 898.866 62.3775L902.46 66.0855C902.831 66.4641 903.429 66.4721 903.809 66.1035C906.618 63.5079 910.27 62.0698 914.059 62.0682ZM921.369 69.3055C921.375 69.5805 921.269 69.8455 921.077 70.0381L914.858 76.4444C914.675 76.6326 914.427 76.7386 914.168 76.7386C913.908 76.7386 913.66 76.6326 913.477 76.4444L907.257 70.0381C907.065 69.8454 906.96 69.5802 906.965 69.3053C906.971 69.0303 907.088 68.77 907.288 68.5857C911.259 65.1568 917.076 65.1568 921.048 68.5857C921.247 68.7701 921.364 69.0306 921.369 69.3055Z" fill-rule="evenodd"/>\n    <path d="M951.27 55.2766C951.27 48.8499 956.48 43.64 962.907 43.64H1003.63C1010.06 43.64 1015.27 48.8499 1015.27 55.2766V69.8224C1015.27 76.2491 1010.06 81.459 1003.63 81.459H962.907C956.48 81.459 951.27 76.2491 951.27 69.8224V55.2766Z M966.132 72.7316L974.868 56.0124V55.7568H964.527V52.2197H979.186V55.7994L970.621 72.7316H966.132Z M990.824 73.2571C989.337 73.2571 988.011 72.9399 986.847 72.3054C985.691 71.6709 984.763 70.7523 984.062 69.5497C982.917 67.7883 982.344 65.4823 982.344 62.6319C982.344 59.2322 983.101 56.5617 984.616 54.6204C986.132 52.679 988.224 51.7084 990.895 51.7084C992.846 51.7084 994.508 52.234 995.881 53.2851C997.263 54.3363 998.102 55.7189 998.395 57.4329H994.148C993.949 56.7606 993.551 56.2255 992.955 55.8278C992.368 55.43 991.671 55.2312 990.867 55.2312C989.465 55.2312 988.362 55.8609 987.557 57.1204C986.761 58.3704 986.387 60.0608 986.435 62.1916H986.69C987.154 61.2256 987.841 60.4822 988.75 59.9614C989.669 59.4311 990.725 59.1659 991.918 59.1659C993.859 59.1659 995.469 59.8099 996.747 61.0978C998.026 62.3857 998.665 64.0098 998.665 65.97C998.665 68.1008 997.931 69.848 996.463 71.2116C994.995 72.5753 993.116 73.2571 990.824 73.2571ZM988.139 68.6832C988.849 69.3839 989.73 69.7343 990.781 69.7343C991.832 69.7343 992.713 69.3887 993.423 68.6974C994.143 67.9966 994.503 67.1301 994.503 66.0979C994.503 65.0562 994.153 64.1944 993.452 63.5126C992.751 62.8213 991.866 62.4756 990.796 62.4756C989.725 62.4756 988.835 62.8166 988.125 63.4984C987.424 64.1802 987.074 65.0325 987.074 66.0553C987.074 67.097 987.429 67.9729 988.139 68.6832Z" fill-rule="evenodd" fill-opacity="0.4"/>\n    <path d="M951.27 55.2766C951.27 48.8499 956.48 43.64 962.907 43.64H997.816V81.459H962.907C956.48 81.459 951.27 76.2491 951.27 69.8224V55.2766Z M966.132 72.7316L974.868 56.0124V55.7568H964.527V52.2197H979.186V55.7994L970.621 72.7316H966.132Z M990.824 73.2571C989.337 73.2571 988.011 72.9399 986.847 72.3054C985.691 71.6709 984.763 70.7523 984.062 69.5497C982.917 67.7883 982.344 65.4823 982.344 62.6319C982.344 59.2322 983.101 56.5617 984.616 54.6204C986.132 52.679 988.224 51.7084 990.895 51.7084C992.846 51.7084 994.508 52.234 995.881 53.2851C997.263 54.3363 998.102 55.7189 998.395 57.4329H994.148C993.949 56.7606 993.551 56.2255 992.955 55.8278C992.368 55.43 991.671 55.2312 990.867 55.2312C989.465 55.2312 988.362 55.8609 987.557 57.1204C986.761 58.3704 986.387 60.0608 986.435 62.1916H986.69C987.154 61.2256 987.841 60.4822 988.75 59.9614C989.669 59.4311 990.725 59.1659 991.918 59.1659C993.859 59.1659 995.469 59.8099 996.747 61.0978C998.026 62.3857 998.665 64.0098 998.665 65.97C998.665 68.1008 997.931 69.848 996.463 71.2116C994.995 72.5753 993.116 73.2571 990.824 73.2571ZM988.139 68.6832C988.849 69.3839 989.73 69.7343 990.781 69.7343C991.832 69.7343 992.713 69.3887 993.423 68.6974C994.143 67.9966 994.503 67.1301 994.503 66.0979C994.503 65.0562 994.153 64.1944 993.452 63.5126C992.751 62.8213 991.866 62.4756 990.796 62.4756C989.725 62.4756 988.835 62.8166 988.125 63.4984C987.424 64.1802 987.074 65.0325 987.074 66.0553C987.074 67.097 987.429 67.9729 988.139 68.6832Z" fill-rule="evenodd"/>\n    <path d="M1018.18 57.6263V69.4317C1020.56 68.4318 1022.1 66.1059 1022.1 63.529C1022.1 60.9521 1020.56 58.6261 1018.18 57.6263Z" fill-opacity="0.4"/>\n  </g>\n</svg>',30],t.J)
+B.T5=new A.m(B.bK,['<svg viewBox="0 0 140 5">\n  <path d="M 2.5,0 H 137.5 A 2.5,2.5 0 0 1 140,2.5 V 2.5 A 2.5,2.5 0 0 1 137.5,5 H 2.5 A 2.5,2.5 0 0 1 0,2.5 V 2.5 A 2.5,2.5 0 0 1 2.5,0 Z" fill="currentColor"/>\n</svg>',8],t.J)
+B.wx=new A.m(B.bL,[B.fH,B.T5],t.J)
+B.QZ=new A.m(B.M,["apple-iphone-13","iPhone 13","Apple",2021,"iOS","phone",B.wa,3,B.wt,B.wr,335,208,B.wl,B.wx],t.J)
+B.lP=new A.m(B.n,[430,932],t.J)
+B.e8=new A.m(B.w,[0,59,0,34],t.J)
+B.e9=new A.m(B.w,[59,0,59,20],t.J)
+B.Pm=new A.m(B.n,[470,972],t.J)
+B.Qd=new A.m(B.ae,[20,20],t.J)
+B.QS=new A.m(B.N,[B.Pm,B.Qd,u.E,'<svg viewBox="0 0 470 972">\n  <rect x="1" y="1" width="468" height="970" rx="73" fill="#7e7e7e"/>\n  <rect x="2" y="2" width="466" height="968" rx="72" fill="#2c2c2c"/>\n  <rect x="7" y="7" width="456" height="958" rx="67" fill="#010101"/>\n  <rect x="372" y="2" width="8" height="7" rx="1" fill="#000000" fill-opacity="0.3"/>\n  <rect x="2" y="94" width="7" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n  <rect x="461" y="94" width="7" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n  <rect x="2" y="870" width="7" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n  <rect x="461" y="870" width="7" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n  <rect x="88" y="963" width="8" height="7" rx="1" fill="#000000" fill-opacity="0.3"/>\n</svg>'],t.J)
+B.T6=new A.m(B.bK,['<svg viewBox="0 0 141 5">\n  <path d="M 2.5,0 H 138.5 A 2.5,2.5 0 0 1 141,2.5 V 2.5 A 2.5,2.5 0 0 1 138.5,5 H 2.5 A 2.5,2.5 0 0 1 0,2.5 V 2.5 A 2.5,2.5 0 0 1 2.5,0 Z" fill="currentColor"/>\n</svg>',8],t.J)
+B.ea=new A.m(B.bL,[B.fH,B.T6],t.J)
+B.Rc=new A.m(B.M,["apple-iphone-14-pro-max","iPhone 14 Pro Max","Apple",2022,"iOS","phone",B.lP,3,B.e8,B.e9,345,248,B.QS,B.ea],t.J)
+B.lR=new A.m(B.n,[393,852],t.J)
+B.P9=new A.m(B.n,[435,894],t.J)
+B.Qk=new A.m(B.ae,[21,21],t.J)
+B.Qz=new A.m(B.N,[B.P9,B.Qk,u.P,'<svg viewBox="0 0 435 894">\n  <rect x="1" y="1" width="433" height="892" rx="74" fill="#7e7e7e"/>\n  <rect x="2" y="2" width="431" height="890" rx="73" fill="#2c2c2c"/>\n  <rect x="7" y="7" width="421" height="880" rx="68" fill="#010101"/>\n  <rect x="335" y="2" width="8" height="7" rx="1" fill="#000000" fill-opacity="0.3"/>\n  <rect x="2" y="95" width="7" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n  <rect x="426" y="95" width="7" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n  <rect x="2" y="792" width="7" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n  <rect x="426" y="792" width="7" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n  <rect x="91" y="885" width="8" height="7" rx="1" fill="#000000" fill-opacity="0.3"/>\n</svg>'],t.J)
+B.Rd=new A.m(B.M,["apple-iphone-14-pro","iPhone 14 Pro","Apple",2022,"iOS","phone",B.lR,3,B.e8,B.e9,335,208,B.Qz,B.ea],t.J)
+B.Pi=new A.m(B.n,[466,968],t.J)
+B.iz=new A.m(B.ae,[18,18],t.J)
+B.wm=new A.m(B.N,[B.Pi,B.iz,u.E,'<svg viewBox="0 0 466 968">\n  <rect x="1" y="1" width="464" height="966" rx="73" fill="#7e7e7e"/>\n  <rect x="2" y="2" width="462" height="964" rx="72" fill="#2c2c2c"/>\n  <rect x="7" y="7" width="452" height="954" rx="67" fill="#000000"/>\n  <rect x="367" y="2" width="8" height="7" rx="1" fill="#000000" fill-opacity="0.3"/>\n  <rect x="2" y="97" width="7" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n  <rect x="457" y="94" width="7" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n  <rect x="2" y="870" width="7" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n  <rect x="457" y="867" width="7" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n  <rect x="91" y="959" width="8" height="7" rx="1" fill="#000000" fill-opacity="0.3"/>\n</svg>'],t.J)
+B.R8=new A.m(B.M,["apple-iphone-15-pro-max","iPhone 15 Pro Max","Apple",2023,"iOS","phone",B.lP,3,B.e8,B.e9,345,208,B.wm,B.ea],t.J)
+B.PF=new A.m(B.n,[429,888],t.J)
+B.wi=new A.m(B.N,[B.PF,B.iz,u.P,'<svg viewBox="0 0 429 888">\n  <rect x="1" y="1" width="427" height="886" rx="74" fill="#7e7e7e"/>\n  <rect x="2" y="2" width="425" height="884" rx="73" fill="#2c2c2c"/>\n  <rect x="7" y="7" width="415" height="874" rx="68" fill="#000000"/>\n  <rect x="2" y="94" width="7" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n  <rect x="420" y="94" width="7" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n  <rect x="2" y="787" width="7" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n  <rect x="420" y="787" width="7" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n  <rect x="331" y="2" width="8" height="7" rx="1" fill="#000000" fill-opacity="0.3"/>\n  <rect x="91" y="879" width="8" height="7" rx="1" fill="#000000" fill-opacity="0.3"/>\n</svg>'],t.J)
+B.R_=new A.m(B.M,["apple-iphone-15-pro","iPhone 15 Pro","Apple",2023,"iOS","phone",B.lR,3,B.e8,B.e9,335,248,B.wi,B.ea],t.J)
+B.Re=new A.m(B.M,["apple-iphone-16-plus","iPhone 16 Plus","Apple",2024,"iOS","phone",B.lP,3,B.e8,B.e9,345,208,B.wm,B.ea],t.J)
+B.lQ=new A.m(B.n,[440,956],t.J)
+B.ds=new A.m(B.w,[0,62,0,34],t.J)
+B.dt=new A.m(B.w,[62,0,62,20],t.J)
+B.Pa=new A.m(B.n,[474,990],t.J)
+B.wf=new A.m(B.ae,[17,17],t.J)
+B.lU=new A.m(B.N,[B.Pa,B.wf,"M 354.84,0 C 360.21,0 365.59,0.02 370.96,0.21 C 377.12,0.44 383.2,0.91 389.28,2.04 C 401.54,4.33 412.7,9.29 421.7,18.3 C 430.71,27.31 435.67,38.46 437.96,50.73 C 439.09,56.8 439.56,62.88 439.79,69.03 C 439.98,74.35 440,79.68 440,85 L 440,871 C 440,876.32 439.98,881.65 439.79,886.97 C 439.56,893.12 439.09,899.2 437.96,905.27 C 435.67,917.54 430.71,928.69 421.7,937.7 C 412.7,946.71 401.54,951.67 389.28,953.96 C 383.2,955.09 377.12,955.56 370.96,955.78 C 365.59,955.98 360.21,956 354.84,956 L 85.16,956 C 79.79,956 74.41,955.98 69.04,955.78 C 62.88,955.56 56.8,955.09 50.72,953.96 C 38.46,951.67 27.3,946.71 18.3,937.7 C 9.29,928.69 4.33,917.54 2.04,905.27 C 0.91,899.2 0.44,893.12 0.22,886.97 C 0.02,881.65 0,876.32 0,871 L 0,85 C 0,79.68 0.02,74.35 0.22,69.03 C 0.44,62.88 0.91,56.8 2.04,50.73 C 4.33,38.46 9.29,27.31 18.3,18.3 C 27.3,9.29 38.46,4.33 50.72,2.04 C 56.8,0.91 62.88,0.44 69.04,0.21 C 74.41,0.02 79.79,0 85.16,0 L 354.84,0 Z M 264,11 H 176 A 18.5,18.5 0 0 0 176,48 H 264 A 18.5,18.5 0 0 0 264,11 Z",'<svg viewBox="0 0 474 990">\n  <rect x="1" y="1" width="472" height="988" rx="79" fill="#000000"/>\n  <rect x="2" y="2" width="470" height="986" rx="78" fill="#7e7e7e"/>\n  <rect x="3" y="3" width="468" height="984" rx="77" fill="#2c2c2c"/>\n  <rect x="8.33" y="8.33" width="457.33" height="973.33" rx="71.67" fill="#000000"/>\n  <rect x="16" y="16" width="442" height="958" rx="64" fill="#000000"/>\n  <rect x="1" y="95" width="8.67" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n  <rect x="1" y="888" width="9.33" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n  <rect x="464.67" y="888" width="8.33" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n  <rect x="92" y="980.67" width="8.33" height="8.33" rx="1" fill="#000000" fill-opacity="0.3"/>\n  <rect x="464.67" y="95" width="8.33" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n  <rect x="374" y="1.33" width="8.33" height="8.67" rx="1" fill="#000000" fill-opacity="0.3"/>\n</svg>'],t.J)
+B.T7=new A.m(B.bK,['<svg viewBox="0 0 158 5">\n  <path d="M 2.5,0 H 155.5 A 2.5,2.5 0 0 1 158,2.5 V 2.5 A 2.5,2.5 0 0 1 155.5,5 H 2.5 A 2.5,2.5 0 0 1 0,2.5 V 2.5 A 2.5,2.5 0 0 1 2.5,0 Z" fill="currentColor"/>\n</svg>',8],t.J)
+B.lY=new A.m(B.bL,[B.fH,B.T7],t.J)
+B.Ra=new A.m(B.M,["apple-iphone-16-pro-max","iPhone 16 Pro Max","Apple",2024,"iOS","phone",B.lQ,3,B.ds,B.dt,345,208,B.lU,B.lY],t.J)
+B.ix=new A.m(B.n,[402,874],t.J)
+B.Po=new A.m(B.n,[436,908],t.J)
+B.iA=new A.m(B.N,[B.Po,B.wf,"M 317.34,0 C 322.68,0 328.02,0.02 333.37,0.21 C 339.49,0.44 345.54,0.9 351.58,2.03 C 363.77,4.3 374.86,9.23 383.81,18.19 C 392.77,27.14 397.7,38.23 399.97,50.43 C 401.1,56.46 401.56,62.51 401.79,68.62 C 401.98,73.92 402,79.21 402,84.5 L 402,789.5 C 402,794.79 401.98,800.08 401.79,805.38 C 401.56,811.49 401.1,817.54 399.97,823.57 C 397.7,835.77 392.77,846.86 383.81,855.81 C 374.86,864.77 363.77,869.7 351.58,871.97 C 345.54,873.1 339.49,873.56 333.37,873.79 C 328.02,873.98 322.68,874 317.34,874 L 84.66,874 C 79.32,874 73.98,873.98 68.63,873.79 C 62.51,873.56 56.46,873.1 50.42,871.97 C 38.23,869.7 27.14,864.77 18.19,855.81 C 9.23,846.86 4.3,835.77 2.03,823.57 C 0.9,817.54 0.44,811.49 0.21,805.38 C 0.02,800.08 0,794.79 0,789.5 L 0,84.5 C 0,79.21 0.02,73.92 0.21,68.62 C 0.44,62.51 0.9,56.46 2.03,50.43 C 4.3,38.23 9.23,27.14 18.19,18.19 C 27.14,9.23 38.23,4.3 50.42,2.03 C 56.46,0.9 62.51,0.44 68.63,0.21 C 73.98,0.02 79.32,0 84.66,0 L 317.34,0 Z M 245,11 H 157 A 18.5,18.5 0 0 0 157,48 H 245 A 18.5,18.5 0 0 0 245,11 Z",'<svg viewBox="0 0 436 908">\n  <rect x="1" y="1" width="434" height="906" rx="79" fill="#000000"/>\n  <rect x="2" y="2" width="432" height="904" rx="78" fill="#7e7e7e"/>\n  <rect x="16" y="16" width="404" height="876" rx="64" fill="#7e7e7e"/>\n  <rect x="3" y="3" width="430" height="902" rx="77" fill="#2c2c2c"/>\n  <rect x="16" y="16" width="404" height="876" rx="64" fill="#2c2c2c"/>\n  <rect x="8" y="8" width="420" height="892" rx="72" fill="#000000"/>\n  <rect x="16" y="16" width="404" height="876" rx="64" fill="#000000"/>\n</svg>'],t.J)
+B.T8=new A.m(B.bK,['<svg viewBox="0 0 145 5">\n  <path d="M 2.5,0 H 142.5 A 2.5,2.5 0 0 1 145,2.5 V 2.5 A 2.5,2.5 0 0 1 142.5,5 H 2.5 A 2.5,2.5 0 0 1 0,2.5 V 2.5 A 2.5,2.5 0 0 1 2.5,0 Z" fill="currentColor"/>\n</svg>',8],t.J)
+B.iC=new A.m(B.bL,[B.fH,B.T8],t.J)
+B.Rn=new A.m(B.M,["apple-iphone-16-pro","iPhone 16 Pro","Apple",2024,"iOS","phone",B.ix,3,B.ds,B.dt,335,208,B.iA,B.iC],t.J)
+B.Ru=new A.m(B.M,["apple-iphone-16","iPhone 16","Apple",2024,"iOS","phone",B.lR,3,B.e8,B.e9,335,208,B.wi,B.ea],t.J)
+B.Rp=new A.m(B.M,["apple-iphone-17-pro-max","iPhone 17 Pro Max","Apple",2025,"iOS","phone",B.lQ,3,B.ds,B.dt,345,208,B.lU,B.lY],t.J)
+B.R5=new A.m(B.M,["apple-iphone-17-pro","iPhone 17 Pro","Apple",2025,"iOS","phone",B.ix,3,B.ds,B.dt,335,208,B.iA,B.iC],t.J)
+B.Rb=new A.m(B.M,["apple-iphone-17","iPhone 17","Apple",2025,"iOS","phone",B.ix,3,B.ds,B.dt,335,208,B.iA,B.iC],t.J)
+B.QY=new A.m(B.M,["apple-iphone-17e","iPhone 17e","Apple",2026,"iOS","phone",B.wa,3,B.wt,B.wr,335,208,B.wl,B.wx],t.J)
+B.Rl=new A.m(B.M,["apple-iphone-18-pro-max","iPhone 18 Pro Max","Apple",2026,"iOS","phone",B.lQ,3,B.ds,B.dt,345,208,B.lU,B.lY],t.J)
+B.R3=new A.m(B.M,["apple-iphone-18-pro","iPhone 18 Pro","Apple",2026,"iOS","phone",B.ix,3,B.ds,B.dt,335,208,B.iA,B.iC],t.J)
+B.Pe=new A.m(B.n,[420,912],t.J)
+B.Sd=new A.m(B.w,[0,68,0,34],t.J)
+B.RR=new A.m(B.w,[68,0,68,20],t.J)
+B.P4=new A.m(B.n,[456,948],t.J)
+B.QC=new A.m(B.N,[B.P4,B.iz,"M 331.55,0 C 337.13,0 342.71,0.02 348.29,0.22 C 354.69,0.46 361.01,0.94 367.32,2.12 C 380.06,4.49 391.64,9.64 401,18.98 C 410.35,28.32 415.51,39.9 417.88,52.62 C 419.06,58.92 419.54,65.23 419.78,71.61 C 419.98,77.13 420,82.65 420,88.17 L 420,86.99 L 420,825.01 L 420,826.19 C 419.99,830.93 419.95,835.66 419.78,840.39 C 419.54,846.77 419.06,853.08 417.88,859.38 C 415.51,872.1 410.35,883.67 401,893.02 C 391.64,902.36 380.06,907.51 367.32,909.88 C 361.01,911.06 354.69,911.54 348.29,911.78 C 343.19,911.97 338.09,912 332.98,912 L 208.21,912 L 87.26,912 L 86.06,912 C 82.07,912 78.09,911.97 74.1,911.85 L 71.71,911.78 C 65.31,911.54 58.99,911.06 52.68,909.88 C 39.94,907.51 28.36,902.36 19,893.02 C 9.65,883.67 4.49,872.1 2.12,859.38 C 0.95,853.08 0.46,846.77 0.22,840.39 C 0.02,834.87 0,829.35 0,823.83 L 0,88.17 C 0,82.65 0.02,77.13 0.22,71.61 C 0.46,65.23 0.95,58.92 2.12,52.62 C 4.49,39.9 9.65,28.32 19,18.98 C 28.36,9.64 39.94,4.49 52.68,2.12 C 58.99,0.94 65.31,0.46 71.71,0.22 C 77.29,0.02 82.87,0 88.45,0 L 331.55,0 Z M 254,11 H 166 A 18.5,18.5 0 0 0 166,48 H 254 A 18.5,18.5 0 0 0 254,11 Z",'<svg viewBox="0 0 456 948">\n  <rect x="2" y="2" width="452" height="944" rx="78" fill="#000000"/>\n  <rect x="3" y="3" width="450" height="942" rx="77" fill="#7e7e7e"/>\n  <rect x="4" y="4" width="448" height="940" rx="76" fill="#2c2c2c"/>\n  <rect x="9.33" y="9.33" width="437.34" height="929.34" rx="70.67" fill="#000000"/>\n  <rect x="8.33" y="8.33" width="439.34" height="931.34" rx="71.67" fill="#000000"/>\n</svg>'],t.J)
+B.T9=new A.m(B.bK,['<svg viewBox="0 0 151 5">\n  <path d="M 2.5,0 H 148.5 A 2.5,2.5 0 0 1 151,2.5 V 2.5 A 2.5,2.5 0 0 1 148.5,5 H 2.5 A 2.5,2.5 0 0 1 0,2.5 V 2.5 A 2.5,2.5 0 0 1 2.5,0 Z" fill="currentColor"/>\n</svg>',8],t.J)
+B.Su=new A.m(B.bL,[B.fH,B.T9],t.J)
+B.Rm=new A.m(B.M,["apple-iphone-air","iPhone Air","Apple",2025,"iOS","phone",B.Pe,3,B.Sd,B.RR,345,208,B.QC,B.Su],t.J)
+B.U5={id:0,name:1,brand:2,year:3,platform:4,kind:5,portraitSize:6,devicePixelRatio:7,physicalSize:8,portraitPadding:9,landscapePadding:10,portraitKeyboardHeight:11,landscapeKeyboardHeight:12,portraitReservedRegions:13,landscapeReservedRegions:14,postures:15,frame:16,systemUi:17}
+B.Pv=new A.m(B.n,[669,951],t.J)
+B.Pg=new A.m(B.n,[1878,2670],t.J)
+B.S2=new A.m(B.w,[0,82,0,34],t.J)
+B.ws=new A.m(B.w,[0,0,84,34],t.J)
+B.ej={kind:0,bounds:1}
+B.RU=new A.m(B.w,[535,0,669,82],t.J)
+B.Tl=new A.m(B.ej,["occlusion",B.RU],t.J)
+B.wL={kind:0,bounds:1,active:2}
+B.Sc=new A.m(B.w,[21,215.67,58,273.67],t.J)
+B.Sx=new A.m(B.wL,["occlusion",B.Sc,!1],t.J)
+B.wJ={kind:0,bounds:1,margins:2,active:3}
+B.RJ=new A.m(B.w,[0,455.5,669,495.5],t.J)
+B.Sj=new A.m(B.w,[0,20,0,20],t.J)
+B.RD=new A.m(B.wJ,["division",B.RJ,B.Sj,!1],t.J)
+B.LE=s([B.Tl,B.Sx,B.RD],t.ef)
+B.Sk=new A.m(B.w,[867,0,951,120],t.J)
+B.Tm=new A.m(B.ej,["occlusion",B.Sk],t.J)
+B.Sl=new A.m(B.w,[215.67,611,273.67,648],t.J)
+B.Sw=new A.m(B.wL,["occlusion",B.Sl,!1],t.J)
+B.Sg=new A.m(B.w,[455.5,0,495.5,669],t.J)
+B.S5=new A.m(B.w,[20,0,20,0],t.J)
+B.RC=new A.m(B.wJ,["division",B.Sg,B.S5,!1],t.J)
+B.Me=s([B.Tm,B.Sw,B.RC],t.ef)
+B.fI={halfOpened:0,closed:1}
+B.Uc={portraitKeyboardHeight:0,frame:1}
+B.wb=new A.m(B.n,[705.34,987.33],t.J)
+B.we=new A.m(B.ae,[18.17,18.17],t.J)
+B.QA=new A.m(B.N,[B.wb,B.we,"M 1.76,882.51 L 10,475.5 L 1.76,68.49 C 1.27,44.67 3.58,36.04 8.06,27.33 C 12.54,18.63 19.24,11.79 27.85,7.14 C 36.46,2.48 45.05,0 68.87,0 L 600.13,0 C 623.95,0 632.54,2.48 641.15,7.14 C 649.76,11.79 656.46,18.63 660.94,27.33 C 665.42,36.04 667.73,44.67 667.24,68.49 L 659,475.5 L 667.24,882.51 C 667.73,906.33 665.42,914.96 660.94,923.67 C 656.46,932.37 649.76,939.21 641.15,943.86 C 632.54,948.52 623.95,951 600.13,951 L 68.87,951 C 45.05,951 36.46,948.52 27.85,943.86 C 19.24,939.21 12.54,932.37 8.06,923.67 C 3.58,914.96 1.27,906.33 1.76,882.51 Z",'<svg viewBox="0 0 705.34 987.33">\n  <path d="M 1.76,900.67 L 10,493.67 L 1.76,86.66 C 1.22,60.28 4.68,47.34 10.03,36.93 C 15.73,25.85 26.16,15.21 37.13,9.28 C 47.42,3.72 60.29,0 86.67,0 L 618.67,0 C 645.04,0 657.91,3.72 668.21,9.28 C 679.17,15.21 689.6,25.85 695.3,36.93 C 700.66,47.34 704.12,60.28 703.58,86.66 L 695.34,493.67 L 703.58,900.67 C 704.12,927.05 700.66,939.99 695.3,950.4 C 689.6,961.48 679.17,972.12 668.21,978.05 C 657.91,983.61 645.04,987.33 618.67,987.33 L 86.67,987.33 C 60.29,987.33 47.42,983.61 37.13,978.05 C 26.16,972.12 15.73,961.48 10.03,950.4 C 4.68,939.99 1.22,927.05 1.76,900.67 Z" fill="#000000" fill-opacity="0.15"/>\n  <path d="M 2.83,900.67 L 11.07,493.67 L 2.83,86.66 C 2.29,60.43 5.68,47.74 10.99,37.43 C 16.62,26.49 26.83,16.08 37.65,10.23 C 47.85,4.71 60.46,1.07 86.69,1.07 L 618.65,1.07 C 644.87,1.07 657.49,4.71 667.69,10.23 C 678.51,16.08 688.72,26.49 694.35,37.43 C 699.65,47.74 703.05,60.43 702.51,86.66 L 694.27,493.67 L 702.51,900.67 C 703.05,926.9 699.65,939.59 694.35,949.9 C 688.72,960.84 678.51,971.25 667.69,977.11 C 657.49,982.62 644.87,986.26 618.65,986.26 L 86.69,986.26 C 60.46,986.26 47.85,982.62 37.65,977.11 C 26.83,971.25 16.62,960.84 10.99,949.9 C 5.68,939.59 2.29,926.9 2.83,900.67 Z" fill="#7e7e7e"/>\n  <path d="M 3.9,900.67 L 12.14,493.67 L 3.9,86.66 C 3.37,60.58 6.69,48.15 11.94,37.94 C 17.5,27.14 27.48,16.94 38.17,11.17 C 48.27,5.71 60.63,2.14 86.71,2.14 L 618.63,2.14 C 644.7,2.14 657.06,5.71 667.16,11.17 C 677.85,16.94 687.84,27.14 693.4,37.94 C 698.65,48.15 701.97,60.58 701.44,86.66 L 693.2,493.67 L 701.44,900.67 C 701.97,926.75 698.65,939.19 693.4,949.39 C 687.84,960.19 677.85,970.39 667.16,976.16 C 657.06,981.62 644.7,985.19 618.63,985.19 L 86.71,985.19 C 60.63,985.19 48.27,981.62 38.17,976.16 C 27.48,970.39 17.5,960.19 11.94,949.39 C 6.69,939.19 3.37,926.75 3.9,900.67 Z" fill="#2c2c2c"/>\n  <path d="M 8.17,900.67 L 16.41,493.67 L 8.17,86.66 C 7.65,61.19 10.7,49.76 15.75,39.95 C 21.02,29.71 30.13,20.41 40.26,14.94 C 49.97,9.69 61.32,6.41 86.8,6.41 L 618.54,6.41 C 644.01,6.41 655.37,9.69 665.08,14.94 C 675.21,20.41 684.32,29.71 689.59,39.95 C 694.63,49.76 697.68,61.19 697.16,86.66 L 688.92,493.67 L 697.16,900.67 C 697.68,926.14 694.63,937.57 689.59,947.38 C 684.32,957.62 675.21,966.92 665.08,972.39 C 655.37,977.64 644.01,980.92 618.54,980.92 L 86.8,980.92 C 61.32,980.92 49.97,977.64 40.26,972.39 C 30.13,966.92 21.02,957.62 15.75,947.38 C 10.7,937.57 7.65,926.14 8.17,900.67 Z" fill="#000000"/>\n  <path d="M 19.93,900.67 L 28.17,493.67 L 19.93,86.66 C 19.44,62.84 21.75,54.2 26.22,45.5 C 30.71,36.79 37.41,29.96 46.01,25.3 C 54.63,20.64 63.22,18.17 87.04,18.17 L 618.3,18.17 C 642.12,18.17 650.7,20.64 659.32,25.3 C 667.93,29.96 674.62,36.79 679.11,45.5 C 683.59,54.2 685.9,62.84 685.41,86.66 L 677.17,493.67 L 685.41,900.67 C 685.9,924.49 683.59,933.13 679.11,941.83 C 674.62,950.54 667.93,957.37 659.32,962.03 C 650.7,966.69 642.12,969.17 618.3,969.17 L 87.04,969.17 C 63.22,969.17 54.63,966.69 46.01,962.03 C 37.41,957.37 30.71,950.54 26.22,941.83 C 21.75,933.13 19.44,924.49 19.93,900.67 Z" fill="#000000"/>\n  <path d="M 11.06,494.2 L 11.07,493.67 L 11.06,493.13 L 28.16,493.13 L 28.17,493.67 L 28.16,494.2 L 11.06,494.2 Z" fill="#ffffff" fill-opacity="0.6"/>\n  <path d="M 677.18,494.2 L 677.17,493.67 L 677.18,493.13 L 694.28,493.13 L 694.27,493.67 L 694.28,494.2 L 677.18,494.2 Z" fill="#ffffff" fill-opacity="0.6"/>\n</svg>'],t.J)
+B.SX=new A.m(B.Uc,[495.5,B.QA],t.J)
+B.TY={portraitSize:0,portraitPadding:1,landscapePadding:2,portraitKeyboardHeight:3,landscapeKeyboardHeight:4,portraitReservedRegions:5,landscapeReservedRegions:6,frame:7,systemUi:8}
+B.PW=new A.m(B.n,[466,678],t.J)
+B.S3=new A.m(B.w,[84,0,0,34],t.J)
+B.RS=new A.m(B.w,[399.67,29.33,436.67,66.33],t.J)
+B.Tj=new A.m(B.ej,["occlusion",B.RS],t.J)
+B.S8=new A.m(B.w,[382,0,466,170],t.J)
+B.Tk=new A.m(B.ej,["occlusion",B.S8],t.J)
+B.LM=s([B.Tj,B.Tk],t.ef)
+B.RL=new A.m(B.w,[29.33,29.33,66.33,66.33],t.J)
+B.To=new A.m(B.ej,["occlusion",B.RL],t.J)
+B.Sp=new A.m(B.w,[0,0,84,82],t.J)
+B.Tn=new A.m(B.ej,["occlusion",B.Sp],t.J)
+B.LN=s([B.To,B.Tn],t.ef)
+B.Pz=new A.m(B.n,[514,706],t.J)
+B.Qg=new A.m(B.ae,[25,14],t.J)
+B.Qy=new A.m(B.N,[B.Pz,B.Qg,"M 10.26,0 L 390.37,0 C 416.67,0 426.2,2.74 435.82,7.88 C 445.43,13.02 452.98,20.57 458.12,30.18 C 463.26,39.8 466,49.33 466,75.63 L 466,602.37 C 466,628.67 463.26,638.2 458.12,647.82 C 452.98,657.43 445.43,664.98 435.82,670.12 C 426.2,675.26 416.67,678 390.37,678 L 10.26,678 C 6.69,678 5.4,677.63 4.09,676.93 C 2.79,676.23 1.77,675.21 1.07,673.91 C 0.37,672.6 0,671.31 0,667.74 L 0,10.26 C 0,6.69 0.37,5.4 1.07,4.09 C 1.77,2.79 2.79,1.77 4.09,1.07 C 5.4,0.37 6.69,0 10.26,0 Z M 418.17,29.33 A 18.5,18.5 0 1 0 418.17,66.33 A 18.5,18.5 0 1 0 418.17,29.33 Z",'<svg viewBox="0 0 514 706">\n  <path d="M 9,4 L 18,4 L 18,701 L 9,701 C 4.31,701 0,696.69 0,692 L 0,13 C 0,8.31 4.31,4 9,4 Z" fill="#000000" fill-opacity="0.15"/>\n  <path d="M 9,5 L 17,5 L 17,700 L 9,700 C 4.72,700 1,696.28 1,692 L 1,13 C 1,8.72 4.72,5 9,5 Z" fill="#7e7e7e"/>\n  <path d="M 9,6 L 16,6 L 16,699 L 9,699 C 5.13,699 2,695.87 2,692 L 2,13 C 2,9.13 5.13,6 9,6 Z" fill="#2c2c2c"/>\n  <path d="M 416.65,0 C 442.33,0 454.88,2.42 467.93,9.4 C 479.82,15.76 489.24,25.18 495.6,37.07 C 502.58,50.12 505,62.67 505,88.35 L 505,617.65 C 505,643.33 502.58,655.88 495.6,668.93 C 489.24,680.82 479.82,690.24 467.93,696.6 C 454.88,703.58 442.33,706 416.65,706 L 12,706 C 11.45,706 11,705.55 11,705 L 11,2 C 11,0.9 11.9,0 13,0 L 416.65,0 Z" fill="#000000" fill-opacity="0.15"/>\n  <path d="M 416.65,1 C 442.18,1 454.58,3.39 467.46,10.28 C 479.18,16.55 488.45,25.82 494.72,37.54 C 501.61,50.42 504,62.82 504,88.35 L 504,617.65 C 504,643.18 501.61,655.58 494.72,668.46 C 488.45,680.18 479.18,689.45 467.46,695.72 C 454.58,702.61 442.18,705 416.65,705 L 13,705 C 12.45,705 12,704.55 12,704 L 12,2 C 12,1.45 12.45,1 13,1 L 416.65,1 Z" fill="#7e7e7e"/>\n  <path d="M 416.65,2 C 442.03,2 454.27,4.36 466.99,11.17 C 478.53,17.34 487.66,26.47 493.83,38.01 C 500.64,50.73 503,62.97 503,88.35 L 503,617.65 C 503,643.03 500.64,655.27 493.83,667.99 C 487.66,679.53 478.53,688.66 466.99,694.83 C 454.27,701.64 442.03,704 416.65,704 L 13.5,704 C 13.22,704 13,703.78 13,703.5 L 13,2.5 C 13,2.22 13.22,2 13.5,2 L 416.65,2 Z" fill="#2c2c2c"/>\n  <path d="M 411,1 L 417,1 L 417,19 L 411,19 L 411,1 Z M 98,1 L 104,1 L 104,19 L 98,19 L 98,1 Z M 180,686 L 186,686 L 186,704 L 180,704 L 180,686 Z M 329,686 L 335,686 L 335,704 L 329,704 L 329,686 Z M 485,612 L 503,612 L 503,618 L 485,618 L 485,612 Z" fill="#000000" fill-opacity="0.3" fill-rule="evenodd"/>\n  <path d="M 35.26,6 L 415.37,6 C 442.79,6 454.23,9.28 464.59,14.83 C 475.25,20.53 484.47,29.75 490.17,40.41 C 495.72,50.77 499,62.21 499,89.63 L 499,616.37 C 499,643.79 495.72,655.23 490.17,665.59 C 484.47,676.25 475.25,685.47 464.59,691.17 C 454.23,696.72 442.79,700 415.37,700 L 35.26,700 C 30.56,700 27.37,699.08 25.32,697.99 C 22.97,696.73 20.27,694.03 19.01,691.68 C 17.92,689.63 17,686.44 17,681.74 L 17,24.26 C 17,19.56 17.92,16.37 19.01,14.32 C 20.27,11.97 22.97,9.27 25.32,8.01 C 27.37,6.92 30.56,6 35.26,6 Z" fill="#000000"/>\n  <path d="M 35.26,14 L 415.37,14 C 441.67,14 451.2,16.74 460.82,21.88 C 470.43,27.02 477.98,34.57 483.12,44.18 C 488.26,53.8 491,63.33 491,89.63 L 491,616.37 C 491,642.67 488.26,652.2 483.12,661.82 C 477.98,671.43 470.43,678.98 460.82,684.12 C 451.2,689.26 441.67,692 415.37,692 L 35.26,692 C 31.69,692 30.4,691.63 29.09,690.93 C 27.79,690.23 26.77,689.21 26.07,687.91 C 25.37,686.6 25,685.31 25,681.74 L 25,24.26 C 25,20.69 25.37,19.4 26.07,18.09 C 26.77,16.79 27.79,15.77 29.09,15.07 C 30.4,14.37 31.69,14 35.26,14 Z" fill="#000000"/>\n</svg>'],t.J)
+B.Uf={sideBar:0}
+B.wN={leading:0,inset:1}
+B.OZ=new A.m(B.wN,[u.u,71.67],t.J)
+B.RG=new A.m(B.Uf,[B.OZ],t.J)
+B.OY=new A.m(B.TY,[B.PW,B.ws,B.S3,289,230,B.LM,B.LN,B.Qy,B.RG],t.J)
+B.Sz=new A.m(B.fI,[B.SX,B.OY],t.J)
+B.QN=new A.m(B.N,[B.wb,B.we,"M 0,882.51 L 0,68.49 C 0,44.67 2.48,36.04 7.14,27.33 C 11.79,18.63 18.63,11.79 27.34,7.14 C 36.04,2.48 44.68,0 68.5,0 L 600.5,0 C 624.32,0 632.96,2.48 641.66,7.14 C 650.37,11.79 657.21,18.63 661.86,27.33 C 666.52,36.04 669,44.67 669,68.49 L 669,882.51 C 669,906.33 666.52,914.96 661.86,923.67 C 657.21,932.37 650.37,939.21 641.66,943.86 C 632.96,948.52 624.32,951 600.5,951 L 68.5,951 C 44.68,951 36.04,948.52 27.34,943.86 C 18.63,939.21 11.79,932.37 7.14,923.67 C 2.48,914.96 0,906.33 0,882.51 Z",'<svg viewBox="0 0 705.34 987.33">\n  <path d="M 0,900.67 L 0,86.66 C 0,60.28 3.72,47.34 9.28,36.93 C 15.21,25.85 25.85,15.21 36.94,9.28 C 47.34,3.72 60.29,0 86.67,0 L 618.67,0 C 645.04,0 657.99,3.72 668.4,9.28 C 679.48,15.21 690.12,25.85 696.05,36.93 C 701.62,47.34 705.34,60.28 705.34,86.66 L 705.34,900.67 C 705.34,927.05 701.62,939.99 696.05,950.4 C 690.12,961.48 679.48,972.12 668.4,978.05 C 657.99,983.61 645.04,987.33 618.67,987.33 L 86.67,987.33 C 60.29,987.33 47.34,983.61 36.94,978.05 C 25.85,972.12 15.21,961.48 9.28,950.4 C 3.72,939.99 0,927.05 0,900.67 Z" fill="#000000" fill-opacity="0.15"/>\n  <path d="M 1.07,900.67 L 1.07,86.66 C 1.07,60.43 4.71,47.74 10.23,37.43 C 16.08,26.49 26.5,16.08 37.44,10.23 C 47.75,4.71 60.44,1.07 86.67,1.07 L 618.67,1.07 C 644.89,1.07 657.59,4.71 667.9,10.23 C 678.84,16.08 689.26,26.49 695.11,37.43 C 700.62,47.74 704.27,60.43 704.27,86.66 L 704.27,900.67 C 704.27,926.9 700.62,939.59 695.11,949.9 C 689.26,960.84 678.84,971.25 667.9,977.11 C 657.59,982.62 644.89,986.26 618.67,986.26 L 86.67,986.26 C 60.44,986.26 47.75,982.62 37.44,977.11 C 26.5,971.25 16.08,960.84 10.23,949.9 C 4.71,939.59 1.07,926.9 1.07,900.67 Z" fill="#7e7e7e"/>\n  <path d="M 2.14,900.67 L 2.14,86.66 C 2.14,60.58 5.71,48.15 11.17,37.94 C 16.95,27.14 27.14,16.94 37.94,11.17 C 48.15,5.71 60.59,2.14 86.67,2.14 L 618.67,2.14 C 644.74,2.14 657.18,5.71 667.39,11.17 C 678.19,16.94 688.39,27.14 694.17,37.94 C 699.63,48.15 703.2,60.58 703.2,86.66 L 703.2,900.67 C 703.2,926.75 699.63,939.19 694.17,949.39 C 688.39,960.19 678.19,970.39 667.39,976.16 C 657.18,981.62 644.74,985.19 618.67,985.19 L 86.67,985.19 C 60.59,985.19 48.15,981.62 37.94,976.16 C 27.14,970.39 16.95,960.19 11.17,949.39 C 5.71,939.19 2.14,926.75 2.14,900.67 Z" fill="#2c2c2c"/>\n  <path d="M 6.41,900.67 L 6.41,86.66 C 6.41,61.19 9.69,49.76 14.94,39.95 C 20.42,29.71 29.72,20.41 39.96,14.94 C 49.77,9.69 61.19,6.41 86.67,6.41 L 618.67,6.41 C 644.14,6.41 655.57,9.69 665.38,14.94 C 675.62,20.41 684.92,29.71 690.4,39.95 C 695.64,49.76 698.92,61.19 698.92,86.66 L 698.92,900.67 C 698.92,926.14 695.64,937.57 690.4,947.38 C 684.92,957.62 675.62,966.92 665.38,972.39 C 655.57,977.64 644.14,980.92 618.67,980.92 L 86.67,980.92 C 61.19,980.92 49.77,977.64 39.96,972.39 C 29.72,966.92 20.42,957.62 14.94,947.38 C 9.69,937.57 6.41,926.14 6.41,900.67 Z" fill="#000000"/>\n  <path d="M 18.17,900.67 L 18.17,86.66 C 18.17,62.84 20.65,54.2 25.3,45.5 C 29.96,36.79 36.8,29.96 45.5,25.3 C 54.21,20.64 62.85,18.17 86.67,18.17 L 618.67,18.17 C 642.49,18.17 651.12,20.64 659.83,25.3 C 668.54,29.96 675.37,36.79 680.03,45.5 C 684.69,54.2 687.17,62.84 687.17,86.66 L 687.17,900.67 C 687.17,924.49 684.69,933.13 680.03,941.83 C 675.37,950.54 668.54,957.37 659.83,962.03 C 651.12,966.69 642.49,969.17 618.67,969.17 L 86.67,969.17 C 62.85,969.17 54.21,966.69 45.5,962.03 C 36.8,957.37 29.96,950.54 25.3,941.83 C 20.65,933.13 18.17,924.49 18.17,900.67 Z" fill="#000000"/>\n  <path d="M 1.07,494.2 L 1.07,493.13 L 18.17,493.13 L 18.17,494.2 L 1.07,494.2 Z" fill="#ffffff" fill-opacity="0.6"/>\n  <path d="M 687.17,494.2 L 687.17,493.13 L 704.27,493.13 L 704.27,494.2 L 687.17,494.2 Z" fill="#ffffff" fill-opacity="0.6"/>\n</svg>'],t.J)
+B.Uh={statusBar:0,sideBar:1}
+B.U6={trailing:0,inset:1,bottomInset:2}
+B.Tp=new A.m(B.U6,['<svg viewBox="0 0 113 48">\n  <g transform="translate(9, 0)">\n    <g transform="translate(-9, 0)">\n    <path d="M26.1328 29.75C24.2656 29.75 22.8984 28.8906 22.4297 27.8828C22.3203 27.6641 22.2734 27.4688 22.2734 27.2656C22.2734 26.7422 22.625 26.3438 23.25 26.3438C23.7266 26.3438 23.9922 26.5547 24.3438 26.9453C24.8672 27.5781 25.3672 27.8828 26.2188 27.8828C27.8828 27.8828 28.6484 26.2969 28.6562 23.9453V23.8203H28.6094C28.2031 24.9062 27.0938 25.6484 25.6094 25.6484C23.5234 25.6484 21.8672 24.1641 21.8672 21.9688C21.8672 19.6328 23.6953 17.9688 26.2109 17.9688C28.0078 17.9688 29.4297 18.8047 30.25 20.4609C30.6797 21.3281 30.9141 22.4453 30.9141 23.7656C30.9141 27.5156 29.125 29.75 26.1328 29.75ZM26.2188 23.8984C27.4141 23.8984 28.3125 23.0625 28.3125 21.9141C28.3125 20.75 27.4062 19.8516 26.2422 19.8516C25.0781 19.8516 24.1641 20.7344 24.1641 21.875C24.1641 23.0547 25.0391 23.8984 26.2188 23.8984ZM33.8047 22.3984C33.1016 22.3984 32.5469 21.8359 32.5469 21.1406C32.5469 20.4375 33.1016 19.8828 33.8047 19.8828C34.5 19.8828 35.0625 20.4375 35.0625 21.1406C35.0625 21.8359 34.5 22.3984 33.8047 22.3984ZM33.8047 27.9844C33.1016 27.9844 32.5469 27.4219 32.5469 26.7266C32.5469 26.0234 33.1016 25.4688 33.8047 25.4688C34.5 25.4688 35.0625 26.0234 35.0625 26.7266C35.0625 27.4219 34.5 27.9844 33.8047 27.9844ZM43.3203 29.6641C42.6719 29.6641 42.2031 29.2656 42.2031 28.5156V27.4297H38C37.1484 27.4297 36.5781 26.8984 36.5781 26.1094C36.5781 25.625 36.7188 25.1875 37.0703 24.5703C37.8438 23.1797 38.9688 21.4609 40.1953 19.6406C40.9766 18.4453 41.5469 18.0547 42.5 18.0547C43.6953 18.0547 44.4453 18.7031 44.4453 19.7578V25.5469H45.0859C45.7109 25.5469 46.0547 25.9375 46.0547 26.4922C46.0547 27.0469 45.7031 27.4297 45.0859 27.4297H44.4453V28.5156C44.4453 29.2656 43.9688 29.6641 43.3203 29.6641ZM42.25 25.6094V19.9375H42.2031C40.5938 22.2578 39.5547 23.8438 38.6406 25.5469V25.6094H42.25ZM51.0938 29.6641C50.3984 29.6641 49.9219 29.1953 49.9219 28.4844V20.4141H49.875L48.2266 21.5625C48.0078 21.7188 47.8438 21.7734 47.6016 21.7734C47.125 21.7734 46.7734 21.4297 46.7734 20.9297C46.7734 20.5703 46.9141 20.3047 47.2812 20.0469L49.5156 18.5C50.0625 18.125 50.4375 18.0547 50.9219 18.0547C51.7578 18.0547 52.2578 18.5625 52.2578 19.375V28.4844C52.2578 29.1953 51.7891 29.6641 51.0938 29.6641Z" fill="currentColor"/>\n  </g>\n    <circle cx="89.34" cy="39.333" r="2" fill="currentColor" fill-opacity="0.25"/>\n    <circle cx="83.3367" cy="42.003" r="2" fill="currentColor" fill-opacity="0.25"/>\n    <circle cx="76.67" cy="42.003" r="2" fill="currentColor" fill-opacity="0.25"/>\n    <circle cx="70.67" cy="39.333" r="2" fill="currentColor" fill-opacity="0.25"/>\n    <path d="M 62.396,33.835 A 20.333,20.333 0 1 1 97.61,33.835 A 1.5,1.5 0 0 1 95.013,32.335 A 17.333,17.333 0 1 0 64.993,32.335 A 1.5,1.5 0 0 1 62.396,33.835 Z" fill="currentColor"/>\n    <path d="M79.1378 29.9015L77.9847 28.7894C77.7096 28.5195 77.5509 28.228 77.5086 27.915C77.4769 27.6019 77.6144 27.332 77.9212 27.0944C78.2068 26.8785 78.5242 26.7058 78.8839 26.5762C79.2436 26.4467 79.6139 26.3819 80.0159 26.3819C80.4179 26.3819 80.7776 26.4467 81.1373 26.5762C81.4969 26.7058 81.8143 26.8785 82.1 27.0836C82.4173 27.3212 82.5549 27.6019 82.5231 27.915C82.4914 28.228 82.3327 28.5195 82.0471 28.8002L80.8728 29.923C80.5871 30.1929 80.3015 30.3333 80.0053 30.3333C79.7091 30.3333 79.4234 30.1929 79.1378 29.923V29.9015ZM74.6946 25.4534C74.3878 25.1511 74.2397 24.8272 74.2502 24.4818C74.2502 24.1363 74.3878 23.8448 74.6522 23.6181C75.3082 23.0459 76.1016 22.5816 77.0326 22.2362C77.9635 21.8799 78.958 21.7071 80.0159 21.7071C81.0738 21.7071 82.0576 21.8799 82.9992 22.2362C83.9302 22.5924 84.7236 23.0459 85.3795 23.6181C85.6651 23.8772 85.8027 24.1795 85.7709 24.5357C85.7498 24.892 85.6017 25.1943 85.3372 25.4534C85.1468 25.637 84.9563 25.7449 84.7447 25.7989C84.5332 25.8421 84.3216 25.8313 84.11 25.7665C83.8984 25.7017 83.6974 25.5938 83.507 25.4426C83.0309 25.0756 82.4808 24.7733 81.8778 24.5465C81.2748 24.3198 80.6506 24.2119 80.0264 24.2119C79.3917 24.2119 78.7675 24.3198 78.1645 24.5465C77.5615 24.7733 77.022 25.0648 76.5459 25.4318C76.3555 25.583 76.1651 25.6909 75.9535 25.7665C75.7419 25.8313 75.5303 25.8529 75.3187 25.8097C75.1071 25.7665 74.9061 25.6478 74.7157 25.4642L74.6946 25.4534ZM71.4044 22.193C71.1611 21.9447 71.0236 21.6532 71.0024 21.3185C70.9813 20.9838 71.0977 20.6923 71.3516 20.4332C72.018 19.753 72.8115 19.1484 73.7319 18.641C74.6522 18.1228 75.6361 17.7233 76.7152 17.4318C77.7837 17.1404 78.8839 17 80.0053 17C81.1267 17 82.2163 17.1404 83.2848 17.4318C84.3533 17.7233 85.3478 18.1228 86.2681 18.641C87.1885 19.1592 87.982 19.753 88.6484 20.4332C88.9023 20.6923 89.0187 20.9946 88.9976 21.3293C88.9764 21.664 88.8495 21.9555 88.5956 22.2038C88.3522 22.4413 88.0666 22.5492 87.7281 22.5277C87.4001 22.4953 87.0827 22.3549 86.7865 22.085C85.8556 21.2537 84.8188 20.6275 83.6657 20.1957C82.5125 19.7638 81.2959 19.5479 80.0053 19.5479C78.7146 19.5479 77.4875 19.7638 76.3449 20.1957C75.2024 20.6275 74.155 21.2537 73.2346 22.085C72.9384 22.3549 72.621 22.5061 72.2825 22.5384C71.944 22.5708 71.6583 22.4629 71.415 22.2146L71.4044 22.193Z" fill="currentColor"/>\n  </g>\n</svg>',23.67,9.67],t.J)
+B.P_=new A.m(B.wN,[u.u,19],t.J)
+B.Qr=new A.m(B.Uh,[B.Tp,B.P_],t.J)
+B.Tt=new A.m(B.U5,["apple-iphone-duo","iPhone Duo","Apple",2026,"iOS","foldable",B.Pv,3,B.Pg,B.S2,B.ws,350,264,B.LE,B.Me,B.Sz,B.QN,B.Qr],t.J)
+B.P5=new A.m(B.n,[375,667],t.J)
+B.Sn=new A.m(B.w,[0,20,0,0],t.J)
+B.Sf=new A.m(B.w,[0,0,0,0],t.J)
+B.Pj=new A.m(B.n,[431,889],t.J)
+B.Ql=new A.m(B.ae,[28,111],t.J)
+B.QU=new A.m(B.N,[B.Pj,B.Ql,"M 0,0 L 375,0 L 375,667 L 0,667 Z",'<svg viewBox="0 0 431 889">\n  <rect x="0" y="0" width="431" height="889" rx="61" fill="#000000" fill-opacity="0.5"/>\n  <rect x="1" y="1" width="429" height="887" rx="60" fill="#343434"/>\n  <rect x="2" y="2" width="427" height="885" rx="59" fill="#1f1f1f"/>\n  <rect x="8" y="8" width="415" height="873" rx="53" fill="#161616"/>\n  <rect x="14" y="14" width="403" height="861" rx="47" fill="#000000"/>\n  <circle cx="215.5" cy="832.5" r="33.5" fill="#3a3a3a"/>\n  <circle cx="215.5" cy="832.5" r="29.5" fill="#000000"/>\n</svg>'],t.J)
+B.Ug={statusBar:0}
+B.SW=new A.m(B.dv,['<svg viewBox="0 0 25.62 9.68">\n  <g transform="scale(0.3) translate(-118.17, -47.03)" fill="currentColor">\n    <path d="M129.206 79.3125C126.038 79.3125 123.439 78.446 121.408 76.7131C119.376 74.9801 118.297 72.75 118.169 70.0227H123.325C123.496 71.429 124.128 72.5653 125.222 73.4318C126.315 74.2983 127.658 74.7315 129.249 74.7315C131.053 74.7315 132.509 74.1776 133.616 73.0696C134.739 71.9474 135.3 70.4702 135.3 68.6378C135.3 66.8054 134.739 65.321 133.616 64.1847C132.509 63.0341 131.067 62.4588 129.291 62.4588C128.041 62.4588 126.926 62.7216 125.946 63.2472C124.98 63.7727 124.213 64.5185 123.645 65.4844H118.659L120.257 47.7997H138.773V52.4446H124.518L123.773 61.0739H124.135C125.555 59.1562 127.722 58.1974 130.634 58.1974C133.545 58.1974 135.932 59.1634 137.793 61.0952C139.668 63.027 140.605 65.4986 140.605 68.5099C140.605 71.7202 139.554 74.3267 137.452 76.3295C135.364 78.3182 132.615 79.3125 129.206 79.3125Z"/>\n    <path d="M149.862 75.2855C148.868 75.2855 148.051 74.9659 147.412 74.3267C146.773 73.6875 146.453 72.8849 146.453 71.919C146.453 70.9389 146.773 70.1364 147.412 69.5114C148.051 68.8722 148.868 68.5526 149.862 68.5526C150.871 68.5526 151.688 68.8722 152.313 69.5114C152.952 70.1364 153.271 70.9389 153.271 71.919C153.271 72.8849 152.952 73.6875 152.313 74.3267C151.688 74.9659 150.871 75.2855 149.862 75.2855ZM149.862 59.3054C148.868 59.3054 148.051 58.9929 147.412 58.3679C146.773 57.7287 146.453 56.9261 146.453 55.9602C146.453 54.9801 146.773 54.1776 147.412 53.5526C148.051 52.9134 148.868 52.5937 149.862 52.5937C150.871 52.5937 151.688 52.9134 152.313 53.5526C152.952 54.1776 153.271 54.9801 153.271 55.9602C153.271 56.9261 152.952 57.7287 152.313 58.3679C151.688 58.9929 150.871 59.3054 149.862 59.3054Z"/>\n    <path d="M167.195 78.5455V53.3395H166.833L159.183 58.7088V53.4247L167.216 47.7997H172.692V78.5455H167.195Z"/>\n    <path d="M188 64.9091V60.6477H191.75C193.313 60.6477 194.584 60.2216 195.564 59.3693C196.544 58.5028 197.034 57.3807 197.034 56.0028C197.034 54.6392 196.551 53.5526 195.586 52.7429C194.634 51.919 193.355 51.5071 191.75 51.5071C190.159 51.5071 188.867 51.9261 187.872 52.7642C186.892 53.6023 186.353 54.7457 186.253 56.1946H181.118C181.26 53.3679 182.297 51.1378 184.229 49.5043C186.161 47.8565 188.725 47.0327 191.921 47.0327C194.904 47.0327 197.382 47.8139 199.357 49.3764C201.346 50.9247 202.34 52.8778 202.34 55.2358C202.34 57.0398 201.836 58.581 200.827 59.8594C199.833 61.1378 198.483 61.9545 196.779 62.3097V62.6719C198.881 62.9134 200.536 63.7017 201.743 65.0369C202.965 66.3722 203.576 68.0625 203.576 70.108C203.576 72.75 202.468 74.9446 200.252 76.6918C198.05 78.4389 195.28 79.3125 191.942 79.3125C188.632 79.3125 185.934 78.4673 183.846 76.777C181.772 75.0866 180.664 72.8352 180.522 70.0227H185.784C185.898 71.4432 186.516 72.5795 187.638 73.4318C188.76 74.2699 190.209 74.6889 191.985 74.6889C193.746 74.6889 195.181 74.2344 196.289 73.3253C197.411 72.402 197.972 71.2159 197.972 69.767C197.972 68.2614 197.425 67.0753 196.331 66.2088C195.238 65.3423 193.746 64.9091 191.857 64.9091H188Z"/>\n  </g>\n</svg>','<svg viewBox="0 0 58.77 11.35">\n  <g transform="scale(0.3) translate(-826.18, -43.64)" fill="currentColor">\n    <path d="M826.182 68.8112C826.182 67.2663 827.434 66.014 828.979 66.014H831.776C833.321 66.014 834.573 67.2663 834.573 68.8112V74.4056C834.573 75.9505 833.321 77.2028 831.776 77.2028H828.979C827.434 77.2028 826.182 75.9505 826.182 74.4056V68.8112Z"/>\n    <path d="M840.168 61.8182C840.168 60.2733 841.42 59.021 842.965 59.021H845.762C847.307 59.021 848.559 60.2733 848.559 61.8182V74.4056C848.559 75.9505 847.307 77.2028 845.762 77.2028H842.965C841.42 77.2028 840.168 75.9505 840.168 74.4056V61.8182Z"/>\n    <path d="M854.154 52.028C854.154 50.4831 855.406 49.2308 856.951 49.2308H859.748C861.293 49.2308 862.545 50.4831 862.545 52.028V74.4056C862.545 75.9505 861.293 77.2028 859.748 77.2028H856.951C855.406 77.2028 854.154 75.9505 854.154 74.4056V52.028Z"/>\n    <path d="M868.14 46.4336C868.14 44.8887 869.392 43.6364 870.937 43.6364H873.734C875.279 43.6364 876.531 44.8887 876.531 46.4336V74.4056C876.531 75.9505 875.279 77.2028 873.734 77.2028H870.937C869.392 77.2028 868.14 75.9505 868.14 74.4056V46.4336Z"/>\n    <path d="M913.959 50.8742C920.859 50.8745 927.494 53.5806 932.495 58.4331C932.871 58.8077 933.473 58.803 933.844 58.4225L937.443 54.7146C937.631 54.5216 937.736 54.2601 937.734 53.9882C937.733 53.7162 937.625 53.456 937.435 53.2653C924.311 40.4267 903.606 40.4267 890.482 53.2653C890.291 53.4559 890.184 53.7159 890.182 53.9879C890.18 54.2599 890.285 54.5214 890.472 54.7146L894.073 58.4225C894.443 58.8035 895.046 58.8083 895.422 58.4331C900.423 53.5802 907.059 50.8742 913.959 50.8742ZM914.059 62.0682C917.849 62.068 921.505 63.5062 924.315 66.1035C924.695 66.4721 925.294 66.4641 925.664 66.0855L929.259 62.3775C929.449 62.1831 929.554 61.9192 929.551 61.645C929.548 61.3709 929.438 61.1093 929.245 60.9187C920.688 52.794 907.436 52.794 898.88 60.9187C898.686 61.1093 898.576 61.371 898.573 61.6453C898.571 61.9195 898.676 62.1833 898.866 62.3775L902.46 66.0855C902.831 66.4641 903.429 66.4721 903.809 66.1035C906.618 63.5079 910.27 62.0698 914.059 62.0682ZM921.369 69.3055C921.375 69.5805 921.269 69.8455 921.077 70.0381L914.858 76.4444C914.675 76.6326 914.427 76.7386 914.168 76.7386C913.908 76.7386 913.66 76.6326 913.477 76.4444L907.257 70.0381C907.065 69.8454 906.96 69.5802 906.965 69.3053C906.971 69.0303 907.088 68.77 907.288 68.5857C911.259 65.1568 917.076 65.1568 921.048 68.5857C921.247 68.7701 921.364 69.0306 921.369 69.3055Z" fill-rule="evenodd"/>\n    <path d="M951.27 55.2766C951.27 48.8499 956.48 43.64 962.907 43.64H1003.63C1010.06 43.64 1015.27 48.8499 1015.27 55.2766V69.8224C1015.27 76.2491 1010.06 81.459 1003.63 81.459H962.907C956.48 81.459 951.27 76.2491 951.27 69.8224V55.2766Z M966.132 72.7316L974.868 56.0124V55.7568H964.527V52.2197H979.186V55.7994L970.621 72.7316H966.132Z M990.824 73.2571C989.337 73.2571 988.011 72.9399 986.847 72.3054C985.691 71.6709 984.763 70.7523 984.062 69.5497C982.917 67.7883 982.344 65.4823 982.344 62.6319C982.344 59.2322 983.101 56.5617 984.616 54.6204C986.132 52.679 988.224 51.7084 990.895 51.7084C992.846 51.7084 994.508 52.234 995.881 53.2851C997.263 54.3363 998.102 55.7189 998.395 57.4329H994.148C993.949 56.7606 993.551 56.2255 992.955 55.8278C992.368 55.43 991.671 55.2312 990.867 55.2312C989.465 55.2312 988.362 55.8609 987.557 57.1204C986.761 58.3704 986.387 60.0608 986.435 62.1916H986.69C987.154 61.2256 987.841 60.4822 988.75 59.9614C989.669 59.4311 990.725 59.1659 991.918 59.1659C993.859 59.1659 995.469 59.8099 996.747 61.0978C998.026 62.3857 998.665 64.0098 998.665 65.97C998.665 68.1008 997.931 69.848 996.463 71.2116C994.995 72.5753 993.116 73.2571 990.824 73.2571ZM988.139 68.6832C988.849 69.3839 989.73 69.7343 990.781 69.7343C991.832 69.7343 992.713 69.3887 993.423 68.6974C994.143 67.9966 994.503 67.1301 994.503 66.0979C994.503 65.0562 994.153 64.1944 993.452 63.5126C992.751 62.8213 991.866 62.4756 990.796 62.4756C989.725 62.4756 988.835 62.8166 988.125 63.4984C987.424 64.1802 987.074 65.0325 987.074 66.0553C987.074 67.097 987.429 67.9729 988.139 68.6832Z" fill-rule="evenodd" fill-opacity="0.4"/>\n    <path d="M951.27 55.2766C951.27 48.8499 956.48 43.64 962.907 43.64H997.816V81.459H962.907C956.48 81.459 951.27 76.2491 951.27 69.8224V55.2766Z M966.132 72.7316L974.868 56.0124V55.7568H964.527V52.2197H979.186V55.7994L970.621 72.7316H966.132Z M990.824 73.2571C989.337 73.2571 988.011 72.9399 986.847 72.3054C985.691 71.6709 984.763 70.7523 984.062 69.5497C982.917 67.7883 982.344 65.4823 982.344 62.6319C982.344 59.2322 983.101 56.5617 984.616 54.6204C986.132 52.679 988.224 51.7084 990.895 51.7084C992.846 51.7084 994.508 52.234 995.881 53.2851C997.263 54.3363 998.102 55.7189 998.395 57.4329H994.148C993.949 56.7606 993.551 56.2255 992.955 55.8278C992.368 55.43 991.671 55.2312 990.867 55.2312C989.465 55.2312 988.362 55.8609 987.557 57.1204C986.761 58.3704 986.387 60.0608 986.435 62.1916H986.69C987.154 61.2256 987.841 60.4822 988.75 59.9614C989.669 59.4311 990.725 59.1659 991.918 59.1659C993.859 59.1659 995.469 59.8099 996.747 61.0978C998.026 62.3857 998.665 64.0098 998.665 65.97C998.665 68.1008 997.931 69.848 996.463 71.2116C994.995 72.5753 993.116 73.2571 990.824 73.2571ZM988.139 68.6832C988.849 69.3839 989.73 69.7343 990.781 69.7343C991.832 69.7343 992.713 69.3887 993.423 68.6974C994.143 67.9966 994.503 67.1301 994.503 66.0979C994.503 65.0562 994.153 64.1944 993.452 63.5126C992.751 62.8213 991.866 62.4756 990.796 62.4756C989.725 62.4756 988.835 62.8166 988.125 63.4984C987.424 64.1802 987.074 65.0325 987.074 66.0553C987.074 67.097 987.429 67.9729 988.139 68.6832Z" fill-rule="evenodd"/>\n    <path d="M1018.18 57.6263V69.4317C1020.56 68.4318 1022.1 66.1059 1022.1 63.529C1022.1 60.9521 1020.56 58.6261 1018.18 57.6263Z" fill-opacity="0.4"/>\n  </g>\n</svg>',6],t.J)
+B.Sr=new A.m(B.Ug,[B.SW],t.J)
+B.R6=new A.m(B.M,["apple-iphone-se-3","iPhone SE (3rd gen)","Apple",2022,"iOS","phone",B.P5,2,B.Sn,B.Sf,260,206,B.QU,B.Sr],t.J)
+B.wM={id:0,name:1,brand:2,platform:3,kind:4,portraitSize:5,devicePixelRatio:6,frame:7}
+B.PL=new A.m(B.n,[1920,1080],t.J)
+B.PC=new A.m(B.n,[1922,1109],t.J)
+B.Qh=new A.m(B.ae,[1,28],t.J)
+B.QO=new A.m(B.N,[B.PC,B.Qh,"M 0,0 H 1920 V 1068 A 12,12 0 0 1 1908,1080 H 12 A 12,12 0 0 1 0,1068 Z",'<svg viewBox="0 0 1922 1109">\n  <path d="M 12,0 H 1910 A 12,12 0 0 1 1922,12 V 1097 A 12,12 0 0 1 1910,1109 H 12 A 12,12 0 0 1 0,1097 V 12 A 12,12 0 0 1 12,0 Z" fill="#26282c"/>\n  <circle cx="16" cy="14" r="6" fill="#ff5f57"/>\n  <circle cx="36" cy="14" r="6" fill="#febc2e"/>\n  <circle cx="56" cy="14" r="6" fill="#28c840"/>\n  <rect x="891" y="9" width="140" height="10" rx="5" fill="#c9ccd1" fill-opacity="0.35"/>\n</svg>'],t.J)
+B.RI=new A.m(B.wM,["desktop-large","Large Desktop Window","Generic","macOS","desktop",B.PL,2,B.QO],t.J)
+B.PB=new A.m(B.n,[1024,640],t.J)
+B.PJ=new A.m(B.n,[1026,673],t.J)
+B.Qa=new A.m(B.ae,[1,32],t.J)
+B.QD=new A.m(B.N,[B.PJ,B.Qa,"M 0,0 H 1024 V 632 A 8,8 0 0 1 1016,640 H 8 A 8,8 0 0 1 0,632 Z",'<svg viewBox="0 0 1026 673">\n  <path d="M 8,0 H 1018 A 8,8 0 0 1 1026,8 V 665 A 8,8 0 0 1 1018,673 H 8 A 8,8 0 0 1 0,665 V 8 A 8,8 0 0 1 8,0 Z" fill="#202226"/>\n  <rect x="980" y="15" width="10" height="2" fill="#c9ccd1"/>\n  <rect x="994" y="15" width="10" height="2" fill="#c9ccd1"/>\n  <rect x="1008" y="15" width="10" height="2" fill="#c9ccd1"/>\n  <rect x="443" y="11" width="140" height="10" rx="5" fill="#c9ccd1" fill-opacity="0.35"/>\n</svg>'],t.J)
+B.RH=new A.m(B.wM,["desktop-small","Small Desktop Window","Generic","windows","desktop",B.PB,1,B.QD],t.J)
+B.iI={id:0,name:1,brand:2,year:3,platform:4,kind:5,portraitSize:6,devicePixelRatio:7,portraitPadding:8,landscapePadding:9,portraitKeyboardHeight:10,landscapeKeyboardHeight:11,displayFeatures:12,postures:13,frame:14,systemUi:15}
+B.Ph=new A.m(B.n,[851.69,882.87],t.J)
+B.wv=new A.m(B.w,[0,55.79,0,32],t.J)
+B.br={bounds:0,type:1,state:2}
+B.RZ=new A.m(B.w,[425.845,0,425.845,882.87],t.J)
+B.SL=new A.m(B.br,[B.RZ,"fold","postureFlat"],t.J)
+B.RK=new A.m(B.w,[795.9,0,851.69,55.79],t.J)
+B.SN=new A.m(B.br,[B.RK,"cutout","unknown"],t.J)
+B.LJ=s([B.SL,B.SN],t.ef)
+B.cQ=new A.m(B.bf,[],t.J)
+B.U8={portraitSize:0,physicalSize:1,portraitPadding:2,landscapePadding:3,portraitKeyboardHeight:4,landscapeKeyboardHeight:5,displayFeatures:6,frame:7,systemUi:8}
+B.PM=new A.m(B.n,[443.08,969.85],t.J)
+B.PA=new A.m(B.n,[1080,2364],t.J)
+B.S7=new A.m(B.w,[0,62.36,0,24.21],t.J)
+B.RQ=new A.m(B.w,[62.36,52.1,0,24.21],t.J)
+B.RM=new A.m(B.w,[198.56,8.21,244.51,62.36],t.J)
+B.SF=new A.m(B.br,[B.RM,"cutout","unknown"],t.J)
+B.LF=s([B.SF],t.ef)
+B.PD=new A.m(B.n,[505.85,1022.77],t.J)
+B.Qm=new A.m(B.ae,[33.64,26.67],t.J)
+B.QR=new A.m(B.N,[B.PD,B.Qm,"M 52.92,0 H 390.15 A 52.92,52.92 0 0 1 443.08,52.92 V 916.92 A 52.92,52.92 0 0 1 390.15,969.85 H 52.92 A 52.92,52.92 0 0 1 0,916.92 V 52.92 A 52.92,52.92 0 0 1 52.92,0 Z M 221.74,18.46 A 13.74,13.74 0 1 0 221.74,45.95 A 13.74,13.74 0 1 0 221.74,18.46 Z",'<svg viewBox="0 0 505.85 1022.77">\n  <rect x="0" y="0" width="505.85" height="1022.77" rx="34.46" fill="#b4b8c7"/>\n  <rect x="1" y="1" width="503.85" height="1020.77" rx="33.46" fill="#000000"/>\n</svg>'],t.J)
+B.TX={leading:0,trailing:1,inset:2,trailingInset:3}
+B.Tv=new A.m(B.TX,[u.x,u.Y,17.23,28.72],t.J)
+B.Td=new A.m(B.bK,['<svg viewBox="0 0 108 4">\n  <path d="M 2,0 H 106 A 2,2 0 0 1 106,4 H 2 A 2,2 0 0 1 2,0 Z" fill="currentColor"/>\n</svg>',9.85],t.J)
+B.Sv=new A.m(B.bL,[B.Tv,B.Td],t.J)
+B.RE=new A.m(B.U8,[B.PM,B.PA,B.S7,B.RQ,336,252,B.LF,B.QR,B.Sv],t.J)
+B.SB=new A.m(B.fI,[B.cQ,B.RE],t.J)
+B.PS=new A.m(B.n,[902.15,928.82],t.J)
+B.Qj=new A.m(B.ae,[25.03,22.97],t.J)
+B.QP=new A.m(B.N,[B.PS,B.Qj,"M 53.74,0 H 797.95 A 53.74,53.74 0 0 1 851.69,53.74 V 829.13 A 53.74,53.74 0 0 1 797.95,882.87 H 53.74 A 53.74,53.74 0 0 1 0,829.13 V 53.74 A 53.74,53.74 0 0 1 53.74,0 Z M 813.54,19.69 A 14.77,14.77 0 1 0 813.54,49.23 A 14.77,14.77 0 1 0 813.54,19.69 Z",'<svg viewBox="0 0 902.15 928.82">\n  <rect x="0" y="0" width="902.15" height="928.82" rx="78.77" fill="#767b8c"/>\n  <rect x="1" y="1" width="900.15" height="926.82" rx="77.77" fill="#060605"/>\n</svg>'],t.J)
+B.U2={leading:0,trailing:1,inset:2,trailingInset:3,cutoutGap:4,trailingCutoutGap:5}
+B.Q_=new A.m(B.U2,[u.x,u.Y,49.23,36.51,17.23,10.67],t.J)
+B.T3=new A.m(B.bK,['<svg viewBox="0 0 220 4">\n  <path d="M 2,0 H 218 A 2,2 0 0 1 218,4 H 2 A 2,2 0 0 1 2,0 Z" fill="currentColor"/>\n</svg>',13.95],t.J)
+B.Ss=new A.m(B.bL,[B.Q_,B.T3],t.J)
+B.Q0=new A.m(B.iI,["google-pixel-10-pro-fold","Pixel 10 Pro Fold","Google",2025,"android","foldable",B.Ph,2.4375,B.wv,B.wv,336,252,B.LJ,B.SB,B.QP,B.Ss],t.J)
+B.w8=new A.m(B.n,[411.43,923.43],t.J)
+B.lW=new A.m(B.w,[0,54,0,24],t.J)
+B.lV=new A.m(B.w,[0,52,0,24],t.J)
+B.Px=new A.m(B.n,[459.05,964.19],t.J)
+B.Q5=new A.m(B.ae,[22.48,20.19],t.J)
+B.QM=new A.m(B.N,[B.Px,B.Q5,"M 55.62,0 H 355.81 A 55.62,55.62 0 0 1 411.43,55.62 V 867.81 A 55.62,55.62 0 0 1 355.81,923.43 H 55.62 A 55.62,55.62 0 0 1 0,867.81 V 55.62 A 55.62,55.62 0 0 1 55.62,0 Z M 205.33,19.05 A 14.86,14.86 0 1 0 205.33,48.76 A 14.86,14.86 0 1 0 205.33,19.05 Z",'<svg viewBox="0 0 459.05 964.19">\n  <rect x="0" y="0" width="459.05" height="964.19" rx="81.14" fill="#3b53c1"/>\n  <rect x="1" y="1" width="457.05" height="962.19" rx="80.14" fill="#000000"/>\n</svg>'],t.J)
+B.SR=new A.m(B.dv,[u.x,u.Y,18],t.J)
+B.Tc=new A.m(B.bK,['<svg viewBox="0 0 108 4">\n  <path d="M 2,0 H 106 A 2,2 0 0 1 108,2 V 2 A 2,2 0 0 1 106,4 H 2 A 2,2 0 0 1 0,2 V 2 A 2,2 0 0 1 2,0 Z" fill="currentColor"/>\n</svg>',9],t.J)
+B.lX=new A.m(B.bL,[B.SR,B.Tc],t.J)
+B.Rx=new A.m(B.M,["google-pixel-10","Pixel 10","Google",2025,"android","phone",B.w8,2.625,B.lW,B.lV,336,252,B.QM,B.lX],t.J)
+B.P6=new A.m(B.n,[448,997.33],t.J)
+B.PT=new A.m(B.n,[488,1033],t.J)
+B.Q9=new A.m(B.ae,[18.67,18.33],t.J)
+B.Qx=new A.m(B.N,[B.PT,B.Q9,"M 56,0 H 392 A 56,56 0 0 1 448,56 V 941.33 A 56,56 0 0 1 392,997.33 H 56 A 56,56 0 0 1 0,941.33 V 56 A 56,56 0 0 1 56,0 Z M 224,17.33 A 15.33,15.33 0 1 0 224,48 A 15.33,15.33 0 1 0 224,17.33 Z",'<svg viewBox="0 0 488 1033">\n  <rect x="0" y="0" width="488" height="1033" rx="79.67" fill="#323232"/>\n  <rect x="1" y="1" width="486" height="1031" rx="78.67" fill="#000000"/>\n</svg>'],t.J)
+B.Rt=new A.m(B.M,["google-pixel-9-pro-xl","Pixel 9 Pro XL","Google",2024,"android","phone",B.P6,3,B.lW,B.lV,336,252,B.Qx,B.lX],t.J)
+B.Pc=new A.m(B.n,[455.62,963.05],t.J)
+B.Qe=new A.m(B.ae,[20.57,21.71],t.J)
+B.QB=new A.m(B.N,[B.Pc,B.Qe,"M 53.33,0 H 358.1 A 53.33,53.33 0 0 1 411.43,53.33 V 870.1 A 53.33,53.33 0 0 1 358.1,923.43 H 53.33 A 53.33,53.33 0 0 1 0,870.1 V 53.33 A 53.33,53.33 0 0 1 53.33,0 Z M 205.71,17.52 A 15.24,15.24 0 1 0 205.71,48 A 15.24,15.24 0 1 0 205.71,17.52 Z",'<svg viewBox="0 0 455.62 963.05">\n  <rect x="0" y="0" width="455.62" height="963.05" rx="77.71" fill="#424242"/>\n  <rect x="1" y="1" width="453.62" height="961.05" rx="76.71" fill="#000000"/>\n</svg>'],t.J)
+B.Rg=new A.m(B.M,["google-pixel-9","Pixel 9","Google",2024,"android","phone",B.w8,2.625,B.lW,B.lV,336,252,B.QB,B.lX],t.J)
+B.wc=new A.m(B.n,[360,780],t.J)
+B.cP=new A.m(B.w,[0,24,0,24],t.J)
+B.Pu=new A.m(B.n,[384,796],t.J)
+B.Q6=new A.m(B.ae,[12,8],t.J)
+B.wo=new A.m(B.N,[B.Pu,B.Q6,"M 20,0 H 340 A 20,20 0 0 1 360,20 V 760 A 20,20 0 0 1 340,780 H 20 A 20,20 0 0 1 0,760 V 20 A 20,20 0 0 1 20,0 Z",'<svg viewBox="0 0 384 796">\n  <defs><clipPath id="shell">\n    <path d="M 32,0 H 352 A 28,28 0 0 1 380,28 V 768 A 28,28 0 0 1 352,796 H 32 A 28,28 0 0 1 4,768 V 28 A 28,28 0 0 1 32,0 Z"/>\n  </clipPath></defs>\n  <g fill="#3d4149">\n    <rect x="0" y="159.2" width="6" height="43.78" rx="2"/>\n    <rect x="0" y="214.92" width="6" height="43.78" rx="2"/>\n    <rect x="378" y="191.04" width="6" height="63.68" rx="2"/>\n  </g>\n  <path d="M 32,0 H 352 A 28,28 0 0 1 380,28 V 768 A 28,28 0 0 1 352,796 H 32 A 28,28 0 0 1 4,768 V 28 A 28,28 0 0 1 32,0 Z" fill="#1f2126"/>\n  <path d="M 32,2 H 352 A 26,26 0 0 1 378,28 V 768 A 26,26 0 0 1 352,794 H 32 A 26,26 0 0 1 6,768 V 28 A 26,26 0 0 1 32,2 Z" fill="#3d4149"/>\n  <g clip-path="url(#shell)">\n    <path d="M -796,0 L -477.6,0 L 96,796 L -222.4,796 Z" fill="#ffffff" fill-opacity="0.18"/>\n  </g>\n  <path d="M 32,3.5 H 352 A 24.5,24.5 0 0 1 376.5,28 V 768 A 24.5,24.5 0 0 1 352,792.5 H 32 A 24.5,24.5 0 0 1 7.5,768 V 28 A 24.5,24.5 0 0 1 32,3.5 Z" fill="#08090b"/>\n</svg>'],t.J)
+B.SU=new A.m(B.dv,[u.x,u.Y,16],t.J)
+B.Ta=new A.m(B.bK,['<svg viewBox="0 0 96 4">\n  <path d="M 2,0 H 94 A 2,2 0 0 1 96,2 V 2 A 2,2 0 0 1 94,4 H 2 A 2,2 0 0 1 0,2 V 2 A 2,2 0 0 1 2,0 Z" fill="currentColor"/>\n</svg>',9],t.J)
+B.fG=new A.m(B.bL,[B.SU,B.Ta],t.J)
+B.Ri=new A.m(B.M,["samsung-galaxy-s24","Galaxy S24","Samsung",2024,"android","phone",B.wc,3,B.cP,B.cP,336,252,B.wo,B.fG],t.J)
+B.R4=new A.m(B.M,["samsung-galaxy-s25","Galaxy S25","Samsung",2025,"android","phone",B.wc,3,B.cP,B.cP,336,252,B.wo,B.fG],t.J)
+B.Pl=new A.m(B.n,[876,1400],t.J)
+B.Pq=new A.m(B.n,[920,1444],t.J)
+B.Qw=new A.m(B.N,[B.Pq,B.lT,"M 12,0 H 864 A 12,12 0 0 1 876,12 V 1388 A 12,12 0 0 1 864,1400 H 12 A 12,12 0 0 1 0,1388 V 12 A 12,12 0 0 1 12,0 Z",'<svg viewBox="0 0 920 1444">\n  <defs><clipPath id="shell">\n    <path d="M 36,0 H 884 A 36,36 0 0 1 920,36 V 1408 A 36,36 0 0 1 884,1444 H 36 A 36,36 0 0 1 0,1408 V 36 A 36,36 0 0 1 36,0 Z"/>\n  </clipPath></defs>\n  <path d="M 36,0 H 884 A 36,36 0 0 1 920,36 V 1408 A 36,36 0 0 1 884,1444 H 36 A 36,36 0 0 1 0,1408 V 36 A 36,36 0 0 1 36,0 Z" fill="#2f3336"/>\n  <path d="M 36,2 H 884 A 34,34 0 0 1 918,36 V 1408 A 34,34 0 0 1 884,1442 H 36 A 34,34 0 0 1 2,1408 V 36 A 34,34 0 0 1 36,2 Z" fill="#5b6166"/>\n  <g clip-path="url(#shell)">\n    <path d="M -1444,0 L -866.4,0 L 230,1444 L -347.6,1444 Z" fill="#ffffff" fill-opacity="0.18"/>\n  </g>\n  <path d="M 36,3.5 H 884 A 32.5,32.5 0 0 1 916.5,36 V 1408 A 32.5,32.5 0 0 1 884,1440.5 H 36 A 32.5,32.5 0 0 1 3.5,1408 V 36 A 32.5,32.5 0 0 1 36,3.5 Z" fill="#0b0d0e"/>\n</svg>'],t.J)
+B.SS=new A.m(B.dv,[u.x,u.Y,26],t.J)
+B.Te=new A.m(B.bK,['<svg viewBox="0 0 140 4">\n  <path d="M 2,0 H 138 A 2,2 0 0 1 140,2 V 2 A 2,2 0 0 1 138,4 H 2 A 2,2 0 0 1 0,2 V 2 A 2,2 0 0 1 2,0 Z" fill="currentColor"/>\n</svg>',9],t.J)
+B.ww=new A.m(B.bL,[B.SS,B.Te],t.J)
+B.Rs=new A.m(B.M,["samsung-galaxy-tab-s10-plus","Galaxy Tab S10+","Samsung",2024,"android","tablet",B.Pl,2,B.cP,B.cP,336,252,B.Qw,B.ww],t.J)
+B.PG=new A.m(B.n,[800,1280],t.J)
+B.PE=new A.m(B.n,[844,1324],t.J)
+B.QJ=new A.m(B.N,[B.PE,B.lT,"M 12,0 H 788 A 12,12 0 0 1 800,12 V 1268 A 12,12 0 0 1 788,1280 H 12 A 12,12 0 0 1 0,1268 V 12 A 12,12 0 0 1 12,0 Z",'<svg viewBox="0 0 844 1324">\n  <defs><clipPath id="shell">\n    <path d="M 36,0 H 808 A 36,36 0 0 1 844,36 V 1288 A 36,36 0 0 1 808,1324 H 36 A 36,36 0 0 1 0,1288 V 36 A 36,36 0 0 1 36,0 Z"/>\n  </clipPath></defs>\n  <path d="M 36,0 H 808 A 36,36 0 0 1 844,36 V 1288 A 36,36 0 0 1 808,1324 H 36 A 36,36 0 0 1 0,1288 V 36 A 36,36 0 0 1 36,0 Z" fill="#2f3336"/>\n  <path d="M 36,2 H 808 A 34,34 0 0 1 842,36 V 1288 A 34,34 0 0 1 808,1322 H 36 A 34,34 0 0 1 2,1288 V 36 A 34,34 0 0 1 36,2 Z" fill="#5b6166"/>\n  <g clip-path="url(#shell)">\n    <path d="M -1324,0 L -794.4,0 L 211,1324 L -318.6,1324 Z" fill="#ffffff" fill-opacity="0.18"/>\n  </g>\n  <path d="M 36,3.5 H 808 A 32.5,32.5 0 0 1 840.5,36 V 1288 A 32.5,32.5 0 0 1 808,1320.5 H 36 A 32.5,32.5 0 0 1 3.5,1288 V 36 A 32.5,32.5 0 0 1 36,3.5 Z" fill="#0b0d0e"/>\n</svg>'],t.J)
+B.Ro=new A.m(B.M,["samsung-galaxy-tab-s11","Galaxy Tab S11","Samsung",2025,"android","tablet",B.PG,2,B.cP,B.cP,336,252,B.QJ,B.ww],t.J)
+B.PN=new A.m(B.n,[360,840],t.J)
+B.S_=new A.m(B.w,[0,40,0,24],t.J)
+B.So=new A.m(B.w,[40,24,0,24],t.J)
+B.Si=new A.m(B.w,[0,420,360,420],t.J)
+B.SI=new A.m(B.br,[B.Si,"fold","postureFlat"],t.J)
+B.RY=new A.m(B.w,[169.67,9.67,190.33,30.33],t.J)
+B.SJ=new A.m(B.br,[B.RY,"cutout","unknown"],t.J)
+B.LH=s([B.SI,B.SJ],t.ef)
+B.m5={portraitSize:0,physicalSize:1,portraitPadding:2,landscapePadding:3,portraitKeyboardHeight:4,landscapeKeyboardHeight:5,displayFeatures:6,frame:7}
+B.P7=new A.m(B.n,[316,349.33],t.J)
+B.Pd=new A.m(B.n,[948,1048],t.J)
+B.RO=new A.m(B.w,[0,24,0,77.67],t.J)
+B.Sh=new A.m(B.w,[0,24,77.67,24],t.J)
+B.RV=new A.m(B.w,[183.67,280.67,243,340],t.J)
+B.SD=new A.m(B.br,[B.RV,"cutout","unknown"],t.J)
+B.Sb=new A.m(B.w,[247.33,280.67,306.67,340],t.J)
+B.SH=new A.m(B.br,[B.Sb,"cutout","unknown"],t.J)
+B.RX=new A.m(B.w,[152.67,299.67,174.33,321.33],t.J)
+B.SM=new A.m(B.br,[B.RX,"cutout","unknown"],t.J)
+B.K9=s([B.SD,B.SH,B.SM],t.ef)
+B.Py=new A.m(B.n,[347,384.67],t.J)
+B.Qb=new A.m(B.ae,[15.67,24],t.J)
+B.QF=new A.m(B.N,[B.Py,B.Qb,"M 3,0 H 313.67 A 2.33,2.33 0 0 1 316,2.33 V 324.33 A 25,25 0 0 1 291,349.33 H 22.33 A 22.33,22.33 0 0 1 0,327 V 3 A 3,3 0 0 1 3,0 Z M 213.33,280.67 A 29.67,29.67 0 1 0 213.33,340 A 29.67,29.67 0 1 0 213.33,280.67 Z M 277,280.67 A 29.67,29.67 0 1 0 277,340 A 29.67,29.67 0 1 0 277,280.67 Z M 163.5,299.67 A 10.83,10.83 0 1 0 163.5,321.33 A 10.83,10.83 0 1 0 163.5,299.67 Z",'<svg viewBox="0 0 347 384.67">\n  <defs><clipPath id="shell">\n    <path d="M 20.49,0 H 319.65 A 19.35,19.35 0 0 1 339,19.35 V 350.52 A 34.14,34.14 0 0 1 304.86,384.67 H 34.14 A 34.14,34.14 0 0 1 0,350.52 V 20.49 A 20.49,20.49 0 0 1 20.49,0 Z" transform="translate(4, 0)"/>\n  </clipPath></defs>\n  <g fill="#3d4149">\n    <rect x="341" y="196" width="6" height="85.33" rx="2"/>\n    <rect x="341" y="99" width="6" height="60.33" rx="2"/>\n  </g>\n  <path d="M 20.49,0 H 319.65 A 19.35,19.35 0 0 1 339,19.35 V 350.52 A 34.14,34.14 0 0 1 304.86,384.67 H 34.14 A 34.14,34.14 0 0 1 0,350.52 V 20.49 A 20.49,20.49 0 0 1 20.49,0 Z" transform="translate(4, 0)" fill="#1f2126"/>\n  <path d="M 18.49,0 H 317.65 A 17.35,17.35 0 0 1 335,17.35 V 348.52 A 32.14,32.14 0 0 1 302.86,380.67 H 32.14 A 32.14,32.14 0 0 1 0,348.52 V 18.49 A 18.49,18.49 0 0 1 18.49,0 Z" transform="translate(6, 2)" fill="#3d4149"/>\n  <g clip-path="url(#shell)">\n    <path d="M -384.67,0 L -230.8,0 L 46.16,384.67 L -107.71,384.67 Z" fill="#ffffff" fill-opacity="0.18"/>\n  </g>\n  <path d="M 16.99,0 H 316.15 A 15.85,15.85 0 0 1 332,15.85 V 347.02 A 30.64,30.64 0 0 1 301.36,377.67 H 30.64 A 30.64,30.64 0 0 1 0,347.02 V 16.99 A 16.99,16.99 0 0 1 16.99,0 Z" transform="translate(7.5, 3.5)" fill="#08090b"/>\n</svg>'],t.J)
+B.Th=new A.m(B.m5,[B.P7,B.Pd,B.RO,B.Sh,336,252,B.K9,B.QF],t.J)
+B.Sy=new A.m(B.fI,[B.cQ,B.Th],t.J)
+B.Pb=new A.m(B.n,[396,876],t.J)
+B.QL=new A.m(B.N,[B.Pb,B.iz,"M 24,0 H 336 A 24,24 0 0 1 360,24 V 816 A 24,24 0 0 1 336,840 H 24 A 24,24 0 0 1 0,816 V 24 A 24,24 0 0 1 24,0 Z M 180,9.67 A 10.33,10.33 0 1 0 180,30.33 A 10.33,10.33 0 1 0 180,9.67 Z",'<svg viewBox="0 0 396 876">\n  <defs><clipPath id="shell">\n    <path d="M 40,0 H 356 A 36,36 0 0 1 392,36 V 840 A 36,36 0 0 1 356,876 H 40 A 36,36 0 0 1 4,840 V 36 A 36,36 0 0 1 40,0 Z"/>\n  </clipPath></defs>\n  <g fill="#3d4149">\n    <rect x="390" y="121.67" width="6" height="99.67" rx="2"/>\n    <rect x="390" y="264" width="6" height="70.33" rx="2"/>\n  </g>\n  <path d="M 40,0 H 356 A 36,36 0 0 1 392,36 V 840 A 36,36 0 0 1 356,876 H 40 A 36,36 0 0 1 4,840 V 36 A 36,36 0 0 1 40,0 Z" fill="#1f2126"/>\n  <path d="M 40,2 H 356 A 34,34 0 0 1 390,36 V 840 A 34,34 0 0 1 356,874 H 40 A 34,34 0 0 1 6,840 V 36 A 34,34 0 0 1 40,2 Z" fill="#3d4149"/>\n  <g clip-path="url(#shell)">\n    <path d="M -876,0 L -525.6,0 L 105.12,876 L -245.28,876 Z" fill="#ffffff" fill-opacity="0.18"/>\n  </g>\n  <path d="M 40,3.5 H 356 A 32.5,32.5 0 0 1 388.5,36 V 840 A 32.5,32.5 0 0 1 356,872.5 H 40 A 32.5,32.5 0 0 1 7.5,840 V 36 A 32.5,32.5 0 0 1 40,3.5 Z" fill="#08090b"/>\n</svg>'],t.J)
+B.Q1=new A.m(B.iI,["samsung-galaxy-z-flip-8","Galaxy Z Flip8","Samsung",2026,"android","foldable",B.PN,3,B.S_,B.So,336,252,B.LH,B.Sy,B.QL,B.fG],t.J)
+B.P3=new A.m(B.n,[859.43,953.9],t.J)
+B.S0=new A.m(B.w,[0,47.61,0,24],t.J)
+B.S9=new A.m(B.w,[47.61,24,0,24],t.J)
+B.S6=new A.m(B.w,[429.715,0,429.715,953.9],t.J)
+B.SO=new A.m(B.br,[B.S6,"fold","postureFlat"],t.J)
+B.S1=new A.m(B.w,[638.86,11.81,662.86,35.81],t.J)
+B.SP=new A.m(B.br,[B.S1,"cutout","unknown"],t.J)
+B.LK=s([B.SO,B.SP],t.ef)
+B.PP=new A.m(B.n,[411.43,960],t.J)
+B.PY=new A.m(B.n,[1080,2520],t.J)
+B.RW=new A.m(B.w,[0,46.86,0,24],t.J)
+B.RP=new A.m(B.w,[46.86,24,0,24],t.J)
+B.Sa=new A.m(B.w,[194.29,11.43,218.29,35.43],t.J)
+B.SG=new A.m(B.br,[B.Sa,"cutout","unknown"],t.J)
+B.LG=s([B.SG],t.ef)
+B.Pp=new A.m(B.n,[467.05,1005.71],t.J)
+B.Qi=new A.m(B.ae,[30.67,20.95],t.J)
+B.QT=new A.m(B.N,[B.Pp,B.Qi,"M 11.81,0 H 400 A 11.43,11.43 0 0 1 411.43,11.43 V 948.57 A 11.43,11.43 0 0 1 400,960 H 11.43 A 11.43,11.43 0 0 1 0,948.57 V 11.81 A 11.81,11.81 0 0 1 11.81,0 Z M 206.29,11.43 A 12,12 0 1 0 206.29,35.43 A 12,12 0 1 0 206.29,11.43 Z",'<svg viewBox="0 0 467.05 1005.71">\n  <defs><clipPath id="shell">\n    <path d="M 24.71,0 H 439.54 A 19.51,19.51 0 0 1 459.05,19.51 V 986.2 A 19.51,19.51 0 0 1 439.54,1005.71 H 19.51 A 19.51,19.51 0 0 1 0,986.2 V 24.71 A 24.71,24.71 0 0 1 24.71,0 Z" transform="translate(4, 0)"/>\n  </clipPath></defs>\n  <g fill="#3d4149">\n    <rect x="461.05" y="261.33" width="6" height="121.9" rx="2"/>\n    <rect x="461.05" y="434.67" width="6" height="84.19" rx="2"/>\n  </g>\n  <path d="M 24.71,0 H 439.54 A 19.51,19.51 0 0 1 459.05,19.51 V 986.2 A 19.51,19.51 0 0 1 439.54,1005.71 H 19.51 A 19.51,19.51 0 0 1 0,986.2 V 24.71 A 24.71,24.71 0 0 1 24.71,0 Z" transform="translate(4, 0)" fill="#1f2126"/>\n  <path d="M 22.71,0 H 437.54 A 17.51,17.51 0 0 1 455.05,17.51 V 984.2 A 17.51,17.51 0 0 1 437.54,1001.71 H 17.51 A 17.51,17.51 0 0 1 0,984.2 V 22.71 A 22.71,22.71 0 0 1 22.71,0 Z" transform="translate(6, 2)" fill="#3d4149"/>\n  <g clip-path="url(#shell)">\n    <path d="M -1005.71,0 L -603.43,0 L 120.69,1005.71 L -281.6,1005.71 Z" fill="#ffffff" fill-opacity="0.18"/>\n  </g>\n  <path d="M 21.21,0 H 436.04 A 16.01,16.01 0 0 1 452.05,16.01 V 982.7 A 16.01,16.01 0 0 1 436.04,998.71 H 16.01 A 16.01,16.01 0 0 1 0,982.7 V 21.21 A 21.21,21.21 0 0 1 21.21,0 Z" transform="translate(7.5, 3.5)" fill="#08090b"/>\n</svg>'],t.J)
+B.Tf=new A.m(B.m5,[B.PP,B.PY,B.RW,B.RP,336,252,B.LG,B.QT],t.J)
+B.SA=new A.m(B.fI,[B.cQ,B.Tf],t.J)
+B.Pw=new A.m(B.n,[906,1002],t.J)
+B.Q8=new A.m(B.ae,[23.29,24.05],t.J)
+B.QE=new A.m(B.N,[B.Pw,B.Q8,"M 16,0 H 843.43 A 16,16 0 0 1 859.43,16 V 937.9 A 16,16 0 0 1 843.43,953.9 H 16 A 16,16 0 0 1 0,937.9 V 16 A 16,16 0 0 1 16,0 Z M 650.86,11.81 A 12,12 0 1 0 650.86,35.81 A 12,12 0 1 0 650.86,11.81 Z",'<svg viewBox="0 0 906 1002">\n  <defs><clipPath id="shell">\n    <path d="M 38,0 H 868 A 34,34 0 0 1 902,34 V 968 A 34,34 0 0 1 868,1002 H 38 A 34,34 0 0 1 4,968 V 34 A 34,34 0 0 1 38,0 Z"/>\n  </clipPath></defs>\n  <g fill="#3d4149">\n    <rect x="900" y="262.15" width="6" height="121.14" rx="2"/>\n    <rect x="900" y="434.34" width="6" height="84.57" rx="2"/>\n  </g>\n  <path d="M 38,0 H 868 A 34,34 0 0 1 902,34 V 968 A 34,34 0 0 1 868,1002 H 38 A 34,34 0 0 1 4,968 V 34 A 34,34 0 0 1 38,0 Z" fill="#1f2126"/>\n  <path d="M 38,2 H 868 A 32,32 0 0 1 900,34 V 968 A 32,32 0 0 1 868,1000 H 38 A 32,32 0 0 1 6,968 V 34 A 32,32 0 0 1 38,2 Z" fill="#3d4149"/>\n  <g clip-path="url(#shell)">\n    <path d="M -1002,0 L -601.2,0 L 120.24,1002 L -280.56,1002 Z" fill="#ffffff" fill-opacity="0.18"/>\n  </g>\n  <path d="M 38,3.5 H 868 A 30.5,30.5 0 0 1 898.5,34 V 968 A 30.5,30.5 0 0 1 868,998.5 H 38 A 30.5,30.5 0 0 1 7.5,968 V 34 A 30.5,30.5 0 0 1 38,3.5 Z" fill="#08090b"/>\n</svg>'],t.J)
+B.Q2=new A.m(B.iI,["samsung-galaxy-z-fold-8-ultra","Galaxy Z Fold8 Ultra","Samsung",2026,"android","foldable",B.P3,2.625,B.S0,B.S9,336,252,B.LK,B.SA,B.QE,B.fG],t.J)
+B.Pr=new A.m(B.n,[739.2,979.2],t.J)
+B.RT=new A.m(B.w,[0,24,48.4,24],t.J)
+B.wu=new A.m(B.w,[0,48.4,0,24],t.J)
+B.S4=new A.m(B.w,[0,489.6,739.2,489.6],t.J)
+B.SQ=new A.m(B.br,[B.S4,"fold","postureFlat"],t.J)
+B.Sm=new A.m(B.w,[702.8,732,727.2,756.4],t.J)
+B.SE=new A.m(B.br,[B.Sm,"cutout","unknown"],t.J)
+B.LL=s([B.SQ,B.SE],t.ef)
+B.Pt=new A.m(B.n,[499.2,788.8],t.J)
+B.PU=new A.m(B.n,[1248,1972],t.J)
+B.Se=new A.m(B.w,[48.4,24,0,24],t.J)
+B.RN=new A.m(B.w,[237.6,12,262,36.4],t.J)
+B.SK=new A.m(B.br,[B.RN,"cutout","unknown"],t.J)
+B.LI=s([B.SK],t.ef)
+B.P8=new A.m(B.n,[560,835.2],t.J)
+B.Q7=new A.m(B.ae,[34,23.2],t.J)
+B.QI=new A.m(B.N,[B.P8,B.Q7,"M 4.8,0 H 494.4 A 4.8,4.8 0 0 1 499.2,4.8 V 784 A 4.8,4.8 0 0 1 494.4,788.8 H 4.8 A 4.8,4.8 0 0 1 0,784 V 4.8 A 4.8,4.8 0 0 1 4.8,0 Z M 249.8,12 A 12.2,12.2 0 1 0 249.8,36.4 A 12.2,12.2 0 1 0 249.8,12 Z",'<svg viewBox="0 0 560 835.2">\n  <defs><clipPath id="shell">\n    <path d="M 27.31,0 H 531.51 A 20.49,20.49 0 0 1 552,20.49 V 814.71 A 20.49,20.49 0 0 1 531.51,835.2 H 19.12 A 19.12,19.12 0 0 1 0,816.08 V 27.31 A 27.31,27.31 0 0 1 27.31,0 Z" transform="translate(4, 0)"/>\n  </clipPath></defs>\n  <g fill="#3d4149">\n    <rect x="554" y="82" width="6" height="129.6" rx="2"/>\n    <rect x="554" y="280.8" width="6" height="90.4" rx="2"/>\n  </g>\n  <path d="M 27.31,0 H 531.51 A 20.49,20.49 0 0 1 552,20.49 V 814.71 A 20.49,20.49 0 0 1 531.51,835.2 H 19.12 A 19.12,19.12 0 0 1 0,816.08 V 27.31 A 27.31,27.31 0 0 1 27.31,0 Z" transform="translate(4, 0)" fill="#1f2126"/>\n  <path d="M 25.31,0 H 529.51 A 18.49,18.49 0 0 1 548,18.49 V 812.71 A 18.49,18.49 0 0 1 529.51,831.2 H 17.12 A 17.12,17.12 0 0 1 0,814.08 V 25.31 A 25.31,25.31 0 0 1 25.31,0 Z" transform="translate(6, 2)" fill="#3d4149"/>\n  <g clip-path="url(#shell)">\n    <path d="M -835.2,0 L -501.12,0 L 100.22,835.2 L -233.86,835.2 Z" fill="#ffffff" fill-opacity="0.18"/>\n  </g>\n  <path d="M 23.81,0 H 528.01 A 16.99,16.99 0 0 1 545,16.99 V 811.21 A 16.99,16.99 0 0 1 528.01,828.2 H 15.62 A 15.62,15.62 0 0 1 0,812.58 V 23.81 A 23.81,23.81 0 0 1 23.81,0 Z" transform="translate(7.5, 3.5)" fill="#08090b"/>\n</svg>'],t.J)
+B.Tg=new A.m(B.m5,[B.Pt,B.PU,B.wu,B.Se,336,252,B.LI,B.QI],t.J)
+B.SC=new A.m(B.fI,[B.cQ,B.Tg],t.J)
+B.PH=new A.m(B.n,[786,1028],t.J)
+B.Qf=new A.m(B.ae,[23.4,22.4],t.J)
+B.QG=new A.m(B.N,[B.PH,B.Qf,"M 16,0 H 723.2 A 16,16 0 0 1 739.2,16 V 963.2 A 16,16 0 0 1 723.2,979.2 H 16 A 16,16 0 0 1 0,963.2 V 16 A 16,16 0 0 1 16,0 Z M 715,732 A 12.2,12.2 0 1 0 715,756.4 A 12.2,12.2 0 1 0 715,732 Z",'<svg viewBox="0 0 786 1028">\n  <defs><clipPath id="shell">\n    <path d="M 40,0 H 746 A 36,36 0 0 1 782,36 V 988 A 36,36 0 0 1 746,1024 H 40 A 36,36 0 0 1 4,988 V 36 A 36,36 0 0 1 40,0 Z"/>\n  </clipPath></defs>\n  <g fill="#3d4149">\n    <rect x="586.2" y="1022" width="121.6" height="6" rx="2"/>\n    <rect x="436.2" y="1022" width="84.8" height="6" rx="2"/>\n  </g>\n  <path d="M 40,0 H 746 A 36,36 0 0 1 782,36 V 988 A 36,36 0 0 1 746,1024 H 40 A 36,36 0 0 1 4,988 V 36 A 36,36 0 0 1 40,0 Z" fill="#1f2126"/>\n  <path d="M 40,2 H 746 A 34,34 0 0 1 780,36 V 988 A 34,34 0 0 1 746,1022 H 40 A 34,34 0 0 1 6,988 V 36 A 34,34 0 0 1 40,2 Z" fill="#3d4149"/>\n  <g clip-path="url(#shell)">\n    <path d="M -1024,0 L -614.4,0 L 122.88,1024 L -286.72,1024 Z" fill="#ffffff" fill-opacity="0.18"/>\n  </g>\n  <path d="M 40,3.5 H 746 A 32.5,32.5 0 0 1 778.5,36 V 988 A 32.5,32.5 0 0 1 746,1020.5 H 40 A 32.5,32.5 0 0 1 7.5,988 V 36 A 32.5,32.5 0 0 1 40,3.5 Z" fill="#08090b"/>\n</svg>'],t.J)
+B.Q3=new A.m(B.iI,["samsung-galaxy-z-fold-8","Galaxy Z Fold8","Samsung",2026,"android","foldable",B.Pr,2.5,B.RT,B.wu,336,252,B.LL,B.SC,B.QG,B.fG],t.J)
+B.Kd=s([B.Rj,B.R7,B.Rh,B.Rk,B.QX,B.R2,B.R0,B.Rr,B.Rq,B.R9,B.Rv,B.R1,B.P1,B.Rw,B.QW,B.Rf,B.QZ,B.Rc,B.Rd,B.R8,B.R_,B.Re,B.Ra,B.Rn,B.Ru,B.Rp,B.R5,B.Rb,B.QY,B.Rl,B.R3,B.Rm,B.Tt,B.R6,B.RI,B.RH,B.Q0,B.Rx,B.Rt,B.Rg,B.Ri,B.R4,B.Rs,B.Ro,B.Q1,B.Q2,B.Q3],A.as("r<l<e,O?>>"))
 B.pI=s(["text","multiline","number","phone","datetime","emailAddress","url","visiblePassword","name","address","none","webSearch","twitter"],t.s)
-B.Kd=s(["portraitPadding","portraitViewPadding","landscapePadding","landscapeViewPadding","systemGestureInsets","portraitKeyboardHeight","landscapeKeyboardHeight","displayFeatures","portraitReservedRegions","landscapeReservedRegions","frame","physicalSize"],t.s)
-B.KD=s([4,9,14,19],t.t)
+B.Ke=s(["portraitPadding","portraitViewPadding","landscapePadding","landscapeViewPadding","systemGestureInsets","portraitKeyboardHeight","landscapeKeyboardHeight","displayFeatures","portraitReservedRegions","landscapeReservedRegions","frame","physicalSize"],t.s)
+B.KE=s([4,9,14,19],t.t)
 B.ni=new A.I0(0,"named")
 B.CP=new A.I0(1,"anonymous")
-B.KN=s([B.ni,B.CP],A.as("r<I0>"))
-B.M7=s([0.41233895,0.35762064,0.18051042],t.n)
-B.Lc=s([0.2126,0.7152,0.0722],t.n)
-B.No=s([0.01932141,0.11916382,0.95034478],t.n)
-B.KP=s([B.M7,B.Lc,B.No],t.zg)
+B.KO=s([B.ni,B.CP],A.as("r<I0>"))
+B.M8=s([0.41233895,0.35762064,0.18051042],t.n)
+B.Ld=s([0.2126,0.7152,0.0722],t.n)
+B.Np=s([0.01932141,0.11916382,0.95034478],t.n)
+B.KQ=s([B.M8,B.Ld,B.Np],t.zg)
 B.pJ=s([0,4,12,1,5,13,3,7,15],t.t)
 B.a5Q=new A.hi(0,1)
 B.a5V=new A.hi(0.5,1)
@@ -101638,41 +101996,41 @@ B.a5Z=new A.hi(0.8875,0.25)
 B.a5X=new A.hi(0.925,0.5)
 B.a5R=new A.hi(0.9625,0.75)
 B.a5S=new A.hi(1,1)
-B.KZ=s([B.a5Q,B.a5V,B.a5Y,B.a6_,B.a5W,B.a5U,B.a5T,B.a5Z,B.a5X,B.a5R,B.a5S],A.as("r<hi>"))
+B.L_=s([B.a5Q,B.a5V,B.a5Y,B.a6_,B.a5W,B.a5U,B.a5T,B.a5Z,B.a5X,B.a5R,B.a5S],A.as("r<hi>"))
 B.cw=new A.mg(0,"left")
 B.eB=new A.mg(1,"right")
 B.dB=new A.mg(2,"center")
 B.h4=new A.mg(3,"justify")
 B.aP=new A.mg(4,"start")
 B.ji=new A.mg(5,"end")
-B.L_=s([B.cw,B.eB,B.dB,B.h4,B.aP,B.ji],A.as("r<mg>"))
-B.Lz=s([2,1.13276676],t.n)
-B.Kh=s([2.18349805,1.20311921],t.n)
-B.N1=s([2.33888662,1.28698796],t.n)
-B.N4=s([2.48660575,1.36351941],t.n)
-B.L6=s([2.62226596,1.44717976],t.n)
-B.Li=s([2.7514899,1.53385819],t.n)
-B.My=s([3.36298265,1.98288283],t.n)
-B.LP=s([4.08649929,2.23811846],t.n)
-B.Mk=s([4.85481134,2.47563463],t.n)
-B.Lb=s([5.62945551,2.72948597],t.n)
-B.LA=s([6.43023796,2.98020421],t.n)
-B.pK=s([B.Lz,B.Kh,B.N1,B.N4,B.L6,B.Li,B.My,B.LP,B.Mk,B.Lb,B.LA],t.zg)
-B.L1=s(["android","iOS","macOS","windows","linux","fuchsia"],t.s)
-B.L3=s(["AllocationProfile"],t.s)
-B.L4=s(["Arial"],t.s)
-B.L5=s([B.jU,B.jV],A.as("r<zo>"))
-B.L7=s(["-apple-system","BlinkMacSystemFont"],t.s)
+B.L0=s([B.cw,B.eB,B.dB,B.h4,B.aP,B.ji],A.as("r<mg>"))
+B.LA=s([2,1.13276676],t.n)
+B.Ki=s([2.18349805,1.20311921],t.n)
+B.N2=s([2.33888662,1.28698796],t.n)
+B.N5=s([2.48660575,1.36351941],t.n)
+B.L7=s([2.62226596,1.44717976],t.n)
+B.Lj=s([2.7514899,1.53385819],t.n)
+B.Mz=s([3.36298265,1.98288283],t.n)
+B.LQ=s([4.08649929,2.23811846],t.n)
+B.Ml=s([4.85481134,2.47563463],t.n)
+B.Lc=s([5.62945551,2.72948597],t.n)
+B.LB=s([6.43023796,2.98020421],t.n)
+B.pK=s([B.LA,B.Ki,B.N2,B.N5,B.L7,B.Lj,B.Mz,B.LQ,B.Ml,B.Lc,B.LB],t.zg)
+B.L2=s(["android","iOS","macOS","windows","linux","fuchsia"],t.s)
+B.L4=s(["AllocationProfile"],t.s)
+B.L5=s(["Arial"],t.s)
+B.L6=s([B.jU,B.jV],A.as("r<zo>"))
+B.L8=s(["-apple-system","BlinkMacSystemFont"],t.s)
 B.pL=s(["BlinkMacSystemFont"],t.s)
 B.pM=s(["BoundField"],t.s)
-B.L8=s(["BoundVariable"],t.s)
+B.L9=s(["BoundVariable"],t.s)
 B.co=s(["Breakpoint"],t.s)
-B.La=s([18,15,10,12,15,18,15,12,12],t.n)
-B.Ld=s(["ClassHeapStats"],t.s)
-B.Le=s(["ClassList"],t.s)
+B.Lb=s([18,15,10,12,15,18,15,12,12],t.n)
+B.Le=s(["ClassHeapStats"],t.s)
+B.Lf=s(["ClassList"],t.s)
 B.a1=s(["ClassRef"],t.s)
 B.pN=s(["CodeRef"],t.s)
-B.Lf=s(["ContextElement"],t.s)
+B.Lg=s(["ContextElement"],t.s)
 B.fl=s(["ContextRef"],t.s)
 B.lp=s(["CpuSample"],t.s)
 B.pO=s(["CpuSamples"],t.s)
@@ -101685,35 +102043,35 @@ B.E9=new A.fg("light",B.Ju,null,"Light",t.Zx)
 B.Ji=new A.cO(61343,"MaterialIcons",!1)
 B.Jq=new A.eb(B.Ji,null,null,null,null)
 B.Ec=new A.fg("dark",B.Jq,null,"Dark",t.Zx)
-B.Lg=s([B.Eb,B.E9,B.Ec],t.CK)
-B.Lj=s(["Error"],t.s)
+B.Lh=s([B.Eb,B.E9,B.Ec],t.CK)
+B.Lk=s(["Error"],t.s)
 B.pQ=s(["ErrorRef"],t.s)
 B.ig=s(["Event"],t.s)
 B.lq=s(["FieldRef"],t.s)
-B.Lk=s(["FieldRef","String","int"],t.s)
-B.Ll=s(["Flag"],t.s)
-B.Lm=s(["FlagList"],t.s)
+B.Ll=s(["FieldRef","String","int"],t.s)
+B.Lm=s(["Flag"],t.s)
+B.Ln=s(["FlagList"],t.s)
 B.fm=s(["Frame"],t.s)
 B.cM=s(["FuncRef"],t.s)
 B.pR=s(["FuncRef","NativeFunction"],t.s)
 B.bv=new A.kR(0,"label")
 B.b9=new A.kR(1,"avatar")
 B.cd=new A.kR(2,"deleteIcon")
-B.Ln=s([B.bv,B.b9,B.cd],A.as("r<kR>"))
-B.Lo=s(["Noto Color Emoji","Noto Sans Symbols","Noto Sans SC","Noto Sans TC","Noto Sans HK","Noto Sans JP","Noto Sans KR"],t.s)
-B.Lq=s(["IdZone"],t.s)
-B.Lr=s(["InboundReference"],t.s)
-B.Ls=s(["InboundReferences"],t.s)
+B.Lo=s([B.bv,B.b9,B.cd],A.as("r<kR>"))
+B.Lp=s(["Noto Color Emoji","Noto Sans Symbols","Noto Sans SC","Noto Sans TC","Noto Sans HK","Noto Sans JP","Noto Sans KR"],t.s)
+B.Lr=s(["IdZone"],t.s)
+B.Ls=s(["InboundReference"],t.s)
+B.Lt=s(["InboundReferences"],t.s)
 B.u=s(["InstanceRef"],t.s)
 B.lr=s(["InstanceRef","ErrorRef"],t.s)
 B.fn=s(["InstanceRef","Sentinel"],t.s)
-B.Lt=s(["InstanceSet"],t.s)
-B.Lu=s(["Isolate"],t.s)
-B.Lv=s(["IsolateFlag"],t.s)
-B.Lw=s(["IsolateGroup"],t.s)
+B.Lu=s(["InstanceSet"],t.s)
+B.Lv=s(["Isolate"],t.s)
+B.Lw=s(["IsolateFlag"],t.s)
+B.Lx=s(["IsolateGroup"],t.s)
 B.ih=s(["IsolateGroupRef"],t.s)
 B.fo=s(["IsolateRef"],t.s)
-B.LB=s(["InstanceRef","TypeArgumentsRef","Sentinel"],t.s)
+B.LC=s(["InstanceRef","TypeArgumentsRef","Sentinel"],t.s)
 B.aS=new A.eR(0,"icon")
 B.ba=new A.eR(1,"input")
 B.an=new A.eR(2,"label")
@@ -101725,7 +102083,7 @@ B.b_=new A.eR(7,"suffixIcon")
 B.bZ=new A.eR(8,"helperError")
 B.c_=new A.eR(9,"counter")
 B.d_=new A.eR(10,"container")
-B.LC=s([B.aS,B.ba,B.an,B.bi,B.bj,B.bk,B.ah,B.b_,B.bZ,B.c_,B.d_],A.as("r<eR>"))
+B.LD=s([B.aS,B.ba,B.an,B.bi,B.bj,B.bk,B.ah,B.b_,B.bZ,B.c_,B.d_],A.as("r<eR>"))
 B.e7=s(["LibraryRef"],t.s)
 B.pS=s(["LibraryRef","ClassRef","FuncRef"],t.s)
 B.Nv=new A.qJ("en",null,"US")
@@ -101740,30 +102098,30 @@ B.a5F=new A.my(8,0.12)
 B.a5E=new A.my(12,0.14)
 B.pW=s([B.a5D,B.a5I,B.a5G,B.a5H,B.a5F,B.a5E],A.as("r<my>"))
 B.ls=s(["MemoryUsage"],t.s)
-B.LN=s(["Message"],t.s)
-B.LO=s(["Microtask"],t.s)
+B.LO=s(["Message"],t.s)
+B.LP=s(["Microtask"],t.s)
 B.pX=s([0,21,51,121,151,191,271,321,360],t.n)
-B.LW=s(["portraitViewPadding","landscapePadding","landscapeViewPadding"],t.s)
-B.LX=s(["Obj"],t.s)
+B.LX=s(["portraitViewPadding","landscapePadding","landscapeViewPadding"],t.s)
+B.LY=s(["Obj"],t.s)
 B.bn=s(["ObjRef"],t.s)
 B.ii=s(["Parameter"],t.s)
-B.LY=s(["PerfettoCpuSamples"],t.s)
-B.LZ=s(["PerfettoTimeline"],t.s)
-B.M_=s(["PortList"],t.s)
+B.LZ=s(["PerfettoCpuSamples"],t.s)
+B.M_=s(["PerfettoTimeline"],t.s)
+B.M0=s(["PortList"],t.s)
 B.pY=s(["ProcessMemoryItem"],t.s)
-B.M0=s(["ProcessMemoryUsage"],t.s)
+B.M1=s(["ProcessMemoryUsage"],t.s)
 B.pZ=s(["ProfileFunction"],t.s)
-B.M1=s(["Protocol"],t.s)
-B.M2=s(["ProtocolList"],t.s)
+B.M2=s(["Protocol"],t.s)
+B.M3=s(["ProtocolList"],t.s)
 B.Da=new A.Lb(2,"outer")
 B.og=new A.y(0.09803921568627451,0,0,0,B.e)
 B.f=new A.i(0,0)
 B.DM=new A.bs(0.2,B.Da,B.og,B.f,11)
-B.M5=s([B.DM],t.F)
-B.M6=s(["QueuedMicrotasks"],t.s)
-B.M8=s(["ReloadReport"],t.s)
-B.M9=s(["RetainingObject"],t.s)
-B.Ma=s(["RetainingPath"],t.s)
+B.M6=s([B.DM],t.F)
+B.M7=s(["QueuedMicrotasks"],t.s)
+B.M9=s(["ReloadReport"],t.s)
+B.Ma=s(["RetainingObject"],t.s)
+B.Mb=s(["RetainingPath"],t.s)
 B.VX=new A.cl(-32e3,"Application error",0,"kServerError")
 B.VS=new A.cl(-32010,"Service connection disposed",1,"kConnectionDisposed")
 B.W0=new A.cl(-32600,"Invalid request object",2,"kInvalidRequest")
@@ -101788,45 +102146,45 @@ B.VZ=new A.cl(114,"Invalid timeline request for the current timeline configurati
 B.W3=new A.cl(115,"Cannot get queued microtasks",21,"kCannotGetQueuedMicrotasks")
 B.W8=new A.cl(130,"Custom stream does not exist",22,"kCustomStreamDoesNotExist")
 B.VV=new A.cl(131,"Core streams are not allowed",23,"kCoreStreamNotAllowed")
-B.Mb=s([B.VX,B.VS,B.W0,B.Wa,B.Wd,B.We,B.VT,B.W5,B.Wb,B.VU,B.W6,B.W7,B.W9,B.Wc,B.VW,B.W1,B.W2,B.W4,B.W_,B.VY,B.VZ,B.W3,B.W8,B.VV],A.as("r<cl>"))
-B.Mc=s(["ScriptList"],t.s)
+B.Mc=s([B.VX,B.VS,B.W0,B.Wa,B.Wd,B.We,B.VT,B.W5,B.Wb,B.VU,B.W6,B.W7,B.W9,B.Wc,B.VW,B.W1,B.W2,B.W4,B.W_,B.VY,B.VZ,B.W3,B.W8,B.VV],A.as("r<cl>"))
+B.Md=s(["ScriptList"],t.s)
 B.fp=s(["ScriptRef"],t.s)
 B.cN=s(["SourceLocation"],t.s)
-B.Me=s(["SourceReport"],t.s)
-B.Mf=s(["SourceReportCoverage"],t.s)
-B.Mg=s(["en-US","en-GB","fr-FR","de-DE","es-ES","it-IT","pt-BR","nl-NL","ru-RU","ja-JP","ko-KR","zh-CN","zh-TW","ar-SA","hi-IN"],t.s)
-B.Mh=s(["Stack"],t.s)
+B.Mf=s(["SourceReport"],t.s)
+B.Mg=s(["SourceReportCoverage"],t.s)
+B.Mh=s(["en-US","en-GB","fr-FR","de-DE","es-ES","it-IT","pt-BR","nl-NL","ru-RU","ja-JP","ko-KR","zh-CN","zh-TW","ar-SA","hi-IN"],t.s)
+B.Mi=s(["Stack"],t.s)
 B.q0=s(["String","int"],t.s)
 B.aE=s(["Success"],t.s)
-B.Mi=s(["Success","Error"],t.s)
+B.Mj=s(["Success","Error"],t.s)
 B.BO=new A.Em(0,"left")
 B.BP=new A.Em(1,"right")
-B.Mj=s([B.BO,B.BP],A.as("r<Em>"))
+B.Mk=s([B.BO,B.BP],A.as("r<Em>"))
 B.a4=new A.Ez(0,"upstream")
-B.Ml=s([B.a4,B.i],A.as("r<Ez>"))
+B.Mm=s([B.a4,B.i],A.as("r<Ez>"))
 B.ag=new A.ED(0,"rtl")
 B.U=new A.ED(1,"ltr")
 B.lu=s([B.ag,B.U],A.as("r<ED>"))
-B.Mm=s(["Timeline"],t.s)
+B.Mn=s(["Timeline"],t.s)
 B.lv=s(["TimelineEvent"],t.s)
-B.Mn=s(["TimelineFlags"],t.s)
-B.Mo=s(["Timestamp"],t.s)
+B.Mo=s(["TimelineFlags"],t.s)
+B.Mp=s(["Timestamp"],t.s)
 B.ij=s(["TypeArgumentsRef"],t.s)
 B.q1=s(["UriList"],t.s)
 B.Fw=new A.uc(0,"auto")
 B.Fx=new A.uc(1,"full")
 B.Fy=new A.uc(2,"chromium")
-B.Mt=s([B.Fw,B.Fx,B.Fy],A.as("r<uc>"))
-B.Mu=s(["VM"],t.s)
+B.Mu=s([B.Fw,B.Fx,B.Fy],A.as("r<uc>"))
+B.Mv=s(["VM"],t.s)
 B.q2=s(["VMRef"],t.s)
-B.Mw=s(["Version"],t.s)
+B.Mx=s(["Version"],t.s)
 B.d0=new A.jw(0,"leading")
 B.bP=new A.jw(1,"title")
 B.d1=new A.jw(2,"subtitle")
 B.eK=new A.jw(3,"trailing")
-B.Mx=s([B.d0,B.bP,B.d1,B.eK],A.as("r<jw>"))
+B.My=s([B.d0,B.bP,B.d1,B.eK],A.as("r<jw>"))
 B.bB=new A.fo(1,"fuchsia")
-B.MA=s([B.af,B.bB,B.K,B.bt,B.aL,B.bu],A.as("r<fo>"))
+B.MB=s([B.af,B.bB,B.K,B.bt,B.aL,B.bu],A.as("r<fo>"))
 B.Cv=new A.xE(0,"topLeft")
 B.Cy=new A.xE(3,"bottomRight")
 B.a5y=new A.mx(B.Cv,B.Cy)
@@ -101835,68 +102193,68 @@ B.Cw=new A.xE(1,"topRight")
 B.Cx=new A.xE(2,"bottomLeft")
 B.a5z=new A.mx(B.Cw,B.Cx)
 B.a5A=new A.mx(B.Cx,B.Cw)
-B.MB=s([B.a5y,B.a5B,B.a5z,B.a5A],A.as("r<mx>"))
-B.MC=s(["SourceLocation","UnresolvedSourceLocation"],t.s)
-B.ME=s([35,30,20,25,30,35,30,25,25],t.n)
-B.MH=s(["click","scroll"],t.s)
+B.MC=s([B.a5y,B.a5B,B.a5z,B.a5A],A.as("r<mx>"))
+B.MD=s(["SourceLocation","UnresolvedSourceLocation"],t.s)
+B.MF=s([35,30,20,25,30,35,30,25,25],t.n)
+B.MI=s(["click","scroll"],t.s)
 B.Ek=new A.mS()
 B.iY=new A.Qp(1,"page")
 B.iZ=new A.eL(B.bl,B.iY)
-B.MI=s([B.Ek,B.iZ],A.as("r<b2>"))
+B.MJ=s([B.Ek,B.iZ],A.as("r<b2>"))
 B.ik=s(["dynamic"],t.s)
 B.HG=new A.fZ(B.i2,0,"ping")
 B.HH=new A.fZ(B.i2,2,"forceReload")
 B.HI=new A.fZ(B.i2,4,"themeUpdate")
 B.HJ=new A.fZ(B.i1,7,"copyToClipboard")
-B.MK=s([B.HG,B.oR,B.HH,B.oQ,B.HI,B.oT,B.oS,B.HJ,B.oP],A.as("r<fZ>"))
+B.ML=s([B.HG,B.oR,B.HH,B.oQ,B.HI,B.oT,B.oS,B.HJ,B.oP],A.as("r<fZ>"))
 B.lw=s(["presetId","orientation","screenSize","frame","systemUi","deviceKind","devicePixelRatio","padding","viewPadding","systemGestureInsets","keyboardInset","displayFeatures","posture","reservedRegions"],t.s)
-B.MU=s([],t.QP)
+B.MV=s([],t.QP)
 B.q4=s([],t.F)
-B.MZ=s([],t.Ug)
+B.N_=s([],t.Ug)
 B.q7=s([],A.as("r<b4I>"))
-B.MW=s([],t.E)
-B.MX=s([],t.fJ)
-B.MQ=s([],t.Vt)
-B.MY=s([],t.ER)
+B.MX=s([],t.E)
+B.MY=s([],t.fJ)
+B.MR=s([],t.Vt)
+B.MZ=s([],t.ER)
 B.a79=s([],t.ss)
 B.q5=s([],t.tc)
 B.il=s([],t.jl)
 B.q3=s([],t.wi)
-B.MP=s([],A.as("r<km<@>>"))
+B.MQ=s([],A.as("r<km<@>>"))
 B.di=s([],t.PP)
 B.ly=s([],t.AO)
-B.MT=s([],t.D1)
+B.MU=s([],t.D1)
 B.im=s([],t.QF)
-B.MR=s([],t.Lx)
-B.MO=s([],t.AS)
+B.MS=s([],t.Lx)
+B.MP=s([],t.AS)
 B.lx=s([],t.p)
-B.MN=s([],t.n)
-B.MM=s([],t.t)
+B.MO=s([],t.n)
+B.MN=s([],t.t)
 B.q6=s([],t.ee)
-B.MV=s([],t._m)
+B.MW=s([],t._m)
 B.Jh=new A.cO(58882,"MaterialIcons",!1)
 B.Jt=new A.eb(B.Jh,null,null,null,null)
 B.Ea=new A.fg("portrait",B.Jt,null,"Portrait",t.Zx)
 B.Jg=new A.cO(58881,"MaterialIcons",!1)
 B.Js=new A.eb(B.Jg,null,null,null,null)
 B.E8=new A.fg("landscape",B.Js,null,"Landscape",t.Zx)
-B.N2=s([B.Ea,B.E8],t.CK)
+B.N3=s([B.Ea,B.E8],t.CK)
 B.iJ=new A.i(0,2)
 B.DK=new A.bs(0.75,B.Q,B.og,B.iJ,1.5)
-B.N5=s([B.DK],t.F)
-B.Nb=s(["landscapeReservedRegions"],t.s)
-B.Nc=s(["landscapeViewPadding"],t.s)
-B.Nd=s(["portraitReservedRegions","landscapeReservedRegions"],t.s)
+B.N6=s([B.DK],t.F)
+B.Nc=s(["landscapeReservedRegions"],t.s)
+B.Nd=s(["landscapeViewPadding"],t.s)
+B.Ne=s(["portraitReservedRegions","landscapeReservedRegions"],t.s)
 B.fq=s([B.d4,B.cC,B.hi,B.hj,B.jT],t.QP)
-B.Ne=s(["open","halfOpened","closed"],t.s)
+B.Nf=s(["open","halfOpened","closed"],t.s)
 B.q8=s(["accessibleNavigation","invertColors","disableAnimations","boldText","reduceMotion","highContrast","onOffSwitchLabels"],t.s)
 B.q9=s(["phone","tablet","foldable","desktop"],t.s)
-B.KU=s([0.001200833568784504,0.002389694492170889,0.0002795742885861124],t.n)
-B.MJ=s([0.0005891086651375999,0.0029785502573438758,0.0003270666104008398],t.n)
-B.L9=s([0.00010146692491640572,0.0005364214359186694,0.0032979401770712076],t.n)
-B.Ni=s([B.KU,B.MJ,B.L9],t.zg)
-B.Nj=s([45,95,45,20,45,90,45,45,45],t.n)
-B.Nk=s([120,120,20,45,20,15,20,120,120],t.n)
+B.KV=s([0.001200833568784504,0.002389694492170889,0.0002795742885861124],t.n)
+B.MK=s([0.0005891086651375999,0.0029785502573438758,0.0003270666104008398],t.n)
+B.La=s([0.00010146692491640572,0.0005364214359186694,0.0032979401770712076],t.n)
+B.Nj=s([B.KV,B.MK,B.La],t.zg)
+B.Nk=s([45,95,45,20,45,90,45,45,45],t.n)
+B.Nl=s([120,120,20,45,20,15,20,120,120],t.n)
 B.ed=new A.hH(0,"controlModifier")
 B.ee=new A.hH(1,"shiftModifier")
 B.ef=new A.hH(2,"altModifier")
@@ -101913,365 +102271,7 @@ B.cR=new A.i(0,3)
 B.DO=new A.bs(0,B.Q,B.FV,B.cR,8)
 B.Hd=new A.y(0.058823529411764705,0,0,0,B.e)
 B.DX=new A.bs(0,B.Q,B.Hd,B.cR,1)
-B.Nn=s([B.DO,B.DX],t.F)
-B.M={id:0,name:1,brand:2,year:3,platform:4,kind:5,portraitSize:6,devicePixelRatio:7,portraitPadding:8,landscapePadding:9,portraitKeyboardHeight:10,landscapeKeyboardHeight:11,frame:12,systemUi:13}
-B.n={width:0,height:1}
-B.fE=new A.m(B.n,[820,1180],t.J)
-B.w={left:0,top:1,right:2,bottom:3}
-B.a7=new A.m(B.w,[0,32,0,25],t.J)
-B.N={size:0,screenOffset:1,screenPath:2,body:3}
-B.wd=new A.m(B.n,[938,1298],t.J)
-B.ae={x:0,y:1}
-B.lS=new A.m(B.ae,[59,59],t.J)
-B.wk=new A.m(B.N,[B.wd,B.lS,"M 817.06,11.25 L 817.26,11.64 L 817.46,12.02 L 817.65,12.41 L 817.83,12.81 L 818,13.21 L 818.17,13.62 C 818.23,13.75 818.28,13.89 818.33,14.04 L 818.48,14.47 C 818.53,14.61 818.58,14.76 818.63,14.91 L 818.77,15.37 L 818.9,15.85 L 819.02,16.34 L 819.14,16.86 L 819.25,17.39 L 819.35,17.96 L 819.45,18.54 L 819.54,19.16 C 819.55,19.26 819.56,19.37 819.58,19.47 L 819.65,20.13 L 819.72,20.82 L 819.78,21.55 L 819.84,22.3 L 819.88,23.1 C 819.89,23.23 819.9,23.37 819.9,23.51 L 819.94,24.36 C 819.94,24.51 819.95,24.66 819.95,24.81 L 819.98,25.72 L 820,26.68 L 820,27.68 L 820,1152.32 L 820,1153.32 L 819.98,1154.28 L 819.95,1155.19 L 819.92,1156.07 C 819.92,1156.21 819.91,1156.35 819.9,1156.49 L 819.86,1157.3 L 819.81,1158.08 L 819.75,1158.82 C 819.74,1158.94 819.73,1159.06 819.72,1159.18 L 819.65,1159.87 L 819.58,1160.52 L 819.49,1161.15 C 819.48,1161.26 819.46,1161.36 819.45,1161.46 L 819.35,1162.04 L 819.25,1162.61 L 819.14,1163.14 L 819.02,1163.66 L 818.9,1164.15 L 818.77,1164.63 L 818.63,1165.09 C 818.58,1165.24 818.53,1165.39 818.48,1165.53 L 818.33,1165.96 C 818.3,1166.04 818.28,1166.11 818.25,1166.18 L 818.09,1166.59 L 817.92,1166.99 C 817.89,1167.06 817.86,1167.13 817.83,1167.19 L 817.65,1167.59 L 817.46,1167.98 L 817.26,1168.36 L 817.06,1168.75 C 815.14,1172.33 812.33,1175.15 808.75,1177.06 L 808.36,1177.26 L 807.98,1177.46 L 807.59,1177.65 L 807.19,1177.83 L 806.79,1178 L 806.38,1178.17 C 806.25,1178.22 806.11,1178.28 805.96,1178.33 L 805.53,1178.48 C 805.39,1178.53 805.24,1178.58 805.09,1178.63 L 804.63,1178.77 L 804.15,1178.9 L 803.66,1179.02 L 803.14,1179.14 L 802.61,1179.25 L 802.04,1179.35 L 801.46,1179.45 L 800.84,1179.54 C 800.74,1179.55 800.63,1179.56 800.52,1179.58 L 799.87,1179.65 L 799.18,1179.72 L 798.45,1179.78 L 797.7,1179.84 L 796.9,1179.88 C 796.77,1179.89 796.63,1179.9 796.49,1179.9 L 795.64,1179.94 C 795.49,1179.94 795.34,1179.95 795.2,1179.95 L 794.28,1179.98 L 793.32,1180 L 792.32,1180 L 27.68,1180 L 26.68,1180 L 25.72,1179.98 L 24.81,1179.95 L 23.93,1179.92 C 23.79,1179.92 23.65,1179.91 23.51,1179.9 L 22.7,1179.86 L 21.92,1179.81 L 21.18,1179.75 C 21.06,1179.74 20.94,1179.73 20.82,1179.72 L 20.13,1179.65 L 19.48,1179.58 L 18.85,1179.49 C 18.74,1179.48 18.64,1179.46 18.54,1179.45 L 17.96,1179.35 L 17.39,1179.25 L 16.86,1179.14 L 16.34,1179.02 L 15.85,1178.9 L 15.37,1178.77 L 14.91,1178.63 C 14.76,1178.58 14.61,1178.53 14.47,1178.48 L 14.04,1178.33 C 13.96,1178.3 13.89,1178.28 13.82,1178.25 L 13.41,1178.09 L 13.01,1177.92 C 12.94,1177.89 12.87,1177.86 12.81,1177.83 L 12.41,1177.65 L 12.02,1177.46 L 11.64,1177.26 L 11.25,1177.06 C 7.67,1175.15 4.85,1172.33 2.94,1168.75 L 2.74,1168.36 L 2.54,1167.98 L 2.35,1167.59 L 2.17,1167.19 L 2,1166.79 L 1.83,1166.38 C 1.78,1166.25 1.72,1166.11 1.67,1165.96 L 1.52,1165.53 C 1.47,1165.39 1.42,1165.24 1.37,1165.09 L 1.23,1164.63 L 1.1,1164.15 L 0.98,1163.66 L 0.86,1163.14 L 0.75,1162.61 L 0.65,1162.04 L 0.55,1161.46 L 0.46,1160.84 C 0.45,1160.74 0.44,1160.63 0.42,1160.52 L 0.35,1159.87 L 0.28,1159.18 L 0.22,1158.45 L 0.16,1157.7 L 0.12,1156.9 C 0.11,1156.77 0.1,1156.63 0.1,1156.49 L 0.06,1155.64 C 0.06,1155.49 0.05,1155.34 0.05,1155.19 L 0.02,1154.28 L 0,1153.32 L 0,1152.32 L 0,27.68 L 0,26.68 L 0.02,25.72 L 0.05,24.81 L 0.08,23.93 C 0.08,23.79 0.09,23.65 0.1,23.51 L 0.14,22.7 L 0.19,21.92 L 0.25,21.18 C 0.26,21.06 0.27,20.94 0.28,20.82 L 0.35,20.13 L 0.42,19.47 L 0.51,18.85 C 0.52,18.74 0.54,18.64 0.55,18.54 L 0.65,17.96 L 0.75,17.39 L 0.86,16.86 L 0.98,16.34 L 1.1,15.85 L 1.23,15.37 L 1.37,14.91 C 1.42,14.76 1.47,14.61 1.52,14.47 L 1.67,14.04 C 1.7,13.96 1.72,13.89 1.75,13.82 L 1.91,13.41 L 2.08,13.01 C 2.11,12.94 2.14,12.87 2.17,12.81 L 2.35,12.41 L 2.54,12.02 L 2.74,11.64 L 2.94,11.25 C 4.85,7.67 7.67,4.86 11.25,2.94 L 11.64,2.74 L 12.02,2.54 L 12.41,2.35 L 12.81,2.17 L 13.21,2 L 13.62,1.83 C 13.75,1.78 13.89,1.72 14.04,1.67 L 14.47,1.52 C 14.61,1.47 14.76,1.42 14.91,1.37 L 15.37,1.23 L 15.85,1.1 L 16.34,0.98 L 16.86,0.86 L 17.39,0.75 L 17.96,0.65 L 18.54,0.55 L 19.16,0.46 C 19.26,0.45 19.37,0.44 19.48,0.42 L 20.13,0.35 L 20.82,0.28 L 21.55,0.22 L 22.3,0.16 L 23.1,0.12 C 23.23,0.11 23.37,0.1 23.51,0.1 L 24.36,0.06 C 24.51,0.06 24.66,0.05 24.81,0.05 L 25.72,0.02 L 26.68,0 L 27.68,0 L 792.32,0 L 793.32,0 L 794.28,0.02 L 795.2,0.05 L 796.07,0.08 C 796.21,0.08 796.35,0.09 796.49,0.1 L 797.3,0.14 L 798.08,0.19 L 798.82,0.25 C 798.94,0.26 799.06,0.27 799.18,0.28 L 799.87,0.35 L 800.52,0.42 L 801.15,0.51 C 801.26,0.52 801.36,0.54 801.46,0.55 L 802.04,0.65 L 802.61,0.75 L 803.14,0.86 L 803.66,0.98 L 804.15,1.1 L 804.63,1.23 L 805.09,1.37 C 805.24,1.42 805.39,1.47 805.53,1.52 L 805.96,1.67 C 806.04,1.7 806.11,1.72 806.18,1.75 L 806.59,1.91 L 806.99,2.08 C 807.06,2.11 807.13,2.14 807.19,2.17 L 807.59,2.35 L 807.98,2.54 L 808.36,2.74 L 808.75,2.94 C 812.33,4.86 815.14,7.67 817.06,11.25 Z",u.v],t.J)
-B.bL={statusBar:0,navigationBar:1}
-B.dv={leading:0,trailing:1,inset:2}
-B.SV=new A.m(B.dv,[u.W,u.c,42],t.J)
-B.bK={center:0,bottomInset:1}
-B.T4=new A.m(B.bK,['<svg viewBox="0 0 320 5">\n  <path d="M 2.5,0 H 317.5 A 2.5,2.5 0 0 1 320,2.5 V 2.5 A 2.5,2.5 0 0 1 317.5,5 H 2.5 A 2.5,2.5 0 0 1 0,2.5 V 2.5 A 2.5,2.5 0 0 1 2.5,0 Z" fill="currentColor"/>\n</svg>',8],t.J)
-B.be=new A.m(B.bL,[B.SV,B.T4],t.J)
-B.Rj=new A.m(B.M,["apple-ipad-10","iPad (10th gen)","Apple",2022,"iOS","tablet",B.fE,2,B.a7,B.a7,337,422,B.wk,B.be],t.J)
-B.PZ=new A.m(B.n,[810,1080],t.J)
-B.iB=new A.m(B.w,[0,32,0,0],t.J)
-B.Pt=new A.m(B.n,[904,1246],t.J)
-B.wg=new A.m(B.ae,[47,83],t.J)
-B.QH=new A.m(B.N,[B.Pt,B.wg,"M 0,0 L 810,0 L 810,1080 L 0,1080 Z",'<svg viewBox="0 0 904 1246">\n  <rect x="0" y="0" width="904" height="1246" rx="48" fill="#000000" fill-opacity="0.15"/>\n  <rect x="1" y="1" width="902" height="1244" rx="47" fill="#7e7e7e"/>\n  <rect x="2" y="2" width="900" height="1242" rx="46" fill="#2c2c2c"/>\n  <rect x="7" y="7" width="890" height="1232" rx="41" fill="#010101"/>\n  <circle cx="452" cy="1203" r="22" fill="#3a3a3a"/>\n  <circle cx="452" cy="1203" r="18" fill="#010101"/>\n</svg>'],t.J)
-B.R7=new A.m(B.M,["apple-ipad-9","iPad (9th gen)","Apple",2021,"iOS","tablet",B.PZ,2,B.iB,B.iB,320,408,B.QH,B.be],t.J)
-B.Rh=new A.m(B.M,["apple-ipad-a16","iPad (A16)","Apple",2025,"iOS","tablet",B.fE,2,B.a7,B.a7,337,422,B.wk,B.be],t.J)
-B.wh=new A.m(B.N,[B.wd,B.lS,u.V,u.v],t.J)
-B.Rk=new A.m(B.M,["apple-ipad-air-11-m2",'iPad Air 11" (M2)',"Apple",2024,"iOS","tablet",B.fE,2,B.a7,B.a7,337,422,B.wh,B.be],t.J)
-B.QX=new A.m(B.M,["apple-ipad-air-11-m4",'iPad Air 11" (M4)',"Apple",2026,"iOS","tablet",B.fE,2,B.a7,B.a7,337,422,B.wh,B.be],t.J)
-B.iy=new A.m(B.n,[1024,1366],t.J)
-B.PV=new A.m(B.n,[1142,1484],t.J)
-B.wn=new A.m(B.N,[B.PV,B.lS,u.R,'<svg viewBox="0 0 1142 1484">\n  <rect x="-1" y="-1" width="1144" height="1486" rx="82" fill="#000000" fill-opacity="0.15"/>\n  <rect x="0" y="0" width="1142" height="1484" rx="81" fill="#7e7e7e"/>\n  <rect x="1" y="1" width="1140" height="1482" rx="80" fill="#2c2c2c"/>\n  <rect x="6" y="6" width="1130" height="1472" rx="75" fill="#010101"/>\n</svg>'],t.J)
-B.R2=new A.m(B.M,["apple-ipad-air-13-m2",'iPad Air 13" (M2)',"Apple",2024,"iOS","tablet",B.iy,2,B.a7,B.a7,403,498,B.wn,B.be],t.J)
-B.R0=new A.m(B.M,["apple-ipad-air-13-m4",'iPad Air 13" (M4)',"Apple",2026,"iOS","tablet",B.iy,2,B.a7,B.a7,403,498,B.wn,B.be],t.J)
-B.PQ=new A.m(B.n,[912,1272],t.J)
-B.fF=new A.m(B.ae,[46,46],t.J)
-B.QK=new A.m(B.N,[B.PQ,B.fF,u.V,'<svg viewBox="0 0 912 1272">\n  <rect x="-4" y="-4" width="920" height="1280" rx="65" fill="#000000" fill-opacity="0.15"/>\n  <rect x="-3" y="-3" width="918" height="1278" rx="64" fill="#7e7e7e"/>\n  <rect x="-2" y="-2" width="916" height="1276" rx="63" fill="#2c2c2c"/>\n  <rect x="3" y="3" width="906" height="1266" rx="58" fill="#010101"/>\n</svg>'],t.J)
-B.Rr=new A.m(B.M,["apple-ipad-air-4","iPad Air (4th gen)","Apple",2020,"iOS","tablet",B.fE,2,B.a7,B.a7,337,422,B.QK,B.be],t.J)
-B.PR=new A.m(B.n,[744,1133],t.J)
-B.Pl=new A.m(B.n,[864,1253],t.J)
-B.Qc=new A.m(B.ae,[60,60],t.J)
-B.QQ=new A.m(B.N,[B.Pl,B.Qc,"M 0,1101.2 C 0,1102.79 0,1104.38 0,1105.97 C 0.01,1107.56 0.02,1109.15 0.09,1110.74 C 0.3,1115.21 1.07,1118.54 2.58,1121.56 C 4.02,1124.42 6.13,1126.9 8.73,1128.78 C 11.01,1130.39 13.58,1131.54 16.31,1132.15 C 19.05,1132.72 21.84,1133 24.64,1132.98 C 27.03,1133 29.41,1133 31.8,1133 L 712.2,1133 C 713.79,1133 715.38,1133 716.97,1133 C 718.56,1133 720.15,1132.98 721.74,1132.91 C 726.21,1132.69 729.54,1131.93 732.56,1130.42 C 735.43,1128.98 737.9,1126.87 739.78,1124.27 C 741.4,1121.99 742.54,1119.42 743.15,1116.69 C 743.72,1113.95 744,1111.16 743.97,1108.36 C 744,1105.97 744,1103.59 744,1101.2 L 744,31.8 C 744,30.21 744,28.62 744,27.03 C 743.99,25.44 743.98,23.85 743.91,22.26 C 743.7,17.79 742.93,14.46 741.42,11.44 C 739.98,8.58 737.87,6.1 735.27,4.22 C 732.99,2.61 730.42,1.46 727.69,0.85 C 724.95,0.28 722.16,0 719.36,0.03 C 716.97,0 714.59,0 712.2,0 L 31.8,0 C 30.21,0 28.62,0 27.03,0 C 25.44,0.01 23.85,0.02 22.26,0.09 C 17.79,0.31 14.46,1.07 11.44,2.58 C 8.57,4.02 6.1,6.13 4.22,8.73 C 2.6,11.01 1.46,13.58 0.85,16.31 C 0.28,19.05 0,21.84 0.02,24.64 C 0,27.03 0,29.41 0,31.8 L 0,1101.2 C 0,1103.6 0,1106 0.02,1108.4 C 0.03,1110.47 0.17,1112.53 0.45,1114.57 C 1.14,1119.22 2.94,1123.35 6.29,1126.7 C 9.41,1129.78 13.42,1131.78 17.75,1132.44 C 20.07,1132.81 22.41,1132.98 24.76,1132.98 C 26.54,1133 30.01,1133 31.8,1133 L 712.2,1133 C 714.6,1133 717.01,1133 719.4,1132.98 C 721.7,1132.98 723.99,1132.8 726.25,1132.44 C 730.58,1131.78 734.59,1129.78 737.71,1126.7 C 741.06,1123.35 742.86,1119.22 743.55,1114.57 C 743.81,1112.72 743.95,1110.85 743.97,1108.97 C 744,1107.45 743.99,1105.93 744,1104.41 C 744,1103.34 744,1102.27 744,1101.2 L 744,31.8 C 744,29.4 744,27 743.97,24.6 C 743.97,22.53 743.83,20.47 743.55,18.43 C 742.86,13.78 741.06,9.65 737.71,6.29 C 734.59,3.22 730.58,1.22 726.25,0.56 C 723.93,0.19 721.59,0.02 719.24,0.02 C 717.46,0 713.99,0 712.2,0 L 31.8,0 C 29.4,0 27,0 24.59,0.03 C 22.3,0.02 20.01,0.2 17.75,0.56 C 13.42,1.22 9.41,3.22 6.29,6.29 C 2.94,9.65 1.14,13.78 0.45,18.43 C 0.19,20.28 0.05,22.15 0.03,24.03 C 0,25.55 0.01,27.07 0,28.59 C 0,29.66 0,30.73 0,31.8 L 0,1101.2 Z",'<svg viewBox="0 0 864 1253">\n  <rect x="-1" y="-1" width="866" height="1255" rx="82" fill="#000000" fill-opacity="0.15"/>\n  <rect x="0" y="0" width="864" height="1253" rx="81" fill="#7e7e7e"/>\n  <rect x="1" y="1" width="862" height="1251" rx="80" fill="#2c2c2c"/>\n  <rect x="5" y="5" width="854" height="1243" rx="76" fill="#010101"/>\n</svg>'],t.J)
-B.ST=new A.m(B.dv,[u.W,u.c,34],t.J)
-B.Tb=new A.m(B.bK,['<svg viewBox="0 0 230 5">\n  <path d="M 2.5,0 H 227.5 A 2.5,2.5 0 0 1 230,2.5 V 2.5 A 2.5,2.5 0 0 1 227.5,5 H 2.5 A 2.5,2.5 0 0 1 0,2.5 V 2.5 A 2.5,2.5 0 0 1 2.5,0 Z" fill="currentColor"/>\n</svg>',8],t.J)
-B.St=new A.m(B.bL,[B.ST,B.Tb],t.J)
-B.Rq=new A.m(B.M,["apple-ipad-mini","iPad mini (A17 Pro)","Apple",2024,"iOS","tablet",B.PR,2,B.a7,B.a7,340,428,B.QQ,B.St],t.J)
-B.PK=new A.m(B.n,[834,1194],t.J)
-B.PX=new A.m(B.n,[926,1286],t.J)
-B.Qv=new A.m(B.N,[B.PX,B.fF,"M 808.45,1194 C 816.52,1194 822.96,1194.35 828.66,1188.66 C 834.35,1182.96 834,1176.52 834,1168.45 L 834,25.55 C 834,17.49 834.35,11.04 828.66,5.34 C 822.96,-0.35 816.52,0.01 808.45,0.01 L 25.55,0.01 C 17.48,0.01 11.04,-0.35 5.34,5.34 C -0.35,11.04 0,17.49 0,25.55 L 0,1168.45 C 0,1176.52 -0.35,1182.96 5.34,1188.66 C 11.04,1194.35 17.48,1194 25.55,1194 L 808.45,1194 Z",'<svg viewBox="0 0 926 1286">\n  <rect x="-4" y="-4" width="934" height="1294" rx="65" fill="#000000" fill-opacity="0.15"/>\n  <rect x="-3" y="-3" width="932" height="1292" rx="64" fill="#7e7e7e"/>\n  <rect x="-2" y="-2" width="930" height="1290" rx="63" fill="#2c2c2c"/>\n  <rect x="3" y="3" width="920" height="1280" rx="58" fill="#010101"/>\n</svg>'],t.J)
-B.R9=new A.m(B.M,["apple-ipad-pro-11-m2",'iPad Pro 11" (M2)',"Apple",2022,"iOS","tablet",B.PK,2,B.a7,B.a7,340,428,B.Qv,B.be],t.J)
-B.w9=new A.m(B.n,[834,1210],t.J)
-B.P2=new A.m(B.n,[926,1302],t.J)
-B.wp=new A.m(B.N,[B.P2,B.fF,"M 38.46,0 L 795.54,0 C 808.91,0 813.76,1.39 818.65,4.01 C 823.54,6.62 827.38,10.46 829.99,15.35 C 832.61,20.24 834,25.09 834,38.46 L 834,1171.54 C 834,1184.91 832.61,1189.76 829.99,1194.65 C 827.38,1199.54 823.54,1203.38 818.65,1205.99 C 813.76,1208.61 808.91,1210 795.54,1210 L 38.46,1210 C 25.09,1210 20.24,1208.61 15.35,1205.99 C 10.46,1203.38 6.62,1199.54 4.01,1194.65 C 1.39,1189.76 0,1184.91 0,1171.54 L 0,38.46 C 0,25.09 1.39,20.24 4.01,15.35 C 6.62,10.46 10.46,6.62 15.35,4.01 C 20.24,1.39 25.09,0 38.46,0 Z",'<svg viewBox="0 0 926 1302">\n  <rect x="0" y="0" width="926" height="1302" rx="75" fill="#000000" fill-opacity="0.15"/>\n  <rect x="1" y="1" width="924" height="1300" rx="74" fill="#7e7e7e"/>\n  <rect x="2" y="2" width="922" height="1298" rx="73" fill="#2c2c2c"/>\n  <rect x="7" y="7" width="912" height="1288" rx="68" fill="#010101"/>\n</svg>'],t.J)
-B.Rv=new A.m(B.M,["apple-ipad-pro-11-m4",'iPad Pro 11" (M4)',"Apple",2024,"iOS","tablet",B.w9,2,B.a7,B.a7,340,428,B.wp,B.be],t.J)
-B.R1=new A.m(B.M,["apple-ipad-pro-11-m5",'iPad Pro 11" (M5)',"Apple",2025,"iOS","tablet",B.w9,2,B.a7,B.a7,340,428,B.wp,B.be],t.J)
-B.Ub={id:0,name:1,brand:2,year:3,platform:4,kind:5,portraitSize:6,devicePixelRatio:7,portraitPadding:8,landscapePadding:9,frame:10,systemUi:11}
-B.Po=new A.m(B.n,[1118,1532],t.J)
-B.QV=new A.m(B.N,[B.Po,B.wg,"M 0,0 L 1024,0 L 1024,1366 L 0,1366 Z",'<svg viewBox="0 0 1118 1532">\n  <rect x="0" y="0" width="1118" height="1532" rx="48" fill="#000000" fill-opacity="0.15"/>\n  <rect x="1" y="1" width="1116" height="1530" rx="47" fill="#7e7e7e"/>\n  <rect x="2" y="2" width="1114" height="1528" rx="46" fill="#2c2c2c"/>\n  <rect x="7" y="7" width="1104" height="1518" rx="41" fill="#010101"/>\n  <circle cx="559" cy="1489" r="22" fill="#3a3a3a"/>\n  <circle cx="559" cy="1489" r="18" fill="#010101"/>\n</svg>'],t.J)
-B.P1=new A.m(B.Ub,["apple-ipad-pro-12-9-gen2",'iPad Pro 12.9" (2nd gen)',"Apple",2017,"iOS","tablet",B.iy,2,B.iB,B.iB,B.QV,B.be],t.J)
-B.Pf=new A.m(B.n,[1116,1458],t.J)
-B.Qw=new A.m(B.N,[B.Pf,B.fF,u.R,'<svg viewBox="0 0 1116 1458">\n  <rect x="-4" y="-4" width="1124" height="1466" rx="65" fill="#000000" fill-opacity="0.15"/>\n  <rect x="-3" y="-3" width="1122" height="1464" rx="64" fill="#7e7e7e"/>\n  <rect x="-2" y="-2" width="1120" height="1462" rx="63" fill="#2c2c2c"/>\n  <rect x="3" y="3" width="1110" height="1452" rx="58" fill="#010101"/>\n</svg>'],t.J)
-B.Rw=new A.m(B.M,["apple-ipad-pro-12-9-gen4",'iPad Pro 12.9" (4th gen)',"Apple",2020,"iOS","tablet",B.iy,2,B.a7,B.a7,403,498,B.Qw,B.be],t.J)
-B.w7=new A.m(B.n,[1032,1376],t.J)
-B.PI=new A.m(B.n,[1124,1468],t.J)
-B.wj=new A.m(B.N,[B.PI,B.fF,"M 38.46,0 L 993.54,0 C 1006.91,0 1011.76,1.39 1016.65,4.01 C 1021.54,6.62 1025.38,10.46 1027.99,15.35 C 1030.61,20.24 1032,25.09 1032,38.46 L 1032,1337.54 C 1032,1350.91 1030.61,1355.76 1027.99,1360.65 C 1025.38,1365.54 1021.54,1369.38 1016.65,1371.99 C 1011.76,1374.61 1006.91,1376 993.54,1376 L 38.46,1376 C 25.09,1376 20.24,1374.61 15.35,1371.99 C 10.46,1369.38 6.62,1365.54 4.01,1360.65 C 1.39,1355.76 0,1350.91 0,1337.54 L 0,38.46 C 0,25.09 1.39,20.24 4.01,15.35 C 6.62,10.46 10.46,6.62 15.35,4.01 C 20.24,1.39 25.09,0 38.46,0 Z",'<svg viewBox="0 0 1124 1468">\n  <rect x="0" y="0" width="1124" height="1468" rx="75" fill="#000000" fill-opacity="0.15"/>\n  <rect x="1" y="1" width="1122" height="1466" rx="74" fill="#7e7e7e"/>\n  <rect x="2" y="2" width="1120" height="1464" rx="73" fill="#2c2c2c"/>\n  <rect x="7" y="7" width="1110" height="1454" rx="68" fill="#010101"/>\n</svg>'],t.J)
-B.QW=new A.m(B.M,["apple-ipad-pro-13-m4",'iPad Pro 13" (M4)',"Apple",2024,"iOS","tablet",B.w7,2,B.a7,B.a7,403,498,B.wj,B.be],t.J)
-B.Rf=new A.m(B.M,["apple-ipad-pro-13-m5",'iPad Pro 13" (M5)',"Apple",2025,"iOS","tablet",B.w7,2,B.a7,B.a7,403,498,B.wj,B.be],t.J)
-B.wa=new A.m(B.n,[390,844],t.J)
-B.wt=new A.m(B.w,[0,47,0,34],t.J)
-B.wr=new A.m(B.w,[47,0,47,20],t.J)
-B.PO=new A.m(B.n,[434,888],t.J)
-B.lT=new A.m(B.ae,[22,22],t.J)
-B.wl=new A.m(B.N,[B.PO,B.lT,"M 283.88,0 L 322.54,0 C 326.96,0 332.4,0.02 336.78,0.16 C 341.51,0.32 346.29,0.65 350.97,1.48 C 360.58,3.18 369.19,6.9 376.15,13.85 C 383.11,20.81 386.83,29.43 388.52,39.03 C 389.35,43.71 389.69,48.5 389.84,53.22 C 389.99,57.6 390,63.04 390,67.47 L 390,776.54 C 390,780.97 389.99,786.41 389.84,790.78 C 389.69,795.51 389.35,800.29 388.52,804.98 C 386.83,814.58 383.11,823.2 376.15,830.15 C 369.19,837.11 360.58,840.83 350.97,842.53 C 346.29,843.35 341.51,843.69 336.78,843.85 C 332.4,843.99 326.96,844 322.54,844 L 67.46,844 C 63.03,844 57.6,843.99 53.22,843.85 C 48.49,843.69 43.71,843.35 39.03,842.53 C 29.42,840.83 20.81,837.11 13.85,830.15 C 6.89,823.2 3.17,814.58 1.48,804.98 C 0.65,800.29 0.31,795.51 0.15,790.78 C 0.01,786.41 0,780.97 0,776.54 L 0,67.47 C 0,63.04 0.01,57.6 0.15,53.22 C 0.31,48.5 0.65,43.71 1.48,39.03 C 3.17,29.43 6.89,20.81 13.85,13.85 C 20.81,6.9 29.42,3.18 39.03,1.48 C 43.71,0.65 48.49,0.32 53.22,0.16 C 57.6,0.02 63.03,0 67.46,0 L 106.12,0 C 107.17,0 108.27,-0.05 109.46,0.18 C 110.61,0.39 111.61,0.83 112.38,1.58 C 113.15,2.34 113.61,3.32 113.85,4.47 C 114.1,5.65 114.08,6.75 114.11,7.8 C 114.19,10.17 114.22,12.38 114.61,14.83 C 114.99,17.19 115.66,19.34 116.72,21.43 C 118.01,23.94 119.83,26.24 122.03,28.14 C 124.28,30.08 126.83,31.52 129.58,32.4 C 134.09,33.86 138.57,33.67 143.32,33.67 L 246.68,33.67 C 251.43,33.67 255.91,33.86 260.42,32.4 C 263.17,31.52 265.71,30.08 267.97,28.14 C 270.17,26.24 271.99,23.94 273.28,21.43 C 274.34,19.34 275.01,17.19 275.39,14.83 C 275.78,12.38 275.81,10.17 275.88,7.8 C 275.92,6.75 275.9,5.65 276.15,4.47 C 276.39,3.32 276.85,2.34 277.62,1.58 C 278.39,0.83 279.39,0.39 280.54,0.18 C 281.73,-0.05 282.83,0 283.88,0 Z",'<svg viewBox="0 0 434 888">\n  <rect x="-4" y="-4" width="442" height="896" rx="72" fill="#000000" fill-opacity="0.15"/>\n  <rect x="-3" y="-3" width="440" height="894" rx="71" fill="#7e7e7e"/>\n  <rect x="-2" y="-2" width="438" height="892" rx="70" fill="#2c2c2c"/>\n  <rect x="2" y="2" width="430" height="884" rx="66" fill="#010101"/>\n</svg>'],t.J)
-B.fH=new A.m(B.dv,['<svg viewBox="0 0 30.75 11.62">\n  <g transform="scale(0.36) translate(-118.17, -47.03)" fill="currentColor">\n    <path d="M129.206 79.3125C126.038 79.3125 123.439 78.446 121.408 76.7131C119.376 74.9801 118.297 72.75 118.169 70.0227H123.325C123.496 71.429 124.128 72.5653 125.222 73.4318C126.315 74.2983 127.658 74.7315 129.249 74.7315C131.053 74.7315 132.509 74.1776 133.616 73.0696C134.739 71.9474 135.3 70.4702 135.3 68.6378C135.3 66.8054 134.739 65.321 133.616 64.1847C132.509 63.0341 131.067 62.4588 129.291 62.4588C128.041 62.4588 126.926 62.7216 125.946 63.2472C124.98 63.7727 124.213 64.5185 123.645 65.4844H118.659L120.257 47.7997H138.773V52.4446H124.518L123.773 61.0739H124.135C125.555 59.1562 127.722 58.1974 130.634 58.1974C133.545 58.1974 135.932 59.1634 137.793 61.0952C139.668 63.027 140.605 65.4986 140.605 68.5099C140.605 71.7202 139.554 74.3267 137.452 76.3295C135.364 78.3182 132.615 79.3125 129.206 79.3125Z"/>\n    <path d="M149.862 75.2855C148.868 75.2855 148.051 74.9659 147.412 74.3267C146.773 73.6875 146.453 72.8849 146.453 71.919C146.453 70.9389 146.773 70.1364 147.412 69.5114C148.051 68.8722 148.868 68.5526 149.862 68.5526C150.871 68.5526 151.688 68.8722 152.313 69.5114C152.952 70.1364 153.271 70.9389 153.271 71.919C153.271 72.8849 152.952 73.6875 152.313 74.3267C151.688 74.9659 150.871 75.2855 149.862 75.2855ZM149.862 59.3054C148.868 59.3054 148.051 58.9929 147.412 58.3679C146.773 57.7287 146.453 56.9261 146.453 55.9602C146.453 54.9801 146.773 54.1776 147.412 53.5526C148.051 52.9134 148.868 52.5937 149.862 52.5937C150.871 52.5937 151.688 52.9134 152.313 53.5526C152.952 54.1776 153.271 54.9801 153.271 55.9602C153.271 56.9261 152.952 57.7287 152.313 58.3679C151.688 58.9929 150.871 59.3054 149.862 59.3054Z"/>\n    <path d="M167.195 78.5455V53.3395H166.833L159.183 58.7088V53.4247L167.216 47.7997H172.692V78.5455H167.195Z"/>\n    <path d="M188 64.9091V60.6477H191.75C193.313 60.6477 194.584 60.2216 195.564 59.3693C196.544 58.5028 197.034 57.3807 197.034 56.0028C197.034 54.6392 196.551 53.5526 195.586 52.7429C194.634 51.919 193.355 51.5071 191.75 51.5071C190.159 51.5071 188.867 51.9261 187.872 52.7642C186.892 53.6023 186.353 54.7457 186.253 56.1946H181.118C181.26 53.3679 182.297 51.1378 184.229 49.5043C186.161 47.8565 188.725 47.0327 191.921 47.0327C194.904 47.0327 197.382 47.8139 199.357 49.3764C201.346 50.9247 202.34 52.8778 202.34 55.2358C202.34 57.0398 201.836 58.581 200.827 59.8594C199.833 61.1378 198.483 61.9545 196.779 62.3097V62.6719C198.881 62.9134 200.536 63.7017 201.743 65.0369C202.965 66.3722 203.576 68.0625 203.576 70.108C203.576 72.75 202.468 74.9446 200.252 76.6918C198.05 78.4389 195.28 79.3125 191.942 79.3125C188.632 79.3125 185.934 78.4673 183.846 76.777C181.772 75.0866 180.664 72.8352 180.522 70.0227H185.784C185.898 71.4432 186.516 72.5795 187.638 73.4318C188.76 74.2699 190.209 74.6889 191.985 74.6889C193.746 74.6889 195.181 74.2344 196.289 73.3253C197.411 72.402 197.972 71.2159 197.972 69.767C197.972 68.2614 197.425 67.0753 196.331 66.2088C195.238 65.3423 193.746 64.9091 191.857 64.9091H188Z"/>\n  </g>\n</svg>','<svg viewBox="0 0 70.53 13.62">\n  <g transform="scale(0.36) translate(-826.18, -43.64)" fill="currentColor">\n    <path d="M826.182 68.8112C826.182 67.2663 827.434 66.014 828.979 66.014H831.776C833.321 66.014 834.573 67.2663 834.573 68.8112V74.4056C834.573 75.9505 833.321 77.2028 831.776 77.2028H828.979C827.434 77.2028 826.182 75.9505 826.182 74.4056V68.8112Z"/>\n    <path d="M840.168 61.8182C840.168 60.2733 841.42 59.021 842.965 59.021H845.762C847.307 59.021 848.559 60.2733 848.559 61.8182V74.4056C848.559 75.9505 847.307 77.2028 845.762 77.2028H842.965C841.42 77.2028 840.168 75.9505 840.168 74.4056V61.8182Z"/>\n    <path d="M854.154 52.028C854.154 50.4831 855.406 49.2308 856.951 49.2308H859.748C861.293 49.2308 862.545 50.4831 862.545 52.028V74.4056C862.545 75.9505 861.293 77.2028 859.748 77.2028H856.951C855.406 77.2028 854.154 75.9505 854.154 74.4056V52.028Z"/>\n    <path d="M868.14 46.4336C868.14 44.8887 869.392 43.6364 870.937 43.6364H873.734C875.279 43.6364 876.531 44.8887 876.531 46.4336V74.4056C876.531 75.9505 875.279 77.2028 873.734 77.2028H870.937C869.392 77.2028 868.14 75.9505 868.14 74.4056V46.4336Z"/>\n    <path d="M913.959 50.8742C920.859 50.8745 927.494 53.5806 932.495 58.4331C932.871 58.8077 933.473 58.803 933.844 58.4225L937.443 54.7146C937.631 54.5216 937.736 54.2601 937.734 53.9882C937.733 53.7162 937.625 53.456 937.435 53.2653C924.311 40.4267 903.606 40.4267 890.482 53.2653C890.291 53.4559 890.184 53.7159 890.182 53.9879C890.18 54.2599 890.285 54.5214 890.472 54.7146L894.073 58.4225C894.443 58.8035 895.046 58.8083 895.422 58.4331C900.423 53.5802 907.059 50.8742 913.959 50.8742ZM914.059 62.0682C917.849 62.068 921.505 63.5062 924.315 66.1035C924.695 66.4721 925.294 66.4641 925.664 66.0855L929.259 62.3775C929.449 62.1831 929.554 61.9192 929.551 61.645C929.548 61.3709 929.438 61.1093 929.245 60.9187C920.688 52.794 907.436 52.794 898.88 60.9187C898.686 61.1093 898.576 61.371 898.573 61.6453C898.571 61.9195 898.676 62.1833 898.866 62.3775L902.46 66.0855C902.831 66.4641 903.429 66.4721 903.809 66.1035C906.618 63.5079 910.27 62.0698 914.059 62.0682ZM921.369 69.3055C921.375 69.5805 921.269 69.8455 921.077 70.0381L914.858 76.4444C914.675 76.6326 914.427 76.7386 914.168 76.7386C913.908 76.7386 913.66 76.6326 913.477 76.4444L907.257 70.0381C907.065 69.8454 906.96 69.5802 906.965 69.3053C906.971 69.0303 907.088 68.77 907.288 68.5857C911.259 65.1568 917.076 65.1568 921.048 68.5857C921.247 68.7701 921.364 69.0306 921.369 69.3055Z" fill-rule="evenodd"/>\n    <path d="M951.27 55.2766C951.27 48.8499 956.48 43.64 962.907 43.64H1003.63C1010.06 43.64 1015.27 48.8499 1015.27 55.2766V69.8224C1015.27 76.2491 1010.06 81.459 1003.63 81.459H962.907C956.48 81.459 951.27 76.2491 951.27 69.8224V55.2766Z M966.132 72.7316L974.868 56.0124V55.7568H964.527V52.2197H979.186V55.7994L970.621 72.7316H966.132Z M990.824 73.2571C989.337 73.2571 988.011 72.9399 986.847 72.3054C985.691 71.6709 984.763 70.7523 984.062 69.5497C982.917 67.7883 982.344 65.4823 982.344 62.6319C982.344 59.2322 983.101 56.5617 984.616 54.6204C986.132 52.679 988.224 51.7084 990.895 51.7084C992.846 51.7084 994.508 52.234 995.881 53.2851C997.263 54.3363 998.102 55.7189 998.395 57.4329H994.148C993.949 56.7606 993.551 56.2255 992.955 55.8278C992.368 55.43 991.671 55.2312 990.867 55.2312C989.465 55.2312 988.362 55.8609 987.557 57.1204C986.761 58.3704 986.387 60.0608 986.435 62.1916H986.69C987.154 61.2256 987.841 60.4822 988.75 59.9614C989.669 59.4311 990.725 59.1659 991.918 59.1659C993.859 59.1659 995.469 59.8099 996.747 61.0978C998.026 62.3857 998.665 64.0098 998.665 65.97C998.665 68.1008 997.931 69.848 996.463 71.2116C994.995 72.5753 993.116 73.2571 990.824 73.2571ZM988.139 68.6832C988.849 69.3839 989.73 69.7343 990.781 69.7343C991.832 69.7343 992.713 69.3887 993.423 68.6974C994.143 67.9966 994.503 67.1301 994.503 66.0979C994.503 65.0562 994.153 64.1944 993.452 63.5126C992.751 62.8213 991.866 62.4756 990.796 62.4756C989.725 62.4756 988.835 62.8166 988.125 63.4984C987.424 64.1802 987.074 65.0325 987.074 66.0553C987.074 67.097 987.429 67.9729 988.139 68.6832Z" fill-rule="evenodd" fill-opacity="0.4"/>\n    <path d="M951.27 55.2766C951.27 48.8499 956.48 43.64 962.907 43.64H997.816V81.459H962.907C956.48 81.459 951.27 76.2491 951.27 69.8224V55.2766Z M966.132 72.7316L974.868 56.0124V55.7568H964.527V52.2197H979.186V55.7994L970.621 72.7316H966.132Z M990.824 73.2571C989.337 73.2571 988.011 72.9399 986.847 72.3054C985.691 71.6709 984.763 70.7523 984.062 69.5497C982.917 67.7883 982.344 65.4823 982.344 62.6319C982.344 59.2322 983.101 56.5617 984.616 54.6204C986.132 52.679 988.224 51.7084 990.895 51.7084C992.846 51.7084 994.508 52.234 995.881 53.2851C997.263 54.3363 998.102 55.7189 998.395 57.4329H994.148C993.949 56.7606 993.551 56.2255 992.955 55.8278C992.368 55.43 991.671 55.2312 990.867 55.2312C989.465 55.2312 988.362 55.8609 987.557 57.1204C986.761 58.3704 986.387 60.0608 986.435 62.1916H986.69C987.154 61.2256 987.841 60.4822 988.75 59.9614C989.669 59.4311 990.725 59.1659 991.918 59.1659C993.859 59.1659 995.469 59.8099 996.747 61.0978C998.026 62.3857 998.665 64.0098 998.665 65.97C998.665 68.1008 997.931 69.848 996.463 71.2116C994.995 72.5753 993.116 73.2571 990.824 73.2571ZM988.139 68.6832C988.849 69.3839 989.73 69.7343 990.781 69.7343C991.832 69.7343 992.713 69.3887 993.423 68.6974C994.143 67.9966 994.503 67.1301 994.503 66.0979C994.503 65.0562 994.153 64.1944 993.452 63.5126C992.751 62.8213 991.866 62.4756 990.796 62.4756C989.725 62.4756 988.835 62.8166 988.125 63.4984C987.424 64.1802 987.074 65.0325 987.074 66.0553C987.074 67.097 987.429 67.9729 988.139 68.6832Z" fill-rule="evenodd"/>\n    <path d="M1018.18 57.6263V69.4317C1020.56 68.4318 1022.1 66.1059 1022.1 63.529C1022.1 60.9521 1020.56 58.6261 1018.18 57.6263Z" fill-opacity="0.4"/>\n  </g>\n</svg>',30],t.J)
-B.T5=new A.m(B.bK,['<svg viewBox="0 0 140 5">\n  <path d="M 2.5,0 H 137.5 A 2.5,2.5 0 0 1 140,2.5 V 2.5 A 2.5,2.5 0 0 1 137.5,5 H 2.5 A 2.5,2.5 0 0 1 0,2.5 V 2.5 A 2.5,2.5 0 0 1 2.5,0 Z" fill="currentColor"/>\n</svg>',8],t.J)
-B.wx=new A.m(B.bL,[B.fH,B.T5],t.J)
-B.QZ=new A.m(B.M,["apple-iphone-13","iPhone 13","Apple",2021,"iOS","phone",B.wa,3,B.wt,B.wr,335,208,B.wl,B.wx],t.J)
-B.lP=new A.m(B.n,[430,932],t.J)
-B.e8=new A.m(B.w,[0,59,0,34],t.J)
-B.e9=new A.m(B.w,[59,0,59,20],t.J)
-B.Pn=new A.m(B.n,[470,972],t.J)
-B.Qd=new A.m(B.ae,[20,20],t.J)
-B.QS=new A.m(B.N,[B.Pn,B.Qd,u.E,'<svg viewBox="0 0 470 972">\n  <rect x="1" y="1" width="468" height="970" rx="73" fill="#7e7e7e"/>\n  <rect x="2" y="2" width="466" height="968" rx="72" fill="#2c2c2c"/>\n  <rect x="7" y="7" width="456" height="958" rx="67" fill="#010101"/>\n  <rect x="372" y="2" width="8" height="7" rx="1" fill="#000000" fill-opacity="0.3"/>\n  <rect x="2" y="94" width="7" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n  <rect x="461" y="94" width="7" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n  <rect x="2" y="870" width="7" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n  <rect x="461" y="870" width="7" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n  <rect x="88" y="963" width="8" height="7" rx="1" fill="#000000" fill-opacity="0.3"/>\n</svg>'],t.J)
-B.T6=new A.m(B.bK,['<svg viewBox="0 0 141 5">\n  <path d="M 2.5,0 H 138.5 A 2.5,2.5 0 0 1 141,2.5 V 2.5 A 2.5,2.5 0 0 1 138.5,5 H 2.5 A 2.5,2.5 0 0 1 0,2.5 V 2.5 A 2.5,2.5 0 0 1 2.5,0 Z" fill="currentColor"/>\n</svg>',8],t.J)
-B.ea=new A.m(B.bL,[B.fH,B.T6],t.J)
-B.Rc=new A.m(B.M,["apple-iphone-14-pro-max","iPhone 14 Pro Max","Apple",2022,"iOS","phone",B.lP,3,B.e8,B.e9,345,248,B.QS,B.ea],t.J)
-B.lR=new A.m(B.n,[393,852],t.J)
-B.P9=new A.m(B.n,[435,894],t.J)
-B.Qk=new A.m(B.ae,[21,21],t.J)
-B.QA=new A.m(B.N,[B.P9,B.Qk,u.P,'<svg viewBox="0 0 435 894">\n  <rect x="1" y="1" width="433" height="892" rx="74" fill="#7e7e7e"/>\n  <rect x="2" y="2" width="431" height="890" rx="73" fill="#2c2c2c"/>\n  <rect x="7" y="7" width="421" height="880" rx="68" fill="#010101"/>\n  <rect x="335" y="2" width="8" height="7" rx="1" fill="#000000" fill-opacity="0.3"/>\n  <rect x="2" y="95" width="7" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n  <rect x="426" y="95" width="7" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n  <rect x="2" y="792" width="7" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n  <rect x="426" y="792" width="7" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n  <rect x="91" y="885" width="8" height="7" rx="1" fill="#000000" fill-opacity="0.3"/>\n</svg>'],t.J)
-B.Rd=new A.m(B.M,["apple-iphone-14-pro","iPhone 14 Pro","Apple",2022,"iOS","phone",B.lR,3,B.e8,B.e9,335,208,B.QA,B.ea],t.J)
-B.Pj=new A.m(B.n,[466,968],t.J)
-B.iz=new A.m(B.ae,[18,18],t.J)
-B.wm=new A.m(B.N,[B.Pj,B.iz,u.E,'<svg viewBox="0 0 466 968">\n  <rect x="1" y="1" width="464" height="966" rx="73" fill="#7e7e7e"/>\n  <rect x="2" y="2" width="462" height="964" rx="72" fill="#2c2c2c"/>\n  <rect x="7" y="7" width="452" height="954" rx="67" fill="#000000"/>\n  <rect x="367" y="2" width="8" height="7" rx="1" fill="#000000" fill-opacity="0.3"/>\n  <rect x="2" y="97" width="7" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n  <rect x="457" y="94" width="7" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n  <rect x="2" y="870" width="7" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n  <rect x="457" y="867" width="7" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n  <rect x="91" y="959" width="8" height="7" rx="1" fill="#000000" fill-opacity="0.3"/>\n</svg>'],t.J)
-B.R8=new A.m(B.M,["apple-iphone-15-pro-max","iPhone 15 Pro Max","Apple",2023,"iOS","phone",B.lP,3,B.e8,B.e9,345,208,B.wm,B.ea],t.J)
-B.PG=new A.m(B.n,[429,888],t.J)
-B.wi=new A.m(B.N,[B.PG,B.iz,u.P,'<svg viewBox="0 0 429 888">\n  <rect x="1" y="1" width="427" height="886" rx="74" fill="#7e7e7e"/>\n  <rect x="2" y="2" width="425" height="884" rx="73" fill="#2c2c2c"/>\n  <rect x="7" y="7" width="415" height="874" rx="68" fill="#000000"/>\n  <rect x="2" y="94" width="7" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n  <rect x="420" y="94" width="7" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n  <rect x="2" y="787" width="7" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n  <rect x="420" y="787" width="7" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n  <rect x="331" y="2" width="8" height="7" rx="1" fill="#000000" fill-opacity="0.3"/>\n  <rect x="91" y="879" width="8" height="7" rx="1" fill="#000000" fill-opacity="0.3"/>\n</svg>'],t.J)
-B.R_=new A.m(B.M,["apple-iphone-15-pro","iPhone 15 Pro","Apple",2023,"iOS","phone",B.lR,3,B.e8,B.e9,335,248,B.wi,B.ea],t.J)
-B.Re=new A.m(B.M,["apple-iphone-16-plus","iPhone 16 Plus","Apple",2024,"iOS","phone",B.lP,3,B.e8,B.e9,345,208,B.wm,B.ea],t.J)
-B.lQ=new A.m(B.n,[440,956],t.J)
-B.ds=new A.m(B.w,[0,62,0,34],t.J)
-B.dt=new A.m(B.w,[62,0,62,20],t.J)
-B.Pa=new A.m(B.n,[474,990],t.J)
-B.wf=new A.m(B.ae,[17,17],t.J)
-B.lU=new A.m(B.N,[B.Pa,B.wf,"M 354.84,0 C 360.21,0 365.59,0.02 370.96,0.21 C 377.12,0.44 383.2,0.91 389.28,2.04 C 401.54,4.33 412.7,9.29 421.7,18.3 C 430.71,27.31 435.67,38.46 437.96,50.73 C 439.09,56.8 439.56,62.88 439.79,69.03 C 439.98,74.35 440,79.68 440,85 L 440,871 C 440,876.32 439.98,881.65 439.79,886.97 C 439.56,893.12 439.09,899.2 437.96,905.27 C 435.67,917.54 430.71,928.69 421.7,937.7 C 412.7,946.71 401.54,951.67 389.28,953.96 C 383.2,955.09 377.12,955.56 370.96,955.78 C 365.59,955.98 360.21,956 354.84,956 L 85.16,956 C 79.79,956 74.41,955.98 69.04,955.78 C 62.88,955.56 56.8,955.09 50.72,953.96 C 38.46,951.67 27.3,946.71 18.3,937.7 C 9.29,928.69 4.33,917.54 2.04,905.27 C 0.91,899.2 0.44,893.12 0.22,886.97 C 0.02,881.65 0,876.32 0,871 L 0,85 C 0,79.68 0.02,74.35 0.22,69.03 C 0.44,62.88 0.91,56.8 2.04,50.73 C 4.33,38.46 9.29,27.31 18.3,18.3 C 27.3,9.29 38.46,4.33 50.72,2.04 C 56.8,0.91 62.88,0.44 69.04,0.21 C 74.41,0.02 79.79,0 85.16,0 L 354.84,0 Z M 264,11 H 176 A 18.5,18.5 0 0 0 176,48 H 264 A 18.5,18.5 0 0 0 264,11 Z",'<svg viewBox="0 0 474 990">\n  <rect x="1" y="1" width="472" height="988" rx="79" fill="#000000"/>\n  <rect x="2" y="2" width="470" height="986" rx="78" fill="#7e7e7e"/>\n  <rect x="3" y="3" width="468" height="984" rx="77" fill="#2c2c2c"/>\n  <rect x="8.33" y="8.33" width="457.33" height="973.33" rx="71.67" fill="#000000"/>\n  <rect x="16" y="16" width="442" height="958" rx="64" fill="#000000"/>\n  <rect x="1" y="95" width="8.67" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n  <rect x="1" y="888" width="9.33" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n  <rect x="464.67" y="888" width="8.33" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n  <rect x="92" y="980.67" width="8.33" height="8.33" rx="1" fill="#000000" fill-opacity="0.3"/>\n  <rect x="464.67" y="95" width="8.33" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n  <rect x="374" y="1.33" width="8.33" height="8.67" rx="1" fill="#000000" fill-opacity="0.3"/>\n</svg>'],t.J)
-B.T7=new A.m(B.bK,['<svg viewBox="0 0 158 5">\n  <path d="M 2.5,0 H 155.5 A 2.5,2.5 0 0 1 158,2.5 V 2.5 A 2.5,2.5 0 0 1 155.5,5 H 2.5 A 2.5,2.5 0 0 1 0,2.5 V 2.5 A 2.5,2.5 0 0 1 2.5,0 Z" fill="currentColor"/>\n</svg>',8],t.J)
-B.lY=new A.m(B.bL,[B.fH,B.T7],t.J)
-B.Ra=new A.m(B.M,["apple-iphone-16-pro-max","iPhone 16 Pro Max","Apple",2024,"iOS","phone",B.lQ,3,B.ds,B.dt,345,208,B.lU,B.lY],t.J)
-B.ix=new A.m(B.n,[402,874],t.J)
-B.Pp=new A.m(B.n,[436,908],t.J)
-B.iA=new A.m(B.N,[B.Pp,B.wf,"M 317.34,0 C 322.68,0 328.02,0.02 333.37,0.21 C 339.49,0.44 345.54,0.9 351.58,2.03 C 363.77,4.3 374.86,9.23 383.81,18.19 C 392.77,27.14 397.7,38.23 399.97,50.43 C 401.1,56.46 401.56,62.51 401.79,68.62 C 401.98,73.92 402,79.21 402,84.5 L 402,789.5 C 402,794.79 401.98,800.08 401.79,805.38 C 401.56,811.49 401.1,817.54 399.97,823.57 C 397.7,835.77 392.77,846.86 383.81,855.81 C 374.86,864.77 363.77,869.7 351.58,871.97 C 345.54,873.1 339.49,873.56 333.37,873.79 C 328.02,873.98 322.68,874 317.34,874 L 84.66,874 C 79.32,874 73.98,873.98 68.63,873.79 C 62.51,873.56 56.46,873.1 50.42,871.97 C 38.23,869.7 27.14,864.77 18.19,855.81 C 9.23,846.86 4.3,835.77 2.03,823.57 C 0.9,817.54 0.44,811.49 0.21,805.38 C 0.02,800.08 0,794.79 0,789.5 L 0,84.5 C 0,79.21 0.02,73.92 0.21,68.62 C 0.44,62.51 0.9,56.46 2.03,50.43 C 4.3,38.23 9.23,27.14 18.19,18.19 C 27.14,9.23 38.23,4.3 50.42,2.03 C 56.46,0.9 62.51,0.44 68.63,0.21 C 73.98,0.02 79.32,0 84.66,0 L 317.34,0 Z M 245,11 H 157 A 18.5,18.5 0 0 0 157,48 H 245 A 18.5,18.5 0 0 0 245,11 Z",'<svg viewBox="0 0 436 908">\n  <rect x="1" y="1" width="434" height="906" rx="79" fill="#000000"/>\n  <rect x="2" y="2" width="432" height="904" rx="78" fill="#7e7e7e"/>\n  <rect x="16" y="16" width="404" height="876" rx="64" fill="#7e7e7e"/>\n  <rect x="3" y="3" width="430" height="902" rx="77" fill="#2c2c2c"/>\n  <rect x="16" y="16" width="404" height="876" rx="64" fill="#2c2c2c"/>\n  <rect x="8" y="8" width="420" height="892" rx="72" fill="#000000"/>\n  <rect x="16" y="16" width="404" height="876" rx="64" fill="#000000"/>\n</svg>'],t.J)
-B.T8=new A.m(B.bK,['<svg viewBox="0 0 145 5">\n  <path d="M 2.5,0 H 142.5 A 2.5,2.5 0 0 1 145,2.5 V 2.5 A 2.5,2.5 0 0 1 142.5,5 H 2.5 A 2.5,2.5 0 0 1 0,2.5 V 2.5 A 2.5,2.5 0 0 1 2.5,0 Z" fill="currentColor"/>\n</svg>',8],t.J)
-B.iC=new A.m(B.bL,[B.fH,B.T8],t.J)
-B.Rn=new A.m(B.M,["apple-iphone-16-pro","iPhone 16 Pro","Apple",2024,"iOS","phone",B.ix,3,B.ds,B.dt,335,208,B.iA,B.iC],t.J)
-B.Ru=new A.m(B.M,["apple-iphone-16","iPhone 16","Apple",2024,"iOS","phone",B.lR,3,B.e8,B.e9,335,208,B.wi,B.ea],t.J)
-B.Rp=new A.m(B.M,["apple-iphone-17-pro-max","iPhone 17 Pro Max","Apple",2025,"iOS","phone",B.lQ,3,B.ds,B.dt,345,208,B.lU,B.lY],t.J)
-B.R5=new A.m(B.M,["apple-iphone-17-pro","iPhone 17 Pro","Apple",2025,"iOS","phone",B.ix,3,B.ds,B.dt,335,208,B.iA,B.iC],t.J)
-B.Rb=new A.m(B.M,["apple-iphone-17","iPhone 17","Apple",2025,"iOS","phone",B.ix,3,B.ds,B.dt,335,208,B.iA,B.iC],t.J)
-B.QY=new A.m(B.M,["apple-iphone-17e","iPhone 17e","Apple",2026,"iOS","phone",B.wa,3,B.wt,B.wr,335,208,B.wl,B.wx],t.J)
-B.Rl=new A.m(B.M,["apple-iphone-18-pro-max","iPhone 18 Pro Max","Apple",2026,"iOS","phone",B.lQ,3,B.ds,B.dt,345,208,B.lU,B.lY],t.J)
-B.R3=new A.m(B.M,["apple-iphone-18-pro","iPhone 18 Pro","Apple",2026,"iOS","phone",B.ix,3,B.ds,B.dt,335,208,B.iA,B.iC],t.J)
-B.Pe=new A.m(B.n,[420,912],t.J)
-B.Sd=new A.m(B.w,[0,68,0,34],t.J)
-B.RR=new A.m(B.w,[68,0,68,20],t.J)
-B.P4=new A.m(B.n,[456,948],t.J)
-B.QD=new A.m(B.N,[B.P4,B.iz,"M 331.55,0 C 337.13,0 342.71,0.02 348.29,0.22 C 354.69,0.46 361.01,0.94 367.32,2.12 C 380.06,4.49 391.64,9.64 401,18.98 C 410.35,28.32 415.51,39.9 417.88,52.62 C 419.06,58.92 419.54,65.23 419.78,71.61 C 419.98,77.13 420,82.65 420,88.17 L 420,86.99 L 420,825.01 L 420,826.19 C 419.99,830.93 419.95,835.66 419.78,840.39 C 419.54,846.77 419.06,853.08 417.88,859.38 C 415.51,872.1 410.35,883.67 401,893.02 C 391.64,902.36 380.06,907.51 367.32,909.88 C 361.01,911.06 354.69,911.54 348.29,911.78 C 343.19,911.97 338.09,912 332.98,912 L 208.21,912 L 87.26,912 L 86.06,912 C 82.07,912 78.09,911.97 74.1,911.85 L 71.71,911.78 C 65.31,911.54 58.99,911.06 52.68,909.88 C 39.94,907.51 28.36,902.36 19,893.02 C 9.65,883.67 4.49,872.1 2.12,859.38 C 0.95,853.08 0.46,846.77 0.22,840.39 C 0.02,834.87 0,829.35 0,823.83 L 0,88.17 C 0,82.65 0.02,77.13 0.22,71.61 C 0.46,65.23 0.95,58.92 2.12,52.62 C 4.49,39.9 9.65,28.32 19,18.98 C 28.36,9.64 39.94,4.49 52.68,2.12 C 58.99,0.94 65.31,0.46 71.71,0.22 C 77.29,0.02 82.87,0 88.45,0 L 331.55,0 Z M 254,11 H 166 A 18.5,18.5 0 0 0 166,48 H 254 A 18.5,18.5 0 0 0 254,11 Z",'<svg viewBox="0 0 456 948">\n  <rect x="2" y="2" width="452" height="944" rx="78" fill="#000000"/>\n  <rect x="3" y="3" width="450" height="942" rx="77" fill="#7e7e7e"/>\n  <rect x="4" y="4" width="448" height="940" rx="76" fill="#2c2c2c"/>\n  <rect x="9.33" y="9.33" width="437.34" height="929.34" rx="70.67" fill="#000000"/>\n  <rect x="8.33" y="8.33" width="439.34" height="931.34" rx="71.67" fill="#000000"/>\n</svg>'],t.J)
-B.T9=new A.m(B.bK,['<svg viewBox="0 0 151 5">\n  <path d="M 2.5,0 H 148.5 A 2.5,2.5 0 0 1 151,2.5 V 2.5 A 2.5,2.5 0 0 1 148.5,5 H 2.5 A 2.5,2.5 0 0 1 0,2.5 V 2.5 A 2.5,2.5 0 0 1 2.5,0 Z" fill="currentColor"/>\n</svg>',8],t.J)
-B.Su=new A.m(B.bL,[B.fH,B.T9],t.J)
-B.Rm=new A.m(B.M,["apple-iphone-air","iPhone Air","Apple",2025,"iOS","phone",B.Pe,3,B.Sd,B.RR,345,208,B.QD,B.Su],t.J)
-B.U5={id:0,name:1,brand:2,year:3,platform:4,kind:5,portraitSize:6,devicePixelRatio:7,physicalSize:8,portraitPadding:9,landscapePadding:10,portraitKeyboardHeight:11,landscapeKeyboardHeight:12,portraitReservedRegions:13,landscapeReservedRegions:14,postures:15,frame:16,systemUi:17}
-B.Pw=new A.m(B.n,[669,951],t.J)
-B.Ph=new A.m(B.n,[1878,2670],t.J)
-B.S2=new A.m(B.w,[0,82,0,34],t.J)
-B.ws=new A.m(B.w,[0,0,84,34],t.J)
-B.ej={kind:0,bounds:1}
-B.RU=new A.m(B.w,[535,0,669,82],t.J)
-B.Tl=new A.m(B.ej,["occlusion",B.RU],t.J)
-B.wL={kind:0,bounds:1,active:2}
-B.Sc=new A.m(B.w,[21,215.67,58,273.67],t.J)
-B.Sx=new A.m(B.wL,["occlusion",B.Sc,!1],t.J)
-B.wJ={kind:0,bounds:1,margins:2,active:3}
-B.RJ=new A.m(B.w,[0,455.5,669,495.5],t.J)
-B.Sj=new A.m(B.w,[0,20,0,20],t.J)
-B.RD=new A.m(B.wJ,["division",B.RJ,B.Sj,!1],t.J)
-B.LD=s([B.Tl,B.Sx,B.RD],t.ef)
-B.Sk=new A.m(B.w,[867,0,951,120],t.J)
-B.Tm=new A.m(B.ej,["occlusion",B.Sk],t.J)
-B.Sl=new A.m(B.w,[215.67,611,273.67,648],t.J)
-B.Sw=new A.m(B.wL,["occlusion",B.Sl,!1],t.J)
-B.Sg=new A.m(B.w,[455.5,0,495.5,669],t.J)
-B.S5=new A.m(B.w,[20,0,20,0],t.J)
-B.RC=new A.m(B.wJ,["division",B.Sg,B.S5,!1],t.J)
-B.Md=s([B.Tm,B.Sw,B.RC],t.ef)
-B.fI={halfOpened:0,closed:1}
-B.Uc={portraitKeyboardHeight:0,frame:1}
-B.wb=new A.m(B.n,[705.34,987.33],t.J)
-B.we=new A.m(B.ae,[18.17,18.17],t.J)
-B.QB=new A.m(B.N,[B.wb,B.we,"M 1.76,882.51 L 10,475.5 L 1.76,68.49 C 1.27,44.67 3.58,36.04 8.06,27.33 C 12.54,18.63 19.24,11.79 27.85,7.14 C 36.46,2.48 45.05,0 68.87,0 L 600.13,0 C 623.95,0 632.54,2.48 641.15,7.14 C 649.76,11.79 656.46,18.63 660.94,27.33 C 665.42,36.04 667.73,44.67 667.24,68.49 L 659,475.5 L 667.24,882.51 C 667.73,906.33 665.42,914.96 660.94,923.67 C 656.46,932.37 649.76,939.21 641.15,943.86 C 632.54,948.52 623.95,951 600.13,951 L 68.87,951 C 45.05,951 36.46,948.52 27.85,943.86 C 19.24,939.21 12.54,932.37 8.06,923.67 C 3.58,914.96 1.27,906.33 1.76,882.51 Z",'<svg viewBox="0 0 705.34 987.33">\n  <path d="M 1.76,900.67 L 10,493.67 L 1.76,86.66 C 1.22,60.28 4.68,47.34 10.03,36.93 C 15.73,25.85 26.16,15.21 37.13,9.28 C 47.42,3.72 60.29,0 86.67,0 L 618.67,0 C 645.04,0 657.91,3.72 668.21,9.28 C 679.17,15.21 689.6,25.85 695.3,36.93 C 700.66,47.34 704.12,60.28 703.58,86.66 L 695.34,493.67 L 703.58,900.67 C 704.12,927.05 700.66,939.99 695.3,950.4 C 689.6,961.48 679.17,972.12 668.21,978.05 C 657.91,983.61 645.04,987.33 618.67,987.33 L 86.67,987.33 C 60.29,987.33 47.42,983.61 37.13,978.05 C 26.16,972.12 15.73,961.48 10.03,950.4 C 4.68,939.99 1.22,927.05 1.76,900.67 Z" fill="#000000" fill-opacity="0.15"/>\n  <path d="M 2.83,900.67 L 11.07,493.67 L 2.83,86.66 C 2.29,60.43 5.68,47.74 10.99,37.43 C 16.62,26.49 26.83,16.08 37.65,10.23 C 47.85,4.71 60.46,1.07 86.69,1.07 L 618.65,1.07 C 644.87,1.07 657.49,4.71 667.69,10.23 C 678.51,16.08 688.72,26.49 694.35,37.43 C 699.65,47.74 703.05,60.43 702.51,86.66 L 694.27,493.67 L 702.51,900.67 C 703.05,926.9 699.65,939.59 694.35,949.9 C 688.72,960.84 678.51,971.25 667.69,977.11 C 657.49,982.62 644.87,986.26 618.65,986.26 L 86.69,986.26 C 60.46,986.26 47.85,982.62 37.65,977.11 C 26.83,971.25 16.62,960.84 10.99,949.9 C 5.68,939.59 2.29,926.9 2.83,900.67 Z" fill="#7e7e7e"/>\n  <path d="M 3.9,900.67 L 12.14,493.67 L 3.9,86.66 C 3.37,60.58 6.69,48.15 11.94,37.94 C 17.5,27.14 27.48,16.94 38.17,11.17 C 48.27,5.71 60.63,2.14 86.71,2.14 L 618.63,2.14 C 644.7,2.14 657.06,5.71 667.16,11.17 C 677.85,16.94 687.84,27.14 693.4,37.94 C 698.65,48.15 701.97,60.58 701.44,86.66 L 693.2,493.67 L 701.44,900.67 C 701.97,926.75 698.65,939.19 693.4,949.39 C 687.84,960.19 677.85,970.39 667.16,976.16 C 657.06,981.62 644.7,985.19 618.63,985.19 L 86.71,985.19 C 60.63,985.19 48.27,981.62 38.17,976.16 C 27.48,970.39 17.5,960.19 11.94,949.39 C 6.69,939.19 3.37,926.75 3.9,900.67 Z" fill="#2c2c2c"/>\n  <path d="M 8.17,900.67 L 16.41,493.67 L 8.17,86.66 C 7.65,61.19 10.7,49.76 15.75,39.95 C 21.02,29.71 30.13,20.41 40.26,14.94 C 49.97,9.69 61.32,6.41 86.8,6.41 L 618.54,6.41 C 644.01,6.41 655.37,9.69 665.08,14.94 C 675.21,20.41 684.32,29.71 689.59,39.95 C 694.63,49.76 697.68,61.19 697.16,86.66 L 688.92,493.67 L 697.16,900.67 C 697.68,926.14 694.63,937.57 689.59,947.38 C 684.32,957.62 675.21,966.92 665.08,972.39 C 655.37,977.64 644.01,980.92 618.54,980.92 L 86.8,980.92 C 61.32,980.92 49.97,977.64 40.26,972.39 C 30.13,966.92 21.02,957.62 15.75,947.38 C 10.7,937.57 7.65,926.14 8.17,900.67 Z" fill="#000000"/>\n  <path d="M 19.93,900.67 L 28.17,493.67 L 19.93,86.66 C 19.44,62.84 21.75,54.2 26.22,45.5 C 30.71,36.79 37.41,29.96 46.01,25.3 C 54.63,20.64 63.22,18.17 87.04,18.17 L 618.3,18.17 C 642.12,18.17 650.7,20.64 659.32,25.3 C 667.93,29.96 674.62,36.79 679.11,45.5 C 683.59,54.2 685.9,62.84 685.41,86.66 L 677.17,493.67 L 685.41,900.67 C 685.9,924.49 683.59,933.13 679.11,941.83 C 674.62,950.54 667.93,957.37 659.32,962.03 C 650.7,966.69 642.12,969.17 618.3,969.17 L 87.04,969.17 C 63.22,969.17 54.63,966.69 46.01,962.03 C 37.41,957.37 30.71,950.54 26.22,941.83 C 21.75,933.13 19.44,924.49 19.93,900.67 Z" fill="#000000"/>\n  <path d="M 11.06,494.2 L 11.07,493.67 L 11.06,493.13 L 28.16,493.13 L 28.17,493.67 L 28.16,494.2 L 11.06,494.2 Z" fill="#ffffff" fill-opacity="0.6"/>\n  <path d="M 677.18,494.2 L 677.17,493.67 L 677.18,493.13 L 694.28,493.13 L 694.27,493.67 L 694.28,494.2 L 677.18,494.2 Z" fill="#ffffff" fill-opacity="0.6"/>\n</svg>'],t.J)
-B.SX=new A.m(B.Uc,[495.5,B.QB],t.J)
-B.TY={portraitSize:0,portraitPadding:1,landscapePadding:2,portraitKeyboardHeight:3,landscapeKeyboardHeight:4,portraitReservedRegions:5,landscapeReservedRegions:6,frame:7,systemUi:8}
-B.PW=new A.m(B.n,[466,678],t.J)
-B.S3=new A.m(B.w,[84,0,0,34],t.J)
-B.RS=new A.m(B.w,[399.67,29.33,436.67,66.33],t.J)
-B.Tj=new A.m(B.ej,["occlusion",B.RS],t.J)
-B.S8=new A.m(B.w,[382,0,466,170],t.J)
-B.Tk=new A.m(B.ej,["occlusion",B.S8],t.J)
-B.LL=s([B.Tj,B.Tk],t.ef)
-B.RL=new A.m(B.w,[29.33,29.33,66.33,66.33],t.J)
-B.To=new A.m(B.ej,["occlusion",B.RL],t.J)
-B.Sp=new A.m(B.w,[0,0,84,82],t.J)
-B.Tn=new A.m(B.ej,["occlusion",B.Sp],t.J)
-B.LM=s([B.To,B.Tn],t.ef)
-B.PA=new A.m(B.n,[514,706],t.J)
-B.Qg=new A.m(B.ae,[25,14],t.J)
-B.Qz=new A.m(B.N,[B.PA,B.Qg,"M 10.26,0 L 390.37,0 C 416.67,0 426.2,2.74 435.82,7.88 C 445.43,13.02 452.98,20.57 458.12,30.18 C 463.26,39.8 466,49.33 466,75.63 L 466,602.37 C 466,628.67 463.26,638.2 458.12,647.82 C 452.98,657.43 445.43,664.98 435.82,670.12 C 426.2,675.26 416.67,678 390.37,678 L 10.26,678 C 6.69,678 5.4,677.63 4.09,676.93 C 2.79,676.23 1.77,675.21 1.07,673.91 C 0.37,672.6 0,671.31 0,667.74 L 0,10.26 C 0,6.69 0.37,5.4 1.07,4.09 C 1.77,2.79 2.79,1.77 4.09,1.07 C 5.4,0.37 6.69,0 10.26,0 Z M 418.17,29.33 A 18.5,18.5 0 1 0 418.17,66.33 A 18.5,18.5 0 1 0 418.17,29.33 Z",'<svg viewBox="0 0 514 706">\n  <path d="M 9,4 L 18,4 L 18,701 L 9,701 C 4.31,701 0,696.69 0,692 L 0,13 C 0,8.31 4.31,4 9,4 Z" fill="#000000" fill-opacity="0.15"/>\n  <path d="M 9,5 L 17,5 L 17,700 L 9,700 C 4.72,700 1,696.28 1,692 L 1,13 C 1,8.72 4.72,5 9,5 Z" fill="#7e7e7e"/>\n  <path d="M 9,6 L 16,6 L 16,699 L 9,699 C 5.13,699 2,695.87 2,692 L 2,13 C 2,9.13 5.13,6 9,6 Z" fill="#2c2c2c"/>\n  <path d="M 416.65,0 C 442.33,0 454.88,2.42 467.93,9.4 C 479.82,15.76 489.24,25.18 495.6,37.07 C 502.58,50.12 505,62.67 505,88.35 L 505,617.65 C 505,643.33 502.58,655.88 495.6,668.93 C 489.24,680.82 479.82,690.24 467.93,696.6 C 454.88,703.58 442.33,706 416.65,706 L 12,706 C 11.45,706 11,705.55 11,705 L 11,2 C 11,0.9 11.9,0 13,0 L 416.65,0 Z" fill="#000000" fill-opacity="0.15"/>\n  <path d="M 416.65,1 C 442.18,1 454.58,3.39 467.46,10.28 C 479.18,16.55 488.45,25.82 494.72,37.54 C 501.61,50.42 504,62.82 504,88.35 L 504,617.65 C 504,643.18 501.61,655.58 494.72,668.46 C 488.45,680.18 479.18,689.45 467.46,695.72 C 454.58,702.61 442.18,705 416.65,705 L 13,705 C 12.45,705 12,704.55 12,704 L 12,2 C 12,1.45 12.45,1 13,1 L 416.65,1 Z" fill="#7e7e7e"/>\n  <path d="M 416.65,2 C 442.03,2 454.27,4.36 466.99,11.17 C 478.53,17.34 487.66,26.47 493.83,38.01 C 500.64,50.73 503,62.97 503,88.35 L 503,617.65 C 503,643.03 500.64,655.27 493.83,667.99 C 487.66,679.53 478.53,688.66 466.99,694.83 C 454.27,701.64 442.03,704 416.65,704 L 13.5,704 C 13.22,704 13,703.78 13,703.5 L 13,2.5 C 13,2.22 13.22,2 13.5,2 L 416.65,2 Z" fill="#2c2c2c"/>\n  <path d="M 411,1 L 417,1 L 417,19 L 411,19 L 411,1 Z M 98,1 L 104,1 L 104,19 L 98,19 L 98,1 Z M 180,686 L 186,686 L 186,704 L 180,704 L 180,686 Z M 329,686 L 335,686 L 335,704 L 329,704 L 329,686 Z M 485,612 L 503,612 L 503,618 L 485,618 L 485,612 Z" fill="#000000" fill-opacity="0.3" fill-rule="evenodd"/>\n  <path d="M 35.26,6 L 415.37,6 C 442.79,6 454.23,9.28 464.59,14.83 C 475.25,20.53 484.47,29.75 490.17,40.41 C 495.72,50.77 499,62.21 499,89.63 L 499,616.37 C 499,643.79 495.72,655.23 490.17,665.59 C 484.47,676.25 475.25,685.47 464.59,691.17 C 454.23,696.72 442.79,700 415.37,700 L 35.26,700 C 30.56,700 27.37,699.08 25.32,697.99 C 22.97,696.73 20.27,694.03 19.01,691.68 C 17.92,689.63 17,686.44 17,681.74 L 17,24.26 C 17,19.56 17.92,16.37 19.01,14.32 C 20.27,11.97 22.97,9.27 25.32,8.01 C 27.37,6.92 30.56,6 35.26,6 Z" fill="#000000"/>\n  <path d="M 35.26,14 L 415.37,14 C 441.67,14 451.2,16.74 460.82,21.88 C 470.43,27.02 477.98,34.57 483.12,44.18 C 488.26,53.8 491,63.33 491,89.63 L 491,616.37 C 491,642.67 488.26,652.2 483.12,661.82 C 477.98,671.43 470.43,678.98 460.82,684.12 C 451.2,689.26 441.67,692 415.37,692 L 35.26,692 C 31.69,692 30.4,691.63 29.09,690.93 C 27.79,690.23 26.77,689.21 26.07,687.91 C 25.37,686.6 25,685.31 25,681.74 L 25,24.26 C 25,20.69 25.37,19.4 26.07,18.09 C 26.77,16.79 27.79,15.77 29.09,15.07 C 30.4,14.37 31.69,14 35.26,14 Z" fill="#000000"/>\n</svg>'],t.J)
-B.Uf={sideBar:0}
-B.wN={leading:0,inset:1}
-B.OZ=new A.m(B.wN,[u.u,71.67],t.J)
-B.RG=new A.m(B.Uf,[B.OZ],t.J)
-B.OY=new A.m(B.TY,[B.PW,B.ws,B.S3,289,230,B.LL,B.LM,B.Qz,B.RG],t.J)
-B.Sz=new A.m(B.fI,[B.SX,B.OY],t.J)
-B.QM=new A.m(B.N,[B.wb,B.we,"M 0,882.51 L 0,68.49 C 0,44.67 2.48,36.04 7.14,27.33 C 11.79,18.63 18.63,11.79 27.34,7.14 C 36.04,2.48 44.68,0 68.5,0 L 600.5,0 C 624.32,0 632.96,2.48 641.66,7.14 C 650.37,11.79 657.21,18.63 661.86,27.33 C 666.52,36.04 669,44.67 669,68.49 L 669,882.51 C 669,906.33 666.52,914.96 661.86,923.67 C 657.21,932.37 650.37,939.21 641.66,943.86 C 632.96,948.52 624.32,951 600.5,951 L 68.5,951 C 44.68,951 36.04,948.52 27.34,943.86 C 18.63,939.21 11.79,932.37 7.14,923.67 C 2.48,914.96 0,906.33 0,882.51 Z",'<svg viewBox="0 0 705.34 987.33">\n  <path d="M 0,900.67 L 0,86.66 C 0,60.28 3.72,47.34 9.28,36.93 C 15.21,25.85 25.85,15.21 36.94,9.28 C 47.34,3.72 60.29,0 86.67,0 L 618.67,0 C 645.04,0 657.99,3.72 668.4,9.28 C 679.48,15.21 690.12,25.85 696.05,36.93 C 701.62,47.34 705.34,60.28 705.34,86.66 L 705.34,900.67 C 705.34,927.05 701.62,939.99 696.05,950.4 C 690.12,961.48 679.48,972.12 668.4,978.05 C 657.99,983.61 645.04,987.33 618.67,987.33 L 86.67,987.33 C 60.29,987.33 47.34,983.61 36.94,978.05 C 25.85,972.12 15.21,961.48 9.28,950.4 C 3.72,939.99 0,927.05 0,900.67 Z" fill="#000000" fill-opacity="0.15"/>\n  <path d="M 1.07,900.67 L 1.07,86.66 C 1.07,60.43 4.71,47.74 10.23,37.43 C 16.08,26.49 26.5,16.08 37.44,10.23 C 47.75,4.71 60.44,1.07 86.67,1.07 L 618.67,1.07 C 644.89,1.07 657.59,4.71 667.9,10.23 C 678.84,16.08 689.26,26.49 695.11,37.43 C 700.62,47.74 704.27,60.43 704.27,86.66 L 704.27,900.67 C 704.27,926.9 700.62,939.59 695.11,949.9 C 689.26,960.84 678.84,971.25 667.9,977.11 C 657.59,982.62 644.89,986.26 618.67,986.26 L 86.67,986.26 C 60.44,986.26 47.75,982.62 37.44,977.11 C 26.5,971.25 16.08,960.84 10.23,949.9 C 4.71,939.59 1.07,926.9 1.07,900.67 Z" fill="#7e7e7e"/>\n  <path d="M 2.14,900.67 L 2.14,86.66 C 2.14,60.58 5.71,48.15 11.17,37.94 C 16.95,27.14 27.14,16.94 37.94,11.17 C 48.15,5.71 60.59,2.14 86.67,2.14 L 618.67,2.14 C 644.74,2.14 657.18,5.71 667.39,11.17 C 678.19,16.94 688.39,27.14 694.17,37.94 C 699.63,48.15 703.2,60.58 703.2,86.66 L 703.2,900.67 C 703.2,926.75 699.63,939.19 694.17,949.39 C 688.39,960.19 678.19,970.39 667.39,976.16 C 657.18,981.62 644.74,985.19 618.67,985.19 L 86.67,985.19 C 60.59,985.19 48.15,981.62 37.94,976.16 C 27.14,970.39 16.95,960.19 11.17,949.39 C 5.71,939.19 2.14,926.75 2.14,900.67 Z" fill="#2c2c2c"/>\n  <path d="M 6.41,900.67 L 6.41,86.66 C 6.41,61.19 9.69,49.76 14.94,39.95 C 20.42,29.71 29.72,20.41 39.96,14.94 C 49.77,9.69 61.19,6.41 86.67,6.41 L 618.67,6.41 C 644.14,6.41 655.57,9.69 665.38,14.94 C 675.62,20.41 684.92,29.71 690.4,39.95 C 695.64,49.76 698.92,61.19 698.92,86.66 L 698.92,900.67 C 698.92,926.14 695.64,937.57 690.4,947.38 C 684.92,957.62 675.62,966.92 665.38,972.39 C 655.57,977.64 644.14,980.92 618.67,980.92 L 86.67,980.92 C 61.19,980.92 49.77,977.64 39.96,972.39 C 29.72,966.92 20.42,957.62 14.94,947.38 C 9.69,937.57 6.41,926.14 6.41,900.67 Z" fill="#000000"/>\n  <path d="M 18.17,900.67 L 18.17,86.66 C 18.17,62.84 20.65,54.2 25.3,45.5 C 29.96,36.79 36.8,29.96 45.5,25.3 C 54.21,20.64 62.85,18.17 86.67,18.17 L 618.67,18.17 C 642.49,18.17 651.12,20.64 659.83,25.3 C 668.54,29.96 675.37,36.79 680.03,45.5 C 684.69,54.2 687.17,62.84 687.17,86.66 L 687.17,900.67 C 687.17,924.49 684.69,933.13 680.03,941.83 C 675.37,950.54 668.54,957.37 659.83,962.03 C 651.12,966.69 642.49,969.17 618.67,969.17 L 86.67,969.17 C 62.85,969.17 54.21,966.69 45.5,962.03 C 36.8,957.37 29.96,950.54 25.3,941.83 C 20.65,933.13 18.17,924.49 18.17,900.67 Z" fill="#000000"/>\n  <path d="M 1.07,494.2 L 1.07,493.13 L 18.17,493.13 L 18.17,494.2 L 1.07,494.2 Z" fill="#ffffff" fill-opacity="0.6"/>\n  <path d="M 687.17,494.2 L 687.17,493.13 L 704.27,493.13 L 704.27,494.2 L 687.17,494.2 Z" fill="#ffffff" fill-opacity="0.6"/>\n</svg>'],t.J)
-B.Uh={statusBar:0,sideBar:1}
-B.U6={trailing:0,inset:1,bottomInset:2}
-B.Tp=new A.m(B.U6,['<svg viewBox="0 0 113 48">\n  <g transform="translate(9, 0)">\n    <g transform="translate(-9, 0)">\n    <path d="M26.1328 29.75C24.2656 29.75 22.8984 28.8906 22.4297 27.8828C22.3203 27.6641 22.2734 27.4688 22.2734 27.2656C22.2734 26.7422 22.625 26.3438 23.25 26.3438C23.7266 26.3438 23.9922 26.5547 24.3438 26.9453C24.8672 27.5781 25.3672 27.8828 26.2188 27.8828C27.8828 27.8828 28.6484 26.2969 28.6562 23.9453V23.8203H28.6094C28.2031 24.9062 27.0938 25.6484 25.6094 25.6484C23.5234 25.6484 21.8672 24.1641 21.8672 21.9688C21.8672 19.6328 23.6953 17.9688 26.2109 17.9688C28.0078 17.9688 29.4297 18.8047 30.25 20.4609C30.6797 21.3281 30.9141 22.4453 30.9141 23.7656C30.9141 27.5156 29.125 29.75 26.1328 29.75ZM26.2188 23.8984C27.4141 23.8984 28.3125 23.0625 28.3125 21.9141C28.3125 20.75 27.4062 19.8516 26.2422 19.8516C25.0781 19.8516 24.1641 20.7344 24.1641 21.875C24.1641 23.0547 25.0391 23.8984 26.2188 23.8984ZM33.8047 22.3984C33.1016 22.3984 32.5469 21.8359 32.5469 21.1406C32.5469 20.4375 33.1016 19.8828 33.8047 19.8828C34.5 19.8828 35.0625 20.4375 35.0625 21.1406C35.0625 21.8359 34.5 22.3984 33.8047 22.3984ZM33.8047 27.9844C33.1016 27.9844 32.5469 27.4219 32.5469 26.7266C32.5469 26.0234 33.1016 25.4688 33.8047 25.4688C34.5 25.4688 35.0625 26.0234 35.0625 26.7266C35.0625 27.4219 34.5 27.9844 33.8047 27.9844ZM43.3203 29.6641C42.6719 29.6641 42.2031 29.2656 42.2031 28.5156V27.4297H38C37.1484 27.4297 36.5781 26.8984 36.5781 26.1094C36.5781 25.625 36.7188 25.1875 37.0703 24.5703C37.8438 23.1797 38.9688 21.4609 40.1953 19.6406C40.9766 18.4453 41.5469 18.0547 42.5 18.0547C43.6953 18.0547 44.4453 18.7031 44.4453 19.7578V25.5469H45.0859C45.7109 25.5469 46.0547 25.9375 46.0547 26.4922C46.0547 27.0469 45.7031 27.4297 45.0859 27.4297H44.4453V28.5156C44.4453 29.2656 43.9688 29.6641 43.3203 29.6641ZM42.25 25.6094V19.9375H42.2031C40.5938 22.2578 39.5547 23.8438 38.6406 25.5469V25.6094H42.25ZM51.0938 29.6641C50.3984 29.6641 49.9219 29.1953 49.9219 28.4844V20.4141H49.875L48.2266 21.5625C48.0078 21.7188 47.8438 21.7734 47.6016 21.7734C47.125 21.7734 46.7734 21.4297 46.7734 20.9297C46.7734 20.5703 46.9141 20.3047 47.2812 20.0469L49.5156 18.5C50.0625 18.125 50.4375 18.0547 50.9219 18.0547C51.7578 18.0547 52.2578 18.5625 52.2578 19.375V28.4844C52.2578 29.1953 51.7891 29.6641 51.0938 29.6641Z" fill="currentColor"/>\n  </g>\n    <circle cx="89.34" cy="39.333" r="2" fill="currentColor" fill-opacity="0.25"/>\n    <circle cx="83.3367" cy="42.003" r="2" fill="currentColor" fill-opacity="0.25"/>\n    <circle cx="76.67" cy="42.003" r="2" fill="currentColor" fill-opacity="0.25"/>\n    <circle cx="70.67" cy="39.333" r="2" fill="currentColor" fill-opacity="0.25"/>\n    <path d="M 62.396,33.835 A 20.333,20.333 0 1 1 97.61,33.835 A 1.5,1.5 0 0 1 95.013,32.335 A 17.333,17.333 0 1 0 64.993,32.335 A 1.5,1.5 0 0 1 62.396,33.835 Z" fill="currentColor"/>\n    <path d="M79.1378 29.9015L77.9847 28.7894C77.7096 28.5195 77.5509 28.228 77.5086 27.915C77.4769 27.6019 77.6144 27.332 77.9212 27.0944C78.2068 26.8785 78.5242 26.7058 78.8839 26.5762C79.2436 26.4467 79.6139 26.3819 80.0159 26.3819C80.4179 26.3819 80.7776 26.4467 81.1373 26.5762C81.4969 26.7058 81.8143 26.8785 82.1 27.0836C82.4173 27.3212 82.5549 27.6019 82.5231 27.915C82.4914 28.228 82.3327 28.5195 82.0471 28.8002L80.8728 29.923C80.5871 30.1929 80.3015 30.3333 80.0053 30.3333C79.7091 30.3333 79.4234 30.1929 79.1378 29.923V29.9015ZM74.6946 25.4534C74.3878 25.1511 74.2397 24.8272 74.2502 24.4818C74.2502 24.1363 74.3878 23.8448 74.6522 23.6181C75.3082 23.0459 76.1016 22.5816 77.0326 22.2362C77.9635 21.8799 78.958 21.7071 80.0159 21.7071C81.0738 21.7071 82.0576 21.8799 82.9992 22.2362C83.9302 22.5924 84.7236 23.0459 85.3795 23.6181C85.6651 23.8772 85.8027 24.1795 85.7709 24.5357C85.7498 24.892 85.6017 25.1943 85.3372 25.4534C85.1468 25.637 84.9563 25.7449 84.7447 25.7989C84.5332 25.8421 84.3216 25.8313 84.11 25.7665C83.8984 25.7017 83.6974 25.5938 83.507 25.4426C83.0309 25.0756 82.4808 24.7733 81.8778 24.5465C81.2748 24.3198 80.6506 24.2119 80.0264 24.2119C79.3917 24.2119 78.7675 24.3198 78.1645 24.5465C77.5615 24.7733 77.022 25.0648 76.5459 25.4318C76.3555 25.583 76.1651 25.6909 75.9535 25.7665C75.7419 25.8313 75.5303 25.8529 75.3187 25.8097C75.1071 25.7665 74.9061 25.6478 74.7157 25.4642L74.6946 25.4534ZM71.4044 22.193C71.1611 21.9447 71.0236 21.6532 71.0024 21.3185C70.9813 20.9838 71.0977 20.6923 71.3516 20.4332C72.018 19.753 72.8115 19.1484 73.7319 18.641C74.6522 18.1228 75.6361 17.7233 76.7152 17.4318C77.7837 17.1404 78.8839 17 80.0053 17C81.1267 17 82.2163 17.1404 83.2848 17.4318C84.3533 17.7233 85.3478 18.1228 86.2681 18.641C87.1885 19.1592 87.982 19.753 88.6484 20.4332C88.9023 20.6923 89.0187 20.9946 88.9976 21.3293C88.9764 21.664 88.8495 21.9555 88.5956 22.2038C88.3522 22.4413 88.0666 22.5492 87.7281 22.5277C87.4001 22.4953 87.0827 22.3549 86.7865 22.085C85.8556 21.2537 84.8188 20.6275 83.6657 20.1957C82.5125 19.7638 81.2959 19.5479 80.0053 19.5479C78.7146 19.5479 77.4875 19.7638 76.3449 20.1957C75.2024 20.6275 74.155 21.2537 73.2346 22.085C72.9384 22.3549 72.621 22.5061 72.2825 22.5384C71.944 22.5708 71.6583 22.4629 71.415 22.2146L71.4044 22.193Z" fill="currentColor"/>\n  </g>\n</svg>',23.67,9.67],t.J)
-B.P_=new A.m(B.wN,[u.u,19],t.J)
-B.Qr=new A.m(B.Uh,[B.Tp,B.P_],t.J)
-B.Tt=new A.m(B.U5,["apple-iphone-duo","iPhone Duo","Apple",2026,"iOS","foldable",B.Pw,3,B.Ph,B.S2,B.ws,350,264,B.LD,B.Md,B.Sz,B.QM,B.Qr],t.J)
-B.P5=new A.m(B.n,[375,667],t.J)
-B.Sn=new A.m(B.w,[0,20,0,0],t.J)
-B.Sf=new A.m(B.w,[0,0,0,0],t.J)
-B.Pk=new A.m(B.n,[431,889],t.J)
-B.Ql=new A.m(B.ae,[28,111],t.J)
-B.QU=new A.m(B.N,[B.Pk,B.Ql,"M 0,0 L 375,0 L 375,667 L 0,667 Z",'<svg viewBox="0 0 431 889">\n  <rect x="0" y="0" width="431" height="889" rx="61" fill="#000000" fill-opacity="0.5"/>\n  <rect x="1" y="1" width="429" height="887" rx="60" fill="#343434"/>\n  <rect x="2" y="2" width="427" height="885" rx="59" fill="#1f1f1f"/>\n  <rect x="8" y="8" width="415" height="873" rx="53" fill="#161616"/>\n  <rect x="14" y="14" width="403" height="861" rx="47" fill="#000000"/>\n  <circle cx="215.5" cy="832.5" r="33.5" fill="#3a3a3a"/>\n  <circle cx="215.5" cy="832.5" r="29.5" fill="#000000"/>\n</svg>'],t.J)
-B.Ug={statusBar:0}
-B.SW=new A.m(B.dv,['<svg viewBox="0 0 25.62 9.68">\n  <g transform="scale(0.3) translate(-118.17, -47.03)" fill="currentColor">\n    <path d="M129.206 79.3125C126.038 79.3125 123.439 78.446 121.408 76.7131C119.376 74.9801 118.297 72.75 118.169 70.0227H123.325C123.496 71.429 124.128 72.5653 125.222 73.4318C126.315 74.2983 127.658 74.7315 129.249 74.7315C131.053 74.7315 132.509 74.1776 133.616 73.0696C134.739 71.9474 135.3 70.4702 135.3 68.6378C135.3 66.8054 134.739 65.321 133.616 64.1847C132.509 63.0341 131.067 62.4588 129.291 62.4588C128.041 62.4588 126.926 62.7216 125.946 63.2472C124.98 63.7727 124.213 64.5185 123.645 65.4844H118.659L120.257 47.7997H138.773V52.4446H124.518L123.773 61.0739H124.135C125.555 59.1562 127.722 58.1974 130.634 58.1974C133.545 58.1974 135.932 59.1634 137.793 61.0952C139.668 63.027 140.605 65.4986 140.605 68.5099C140.605 71.7202 139.554 74.3267 137.452 76.3295C135.364 78.3182 132.615 79.3125 129.206 79.3125Z"/>\n    <path d="M149.862 75.2855C148.868 75.2855 148.051 74.9659 147.412 74.3267C146.773 73.6875 146.453 72.8849 146.453 71.919C146.453 70.9389 146.773 70.1364 147.412 69.5114C148.051 68.8722 148.868 68.5526 149.862 68.5526C150.871 68.5526 151.688 68.8722 152.313 69.5114C152.952 70.1364 153.271 70.9389 153.271 71.919C153.271 72.8849 152.952 73.6875 152.313 74.3267C151.688 74.9659 150.871 75.2855 149.862 75.2855ZM149.862 59.3054C148.868 59.3054 148.051 58.9929 147.412 58.3679C146.773 57.7287 146.453 56.9261 146.453 55.9602C146.453 54.9801 146.773 54.1776 147.412 53.5526C148.051 52.9134 148.868 52.5937 149.862 52.5937C150.871 52.5937 151.688 52.9134 152.313 53.5526C152.952 54.1776 153.271 54.9801 153.271 55.9602C153.271 56.9261 152.952 57.7287 152.313 58.3679C151.688 58.9929 150.871 59.3054 149.862 59.3054Z"/>\n    <path d="M167.195 78.5455V53.3395H166.833L159.183 58.7088V53.4247L167.216 47.7997H172.692V78.5455H167.195Z"/>\n    <path d="M188 64.9091V60.6477H191.75C193.313 60.6477 194.584 60.2216 195.564 59.3693C196.544 58.5028 197.034 57.3807 197.034 56.0028C197.034 54.6392 196.551 53.5526 195.586 52.7429C194.634 51.919 193.355 51.5071 191.75 51.5071C190.159 51.5071 188.867 51.9261 187.872 52.7642C186.892 53.6023 186.353 54.7457 186.253 56.1946H181.118C181.26 53.3679 182.297 51.1378 184.229 49.5043C186.161 47.8565 188.725 47.0327 191.921 47.0327C194.904 47.0327 197.382 47.8139 199.357 49.3764C201.346 50.9247 202.34 52.8778 202.34 55.2358C202.34 57.0398 201.836 58.581 200.827 59.8594C199.833 61.1378 198.483 61.9545 196.779 62.3097V62.6719C198.881 62.9134 200.536 63.7017 201.743 65.0369C202.965 66.3722 203.576 68.0625 203.576 70.108C203.576 72.75 202.468 74.9446 200.252 76.6918C198.05 78.4389 195.28 79.3125 191.942 79.3125C188.632 79.3125 185.934 78.4673 183.846 76.777C181.772 75.0866 180.664 72.8352 180.522 70.0227H185.784C185.898 71.4432 186.516 72.5795 187.638 73.4318C188.76 74.2699 190.209 74.6889 191.985 74.6889C193.746 74.6889 195.181 74.2344 196.289 73.3253C197.411 72.402 197.972 71.2159 197.972 69.767C197.972 68.2614 197.425 67.0753 196.331 66.2088C195.238 65.3423 193.746 64.9091 191.857 64.9091H188Z"/>\n  </g>\n</svg>','<svg viewBox="0 0 58.77 11.35">\n  <g transform="scale(0.3) translate(-826.18, -43.64)" fill="currentColor">\n    <path d="M826.182 68.8112C826.182 67.2663 827.434 66.014 828.979 66.014H831.776C833.321 66.014 834.573 67.2663 834.573 68.8112V74.4056C834.573 75.9505 833.321 77.2028 831.776 77.2028H828.979C827.434 77.2028 826.182 75.9505 826.182 74.4056V68.8112Z"/>\n    <path d="M840.168 61.8182C840.168 60.2733 841.42 59.021 842.965 59.021H845.762C847.307 59.021 848.559 60.2733 848.559 61.8182V74.4056C848.559 75.9505 847.307 77.2028 845.762 77.2028H842.965C841.42 77.2028 840.168 75.9505 840.168 74.4056V61.8182Z"/>\n    <path d="M854.154 52.028C854.154 50.4831 855.406 49.2308 856.951 49.2308H859.748C861.293 49.2308 862.545 50.4831 862.545 52.028V74.4056C862.545 75.9505 861.293 77.2028 859.748 77.2028H856.951C855.406 77.2028 854.154 75.9505 854.154 74.4056V52.028Z"/>\n    <path d="M868.14 46.4336C868.14 44.8887 869.392 43.6364 870.937 43.6364H873.734C875.279 43.6364 876.531 44.8887 876.531 46.4336V74.4056C876.531 75.9505 875.279 77.2028 873.734 77.2028H870.937C869.392 77.2028 868.14 75.9505 868.14 74.4056V46.4336Z"/>\n    <path d="M913.959 50.8742C920.859 50.8745 927.494 53.5806 932.495 58.4331C932.871 58.8077 933.473 58.803 933.844 58.4225L937.443 54.7146C937.631 54.5216 937.736 54.2601 937.734 53.9882C937.733 53.7162 937.625 53.456 937.435 53.2653C924.311 40.4267 903.606 40.4267 890.482 53.2653C890.291 53.4559 890.184 53.7159 890.182 53.9879C890.18 54.2599 890.285 54.5214 890.472 54.7146L894.073 58.4225C894.443 58.8035 895.046 58.8083 895.422 58.4331C900.423 53.5802 907.059 50.8742 913.959 50.8742ZM914.059 62.0682C917.849 62.068 921.505 63.5062 924.315 66.1035C924.695 66.4721 925.294 66.4641 925.664 66.0855L929.259 62.3775C929.449 62.1831 929.554 61.9192 929.551 61.645C929.548 61.3709 929.438 61.1093 929.245 60.9187C920.688 52.794 907.436 52.794 898.88 60.9187C898.686 61.1093 898.576 61.371 898.573 61.6453C898.571 61.9195 898.676 62.1833 898.866 62.3775L902.46 66.0855C902.831 66.4641 903.429 66.4721 903.809 66.1035C906.618 63.5079 910.27 62.0698 914.059 62.0682ZM921.369 69.3055C921.375 69.5805 921.269 69.8455 921.077 70.0381L914.858 76.4444C914.675 76.6326 914.427 76.7386 914.168 76.7386C913.908 76.7386 913.66 76.6326 913.477 76.4444L907.257 70.0381C907.065 69.8454 906.96 69.5802 906.965 69.3053C906.971 69.0303 907.088 68.77 907.288 68.5857C911.259 65.1568 917.076 65.1568 921.048 68.5857C921.247 68.7701 921.364 69.0306 921.369 69.3055Z" fill-rule="evenodd"/>\n    <path d="M951.27 55.2766C951.27 48.8499 956.48 43.64 962.907 43.64H1003.63C1010.06 43.64 1015.27 48.8499 1015.27 55.2766V69.8224C1015.27 76.2491 1010.06 81.459 1003.63 81.459H962.907C956.48 81.459 951.27 76.2491 951.27 69.8224V55.2766Z M966.132 72.7316L974.868 56.0124V55.7568H964.527V52.2197H979.186V55.7994L970.621 72.7316H966.132Z M990.824 73.2571C989.337 73.2571 988.011 72.9399 986.847 72.3054C985.691 71.6709 984.763 70.7523 984.062 69.5497C982.917 67.7883 982.344 65.4823 982.344 62.6319C982.344 59.2322 983.101 56.5617 984.616 54.6204C986.132 52.679 988.224 51.7084 990.895 51.7084C992.846 51.7084 994.508 52.234 995.881 53.2851C997.263 54.3363 998.102 55.7189 998.395 57.4329H994.148C993.949 56.7606 993.551 56.2255 992.955 55.8278C992.368 55.43 991.671 55.2312 990.867 55.2312C989.465 55.2312 988.362 55.8609 987.557 57.1204C986.761 58.3704 986.387 60.0608 986.435 62.1916H986.69C987.154 61.2256 987.841 60.4822 988.75 59.9614C989.669 59.4311 990.725 59.1659 991.918 59.1659C993.859 59.1659 995.469 59.8099 996.747 61.0978C998.026 62.3857 998.665 64.0098 998.665 65.97C998.665 68.1008 997.931 69.848 996.463 71.2116C994.995 72.5753 993.116 73.2571 990.824 73.2571ZM988.139 68.6832C988.849 69.3839 989.73 69.7343 990.781 69.7343C991.832 69.7343 992.713 69.3887 993.423 68.6974C994.143 67.9966 994.503 67.1301 994.503 66.0979C994.503 65.0562 994.153 64.1944 993.452 63.5126C992.751 62.8213 991.866 62.4756 990.796 62.4756C989.725 62.4756 988.835 62.8166 988.125 63.4984C987.424 64.1802 987.074 65.0325 987.074 66.0553C987.074 67.097 987.429 67.9729 988.139 68.6832Z" fill-rule="evenodd" fill-opacity="0.4"/>\n    <path d="M951.27 55.2766C951.27 48.8499 956.48 43.64 962.907 43.64H997.816V81.459H962.907C956.48 81.459 951.27 76.2491 951.27 69.8224V55.2766Z M966.132 72.7316L974.868 56.0124V55.7568H964.527V52.2197H979.186V55.7994L970.621 72.7316H966.132Z M990.824 73.2571C989.337 73.2571 988.011 72.9399 986.847 72.3054C985.691 71.6709 984.763 70.7523 984.062 69.5497C982.917 67.7883 982.344 65.4823 982.344 62.6319C982.344 59.2322 983.101 56.5617 984.616 54.6204C986.132 52.679 988.224 51.7084 990.895 51.7084C992.846 51.7084 994.508 52.234 995.881 53.2851C997.263 54.3363 998.102 55.7189 998.395 57.4329H994.148C993.949 56.7606 993.551 56.2255 992.955 55.8278C992.368 55.43 991.671 55.2312 990.867 55.2312C989.465 55.2312 988.362 55.8609 987.557 57.1204C986.761 58.3704 986.387 60.0608 986.435 62.1916H986.69C987.154 61.2256 987.841 60.4822 988.75 59.9614C989.669 59.4311 990.725 59.1659 991.918 59.1659C993.859 59.1659 995.469 59.8099 996.747 61.0978C998.026 62.3857 998.665 64.0098 998.665 65.97C998.665 68.1008 997.931 69.848 996.463 71.2116C994.995 72.5753 993.116 73.2571 990.824 73.2571ZM988.139 68.6832C988.849 69.3839 989.73 69.7343 990.781 69.7343C991.832 69.7343 992.713 69.3887 993.423 68.6974C994.143 67.9966 994.503 67.1301 994.503 66.0979C994.503 65.0562 994.153 64.1944 993.452 63.5126C992.751 62.8213 991.866 62.4756 990.796 62.4756C989.725 62.4756 988.835 62.8166 988.125 63.4984C987.424 64.1802 987.074 65.0325 987.074 66.0553C987.074 67.097 987.429 67.9729 988.139 68.6832Z" fill-rule="evenodd"/>\n    <path d="M1018.18 57.6263V69.4317C1020.56 68.4318 1022.1 66.1059 1022.1 63.529C1022.1 60.9521 1020.56 58.6261 1018.18 57.6263Z" fill-opacity="0.4"/>\n  </g>\n</svg>',6],t.J)
-B.Sr=new A.m(B.Ug,[B.SW],t.J)
-B.R6=new A.m(B.M,["apple-iphone-se-3","iPhone SE (3rd gen)","Apple",2022,"iOS","phone",B.P5,2,B.Sn,B.Sf,260,206,B.QU,B.Sr],t.J)
-B.wM={id:0,name:1,brand:2,platform:3,kind:4,portraitSize:5,devicePixelRatio:6,frame:7}
-B.PL=new A.m(B.n,[1920,1080],t.J)
-B.PD=new A.m(B.n,[1922,1109],t.J)
-B.Qh=new A.m(B.ae,[1,28],t.J)
-B.QO=new A.m(B.N,[B.PD,B.Qh,"M 0,0 H 1920 V 1068 A 12,12 0 0 1 1908,1080 H 12 A 12,12 0 0 1 0,1068 Z",'<svg viewBox="0 0 1922 1109">\n  <path d="M 12,0 H 1910 A 12,12 0 0 1 1922,12 V 1097 A 12,12 0 0 1 1910,1109 H 12 A 12,12 0 0 1 0,1097 V 12 A 12,12 0 0 1 12,0 Z" fill="#26282c"/>\n  <circle cx="16" cy="14" r="6" fill="#ff5f57"/>\n  <circle cx="36" cy="14" r="6" fill="#febc2e"/>\n  <circle cx="56" cy="14" r="6" fill="#28c840"/>\n  <rect x="891" y="9" width="140" height="10" rx="5" fill="#c9ccd1" fill-opacity="0.35"/>\n</svg>'],t.J)
-B.RI=new A.m(B.wM,["desktop-large","Large Desktop Window","Generic","macOS","desktop",B.PL,2,B.QO],t.J)
-B.PC=new A.m(B.n,[1024,640],t.J)
-B.PJ=new A.m(B.n,[1026,673],t.J)
-B.Qa=new A.m(B.ae,[1,32],t.J)
-B.QF=new A.m(B.N,[B.PJ,B.Qa,"M 0,0 H 1024 V 632 A 8,8 0 0 1 1016,640 H 8 A 8,8 0 0 1 0,632 Z",'<svg viewBox="0 0 1026 673">\n  <path d="M 8,0 H 1018 A 8,8 0 0 1 1026,8 V 665 A 8,8 0 0 1 1018,673 H 8 A 8,8 0 0 1 0,665 V 8 A 8,8 0 0 1 8,0 Z" fill="#202226"/>\n  <rect x="980" y="15" width="10" height="2" fill="#c9ccd1"/>\n  <rect x="994" y="15" width="10" height="2" fill="#c9ccd1"/>\n  <rect x="1008" y="15" width="10" height="2" fill="#c9ccd1"/>\n  <rect x="443" y="11" width="140" height="10" rx="5" fill="#c9ccd1" fill-opacity="0.35"/>\n</svg>'],t.J)
-B.RH=new A.m(B.wM,["desktop-small","Small Desktop Window","Generic","windows","desktop",B.PC,1,B.QF],t.J)
-B.iI={id:0,name:1,brand:2,year:3,platform:4,kind:5,portraitSize:6,devicePixelRatio:7,portraitPadding:8,landscapePadding:9,portraitKeyboardHeight:10,landscapeKeyboardHeight:11,displayFeatures:12,postures:13,frame:14,systemUi:15}
-B.Pi=new A.m(B.n,[851.69,882.87],t.J)
-B.wv=new A.m(B.w,[0,55.79,0,32],t.J)
-B.br={bounds:0,type:1,state:2}
-B.RZ=new A.m(B.w,[425.845,0,425.845,882.87],t.J)
-B.SL=new A.m(B.br,[B.RZ,"fold","postureFlat"],t.J)
-B.RK=new A.m(B.w,[795.9,0,851.69,55.79],t.J)
-B.SN=new A.m(B.br,[B.RK,"cutout","unknown"],t.J)
-B.LI=s([B.SL,B.SN],t.ef)
-B.cQ=new A.m(B.bf,[],t.J)
-B.U8={portraitSize:0,physicalSize:1,portraitPadding:2,landscapePadding:3,portraitKeyboardHeight:4,landscapeKeyboardHeight:5,displayFeatures:6,frame:7,systemUi:8}
-B.PM=new A.m(B.n,[443.08,969.85],t.J)
-B.PB=new A.m(B.n,[1080,2364],t.J)
-B.S7=new A.m(B.w,[0,62.36,0,24.21],t.J)
-B.RQ=new A.m(B.w,[62.36,52.1,0,24.21],t.J)
-B.RM=new A.m(B.w,[198.56,8.21,244.51,62.36],t.J)
-B.SF=new A.m(B.br,[B.RM,"cutout","unknown"],t.J)
-B.LE=s([B.SF],t.ef)
-B.PE=new A.m(B.n,[505.85,1022.77],t.J)
-B.Qm=new A.m(B.ae,[33.64,26.67],t.J)
-B.QR=new A.m(B.N,[B.PE,B.Qm,"M 52.92,0 H 390.15 A 52.92,52.92 0 0 1 443.08,52.92 V 916.92 A 52.92,52.92 0 0 1 390.15,969.85 H 52.92 A 52.92,52.92 0 0 1 0,916.92 V 52.92 A 52.92,52.92 0 0 1 52.92,0 Z M 221.74,18.46 A 13.74,13.74 0 1 0 221.74,45.95 A 13.74,13.74 0 1 0 221.74,18.46 Z",'<svg viewBox="0 0 505.85 1022.77">\n  <rect x="0" y="0" width="505.85" height="1022.77" rx="34.46" fill="#b4b8c7"/>\n  <rect x="1" y="1" width="503.85" height="1020.77" rx="33.46" fill="#000000"/>\n</svg>'],t.J)
-B.TX={leading:0,trailing:1,inset:2,trailingInset:3}
-B.Tv=new A.m(B.TX,[u.x,u.Y,17.23,28.72],t.J)
-B.Td=new A.m(B.bK,['<svg viewBox="0 0 108 4">\n  <path d="M 2,0 H 106 A 2,2 0 0 1 106,4 H 2 A 2,2 0 0 1 2,0 Z" fill="currentColor"/>\n</svg>',9.85],t.J)
-B.Sv=new A.m(B.bL,[B.Tv,B.Td],t.J)
-B.RE=new A.m(B.U8,[B.PM,B.PB,B.S7,B.RQ,336,252,B.LE,B.QR,B.Sv],t.J)
-B.SB=new A.m(B.fI,[B.cQ,B.RE],t.J)
-B.PS=new A.m(B.n,[902.15,928.82],t.J)
-B.Qj=new A.m(B.ae,[25.03,22.97],t.J)
-B.QP=new A.m(B.N,[B.PS,B.Qj,"M 53.74,0 H 797.95 A 53.74,53.74 0 0 1 851.69,53.74 V 829.13 A 53.74,53.74 0 0 1 797.95,882.87 H 53.74 A 53.74,53.74 0 0 1 0,829.13 V 53.74 A 53.74,53.74 0 0 1 53.74,0 Z M 813.54,19.69 A 14.77,14.77 0 1 0 813.54,49.23 A 14.77,14.77 0 1 0 813.54,19.69 Z",'<svg viewBox="0 0 902.15 928.82">\n  <rect x="0" y="0" width="902.15" height="928.82" rx="78.77" fill="#767b8c"/>\n  <rect x="1" y="1" width="900.15" height="926.82" rx="77.77" fill="#060605"/>\n</svg>'],t.J)
-B.U2={leading:0,trailing:1,inset:2,trailingInset:3,cutoutGap:4,trailingCutoutGap:5}
-B.Q_=new A.m(B.U2,[u.x,u.Y,49.23,36.51,17.23,10.67],t.J)
-B.T3=new A.m(B.bK,['<svg viewBox="0 0 220 4">\n  <path d="M 2,0 H 218 A 2,2 0 0 1 218,4 H 2 A 2,2 0 0 1 2,0 Z" fill="currentColor"/>\n</svg>',13.95],t.J)
-B.Ss=new A.m(B.bL,[B.Q_,B.T3],t.J)
-B.Q0=new A.m(B.iI,["google-pixel-10-pro-fold","Pixel 10 Pro Fold","Google",2025,"android","foldable",B.Pi,2.4375,B.wv,B.wv,336,252,B.LI,B.SB,B.QP,B.Ss],t.J)
-B.w8=new A.m(B.n,[411.43,923.43],t.J)
-B.lW=new A.m(B.w,[0,54,0,24],t.J)
-B.lV=new A.m(B.w,[0,52,0,24],t.J)
-B.Py=new A.m(B.n,[459.05,964.19],t.J)
-B.Q5=new A.m(B.ae,[22.48,20.19],t.J)
-B.QL=new A.m(B.N,[B.Py,B.Q5,"M 55.62,0 H 355.81 A 55.62,55.62 0 0 1 411.43,55.62 V 867.81 A 55.62,55.62 0 0 1 355.81,923.43 H 55.62 A 55.62,55.62 0 0 1 0,867.81 V 55.62 A 55.62,55.62 0 0 1 55.62,0 Z M 205.33,19.05 A 14.86,14.86 0 1 0 205.33,48.76 A 14.86,14.86 0 1 0 205.33,19.05 Z",'<svg viewBox="0 0 459.05 964.19">\n  <rect x="0" y="0" width="459.05" height="964.19" rx="81.14" fill="#3b53c1"/>\n  <rect x="1" y="1" width="457.05" height="962.19" rx="80.14" fill="#000000"/>\n</svg>'],t.J)
-B.SR=new A.m(B.dv,[u.x,u.Y,18],t.J)
-B.Tc=new A.m(B.bK,['<svg viewBox="0 0 108 4">\n  <path d="M 2,0 H 106 A 2,2 0 0 1 108,2 V 2 A 2,2 0 0 1 106,4 H 2 A 2,2 0 0 1 0,2 V 2 A 2,2 0 0 1 2,0 Z" fill="currentColor"/>\n</svg>',9],t.J)
-B.lX=new A.m(B.bL,[B.SR,B.Tc],t.J)
-B.Rx=new A.m(B.M,["google-pixel-10","Pixel 10","Google",2025,"android","phone",B.w8,2.625,B.lW,B.lV,336,252,B.QL,B.lX],t.J)
-B.P6=new A.m(B.n,[448,997.33],t.J)
-B.PT=new A.m(B.n,[488,1033],t.J)
-B.Q9=new A.m(B.ae,[18.67,18.33],t.J)
-B.Qy=new A.m(B.N,[B.PT,B.Q9,"M 56,0 H 392 A 56,56 0 0 1 448,56 V 941.33 A 56,56 0 0 1 392,997.33 H 56 A 56,56 0 0 1 0,941.33 V 56 A 56,56 0 0 1 56,0 Z M 224,17.33 A 15.33,15.33 0 1 0 224,48 A 15.33,15.33 0 1 0 224,17.33 Z",'<svg viewBox="0 0 488 1033">\n  <rect x="0" y="0" width="488" height="1033" rx="79.67" fill="#323232"/>\n  <rect x="1" y="1" width="486" height="1031" rx="78.67" fill="#000000"/>\n</svg>'],t.J)
-B.Rt=new A.m(B.M,["google-pixel-9-pro-xl","Pixel 9 Pro XL","Google",2024,"android","phone",B.P6,3,B.lW,B.lV,336,252,B.Qy,B.lX],t.J)
-B.Pc=new A.m(B.n,[455.62,963.05],t.J)
-B.Qe=new A.m(B.ae,[20.57,21.71],t.J)
-B.QC=new A.m(B.N,[B.Pc,B.Qe,"M 53.33,0 H 358.1 A 53.33,53.33 0 0 1 411.43,53.33 V 870.1 A 53.33,53.33 0 0 1 358.1,923.43 H 53.33 A 53.33,53.33 0 0 1 0,870.1 V 53.33 A 53.33,53.33 0 0 1 53.33,0 Z M 205.71,17.52 A 15.24,15.24 0 1 0 205.71,48 A 15.24,15.24 0 1 0 205.71,17.52 Z",'<svg viewBox="0 0 455.62 963.05">\n  <rect x="0" y="0" width="455.62" height="963.05" rx="77.71" fill="#424242"/>\n  <rect x="1" y="1" width="453.62" height="961.05" rx="76.71" fill="#000000"/>\n</svg>'],t.J)
-B.Rg=new A.m(B.M,["google-pixel-9","Pixel 9","Google",2024,"android","phone",B.w8,2.625,B.lW,B.lV,336,252,B.QC,B.lX],t.J)
-B.wc=new A.m(B.n,[360,780],t.J)
-B.cP=new A.m(B.w,[0,24,0,24],t.J)
-B.Pv=new A.m(B.n,[384,796],t.J)
-B.Q6=new A.m(B.ae,[12,8],t.J)
-B.wo=new A.m(B.N,[B.Pv,B.Q6,"M 20,0 H 340 A 20,20 0 0 1 360,20 V 760 A 20,20 0 0 1 340,780 H 20 A 20,20 0 0 1 0,760 V 20 A 20,20 0 0 1 20,0 Z",'<svg viewBox="0 0 384 796">\n  <defs><clipPath id="shell">\n    <path d="M 32,0 H 352 A 28,28 0 0 1 380,28 V 768 A 28,28 0 0 1 352,796 H 32 A 28,28 0 0 1 4,768 V 28 A 28,28 0 0 1 32,0 Z"/>\n  </clipPath></defs>\n  <g fill="#3d4149">\n    <rect x="0" y="159.2" width="6" height="43.78" rx="2"/>\n    <rect x="0" y="214.92" width="6" height="43.78" rx="2"/>\n    <rect x="378" y="191.04" width="6" height="63.68" rx="2"/>\n  </g>\n  <path d="M 32,0 H 352 A 28,28 0 0 1 380,28 V 768 A 28,28 0 0 1 352,796 H 32 A 28,28 0 0 1 4,768 V 28 A 28,28 0 0 1 32,0 Z" fill="#1f2126"/>\n  <path d="M 32,2 H 352 A 26,26 0 0 1 378,28 V 768 A 26,26 0 0 1 352,794 H 32 A 26,26 0 0 1 6,768 V 28 A 26,26 0 0 1 32,2 Z" fill="#3d4149"/>\n  <g clip-path="url(#shell)">\n    <path d="M -796,0 L -477.6,0 L 96,796 L -222.4,796 Z" fill="#ffffff" fill-opacity="0.18"/>\n  </g>\n  <path d="M 32,3.5 H 352 A 24.5,24.5 0 0 1 376.5,28 V 768 A 24.5,24.5 0 0 1 352,792.5 H 32 A 24.5,24.5 0 0 1 7.5,768 V 28 A 24.5,24.5 0 0 1 32,3.5 Z" fill="#08090b"/>\n</svg>'],t.J)
-B.SU=new A.m(B.dv,[u.x,u.Y,16],t.J)
-B.Ta=new A.m(B.bK,['<svg viewBox="0 0 96 4">\n  <path d="M 2,0 H 94 A 2,2 0 0 1 96,2 V 2 A 2,2 0 0 1 94,4 H 2 A 2,2 0 0 1 0,2 V 2 A 2,2 0 0 1 2,0 Z" fill="currentColor"/>\n</svg>',9],t.J)
-B.fG=new A.m(B.bL,[B.SU,B.Ta],t.J)
-B.Ri=new A.m(B.M,["samsung-galaxy-s24","Galaxy S24","Samsung",2024,"android","phone",B.wc,3,B.cP,B.cP,336,252,B.wo,B.fG],t.J)
-B.R4=new A.m(B.M,["samsung-galaxy-s25","Galaxy S25","Samsung",2025,"android","phone",B.wc,3,B.cP,B.cP,336,252,B.wo,B.fG],t.J)
-B.Pm=new A.m(B.n,[876,1400],t.J)
-B.Pr=new A.m(B.n,[920,1444],t.J)
-B.Qx=new A.m(B.N,[B.Pr,B.lT,"M 12,0 H 864 A 12,12 0 0 1 876,12 V 1388 A 12,12 0 0 1 864,1400 H 12 A 12,12 0 0 1 0,1388 V 12 A 12,12 0 0 1 12,0 Z",'<svg viewBox="0 0 920 1444">\n  <defs><clipPath id="shell">\n    <path d="M 36,0 H 884 A 36,36 0 0 1 920,36 V 1408 A 36,36 0 0 1 884,1444 H 36 A 36,36 0 0 1 0,1408 V 36 A 36,36 0 0 1 36,0 Z"/>\n  </clipPath></defs>\n  <path d="M 36,0 H 884 A 36,36 0 0 1 920,36 V 1408 A 36,36 0 0 1 884,1444 H 36 A 36,36 0 0 1 0,1408 V 36 A 36,36 0 0 1 36,0 Z" fill="#2f3336"/>\n  <path d="M 36,2 H 884 A 34,34 0 0 1 918,36 V 1408 A 34,34 0 0 1 884,1442 H 36 A 34,34 0 0 1 2,1408 V 36 A 34,34 0 0 1 36,2 Z" fill="#5b6166"/>\n  <g clip-path="url(#shell)">\n    <path d="M -1444,0 L -866.4,0 L 230,1444 L -347.6,1444 Z" fill="#ffffff" fill-opacity="0.18"/>\n  </g>\n  <path d="M 36,3.5 H 884 A 32.5,32.5 0 0 1 916.5,36 V 1408 A 32.5,32.5 0 0 1 884,1440.5 H 36 A 32.5,32.5 0 0 1 3.5,1408 V 36 A 32.5,32.5 0 0 1 36,3.5 Z" fill="#0b0d0e"/>\n</svg>'],t.J)
-B.SS=new A.m(B.dv,[u.x,u.Y,26],t.J)
-B.Te=new A.m(B.bK,['<svg viewBox="0 0 140 4">\n  <path d="M 2,0 H 138 A 2,2 0 0 1 140,2 V 2 A 2,2 0 0 1 138,4 H 2 A 2,2 0 0 1 0,2 V 2 A 2,2 0 0 1 2,0 Z" fill="currentColor"/>\n</svg>',9],t.J)
-B.ww=new A.m(B.bL,[B.SS,B.Te],t.J)
-B.Rs=new A.m(B.M,["samsung-galaxy-tab-s10-plus","Galaxy Tab S10+","Samsung",2024,"android","tablet",B.Pm,2,B.cP,B.cP,336,252,B.Qx,B.ww],t.J)
-B.PH=new A.m(B.n,[800,1280],t.J)
-B.PF=new A.m(B.n,[844,1324],t.J)
-B.QJ=new A.m(B.N,[B.PF,B.lT,"M 12,0 H 788 A 12,12 0 0 1 800,12 V 1268 A 12,12 0 0 1 788,1280 H 12 A 12,12 0 0 1 0,1268 V 12 A 12,12 0 0 1 12,0 Z",'<svg viewBox="0 0 844 1324">\n  <defs><clipPath id="shell">\n    <path d="M 36,0 H 808 A 36,36 0 0 1 844,36 V 1288 A 36,36 0 0 1 808,1324 H 36 A 36,36 0 0 1 0,1288 V 36 A 36,36 0 0 1 36,0 Z"/>\n  </clipPath></defs>\n  <path d="M 36,0 H 808 A 36,36 0 0 1 844,36 V 1288 A 36,36 0 0 1 808,1324 H 36 A 36,36 0 0 1 0,1288 V 36 A 36,36 0 0 1 36,0 Z" fill="#2f3336"/>\n  <path d="M 36,2 H 808 A 34,34 0 0 1 842,36 V 1288 A 34,34 0 0 1 808,1322 H 36 A 34,34 0 0 1 2,1288 V 36 A 34,34 0 0 1 36,2 Z" fill="#5b6166"/>\n  <g clip-path="url(#shell)">\n    <path d="M -1324,0 L -794.4,0 L 211,1324 L -318.6,1324 Z" fill="#ffffff" fill-opacity="0.18"/>\n  </g>\n  <path d="M 36,3.5 H 808 A 32.5,32.5 0 0 1 840.5,36 V 1288 A 32.5,32.5 0 0 1 808,1320.5 H 36 A 32.5,32.5 0 0 1 3.5,1288 V 36 A 32.5,32.5 0 0 1 36,3.5 Z" fill="#0b0d0e"/>\n</svg>'],t.J)
-B.Ro=new A.m(B.M,["samsung-galaxy-tab-s11","Galaxy Tab S11","Samsung",2025,"android","tablet",B.PH,2,B.cP,B.cP,336,252,B.QJ,B.ww],t.J)
-B.PN=new A.m(B.n,[360,840],t.J)
-B.S_=new A.m(B.w,[0,40,0,24],t.J)
-B.So=new A.m(B.w,[40,24,0,24],t.J)
-B.Si=new A.m(B.w,[0,420,360,420],t.J)
-B.SI=new A.m(B.br,[B.Si,"fold","postureFlat"],t.J)
-B.RY=new A.m(B.w,[169.67,9.67,190.33,30.33],t.J)
-B.SJ=new A.m(B.br,[B.RY,"cutout","unknown"],t.J)
-B.LG=s([B.SI,B.SJ],t.ef)
-B.m5={portraitSize:0,physicalSize:1,portraitPadding:2,landscapePadding:3,portraitKeyboardHeight:4,landscapeKeyboardHeight:5,displayFeatures:6,frame:7}
-B.P7=new A.m(B.n,[316,349.33],t.J)
-B.Pd=new A.m(B.n,[948,1048],t.J)
-B.RO=new A.m(B.w,[0,24,0,77.67],t.J)
-B.Sh=new A.m(B.w,[0,24,77.67,24],t.J)
-B.RV=new A.m(B.w,[183.67,280.67,243,340],t.J)
-B.SD=new A.m(B.br,[B.RV,"cutout","unknown"],t.J)
-B.Sb=new A.m(B.w,[247.33,280.67,306.67,340],t.J)
-B.SH=new A.m(B.br,[B.Sb,"cutout","unknown"],t.J)
-B.RX=new A.m(B.w,[152.67,299.67,174.33,321.33],t.J)
-B.SM=new A.m(B.br,[B.RX,"cutout","unknown"],t.J)
-B.K9=s([B.SD,B.SH,B.SM],t.ef)
-B.Pz=new A.m(B.n,[347,384.67],t.J)
-B.Qb=new A.m(B.ae,[15.67,24],t.J)
-B.QG=new A.m(B.N,[B.Pz,B.Qb,"M 3,0 H 313.67 A 2.33,2.33 0 0 1 316,2.33 V 324.33 A 25,25 0 0 1 291,349.33 H 22.33 A 22.33,22.33 0 0 1 0,327 V 3 A 3,3 0 0 1 3,0 Z M 213.33,280.67 A 29.67,29.67 0 1 0 213.33,340 A 29.67,29.67 0 1 0 213.33,280.67 Z M 277,280.67 A 29.67,29.67 0 1 0 277,340 A 29.67,29.67 0 1 0 277,280.67 Z M 163.5,299.67 A 10.83,10.83 0 1 0 163.5,321.33 A 10.83,10.83 0 1 0 163.5,299.67 Z",'<svg viewBox="0 0 347 384.67">\n  <defs><clipPath id="shell">\n    <path d="M 20.49,0 H 319.65 A 19.35,19.35 0 0 1 339,19.35 V 350.52 A 34.14,34.14 0 0 1 304.86,384.67 H 34.14 A 34.14,34.14 0 0 1 0,350.52 V 20.49 A 20.49,20.49 0 0 1 20.49,0 Z" transform="translate(4, 0)"/>\n  </clipPath></defs>\n  <g fill="#3d4149">\n    <rect x="341" y="196" width="6" height="85.33" rx="2"/>\n    <rect x="341" y="99" width="6" height="60.33" rx="2"/>\n  </g>\n  <path d="M 20.49,0 H 319.65 A 19.35,19.35 0 0 1 339,19.35 V 350.52 A 34.14,34.14 0 0 1 304.86,384.67 H 34.14 A 34.14,34.14 0 0 1 0,350.52 V 20.49 A 20.49,20.49 0 0 1 20.49,0 Z" transform="translate(4, 0)" fill="#1f2126"/>\n  <path d="M 18.49,0 H 317.65 A 17.35,17.35 0 0 1 335,17.35 V 348.52 A 32.14,32.14 0 0 1 302.86,380.67 H 32.14 A 32.14,32.14 0 0 1 0,348.52 V 18.49 A 18.49,18.49 0 0 1 18.49,0 Z" transform="translate(6, 2)" fill="#3d4149"/>\n  <g clip-path="url(#shell)">\n    <path d="M -384.67,0 L -230.8,0 L 46.16,384.67 L -107.71,384.67 Z" fill="#ffffff" fill-opacity="0.18"/>\n  </g>\n  <path d="M 16.99,0 H 316.15 A 15.85,15.85 0 0 1 332,15.85 V 347.02 A 30.64,30.64 0 0 1 301.36,377.67 H 30.64 A 30.64,30.64 0 0 1 0,347.02 V 16.99 A 16.99,16.99 0 0 1 16.99,0 Z" transform="translate(7.5, 3.5)" fill="#08090b"/>\n</svg>'],t.J)
-B.Th=new A.m(B.m5,[B.P7,B.Pd,B.RO,B.Sh,336,252,B.K9,B.QG],t.J)
-B.Sy=new A.m(B.fI,[B.cQ,B.Th],t.J)
-B.Pb=new A.m(B.n,[396,876],t.J)
-B.QN=new A.m(B.N,[B.Pb,B.iz,"M 24,0 H 336 A 24,24 0 0 1 360,24 V 816 A 24,24 0 0 1 336,840 H 24 A 24,24 0 0 1 0,816 V 24 A 24,24 0 0 1 24,0 Z M 180,9.67 A 10.33,10.33 0 1 0 180,30.33 A 10.33,10.33 0 1 0 180,9.67 Z",'<svg viewBox="0 0 396 876">\n  <defs><clipPath id="shell">\n    <path d="M 40,0 H 356 A 36,36 0 0 1 392,36 V 840 A 36,36 0 0 1 356,876 H 40 A 36,36 0 0 1 4,840 V 36 A 36,36 0 0 1 40,0 Z"/>\n  </clipPath></defs>\n  <g fill="#3d4149">\n    <rect x="390" y="140.16" width="6" height="48.18" rx="2"/>\n    <rect x="390" y="205.86" width="6" height="70.08" rx="2"/>\n  </g>\n  <path d="M 40,0 H 356 A 36,36 0 0 1 392,36 V 840 A 36,36 0 0 1 356,876 H 40 A 36,36 0 0 1 4,840 V 36 A 36,36 0 0 1 40,0 Z" fill="#1f2126"/>\n  <path d="M 40,2 H 356 A 34,34 0 0 1 390,36 V 840 A 34,34 0 0 1 356,874 H 40 A 34,34 0 0 1 6,840 V 36 A 34,34 0 0 1 40,2 Z" fill="#3d4149"/>\n  <g clip-path="url(#shell)">\n    <path d="M -876,0 L -525.6,0 L 105.12,876 L -245.28,876 Z" fill="#ffffff" fill-opacity="0.18"/>\n  </g>\n  <path d="M 40,3.5 H 356 A 32.5,32.5 0 0 1 388.5,36 V 840 A 32.5,32.5 0 0 1 356,872.5 H 40 A 32.5,32.5 0 0 1 7.5,840 V 36 A 32.5,32.5 0 0 1 40,3.5 Z" fill="#08090b"/>\n</svg>'],t.J)
-B.Q2=new A.m(B.iI,["samsung-galaxy-z-flip-8","Galaxy Z Flip8","Samsung",2026,"android","foldable",B.PN,3,B.S_,B.So,336,252,B.LG,B.Sy,B.QN,B.fG],t.J)
-B.P3=new A.m(B.n,[859.43,953.9],t.J)
-B.S0=new A.m(B.w,[0,47.61,0,24],t.J)
-B.S9=new A.m(B.w,[47.61,24,0,24],t.J)
-B.S6=new A.m(B.w,[429.715,0,429.715,953.9],t.J)
-B.SO=new A.m(B.br,[B.S6,"fold","postureFlat"],t.J)
-B.S1=new A.m(B.w,[638.86,11.81,662.86,35.81],t.J)
-B.SP=new A.m(B.br,[B.S1,"cutout","unknown"],t.J)
-B.LJ=s([B.SO,B.SP],t.ef)
-B.PP=new A.m(B.n,[411.43,960],t.J)
-B.PY=new A.m(B.n,[1080,2520],t.J)
-B.RW=new A.m(B.w,[0,46.86,0,24],t.J)
-B.RP=new A.m(B.w,[46.86,24,0,24],t.J)
-B.Sa=new A.m(B.w,[194.29,11.43,218.29,35.43],t.J)
-B.SG=new A.m(B.br,[B.Sa,"cutout","unknown"],t.J)
-B.LF=s([B.SG],t.ef)
-B.Pq=new A.m(B.n,[467.05,1005.71],t.J)
-B.Qi=new A.m(B.ae,[30.67,20.95],t.J)
-B.QT=new A.m(B.N,[B.Pq,B.Qi,"M 11.81,0 H 400 A 11.43,11.43 0 0 1 411.43,11.43 V 948.57 A 11.43,11.43 0 0 1 400,960 H 11.43 A 11.43,11.43 0 0 1 0,948.57 V 11.81 A 11.81,11.81 0 0 1 11.81,0 Z M 206.29,11.43 A 12,12 0 1 0 206.29,35.43 A 12,12 0 1 0 206.29,11.43 Z",'<svg viewBox="0 0 467.05 1005.71">\n  <defs><clipPath id="shell">\n    <path d="M 24.71,0 H 439.54 A 19.51,19.51 0 0 1 459.05,19.51 V 986.2 A 19.51,19.51 0 0 1 439.54,1005.71 H 19.51 A 19.51,19.51 0 0 1 0,986.2 V 24.71 A 24.71,24.71 0 0 1 24.71,0 Z" transform="translate(4, 0)"/>\n  </clipPath></defs>\n  <g fill="#3d4149">\n    <rect x="461.05" y="261.33" width="6" height="121.9" rx="2"/>\n    <rect x="461.05" y="434.67" width="6" height="84.19" rx="2"/>\n  </g>\n  <path d="M 24.71,0 H 439.54 A 19.51,19.51 0 0 1 459.05,19.51 V 986.2 A 19.51,19.51 0 0 1 439.54,1005.71 H 19.51 A 19.51,19.51 0 0 1 0,986.2 V 24.71 A 24.71,24.71 0 0 1 24.71,0 Z" transform="translate(4, 0)" fill="#1f2126"/>\n  <path d="M 22.71,0 H 437.54 A 17.51,17.51 0 0 1 455.05,17.51 V 984.2 A 17.51,17.51 0 0 1 437.54,1001.71 H 17.51 A 17.51,17.51 0 0 1 0,984.2 V 22.71 A 22.71,22.71 0 0 1 22.71,0 Z" transform="translate(6, 2)" fill="#3d4149"/>\n  <g clip-path="url(#shell)">\n    <path d="M -1005.71,0 L -603.43,0 L 120.69,1005.71 L -281.6,1005.71 Z" fill="#ffffff" fill-opacity="0.18"/>\n  </g>\n  <path d="M 21.21,0 H 436.04 A 16.01,16.01 0 0 1 452.05,16.01 V 982.7 A 16.01,16.01 0 0 1 436.04,998.71 H 16.01 A 16.01,16.01 0 0 1 0,982.7 V 21.21 A 21.21,21.21 0 0 1 21.21,0 Z" transform="translate(7.5, 3.5)" fill="#08090b"/>\n</svg>'],t.J)
-B.Tf=new A.m(B.m5,[B.PP,B.PY,B.RW,B.RP,336,252,B.LF,B.QT],t.J)
-B.SA=new A.m(B.fI,[B.cQ,B.Tf],t.J)
-B.Px=new A.m(B.n,[906,1002],t.J)
-B.Q8=new A.m(B.ae,[23.29,24.05],t.J)
-B.QE=new A.m(B.N,[B.Px,B.Q8,"M 16,0 H 843.43 A 16,16 0 0 1 859.43,16 V 937.9 A 16,16 0 0 1 843.43,953.9 H 16 A 16,16 0 0 1 0,937.9 V 16 A 16,16 0 0 1 16,0 Z M 650.86,11.81 A 12,12 0 1 0 650.86,35.81 A 12,12 0 1 0 650.86,11.81 Z",'<svg viewBox="0 0 906 1002">\n  <defs><clipPath id="shell">\n    <path d="M 38,0 H 868 A 34,34 0 0 1 902,34 V 968 A 34,34 0 0 1 868,1002 H 38 A 34,34 0 0 1 4,968 V 34 A 34,34 0 0 1 38,0 Z"/>\n  </clipPath></defs>\n  <g fill="#3d4149">\n    <rect x="900" y="160.32" width="6" height="55.11" rx="2"/>\n    <rect x="900" y="235.47" width="6" height="80.16" rx="2"/>\n  </g>\n  <path d="M 38,0 H 868 A 34,34 0 0 1 902,34 V 968 A 34,34 0 0 1 868,1002 H 38 A 34,34 0 0 1 4,968 V 34 A 34,34 0 0 1 38,0 Z" fill="#1f2126"/>\n  <path d="M 38,2 H 868 A 32,32 0 0 1 900,34 V 968 A 32,32 0 0 1 868,1000 H 38 A 32,32 0 0 1 6,968 V 34 A 32,32 0 0 1 38,2 Z" fill="#3d4149"/>\n  <g clip-path="url(#shell)">\n    <path d="M -1002,0 L -601.2,0 L 120.24,1002 L -280.56,1002 Z" fill="#ffffff" fill-opacity="0.18"/>\n  </g>\n  <path d="M 38,3.5 H 868 A 30.5,30.5 0 0 1 898.5,34 V 968 A 30.5,30.5 0 0 1 868,998.5 H 38 A 30.5,30.5 0 0 1 7.5,968 V 34 A 30.5,30.5 0 0 1 38,3.5 Z" fill="#08090b"/>\n</svg>'],t.J)
-B.Q3=new A.m(B.iI,["samsung-galaxy-z-fold-8-ultra","Galaxy Z Fold8 Ultra","Samsung",2026,"android","foldable",B.P3,2.625,B.S0,B.S9,336,252,B.LJ,B.SA,B.QE,B.fG],t.J)
-B.Ps=new A.m(B.n,[739.2,979.2],t.J)
-B.RT=new A.m(B.w,[0,24,48.4,24],t.J)
-B.wu=new A.m(B.w,[0,48.4,0,24],t.J)
-B.S4=new A.m(B.w,[0,489.6,739.2,489.6],t.J)
-B.SQ=new A.m(B.br,[B.S4,"fold","postureFlat"],t.J)
-B.Sm=new A.m(B.w,[702.8,732,727.2,756.4],t.J)
-B.SE=new A.m(B.br,[B.Sm,"cutout","unknown"],t.J)
-B.LK=s([B.SQ,B.SE],t.ef)
-B.Pu=new A.m(B.n,[499.2,788.8],t.J)
-B.PU=new A.m(B.n,[1248,1972],t.J)
-B.Se=new A.m(B.w,[48.4,24,0,24],t.J)
-B.RN=new A.m(B.w,[237.6,12,262,36.4],t.J)
-B.SK=new A.m(B.br,[B.RN,"cutout","unknown"],t.J)
-B.LH=s([B.SK],t.ef)
-B.P8=new A.m(B.n,[560,835.2],t.J)
-B.Q7=new A.m(B.ae,[34,23.2],t.J)
-B.QI=new A.m(B.N,[B.P8,B.Q7,"M 4.8,0 H 494.4 A 4.8,4.8 0 0 1 499.2,4.8 V 784 A 4.8,4.8 0 0 1 494.4,788.8 H 4.8 A 4.8,4.8 0 0 1 0,784 V 4.8 A 4.8,4.8 0 0 1 4.8,0 Z M 249.8,12 A 12.2,12.2 0 1 0 249.8,36.4 A 12.2,12.2 0 1 0 249.8,12 Z",'<svg viewBox="0 0 560 835.2">\n  <defs><clipPath id="shell">\n    <path d="M 27.31,0 H 531.51 A 20.49,20.49 0 0 1 552,20.49 V 814.71 A 20.49,20.49 0 0 1 531.51,835.2 H 19.12 A 19.12,19.12 0 0 1 0,816.08 V 27.31 A 27.31,27.31 0 0 1 27.31,0 Z" transform="translate(4, 0)"/>\n  </clipPath></defs>\n  <g fill="#3d4149">\n    <rect x="554" y="82" width="6" height="129.6" rx="2"/>\n    <rect x="554" y="280.8" width="6" height="90.4" rx="2"/>\n  </g>\n  <path d="M 27.31,0 H 531.51 A 20.49,20.49 0 0 1 552,20.49 V 814.71 A 20.49,20.49 0 0 1 531.51,835.2 H 19.12 A 19.12,19.12 0 0 1 0,816.08 V 27.31 A 27.31,27.31 0 0 1 27.31,0 Z" transform="translate(4, 0)" fill="#1f2126"/>\n  <path d="M 25.31,0 H 529.51 A 18.49,18.49 0 0 1 548,18.49 V 812.71 A 18.49,18.49 0 0 1 529.51,831.2 H 17.12 A 17.12,17.12 0 0 1 0,814.08 V 25.31 A 25.31,25.31 0 0 1 25.31,0 Z" transform="translate(6, 2)" fill="#3d4149"/>\n  <g clip-path="url(#shell)">\n    <path d="M -835.2,0 L -501.12,0 L 100.22,835.2 L -233.86,835.2 Z" fill="#ffffff" fill-opacity="0.18"/>\n  </g>\n  <path d="M 23.81,0 H 528.01 A 16.99,16.99 0 0 1 545,16.99 V 811.21 A 16.99,16.99 0 0 1 528.01,828.2 H 15.62 A 15.62,15.62 0 0 1 0,812.58 V 23.81 A 23.81,23.81 0 0 1 23.81,0 Z" transform="translate(7.5, 3.5)" fill="#08090b"/>\n</svg>'],t.J)
-B.Tg=new A.m(B.m5,[B.Pu,B.PU,B.wu,B.Se,336,252,B.LH,B.QI],t.J)
-B.SC=new A.m(B.fI,[B.cQ,B.Tg],t.J)
-B.Pg=new A.m(B.n,[786,1024],t.J)
-B.Qf=new A.m(B.ae,[23.4,22.4],t.J)
-B.Qu=new A.m(B.N,[B.Pg,B.Qf,"M 16,0 H 723.2 A 16,16 0 0 1 739.2,16 V 963.2 A 16,16 0 0 1 723.2,979.2 H 16 A 16,16 0 0 1 0,963.2 V 16 A 16,16 0 0 1 16,0 Z M 715,732 A 12.2,12.2 0 1 0 715,756.4 A 12.2,12.2 0 1 0 715,732 Z",'<svg viewBox="0 0 786 1024">\n  <defs><clipPath id="shell">\n    <path d="M 40,0 H 746 A 36,36 0 0 1 782,36 V 988 A 36,36 0 0 1 746,1024 H 40 A 36,36 0 0 1 4,988 V 36 A 36,36 0 0 1 40,0 Z"/>\n  </clipPath></defs>\n  <g fill="#3d4149">\n    <rect x="780" y="163.84" width="6" height="56.32" rx="2"/>\n    <rect x="780" y="240.64" width="6" height="81.92" rx="2"/>\n  </g>\n  <path d="M 40,0 H 746 A 36,36 0 0 1 782,36 V 988 A 36,36 0 0 1 746,1024 H 40 A 36,36 0 0 1 4,988 V 36 A 36,36 0 0 1 40,0 Z" fill="#1f2126"/>\n  <path d="M 40,2 H 746 A 34,34 0 0 1 780,36 V 988 A 34,34 0 0 1 746,1022 H 40 A 34,34 0 0 1 6,988 V 36 A 34,34 0 0 1 40,2 Z" fill="#3d4149"/>\n  <g clip-path="url(#shell)">\n    <path d="M -1024,0 L -614.4,0 L 122.88,1024 L -286.72,1024 Z" fill="#ffffff" fill-opacity="0.18"/>\n  </g>\n  <path d="M 40,3.5 H 746 A 32.5,32.5 0 0 1 778.5,36 V 988 A 32.5,32.5 0 0 1 746,1020.5 H 40 A 32.5,32.5 0 0 1 7.5,988 V 36 A 32.5,32.5 0 0 1 40,3.5 Z" fill="#08090b"/>\n</svg>'],t.J)
-B.Q1=new A.m(B.iI,["samsung-galaxy-z-fold-8","Galaxy Z Fold8","Samsung",2026,"android","foldable",B.Ps,2.5,B.RT,B.wu,336,252,B.LK,B.SC,B.Qu,B.fG],t.J)
-B.Np=s([B.Rj,B.R7,B.Rh,B.Rk,B.QX,B.R2,B.R0,B.Rr,B.Rq,B.R9,B.Rv,B.R1,B.P1,B.Rw,B.QW,B.Rf,B.QZ,B.Rc,B.Rd,B.R8,B.R_,B.Re,B.Ra,B.Rn,B.Ru,B.Rp,B.R5,B.Rb,B.QY,B.Rl,B.R3,B.Rm,B.Tt,B.R6,B.RI,B.RH,B.Q0,B.Rx,B.Rt,B.Rg,B.Ri,B.R4,B.Rs,B.Ro,B.Q2,B.Q3,B.Q1],A.as("r<l<e,O?>>"))
+B.No=s([B.DO,B.DX],t.F)
 B.Nq=s(["pointerdown","pointermove","pointerleave","pointerup","pointercancel","touchstart","touchend","touchmove","touchcancel","mousedown","mousemove","mouseleave","mouseup","wheel"],t.s)
 B.li=new A.h4(100)
 B.IS=new A.h4(200)
@@ -102333,54 +102333,54 @@ B.c2=new A.y(0.1411764705882353,0,0,0,B.e)
 B.c9=new A.i(0,1)
 B.DA=new A.bs(0,B.Q,B.c2,B.c9,1)
 B.DI=new A.bs(0,B.Q,B.bR,B.c9,3)
-B.Nf=s([B.DJ,B.DA,B.DI],t.F)
+B.Ng=s([B.DJ,B.DA,B.DI],t.F)
 B.DH=new A.bs(-2,B.Q,B.c1,B.cR,1)
 B.DU=new A.bs(0,B.Q,B.c2,B.iJ,2)
 B.DC=new A.bs(0,B.Q,B.bR,B.c9,5)
-B.L0=s([B.DH,B.DU,B.DC],t.F)
+B.L1=s([B.DH,B.DU,B.DC],t.F)
 B.DB=new A.bs(-2,B.Q,B.c1,B.cR,3)
 B.DE=new A.bs(0,B.Q,B.c2,B.cR,4)
 B.E3=new A.bs(0,B.Q,B.bR,B.c9,8)
-B.N6=s([B.DB,B.DE,B.E3],t.F)
+B.N7=s([B.DB,B.DE,B.E3],t.F)
 B.DG=new A.bs(-1,B.Q,B.c1,B.iJ,4)
 B.wQ=new A.i(0,4)
 B.DQ=new A.bs(0,B.Q,B.c2,B.wQ,5)
 B.DL=new A.bs(0,B.Q,B.bR,B.c9,10)
-B.Kg=s([B.DG,B.DQ,B.DL],t.F)
+B.Kh=s([B.DG,B.DQ,B.DL],t.F)
 B.Dy=new A.bs(-1,B.Q,B.c1,B.cR,5)
 B.wR=new A.i(0,6)
 B.DV=new A.bs(0,B.Q,B.c2,B.wR,10)
 B.E2=new A.bs(0,B.Q,B.bR,B.c9,18)
-B.Lh=s([B.Dy,B.DV,B.E2],t.F)
+B.Li=s([B.Dy,B.DV,B.E2],t.F)
 B.m6=new A.i(0,5)
 B.DD=new A.bs(-3,B.Q,B.c1,B.m6,5)
 B.m7=new A.i(0,8)
 B.DP=new A.bs(1,B.Q,B.c2,B.m7,10)
 B.E1=new A.bs(2,B.Q,B.bR,B.cR,14)
-B.KC=s([B.DD,B.DP,B.E1],t.F)
+B.KD=s([B.DD,B.DP,B.E1],t.F)
 B.Dz=new A.bs(-3,B.Q,B.c1,B.m6,6)
 B.wS=new A.i(0,9)
 B.DY=new A.bs(1,B.Q,B.c2,B.wS,12)
 B.DW=new A.bs(2,B.Q,B.bR,B.cR,16)
-B.KS=s([B.Dz,B.DY,B.DW],t.F)
+B.KT=s([B.Dz,B.DY,B.DW],t.F)
 B.Uq=new A.i(0,7)
 B.DR=new A.bs(-4,B.Q,B.c1,B.Uq,8)
 B.Ul=new A.i(0,12)
 B.DN=new A.bs(2,B.Q,B.c2,B.Ul,17)
 B.E0=new A.bs(4,B.Q,B.bR,B.m6,22)
-B.Ly=s([B.DR,B.DN,B.E0],t.F)
+B.Lz=s([B.DR,B.DN,B.E0],t.F)
 B.E_=new A.bs(-5,B.Q,B.c1,B.m7,10)
 B.Um=new A.i(0,16)
 B.DT=new A.bs(2,B.Q,B.c2,B.Um,24)
 B.E5=new A.bs(5,B.Q,B.bR,B.wR,30)
-B.Lx=s([B.E_,B.DT,B.E5],t.F)
+B.Ly=s([B.E_,B.DT,B.E5],t.F)
 B.Uk=new A.i(0,11)
 B.DF=new A.bs(-7,B.Q,B.c1,B.Uk,15)
 B.Uo=new A.i(0,24)
 B.DZ=new A.bs(3,B.Q,B.c2,B.Uo,38)
 B.DS=new A.bs(8,B.Q,B.bR,B.wS,46)
-B.M4=s([B.DF,B.DZ,B.DS],t.F)
-B.P0=new A.cX([0,B.q4,1,B.Nf,2,B.L0,3,B.N6,4,B.Kg,6,B.Lh,8,B.KC,9,B.KS,12,B.Ly,16,B.Lx,24,B.M4],A.as("cX<v,V<bs>>"))
+B.M5=s([B.DF,B.DZ,B.DS],t.F)
+B.P0=new A.cX([0,B.q4,1,B.Ng,2,B.L1,3,B.N7,4,B.Kh,6,B.Li,8,B.KD,9,B.KT,12,B.Lz,16,B.Ly,24,B.M5],A.as("cX<v,V<bs>>"))
 B.c7=new A.h(4294968065)
 B.mz=new A.ak(B.c7,!1,!1,!0,!1,B.m)
 B.bT=new A.h(4294968066)
@@ -102893,84 +102893,84 @@ B.wB=new A.m(B.bf,[],A.as("m<En,@>"))
 B.SZ=new A.m(B.bf,[],A.as("m<hV,d2>"))
 B.wz=new A.m(B.bf,[],A.as("m<hV,qk<d2>>"))
 B.iE=new A.m(B.bf,[],A.as("m<@,@>"))
-B.Kv=s([42,null,null,8589935146],t.Z)
-B.Kw=s([43,null,null,8589935147],t.Z)
-B.Kx=s([45,null,null,8589935149],t.Z)
-B.Ky=s([46,null,null,8589935150],t.Z)
-B.Kz=s([47,null,null,8589935151],t.Z)
-B.KA=s([48,null,null,8589935152],t.Z)
-B.KB=s([49,null,null,8589935153],t.Z)
-B.KE=s([50,null,null,8589935154],t.Z)
-B.KF=s([51,null,null,8589935155],t.Z)
-B.KG=s([52,null,null,8589935156],t.Z)
-B.KH=s([53,null,null,8589935157],t.Z)
-B.KI=s([54,null,null,8589935158],t.Z)
-B.KJ=s([55,null,null,8589935159],t.Z)
-B.KK=s([56,null,null,8589935160],t.Z)
-B.KM=s([57,null,null,8589935161],t.Z)
-B.Mp=s([8589934852,8589934852,8589934853,null],t.Z)
-B.Kk=s([4294967555,null,4294967555,null],t.Z)
-B.Kl=s([4294968065,null,null,8589935154],t.Z)
-B.Km=s([4294968066,null,null,8589935156],t.Z)
-B.Kn=s([4294968067,null,null,8589935158],t.Z)
-B.Ko=s([4294968068,null,null,8589935160],t.Z)
-B.Kt=s([4294968321,null,null,8589935157],t.Z)
-B.Mq=s([8589934848,8589934848,8589934849,null],t.Z)
-B.Kj=s([4294967423,null,null,8589935150],t.Z)
-B.Kp=s([4294968069,null,null,8589935153],t.Z)
-B.Ki=s([4294967309,null,null,8589935117],t.Z)
-B.Kq=s([4294968070,null,null,8589935159],t.Z)
-B.Ku=s([4294968327,null,null,8589935152],t.Z)
-B.Mr=s([8589934854,8589934854,8589934855,null],t.Z)
-B.Kr=s([4294968071,null,null,8589935155],t.Z)
-B.Ks=s([4294968072,null,null,8589935161],t.Z)
-B.Ms=s([8589934850,8589934850,8589934851,null],t.Z)
-B.wC=new A.cX(["*",B.Kv,"+",B.Kw,"-",B.Kx,".",B.Ky,"/",B.Kz,"0",B.KA,"1",B.KB,"2",B.KE,"3",B.KF,"4",B.KG,"5",B.KH,"6",B.KI,"7",B.KJ,"8",B.KK,"9",B.KM,"Alt",B.Mp,"AltGraph",B.Kk,"ArrowDown",B.Kl,"ArrowLeft",B.Km,"ArrowRight",B.Kn,"ArrowUp",B.Ko,"Clear",B.Kt,"Control",B.Mq,"Delete",B.Kj,"End",B.Kp,"Enter",B.Ki,"Home",B.Kq,"Insert",B.Ku,"Meta",B.Mr,"PageDown",B.Kr,"PageUp",B.Ks,"Shift",B.Ms],A.as("cX<e,V<v?>>"))
-B.KL=s([B.qi,null,null,B.vZ],t.L)
-B.N_=s([B.vL,null,null,B.w_],t.L)
-B.Lp=s([B.vM,null,null,B.w0],t.L)
-B.Mv=s([B.vN,null,null,B.dm],t.L)
+B.Kw=s([42,null,null,8589935146],t.Z)
+B.Kx=s([43,null,null,8589935147],t.Z)
+B.Ky=s([45,null,null,8589935149],t.Z)
+B.Kz=s([46,null,null,8589935150],t.Z)
+B.KA=s([47,null,null,8589935151],t.Z)
+B.KB=s([48,null,null,8589935152],t.Z)
+B.KC=s([49,null,null,8589935153],t.Z)
+B.KF=s([50,null,null,8589935154],t.Z)
+B.KG=s([51,null,null,8589935155],t.Z)
+B.KH=s([52,null,null,8589935156],t.Z)
+B.KI=s([53,null,null,8589935157],t.Z)
+B.KJ=s([54,null,null,8589935158],t.Z)
+B.KK=s([55,null,null,8589935159],t.Z)
+B.KL=s([56,null,null,8589935160],t.Z)
+B.KN=s([57,null,null,8589935161],t.Z)
+B.Mq=s([8589934852,8589934852,8589934853,null],t.Z)
+B.Kl=s([4294967555,null,4294967555,null],t.Z)
+B.Km=s([4294968065,null,null,8589935154],t.Z)
+B.Kn=s([4294968066,null,null,8589935156],t.Z)
+B.Ko=s([4294968067,null,null,8589935158],t.Z)
+B.Kp=s([4294968068,null,null,8589935160],t.Z)
+B.Ku=s([4294968321,null,null,8589935157],t.Z)
+B.Mr=s([8589934848,8589934848,8589934849,null],t.Z)
+B.Kk=s([4294967423,null,null,8589935150],t.Z)
+B.Kq=s([4294968069,null,null,8589935153],t.Z)
+B.Kj=s([4294967309,null,null,8589935117],t.Z)
+B.Kr=s([4294968070,null,null,8589935159],t.Z)
+B.Kv=s([4294968327,null,null,8589935152],t.Z)
+B.Ms=s([8589934854,8589934854,8589934855,null],t.Z)
+B.Ks=s([4294968071,null,null,8589935155],t.Z)
+B.Kt=s([4294968072,null,null,8589935161],t.Z)
+B.Mt=s([8589934850,8589934850,8589934851,null],t.Z)
+B.wC=new A.cX(["*",B.Kw,"+",B.Kx,"-",B.Ky,".",B.Kz,"/",B.KA,"0",B.KB,"1",B.KC,"2",B.KF,"3",B.KG,"4",B.KH,"5",B.KI,"6",B.KJ,"7",B.KK,"8",B.KL,"9",B.KN,"Alt",B.Mq,"AltGraph",B.Kl,"ArrowDown",B.Km,"ArrowLeft",B.Kn,"ArrowRight",B.Ko,"ArrowUp",B.Kp,"Clear",B.Ku,"Control",B.Mr,"Delete",B.Kk,"End",B.Kq,"Enter",B.Kj,"Home",B.Kr,"Insert",B.Kv,"Meta",B.Ms,"PageDown",B.Ks,"PageUp",B.Kt,"Shift",B.Mt],A.as("cX<e,V<v?>>"))
+B.KM=s([B.qi,null,null,B.vZ],t.L)
+B.N0=s([B.vL,null,null,B.w_],t.L)
+B.Lq=s([B.vM,null,null,B.w0],t.L)
+B.Mw=s([B.vN,null,null,B.dm],t.L)
 B.K8=s([B.vO,null,null,B.w1],t.L)
-B.Ng=s([B.vP,null,null,B.lJ],t.L)
-B.Na=s([B.vQ,null,null,B.fA],t.L)
-B.KT=s([B.vR,null,null,B.dn],t.L)
-B.Nm=s([B.vS,null,null,B.fB],t.L)
-B.N9=s([B.vT,null,null,B.dp],t.L)
-B.KR=s([B.vU,null,null,B.lK],t.L)
-B.Ke=s([B.vV,null,null,B.dq],t.L)
-B.L2=s([B.vW,null,null,B.fC],t.L)
-B.N0=s([B.vX,null,null,B.dr],t.L)
-B.N3=s([B.vY,null,null,B.fD],t.L)
-B.KV=s([B.fy,B.fy,B.iu,null],t.L)
-B.Nh=s([B.iq,null,B.iq,null],t.L)
-B.LQ=s([B.c7,null,null,B.dn],t.L)
-B.LR=s([B.bT,null,null,B.dp],t.L)
-B.LS=s([B.bU,null,null,B.dq],t.L)
-B.Nl=s([B.c8,null,null,B.dr],t.L)
-B.N7=s([B.lD,null,null,B.lK],t.L)
-B.KW=s([B.fx,B.fx,B.it,null],t.L)
-B.MF=s([B.b3,null,null,B.dm],t.L)
-B.LT=s([B.dj,null,null,B.fA],t.L)
-B.KQ=s([B.ip,null,null,B.lI],t.L)
-B.LU=s([B.dk,null,null,B.fC],t.L)
-B.N8=s([B.fw,null,null,B.lJ],t.L)
-B.KX=s([B.fz,B.fz,B.iv,null],t.L)
-B.LV=s([B.fu,null,null,B.fB],t.L)
-B.ML=s([B.fv,null,null,B.fD],t.L)
-B.KY=s([B.cO,B.cO,B.dl,null],t.L)
-B.T2=new A.cX(["*",B.KL,"+",B.N_,"-",B.Lp,".",B.Mv,"/",B.K8,"0",B.Ng,"1",B.Na,"2",B.KT,"3",B.Nm,"4",B.N9,"5",B.KR,"6",B.Ke,"7",B.L2,"8",B.N0,"9",B.N3,"Alt",B.KV,"AltGraph",B.Nh,"ArrowDown",B.LQ,"ArrowLeft",B.LR,"ArrowRight",B.LS,"ArrowUp",B.Nl,"Clear",B.N7,"Control",B.KW,"Delete",B.MF,"End",B.LT,"Enter",B.KQ,"Home",B.LU,"Insert",B.N8,"Meta",B.KX,"PageDown",B.LV,"PageUp",B.ML,"Shift",B.KY],A.as("cX<e,V<h?>>"))
+B.Nh=s([B.vP,null,null,B.lJ],t.L)
+B.Nb=s([B.vQ,null,null,B.fA],t.L)
+B.KU=s([B.vR,null,null,B.dn],t.L)
+B.Nn=s([B.vS,null,null,B.fB],t.L)
+B.Na=s([B.vT,null,null,B.dp],t.L)
+B.KS=s([B.vU,null,null,B.lK],t.L)
+B.Kf=s([B.vV,null,null,B.dq],t.L)
+B.L3=s([B.vW,null,null,B.fC],t.L)
+B.N1=s([B.vX,null,null,B.dr],t.L)
+B.N4=s([B.vY,null,null,B.fD],t.L)
+B.KW=s([B.fy,B.fy,B.iu,null],t.L)
+B.Ni=s([B.iq,null,B.iq,null],t.L)
+B.LR=s([B.c7,null,null,B.dn],t.L)
+B.LS=s([B.bT,null,null,B.dp],t.L)
+B.LT=s([B.bU,null,null,B.dq],t.L)
+B.Nm=s([B.c8,null,null,B.dr],t.L)
+B.N8=s([B.lD,null,null,B.lK],t.L)
+B.KX=s([B.fx,B.fx,B.it,null],t.L)
+B.MG=s([B.b3,null,null,B.dm],t.L)
+B.LU=s([B.dj,null,null,B.fA],t.L)
+B.KR=s([B.ip,null,null,B.lI],t.L)
+B.LV=s([B.dk,null,null,B.fC],t.L)
+B.N9=s([B.fw,null,null,B.lJ],t.L)
+B.KY=s([B.fz,B.fz,B.iv,null],t.L)
+B.LW=s([B.fu,null,null,B.fB],t.L)
+B.MM=s([B.fv,null,null,B.fD],t.L)
+B.KZ=s([B.cO,B.cO,B.dl,null],t.L)
+B.T2=new A.cX(["*",B.KM,"+",B.N0,"-",B.Lq,".",B.Mw,"/",B.K8,"0",B.Nh,"1",B.Nb,"2",B.KU,"3",B.Nn,"4",B.Na,"5",B.KS,"6",B.Kf,"7",B.L3,"8",B.N1,"9",B.N4,"Alt",B.KW,"AltGraph",B.Ni,"ArrowDown",B.LR,"ArrowLeft",B.LS,"ArrowRight",B.LT,"ArrowUp",B.Nm,"Clear",B.N8,"Control",B.KX,"Delete",B.MG,"End",B.LU,"Enter",B.KR,"Home",B.LV,"Insert",B.N9,"Meta",B.KY,"PageDown",B.LW,"PageUp",B.MM,"Shift",B.KZ],A.as("cX<e,V<h?>>"))
 B.TV={accessibleNavigation:0,invertColors:1,disableAnimations:2,boldText:3,reduceMotion:4,highContrast:5,onOffSwitchLabels:6}
 B.Ti=new A.m(B.TV,["Accessible navigation","Invert colors","Disable animations","Bold text","Reduce motion","High contrast","On/off switch labels"],t.li)
 B.U4={KeyA:0,KeyB:1,KeyC:2,KeyD:3,KeyE:4,KeyF:5,KeyG:6,KeyH:7,KeyI:8,KeyJ:9,KeyK:10,KeyL:11,KeyM:12,KeyN:13,KeyO:14,KeyP:15,KeyQ:16,KeyR:17,KeyS:18,KeyT:19,KeyU:20,KeyV:21,KeyW:22,KeyX:23,KeyY:24,KeyZ:25,Digit1:26,Digit2:27,Digit3:28,Digit4:29,Digit5:30,Digit6:31,Digit7:32,Digit8:33,Digit9:34,Digit0:35,Minus:36,Equal:37,BracketLeft:38,BracketRight:39,Backslash:40,Semicolon:41,Quote:42,Backquote:43,Comma:44,Period:45,Slash:46}
 B.wD=new A.m(B.U4,["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","1","2","3","4","5","6","7","8","9","0","-","=","[","]","\\",";","'","`",",",".","/"],t.li)
 B.U3={"zh-Hant":0,"zh-TW":1,"zh-MO":2,"zh-HK":3,ja:4,ko:5,zh:6,"zh-Hans":7,"zh-CN":8}
 B.lt=s(["Noto Sans TC"],t.s)
-B.Mz=s(["Noto Sans HK","Noto Sans TC"],t.s)
-B.KO=s(["Noto Sans JP"],t.s)
-B.Kf=s(["Noto Sans KR"],t.s)
+B.MA=s(["Noto Sans HK","Noto Sans TC"],t.s)
+B.KP=s(["Noto Sans JP"],t.s)
+B.Kg=s(["Noto Sans KR"],t.s)
 B.q_=s(["Noto Sans SC"],t.s)
 B.Nr=s(["Noto Sans SC","Noto Sans TC"],t.s)
-B.iF=new A.m(B.U3,[B.lt,B.lt,B.lt,B.Mz,B.KO,B.Kf,B.q_,B.q_,B.Nr],t.VJ)
+B.iF=new A.m(B.U3,[B.lt,B.lt,B.lt,B.MA,B.KP,B.Kg,B.q_,B.q_,B.Nr],t.VJ)
 B.U_={Abort:0,Again:1,AltLeft:2,AltRight:3,ArrowDown:4,ArrowLeft:5,ArrowRight:6,ArrowUp:7,AudioVolumeDown:8,AudioVolumeMute:9,AudioVolumeUp:10,Backquote:11,Backslash:12,Backspace:13,BracketLeft:14,BracketRight:15,BrightnessDown:16,BrightnessUp:17,BrowserBack:18,BrowserFavorites:19,BrowserForward:20,BrowserHome:21,BrowserRefresh:22,BrowserSearch:23,BrowserStop:24,CapsLock:25,Comma:26,ContextMenu:27,ControlLeft:28,ControlRight:29,Convert:30,Copy:31,Cut:32,Delete:33,Digit0:34,Digit1:35,Digit2:36,Digit3:37,Digit4:38,Digit5:39,Digit6:40,Digit7:41,Digit8:42,Digit9:43,DisplayToggleIntExt:44,Eject:45,End:46,Enter:47,Equal:48,Escape:49,Esc:50,F1:51,F10:52,F11:53,F12:54,F13:55,F14:56,F15:57,F16:58,F17:59,F18:60,F19:61,F2:62,F20:63,F21:64,F22:65,F23:66,F24:67,F3:68,F4:69,F5:70,F6:71,F7:72,F8:73,F9:74,Find:75,Fn:76,FnLock:77,GameButton1:78,GameButton10:79,GameButton11:80,GameButton12:81,GameButton13:82,GameButton14:83,GameButton15:84,GameButton16:85,GameButton2:86,GameButton3:87,GameButton4:88,GameButton5:89,GameButton6:90,GameButton7:91,GameButton8:92,GameButton9:93,GameButtonA:94,GameButtonB:95,GameButtonC:96,GameButtonLeft1:97,GameButtonLeft2:98,GameButtonMode:99,GameButtonRight1:100,GameButtonRight2:101,GameButtonSelect:102,GameButtonStart:103,GameButtonThumbLeft:104,GameButtonThumbRight:105,GameButtonX:106,GameButtonY:107,GameButtonZ:108,Help:109,Home:110,Hyper:111,Insert:112,IntlBackslash:113,IntlRo:114,IntlYen:115,KanaMode:116,KeyA:117,KeyB:118,KeyC:119,KeyD:120,KeyE:121,KeyF:122,KeyG:123,KeyH:124,KeyI:125,KeyJ:126,KeyK:127,KeyL:128,KeyM:129,KeyN:130,KeyO:131,KeyP:132,KeyQ:133,KeyR:134,KeyS:135,KeyT:136,KeyU:137,KeyV:138,KeyW:139,KeyX:140,KeyY:141,KeyZ:142,KeyboardLayoutSelect:143,Lang1:144,Lang2:145,Lang3:146,Lang4:147,Lang5:148,LaunchApp1:149,LaunchApp2:150,LaunchAssistant:151,LaunchControlPanel:152,LaunchMail:153,LaunchScreenSaver:154,MailForward:155,MailReply:156,MailSend:157,MediaFastForward:158,MediaPause:159,MediaPlay:160,MediaPlayPause:161,MediaRecord:162,MediaRewind:163,MediaSelect:164,MediaStop:165,MediaTrackNext:166,MediaTrackPrevious:167,MetaLeft:168,MetaRight:169,MicrophoneMuteToggle:170,Minus:171,NonConvert:172,NumLock:173,Numpad0:174,Numpad1:175,Numpad2:176,Numpad3:177,Numpad4:178,Numpad5:179,Numpad6:180,Numpad7:181,Numpad8:182,Numpad9:183,NumpadAdd:184,NumpadBackspace:185,NumpadClear:186,NumpadClearEntry:187,NumpadComma:188,NumpadDecimal:189,NumpadDivide:190,NumpadEnter:191,NumpadEqual:192,NumpadMemoryAdd:193,NumpadMemoryClear:194,NumpadMemoryRecall:195,NumpadMemoryStore:196,NumpadMemorySubtract:197,NumpadMultiply:198,NumpadParenLeft:199,NumpadParenRight:200,NumpadSubtract:201,Open:202,PageDown:203,PageUp:204,Paste:205,Pause:206,Period:207,Power:208,PrintScreen:209,PrivacyScreenToggle:210,Props:211,Quote:212,Resume:213,ScrollLock:214,Select:215,SelectTask:216,Semicolon:217,ShiftLeft:218,ShiftRight:219,ShowAllWindows:220,Slash:221,Sleep:222,Space:223,Super:224,Suspend:225,Tab:226,Turbo:227,Undo:228,WakeUp:229,ZoomToggle:230}
 B.zK=new A.p(458907)
 B.zq=new A.p(458873)
@@ -103576,9 +103576,9 @@ B.XL=new A.eF([B.Xt,B.Xq],A.as("eF<ip>"))
 B.Ba=new A.eF([B.aq,B.b6,B.cb,B.bh,B.bz],t.Lu)
 B.GJ=new A.y(0.23529411764705882,0,0,0,B.e)
 B.E4=new A.bs(0.5,B.Q,B.GJ,B.wQ,10)
-B.MG=s([B.E4],t.F)
+B.MH=s([B.E4],t.F)
 B.WR=new A.ky(B.jW,B.q)
-B.XM=new A.hb(null,null,null,B.MG,B.WR)
+B.XM=new A.hb(null,null,null,B.MH,B.WR)
 B.mv=new A.oi(0,"onlyForDiscrete")
 B.Bb=new A.oi(1,"onlyForContinuous")
 B.Bc=new A.oi(2,"always")
@@ -104694,7 +104694,7 @@ r($,"b8O","aAU",()=>{A.aXC()
 return B.EA})
 s($,"b7W","aOB",()=>new A.aeL())
 s($,"b8B","aP6",()=>A.bG("^[A-Za-z]{2,3}([-_][A-Za-z0-9]{2,8}){0,2}$",!1,!1))
-s($,"b9Q","aFd",()=>A.er(B.b.dV(B.Np,A.b2z(),t.z),t.AF))
+s($,"b9Q","aFd",()=>A.er(B.b.dV(B.Kd,A.b2z(),t.z),t.AF))
 s($,"b8C","aP8",()=>A.j0("connected_app"))
 s($,"b8D","Kx",()=>A.j0("dtd_manager"))
 s($,"b8E","aAS",()=>A.j0("eval_on_dart_library"))
@@ -105106,8 +105106,8 @@ s($,"b86","aOL",()=>A.bG("^[^\\s<][^\\s]*( \\d+(:\\d+)?)?[ \\t]+[^\\s]+$",!0,!1)
 s($,"bam","aFr",()=>A.bG("^<asynchronous suspension>\\n?$",!0,!1))
 s($,"b72","aNZ",()=>new A.O())
 s($,"b9h","aAX",()=>A.Z(["AllocationProfile",A.b3b(),"BoundField",A.b3c(),"BoundVariable",A.b3d(),"Breakpoint",A.b3e(),"@Class",A.b3h(),"Class",A.b3i(),"ClassHeapStats",A.b3f(),"ClassList",A.b3g(),"@Code",A.b3j(),"Code",A.b3k(),"@Context",A.b3m(),"Context",A.b3n(),"ContextElement",A.b3l(),"CpuSamples",A.b3q(),"CpuSamplesEvent",A.b3p(),"CpuSample",A.b3o(),"@Error",A.b3r(),"Error",A.b3s(),"Event",A.b3t(),"ExtensionData",A.b3u(),"@Field",A.b3v(),"Field",A.b3w(),"Flag",A.b3y(),"FlagList",A.b3x(),"Frame",A.b3z(),"@Function",A.b3A(),"Function",A.b3B(),"IdZone",A.b3C(),"@Instance",A.b3F(),"Instance",A.b3H(),"@Isolate",A.b3L(),"Isolate",A.b3M(),"IsolateFlag",A.b3I(),"@IsolateGroup",A.b3J(),"IsolateGroup",A.b3K(),"InboundReferences",A.b3E(),"InboundReference",A.b3D(),"InstanceSet",A.b3G(),"@Library",A.b3N(),"Library",A.b3O(),"LibraryDependency",A.aMH(),"LogRecord",A.b3P(),"MapAssociation",A.aEt(),"MemoryUsage",A.b3Q(),"Message",A.b3R(),"Microtask",A.b3S(),"NativeFunction",A.b3T(),"@Null",A.b3U(),"Null",A.b3V(),"@Object",A.b3W(),"Object",A.b3X(),"Parameter",A.b3Y(),"PerfettoCpuSamples",A.b3Z(),"PerfettoTimeline",A.b4_(),"PortList",A.b40(),"ProfileFunction",A.b43(),"ProtocolList",A.b44(),"Protocol",A.b45(),"ProcessMemoryUsage",A.b42(),"ProcessMemoryItem",A.b41(),"QueuedMicrotasks",A.b46(),"ReloadReport",A.b47(),"RetainingObject",A.b49(),"RetainingPath",A.b4a(),"Response",A.b48(),"Sentinel",A.b4e(),"@Script",A.b4c(),"Script",A.b4d(),"ScriptList",A.b4b(),"SourceLocation",A.b4f(),"SourceReport",A.b4g(),"SourceReportCoverage",A.aMI(),"SourceReportRange",A.aMJ(),"Stack",A.b4h(),"Success",A.b4i(),"Timeline",A.b4l(),"TimelineEvent",A.b4j(),"TimelineFlags",A.b4k(),"Timestamp",A.b4m(),"@TypeArguments",A.b4n(),"TypeArguments",A.b4o(),"@TypeParameters",A.b4p(),"TypeParameters",A.b4q(),"UnresolvedSourceLocation",A.b4r(),"UriList",A.b4s(),"Version",A.b4v(),"@VM",A.b4t(),"VM",A.b4u()],t.N,t._8))
-s($,"b8L","aPb",()=>A.Z(["addBreakpoint",B.co,"addBreakpointWithScriptUri",B.co,"addBreakpointAtEntry",B.co,"clearCpuSamples",B.aE,"clearVMTimeline",B.aE,"createIdZone",B.Lq,"deleteIdZone",B.aE,"invalidateIdZone",B.aE,"invoke",B.lr,"evaluate",B.lr,"evaluateInFrame",B.lr,"getAllocationProfile",B.L3,"getAllocationTraces",B.pO,"getClassList",B.Le,"getCpuSamples",B.pO,"getFlagList",B.Lm,"getInboundReferences",B.Ls,"getInstances",B.Lt,"getInstancesAsList",B.u,"getIsolate",B.Lu,"getIsolateGroup",B.Lw,"getIsolatePauseEvent",B.ig,"getMemoryUsage",B.ls,"getIsolateGroupMemoryUsage",B.ls,"getScripts",B.Mc,"getObject",B.LX,"getPerfettoCpuSamples",B.LY,"getPerfettoVMTimeline",B.LZ,"getPorts",B.M_,"getRetainingPath",B.Ma,"getProcessMemoryUsage",B.M0,"getQueuedMicrotasks",B.M6,"getStack",B.Mh,"getSupportedProtocols",B.M2,"getSourceReport",B.Me,"getVersion",B.Mw,"getVM",B.Mu,"getVMTimeline",B.Mm,"getVMTimelineFlags",B.Mn,"getVMTimelineMicros",B.Mo,"pause",B.aE,"kill",B.aE,"lookupResolvedPackageUris",B.q1,"lookupPackageUris",B.q1,"registerService",B.aE,"reloadSources",B.M8,"removeBreakpoint",B.aE,"requestHeapSnapshot",B.aE,"resume",B.aE,"setBreakpointState",B.co,"setExceptionPauseMode",B.aE,"setIsolatePauseMode",B.aE,"setFlag",B.Mi,"setLibraryDebuggable",B.aE,"setName",B.aE,"setTraceClassAllocation",B.aE,"setVMName",B.aE,"setVMTimelineFlags",B.aE,"streamCancel",B.aE,"streamCpuSamplesWithUserTag",B.aE,"streamListen",B.aE],t.N,t.yp))
-s($,"b6j","aNz",()=>B.b.m1(B.Mb,A.o(t.S,A.as("cl")),new A.afl()))})();(function nativeSupport(){!function(){var s=function(a){var m={}
+s($,"b8L","aPb",()=>A.Z(["addBreakpoint",B.co,"addBreakpointWithScriptUri",B.co,"addBreakpointAtEntry",B.co,"clearCpuSamples",B.aE,"clearVMTimeline",B.aE,"createIdZone",B.Lr,"deleteIdZone",B.aE,"invalidateIdZone",B.aE,"invoke",B.lr,"evaluate",B.lr,"evaluateInFrame",B.lr,"getAllocationProfile",B.L4,"getAllocationTraces",B.pO,"getClassList",B.Lf,"getCpuSamples",B.pO,"getFlagList",B.Ln,"getInboundReferences",B.Lt,"getInstances",B.Lu,"getInstancesAsList",B.u,"getIsolate",B.Lv,"getIsolateGroup",B.Lx,"getIsolatePauseEvent",B.ig,"getMemoryUsage",B.ls,"getIsolateGroupMemoryUsage",B.ls,"getScripts",B.Md,"getObject",B.LY,"getPerfettoCpuSamples",B.LZ,"getPerfettoVMTimeline",B.M_,"getPorts",B.M0,"getRetainingPath",B.Mb,"getProcessMemoryUsage",B.M1,"getQueuedMicrotasks",B.M7,"getStack",B.Mi,"getSupportedProtocols",B.M3,"getSourceReport",B.Mf,"getVersion",B.Mx,"getVM",B.Mv,"getVMTimeline",B.Mn,"getVMTimelineFlags",B.Mo,"getVMTimelineMicros",B.Mp,"pause",B.aE,"kill",B.aE,"lookupResolvedPackageUris",B.q1,"lookupPackageUris",B.q1,"registerService",B.aE,"reloadSources",B.M9,"removeBreakpoint",B.aE,"requestHeapSnapshot",B.aE,"resume",B.aE,"setBreakpointState",B.co,"setExceptionPauseMode",B.aE,"setIsolatePauseMode",B.aE,"setFlag",B.Mj,"setLibraryDebuggable",B.aE,"setName",B.aE,"setTraceClassAllocation",B.aE,"setVMName",B.aE,"setVMTimelineFlags",B.aE,"streamCancel",B.aE,"streamCpuSamplesWithUserTag",B.aE,"streamListen",B.aE],t.N,t.yp))
+s($,"b6j","aNz",()=>B.b.m1(B.Mc,A.o(t.S,A.as("cl")),new A.afl()))})();(function nativeSupport(){!function(){var s=function(a){var m={}
 m[a]=1
 return Object.keys(hunkHelpers.convertToFastObject(m))[0]}
 v.getIsolateTag=function(a){return s("___dart_"+a+v.isolateTag)}

@@ -3069,8 +3069,8 @@ abstract final class DevicePresets {
           '    <path d="M 40,0 H 356 A 36,36 0 0 1 392,36 V 840 A 36,36 0 0 1 356,876 H 40 A 36,36 0 0 1 4,840 V 36 A 36,36 0 0 1 40,0 Z"/>\n'
           '  </clipPath></defs>\n'
           '  <g fill="#3d4149">\n'
-          '    <rect x="390" y="140.16" width="6" height="48.18" rx="2"/>\n'
-          '    <rect x="390" y="205.86" width="6" height="70.08" rx="2"/>\n'
+          '    <rect x="390" y="121.67" width="6" height="99.67" rx="2"/>\n'
+          '    <rect x="390" y="264" width="6" height="70.33" rx="2"/>\n'
           '  </g>\n'
           '  <path d="M 40,0 H 356 A 36,36 0 0 1 392,36 V 840 A 36,36 0 0 1 356,876 H 40 A 36,36 0 0 1 4,840 V 36 A 36,36 0 0 1 40,0 Z" fill="#1f2126"/>\n'
           '  <path d="M 40,2 H 356 A 34,34 0 0 1 390,36 V 840 A 34,34 0 0 1 356,874 H 40 A 34,34 0 0 1 6,840 V 36 A 34,34 0 0 1 40,2 Z" fill="#3d4149"/>\n'
@@ -3197,18 +3197,18 @@ abstract final class DevicePresets {
     ],
     kind: DeviceKind.foldable,
     frame: DeviceFrame(
-      size: ui.Size(786, 1024),
+      size: ui.Size(786, 1028),
       screenOffset: ui.Offset(23.4, 22.4),
       screenPath:
           'M 16,0 H 723.2 A 16,16 0 0 1 739.2,16 V 963.2 A 16,16 0 0 1 723.2,979.2 H 16 A 16,16 0 0 1 0,963.2 V 16 A 16,16 0 0 1 16,0 Z M 715,732 A 12.2,12.2 0 1 0 715,756.4 A 12.2,12.2 0 1 0 715,732 Z',
       body:
-          '<svg viewBox="0 0 786 1024">\n'
+          '<svg viewBox="0 0 786 1028">\n'
           '  <defs><clipPath id="shell">\n'
           '    <path d="M 40,0 H 746 A 36,36 0 0 1 782,36 V 988 A 36,36 0 0 1 746,1024 H 40 A 36,36 0 0 1 4,988 V 36 A 36,36 0 0 1 40,0 Z"/>\n'
           '  </clipPath></defs>\n'
           '  <g fill="#3d4149">\n'
-          '    <rect x="780" y="163.84" width="6" height="56.32" rx="2"/>\n'
-          '    <rect x="780" y="240.64" width="6" height="81.92" rx="2"/>\n'
+          '    <rect x="586.2" y="1022" width="121.6" height="6" rx="2"/>\n'
+          '    <rect x="436.2" y="1022" width="84.8" height="6" rx="2"/>\n'
           '  </g>\n'
           '  <path d="M 40,0 H 746 A 36,36 0 0 1 782,36 V 988 A 36,36 0 0 1 746,1024 H 40 A 36,36 0 0 1 4,988 V 36 A 36,36 0 0 1 40,0 Z" fill="#1f2126"/>\n'
           '  <path d="M 40,2 H 746 A 34,34 0 0 1 780,36 V 988 A 34,34 0 0 1 746,1022 H 40 A 34,34 0 0 1 6,988 V 36 A 34,34 0 0 1 40,2 Z" fill="#3d4149"/>\n'
@@ -3335,8 +3335,8 @@ abstract final class DevicePresets {
           '    <path d="M 38,0 H 868 A 34,34 0 0 1 902,34 V 968 A 34,34 0 0 1 868,1002 H 38 A 34,34 0 0 1 4,968 V 34 A 34,34 0 0 1 38,0 Z"/>\n'
           '  </clipPath></defs>\n'
           '  <g fill="#3d4149">\n'
-          '    <rect x="900" y="160.32" width="6" height="55.11" rx="2"/>\n'
-          '    <rect x="900" y="235.47" width="6" height="80.16" rx="2"/>\n'
+          '    <rect x="900" y="262.15" width="6" height="121.14" rx="2"/>\n'
+          '    <rect x="900" y="434.34" width="6" height="84.57" rx="2"/>\n'
           '  </g>\n'
           '  <path d="M 38,0 H 868 A 34,34 0 0 1 902,34 V 968 A 34,34 0 0 1 868,1002 H 38 A 34,34 0 0 1 4,968 V 34 A 34,34 0 0 1 38,0 Z" fill="#1f2126"/>\n'
           '  <path d="M 38,2 H 868 A 32,32 0 0 1 900,34 V 968 A 32,32 0 0 1 868,1000 H 38 A 32,32 0 0 1 6,968 V 34 A 32,32 0 0 1 38,2 Z" fill="#3d4149"/>\n'
