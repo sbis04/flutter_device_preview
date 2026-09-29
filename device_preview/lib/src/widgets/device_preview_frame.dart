@@ -139,8 +139,7 @@ class RenderDevicePreviewFrame extends RenderProxyBox {
 
   DeviceFramePainter? _painter;
   SystemUiPainter? _systemUiPainter;
-  final LayerHandle<ClipPathLayer> _clipLayer =
-      LayerHandle<ClipPathLayer>();
+  final LayerHandle<ClipPathLayer> _clipLayer = LayerHandle<ClipPathLayer>();
 
   @override
   void attach(PipelineOwner owner) {
@@ -209,6 +208,11 @@ class RenderDevicePreviewFrame extends RenderProxyBox {
       canvas,
       screenSize: size,
       padding: simulation.padding ?? simulation.viewPadding ?? EdgeInsets.zero,
+      cutouts: <Rect>[
+        for (final SimulatedDisplayFeature feature
+            in simulation.displayFeatures ?? const <SimulatedDisplayFeature>[])
+          if (feature.type == ui.DisplayFeatureType.cutout) feature.bounds,
+      ],
       colors: SystemUiColors.resolve(
         style: _overlayStyle?.value,
         platformBrightness:

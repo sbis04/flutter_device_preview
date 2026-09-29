@@ -190,6 +190,13 @@ variant:
 
 Artwork is drawn at its natural size (its view box), never stretched, and is
 centered vertically in the bar unless `bottomInset` pins it to the outer edge.
+`trailingInset` sets the trailing artwork's distance from the edge when it
+differs from `inset`. A `cutout` display feature reaching into a bar pushes
+the leading or trailing artwork it would overlap past it, toward the
+center, keeping `cutoutGap` (leading) or `trailingCutoutGap` (trailing)
+between them — the way Android lays its status bar out beside a corner
+camera (the Pixel 10 Pro Fold's). A cutout the artwork does not reach, such
+as a centered punch hole, moves nothing.
 `leading` and `trailing` swap under a right-to-left directionality.
 
 Everything is static — the clock always reads the same time, the battery never
@@ -255,6 +262,12 @@ page apply the same ones):
 - **Pairs travel together.** A posture that declares a portrait padding,
   view padding or reserved-region list takes the landscape half of the pair
   from itself (or the rotation rule), never from the open posture.
+
+The Android foldables declare `halfOpened` as an empty object — the same
+screen, its fold turned `postureHalfOpened` — and `closed` as the cover
+screen. `.claude/skills/extract-foldable-specs` rebuilds them: the Pixel's
+from its emulator skins and measurements taken on its emulator, the
+Samsung covers from Samsung's emulator skins.
 
 `displayFeatures` is what the platform tells a Flutter app. Android reports a
 fold (Jetpack WindowManager's `FoldingFeature`, `postureFlat` or

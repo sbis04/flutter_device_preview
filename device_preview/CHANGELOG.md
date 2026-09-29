@@ -28,6 +28,27 @@ Devices as widgets, and fourteen more of them.
   shape the emulator draws — rather than the layout's `corner_radius`
   (which is what the OS is told for insets and is much tighter): Pixel 9,
   9 Pro XL, 10 and 10 Pro Fold.
+- **Every Android foldable folds**: the Pixel 10 Pro Fold, Galaxy Z Fold8,
+  Fold8 Ultra and Flip8 gain `halfOpened` (the same screen, its fold
+  `postureHalfOpened`) and `closed` (the cover screen, with its own frame,
+  safe areas and camera cutout) postures.
+  - The Pixel 10 Pro Fold's are measured on Android Studio's Pixel 10 Pro
+    Fold emulator in every device state and rotation, and its open posture
+    is corrected with them: the status bar is 55.79 tall around the corner
+    camera (it was 36, so the status icons ran under the camera), the
+    gesture pill 220 wide, and the camera reported as the `cutout` display
+    feature Android gives apps.
+  - The Samsung covers come from Samsung's official emulator skins —
+    screen, corners and camera from each cover's mask, drawn in the open
+    frames' style — with screen sizes checked against samsung.com's spec
+    pages. The Fold8's inner screen is corrected to the published
+    1848 × 2448 (it was 1828 wide) and the Fold8 Ultra's to exactly
+    2256 × 2504.
+- **`SystemUiBar.trailingInset`, `cutoutGap`, `trailingCutoutGap`**: a bar's
+  leading and trailing artwork may sit at different distances from the
+  edge, and moves clear of any display cutout it would overlap, keeping
+  the gap Android keeps. `SystemUiPainter.paint` takes the screen's
+  `cutouts`.
 
 ## 3.1.0
 

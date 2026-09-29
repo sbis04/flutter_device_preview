@@ -645,7 +645,13 @@ String _emitSystemUi(
           ..writeln(',');
       }
     }
-    for (final String key in <String>['inset', 'bottomInset']) {
+    for (final String key in <String>[
+      'inset',
+      'trailingInset',
+      'cutoutGap',
+      'trailingCutoutGap',
+      'bottomInset',
+    ]) {
       if (bar[key] != null) {
         buffer.writeln('$pad    $key: ${_emitNumber(bar[key], fileName)},');
       }

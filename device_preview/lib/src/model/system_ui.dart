@@ -155,6 +155,13 @@ class SystemUiSimulation {
 /// Vertically, artwork is centered in the safe area unless [bottomInset] is
 /// given, which instead pins its bottom edge that far from the bar's outer
 /// edge (how a home indicator sits).
+///
+/// A display cutout in the bar — a camera hole in a corner, as on the
+/// Pixel 10 Pro Fold — pushes [leading] and [trailing] toward the center
+/// when they would overlap it, keeping [cutoutGap] / [trailingCutoutGap]
+/// between the artwork and the cutout: Android lays its status bar out
+/// beside the cutout the same way. A centered cutout the artwork does not
+/// reach moves nothing.
 @immutable
 class SystemUiBar {
   /// Creates a bar description.
@@ -163,6 +170,9 @@ class SystemUiBar {
     this.center = '',
     this.trailing = '',
     this.inset = 16,
+    this.trailingInset,
+    this.cutoutGap,
+    this.trailingCutoutGap,
     this.bottomInset,
   });
 
@@ -173,16 +183,17 @@ class SystemUiBar {
   factory SystemUiBar.fromJson(Map<String, Object?> json) {
     String artwork(String key) =>
         json[key] == null ? '' : decodeStringOrLines(json[key], key);
+    double? number(String key) =>
+        json[key] == null ? null : decodeDouble(json[key], key);
     return SystemUiBar(
       leading: artwork('leading'),
       center: artwork('center'),
       trailing: artwork('trailing'),
-      inset: json['inset'] == null
-          ? 16
-          : decodeDouble(json['inset'], 'inset'),
-      bottomInset: json['bottomInset'] == null
-          ? null
-          : decodeDouble(json['bottomInset'], 'bottomInset'),
+      inset: number('inset') ?? 16,
+      trailingInset: number('trailingInset'),
+      cutoutGap: number('cutoutGap'),
+      trailingCutoutGap: number('trailingCutoutGap'),
+      bottomInset: number('bottomInset'),
     );
   }
 
@@ -195,8 +206,31 @@ class SystemUiBar {
   /// Artwork anchored to the trailing edge — the status icons, typically.
   final String trailing;
 
-  /// The distance from the screen edge to [leading] / [trailing].
+  /// The distance from the screen edge to [leading], and to [trailing]
+  /// unless [trailingInset] is given.
   final double inset;
+
+  /// When set, the distance from the screen edge to [trailing]; otherwise
+  /// [inset].
+  final double? trailingInset;
+
+  /// The space kept between [leading] and a display cutout it would
+  /// otherwise overlap; [inset] when null.
+  final double? cutoutGap;
+
+  /// The space kept between [trailing] and a display cutout it would
+  /// otherwise overlap; [cutoutGap], then [trailingInset], when null.
+  final double? trailingCutoutGap;
+
+  /// [trailingInset], or [inset] when that is null.
+  double get effectiveTrailingInset => trailingInset ?? inset;
+
+  /// [cutoutGap], or [inset] when that is null.
+  double get effectiveCutoutGap => cutoutGap ?? inset;
+
+  /// [trailingCutoutGap], else [cutoutGap], else [effectiveTrailingInset].
+  double get effectiveTrailingCutoutGap =>
+      trailingCutoutGap ?? cutoutGap ?? effectiveTrailingInset;
 
   /// When set, the distance from the bar's outer edge to the bottom of the
   /// artwork; otherwise the artwork is centered in the safe area.
@@ -211,6 +245,9 @@ class SystemUiBar {
     if (center.isNotEmpty) 'center': center,
     if (trailing.isNotEmpty) 'trailing': trailing,
     'inset': inset,
+    if (trailingInset != null) 'trailingInset': trailingInset,
+    if (cutoutGap != null) 'cutoutGap': cutoutGap,
+    if (trailingCutoutGap != null) 'trailingCutoutGap': trailingCutoutGap,
     if (bottomInset != null) 'bottomInset': bottomInset,
   };
 
@@ -224,18 +261,30 @@ class SystemUiBar {
         other.center == center &&
         other.trailing == trailing &&
         other.inset == inset &&
+        other.trailingInset == trailingInset &&
+        other.cutoutGap == cutoutGap &&
+        other.trailingCutoutGap == trailingCutoutGap &&
         other.bottomInset == bottomInset;
   }
 
   @override
-  int get hashCode =>
-      Object.hash(leading, center, trailing, inset, bottomInset);
+  int get hashCode => Object.hash(
+    leading,
+    center,
+    trailing,
+    inset,
+    trailingInset,
+    cutoutGap,
+    trailingCutoutGap,
+    bottomInset,
+  );
 
   @override
   String toString() =>
       'SystemUiBar(leading: ${leading.length} chars, '
       'center: ${center.length} chars, trailing: ${trailing.length} chars, '
-      'inset: $inset, bottomInset: $bottomInset)';
+      'inset: $inset, trailingInset: $trailingInset, cutoutGap: $cutoutGap, '
+      'trailingCutoutGap: $trailingCutoutGap, bottomInset: $bottomInset)';
 }
 
 /// The colors a system bar is painted with, resolved from the app's
@@ -301,8 +350,8 @@ class SystemUiColors {
 
   /// White for light icons, near-black for dark ones — matching what the
   /// platforms actually draw.
-  static ui.Color _iconColor(Brightness brightness) => brightness ==
-          Brightness.light
+  static ui.Color _iconColor(Brightness brightness) =>
+      brightness == Brightness.light
       ? const ui.Color(0xFFFFFFFF)
       : const ui.Color(0xFF16181C);
 

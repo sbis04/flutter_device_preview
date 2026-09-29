@@ -101,5 +101,92 @@
    ],
    "bottomInset": 9
   }
+ },
+ "postures": {
+  "halfOpened": {},
+  "closed": {
+   "portraitSize": {
+    "width": 316,
+    "height": 349.33
+   },
+   "physicalSize": {
+    "width": 948,
+    "height": 1048
+   },
+   "portraitPadding": {
+    "left": 0,
+    "top": 24,
+    "right": 0,
+    "bottom": 68.67
+   },
+   "landscapePadding": {
+    "left": 0,
+    "top": 24,
+    "right": 68.67,
+    "bottom": 24
+   },
+   "portraitKeyboardHeight": 336,
+   "landscapeKeyboardHeight": 252,
+   "displayFeatures": [
+    {
+     "bounds": {
+      "left": 183.67,
+      "top": 280.67,
+      "right": 243,
+      "bottom": 340
+     },
+     "type": "cutout",
+     "state": "unknown"
+    },
+    {
+     "bounds": {
+      "left": 247.33,
+      "top": 280.67,
+      "right": 306.67,
+      "bottom": 340
+     },
+     "type": "cutout",
+     "state": "unknown"
+    },
+    {
+     "bounds": {
+      "left": 152.67,
+      "top": 299.67,
+      "right": 174.33,
+      "bottom": 321.33
+     },
+     "type": "cutout",
+     "state": "unknown"
+    }
+   ],
+   "frame": {
+    "size": {
+     "width": 347,
+     "height": 384.67
+    },
+    "screenOffset": {
+     "x": 15.67,
+     "y": 24
+    },
+    "screenPath": "M 3,0 H 313.67 A 2.33,2.33 0 0 1 316,2.33 V 324.33 A 25,25 0 0 1 291,349.33 H 22.33 A 22.33,22.33 0 0 1 0,327 V 3 A 3,3 0 0 1 3,0 Z M 213.33,280.67 A 29.67,29.67 0 1 0 213.33,340 A 29.67,29.67 0 1 0 213.33,280.67 Z M 277,280.67 A 29.67,29.67 0 1 0 277,340 A 29.67,29.67 0 1 0 277,280.67 Z M 163.5,299.67 A 10.83,10.83 0 1 0 163.5,321.33 A 10.83,10.83 0 1 0 163.5,299.67 Z",
+    "body": [
+     "<svg viewBox=\"0 0 347 384.67\">",
+     "  <defs><clipPath id=\"shell\">",
+     "    <path d=\"M 20.49,0 H 319.65 A 19.35,19.35 0 0 1 339,19.35 V 350.52 A 34.14,34.14 0 0 1 304.86,384.67 H 34.14 A 34.14,34.14 0 0 1 0,350.52 V 20.49 A 20.49,20.49 0 0 1 20.49,0 Z\" transform=\"translate(4, 0)\"/>",
+     "  </clipPath></defs>",
+     "  <g fill=\"#3d4149\">",
+     "    <rect x=\"341\" y=\"196\" width=\"6\" height=\"85.33\" rx=\"2\"/>",
+     "    <rect x=\"341\" y=\"99\" width=\"6\" height=\"60.33\" rx=\"2\"/>",
+     "  </g>",
+     "  <path d=\"M 20.49,0 H 319.65 A 19.35,19.35 0 0 1 339,19.35 V 350.52 A 34.14,34.14 0 0 1 304.86,384.67 H 34.14 A 34.14,34.14 0 0 1 0,350.52 V 20.49 A 20.49,20.49 0 0 1 20.49,0 Z\" transform=\"translate(4, 0)\" fill=\"#1f2126\"/>",
+     "  <path d=\"M 18.49,0 H 317.65 A 17.35,17.35 0 0 1 335,17.35 V 348.52 A 32.14,32.14 0 0 1 302.86,380.67 H 32.14 A 32.14,32.14 0 0 1 0,348.52 V 18.49 A 18.49,18.49 0 0 1 18.49,0 Z\" transform=\"translate(6, 2)\" fill=\"#3d4149\"/>",
+     "  <g clip-path=\"url(#shell)\">",
+     "    <path d=\"M -384.67,0 L -230.8,0 L 46.16,384.67 L -107.71,384.67 Z\" fill=\"#ffffff\" fill-opacity=\"0.18\"/>",
+     "  </g>",
+     "  <path d=\"M 16.99,0 H 316.15 A 15.85,15.85 0 0 1 332,15.85 V 347.02 A 30.64,30.64 0 0 1 301.36,377.67 H 30.64 A 30.64,30.64 0 0 1 0,347.02 V 16.99 A 16.99,16.99 0 0 1 16.99,0 Z\" transform=\"translate(7.5, 3.5)\" fill=\"#08090b\"/>",
+     "</svg>"
+    ]
+   }
+  }
  }
 }

@@ -83,6 +83,18 @@ const Set<String> kBarKeys = <String>{
   'center',
   'trailing',
   'inset',
+  'trailingInset',
+  'cutoutGap',
+  'trailingCutoutGap',
+  'bottomInset',
+};
+
+/// The numeric keys of one system bar.
+const Set<String> kBarNumberKeys = <String>{
+  'inset',
+  'trailingInset',
+  'cutoutGap',
+  'trailingCutoutGap',
   'bottomInset',
 };
 
@@ -396,7 +408,7 @@ void _validateSystemUi(Object? systemUi, String name) {
         );
       }
     }
-    for (final String key in <String>['inset', 'bottomInset']) {
+    for (final String key in kBarNumberKeys) {
       if (bar[key] != null && bar[key] is! num) {
         throw FormatException('$name: systemUi.$barName.$key must be a number');
       }
@@ -506,7 +518,7 @@ Map<String, Object?> _normalizeKeys(
           if (value == null) {
             continue;
           }
-          normalized[barKey] = barKey == 'inset' || barKey == 'bottomInset'
+          normalized[barKey] = kBarNumberKeys.contains(barKey)
               ? value
               : _joinLines(value, '$barName.$barKey');
         }

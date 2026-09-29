@@ -139,8 +139,9 @@ it is a single value to correct.
   prefer it only when it is ≥ the spec's current value.
 - With no per-device system image, `dumpsys display` reports zero rounded
   corners — the skin mask is the source for those too.
-- Foldables (Pixel Fold line) have skins but a folded/unfolded layout this
-  pipeline does not model — they are marked `skip` in the mapping.
+- Foldables (Pixel Fold line) have a skin and a layout per posture, which
+  this pipeline does not model — they are marked `skip` here and rebuilt by
+  the `extract-foldable-specs` skill.
 
 ## 4. Devices the local tooling doesn't know
 

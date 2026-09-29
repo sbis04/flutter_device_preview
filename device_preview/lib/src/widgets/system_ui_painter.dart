@@ -28,13 +28,16 @@ class SystemUiPainter {
   /// Paints the bars of a screen of [screenSize] whose safe area is [padding].
   ///
   /// The canvas origin must be the screen's top-left corner. Bars whose safe
-  /// area is zero are skipped.
+  /// area is zero are skipped. [cutouts] are the screen's display cutouts, in
+  /// the same coordinates: a bar's leading and trailing artwork moves clear
+  /// of any it would overlap (see [SystemUiBar.cutoutGap]).
   void paint(
     ui.Canvas canvas, {
     required ui.Size screenSize,
     required EdgeInsets padding,
     required SystemUiColors colors,
     required TextDirection textDirection,
+    List<ui.Rect> cutouts = const <ui.Rect>[],
   }) {
     final SystemUiBar? statusBar = systemUi.statusBar;
     if (statusBar != null && padding.top > 0) {
@@ -47,6 +50,7 @@ class SystemUiPainter {
         dividerAtTop: false,
         tint: colors.statusBarIcons,
         textDirection: textDirection,
+        cutouts: cutouts,
       );
     }
     final SystemUiBar? navigationBar = systemUi.navigationBar;
@@ -65,6 +69,7 @@ class SystemUiPainter {
         dividerAtTop: true,
         tint: colors.navigationBarIcons,
         textDirection: textDirection,
+        cutouts: cutouts,
       );
     }
     final SystemUiBar? sideBar = systemUi.sideBar;
@@ -139,6 +144,7 @@ class SystemUiPainter {
     required bool dividerAtTop,
     required ui.Color tint,
     required TextDirection textDirection,
+    required List<ui.Rect> cutouts,
   }) {
     if (background.a > 0) {
       canvas.drawRect(region, ui.Paint()..color = background);
@@ -155,6 +161,17 @@ class SystemUiPainter {
       );
     }
     final bool rtl = textDirection == TextDirection.rtl;
+    // Right-to-left mirrors the whole bar, its insets and gaps included.
+    final (double, double) leadingSide = (bar.inset, bar.effectiveCutoutGap);
+    final (double, double) trailingSide = (
+      bar.effectiveTrailingInset,
+      bar.effectiveTrailingCutoutGap,
+    );
+    // Only the cutouts that reach into this bar move anything.
+    final List<ui.Rect> inBar = <ui.Rect>[
+      for (final ui.Rect cutout in cutouts)
+        if (cutout.top < region.bottom && cutout.bottom > region.top) cutout,
+    ];
     _paintArtwork(
       canvas,
       source: rtl ? bar.trailing : bar.leading,
@@ -162,6 +179,8 @@ class SystemUiPainter {
       bar: bar,
       alignment: -1,
       tint: tint,
+      side: rtl ? trailingSide : leadingSide,
+      cutouts: inBar,
     );
     _paintArtwork(
       canvas,
@@ -178,10 +197,14 @@ class SystemUiPainter {
       bar: bar,
       alignment: 1,
       tint: tint,
+      side: rtl ? leadingSide : trailingSide,
+      cutouts: inBar,
     );
   }
 
-  /// [alignment] is -1 (leading edge), 0 (centered) or 1 (trailing edge).
+  /// [alignment] is -1 (the left edge), 0 (centered) or 1 (the right
+  /// edge). [side] is the (inset, cutout gap) pair of that edge; artwork
+  /// that would overlap one of [cutouts] moves past it toward the center.
   void _paintArtwork(
     ui.Canvas canvas, {
     required String source,
@@ -189,6 +212,8 @@ class SystemUiPainter {
     required SystemUiBar bar,
     required int alignment,
     required ui.Color tint,
+    (double, double) side = (0, 0),
+    List<ui.Rect> cutouts = const <ui.Rect>[],
   }) {
     if (source.isEmpty) {
       return;
@@ -198,11 +223,32 @@ class SystemUiPainter {
       return;
     }
     final ui.Size size = drawing.size;
-    final double left = switch (alignment) {
-      < 0 => region.left + bar.inset,
+    final (double inset, double gap) = side;
+    double left = switch (alignment) {
+      < 0 => region.left + inset,
       0 => region.center.dx - size.width / 2,
-      _ => region.right - bar.inset - size.width,
+      _ => region.right - inset - size.width,
     };
+    if (alignment != 0) {
+      // Nearest first, so artwork pushed past one cutout still clears the
+      // next.
+      final List<ui.Rect> sorted = List<ui.Rect>.of(cutouts)
+        ..sort(
+          (ui.Rect a, ui.Rect b) => alignment < 0
+              ? a.left.compareTo(b.left)
+              : b.right.compareTo(a.right),
+        );
+      for (final ui.Rect cutout in sorted) {
+        final bool overlaps =
+            left < cutout.right + gap && left + size.width > cutout.left - gap;
+        if (!overlaps) {
+          continue;
+        }
+        left = alignment < 0
+            ? cutout.right + gap
+            : cutout.left - gap - size.width;
+      }
+    }
     final double? bottomInset = bar.bottomInset;
     final double top = bottomInset == null
         ? region.center.dy - size.height / 2

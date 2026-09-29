@@ -70,8 +70,12 @@ void main() {
         'samsung-galaxy-z-fold-8-ultra',
       ]);
       for (final preset in foldables) {
-        expect(preset.displayFeatures, hasLength(1), reason: preset.id);
-        final feature = preset.displayFeatures.single;
+        // Besides a camera cutout (Android reports those too), one fold.
+        final folds = preset.displayFeatures
+            .where((f) => f.type != ui.DisplayFeatureType.cutout)
+            .toList();
+        expect(folds, hasLength(1), reason: preset.id);
+        final feature = folds.single;
         expect(feature.type, ui.DisplayFeatureType.fold, reason: preset.id);
         expect(
           feature.state,
@@ -99,6 +103,79 @@ void main() {
             .where((p) => p.kind != DeviceKind.foldable)
             .expand((p) => p.displayFeatures),
         isEmpty,
+      );
+    });
+
+    test('every Android foldable half-opens and closes onto its cover', () {
+      for (final preset in DevicePresets.all.where(
+        (p) =>
+            p.kind == DeviceKind.foldable &&
+            p.platform == TargetPlatform.android,
+      )) {
+        expect(preset.supportedPostures, <DevicePosture>[
+          DevicePosture.open,
+          DevicePosture.halfOpened,
+          DevicePosture.closed,
+        ], reason: preset.id);
+        // Half-open is the same screen with its fold bent.
+        final half = preset.resolve(posture: DevicePosture.halfOpened);
+        expect(half.screenSize, preset.portraitSize, reason: preset.id);
+        expect(
+          half.displayFeatures!
+              .where((f) => f.type == ui.DisplayFeatureType.fold)
+              .single
+              .state,
+          ui.DisplayFeatureState.postureHalfOpened,
+          reason: preset.id,
+        );
+        // Closed is the cover: a smaller screen with no fold, its own frame,
+        // and a status bar that clears any camera at the top edge.
+        final closed = preset.resolve(posture: DevicePosture.closed);
+        expect(
+          closed.screenSize!.width * closed.screenSize!.height,
+          lessThan(preset.portraitSize.width * preset.portraitSize.height),
+          reason: preset.id,
+        );
+        final features =
+            closed.displayFeatures ?? const <SimulatedDisplayFeature>[];
+        expect(
+          features.where((f) => f.type == ui.DisplayFeatureType.fold),
+          isEmpty,
+          reason: preset.id,
+        );
+        expect(closed.frame, isNot(preset.frame), reason: preset.id);
+        for (final cutout in features) {
+          if (cutout.bounds.top < closed.screenSize!.height / 4) {
+            expect(
+              closed.padding!.top,
+              greaterThanOrEqualTo(cutout.bounds.bottom),
+              reason: preset.id,
+            );
+          }
+        }
+      }
+    });
+
+    test('the Pixel 10 Pro Fold matches the emulator', () {
+      // Android Studio's Pixel 10 Pro Fold AVD, open and closed.
+      const preset = DevicePresets.pixel10ProFold;
+      final open = preset.resolve();
+      expect(open.padding, const EdgeInsets.fromLTRB(0, 55.79, 0, 32));
+      final closed = preset.resolve(posture: DevicePosture.closed);
+      expect(closed.screenSize, const Size(443.08, 969.85));
+      expect(closed.padding, const EdgeInsets.fromLTRB(0, 62.36, 0, 24.21));
+      final landscape = preset.resolve(
+        orientation: Orientation.landscape,
+        posture: DevicePosture.closed,
+      );
+      expect(
+        landscape.padding,
+        const EdgeInsets.fromLTRB(62.36, 52.1, 0, 24.21),
+      );
+      // The cover camera turns to the left edge with the screen.
+      expect(
+        landscape.displayFeatures!.single.bounds.left,
+        lessThan(landscape.padding!.left),
       );
     });
 

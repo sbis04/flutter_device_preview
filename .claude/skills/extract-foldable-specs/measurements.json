@@ -1,0 +1,89 @@
+{
+  "_comment": "Logical pixels. Insets are [left, top, right, bottom]; cutouts [left, top, right, bottom] in portrait. See SKILL.md for how each number was measured.",
+  "google-pixel-10-pro-fold": {
+    "source": "pixel",
+    "_measured": "Android Studio's Pixel 10 Pro Fold AVD (android-37.2 google_apis_playstore_ps16k, 2076x2152 + 1080x2364 @ 390 dpi), device states CLOSED / HALF_OPENED / OPENED, rotations 0, 1 and 3, 2026-09-29.",
+    "skins": {
+      "open": "pixel_10_pro_fold/default",
+      "closed": "pixel_10_pro_fold/closed"
+    },
+    "postures": {
+      "open": {
+        "portraitPadding": [
+          0,
+          55.79,
+          0,
+          32
+        ],
+        "landscapePadding": [
+          0,
+          55.79,
+          0,
+          32
+        ],
+        "cutouts": [
+          [
+            795.9,
+            0,
+            851.69,
+            55.79
+          ]
+        ],
+        "statusBar": {
+          "inset": 49.23,
+          "trailingInset": 36.51,
+          "cutoutGap": 17.23,
+          "trailingCutoutGap": 10.67
+        },
+        "pill": {
+          "width": 220,
+          "height": 4,
+          "bottomInset": 13.95
+        }
+      },
+      "closed": {
+        "portraitPadding": [
+          0,
+          62.36,
+          0,
+          24.21
+        ],
+        "landscapePadding": [
+          62.36,
+          52.1,
+          0,
+          24.21
+        ],
+        "cutouts": [
+          [
+            198.56,
+            8.21,
+            244.51,
+            62.36
+          ]
+        ],
+        "statusBar": {
+          "inset": 17.23,
+          "trailingInset": 28.72
+        },
+        "pill": {
+          "width": 108,
+          "height": 4,
+          "bottomInset": 9.85
+        }
+      }
+    }
+  },
+  "samsung-galaxy-z-fold-8-ultra": {
+    "source": "samsung",
+    "cover": "Galaxy_Z_Fold8_Ultra/Galaxy_Z_Fold8_Ultra_Cover_Screen"
+  },
+  "samsung-galaxy-z-fold-8": {
+    "source": "samsung",
+    "cover": "Galaxy_Z_Fold8/Galaxy_Z_Fold8_Cover_Screen"
+  },
+  "samsung-galaxy-z-flip-8": {
+    "source": "samsung",
+    "cover": "Galaxy_Z_Flip8/Galaxy_Z_Flip8_Cover_Screen"
+  }
+}

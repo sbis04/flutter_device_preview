@@ -83,6 +83,24 @@ void main() {
       expect(bar.isEmpty, isFalse);
     });
 
+    test('trailing inset and cutout gaps round-trip and fall back', () {
+      final SystemUiBar bar = SystemUiBar.fromJson(const <String, Object?>{
+        'leading': '<svg viewBox="0 0 1 1"/>',
+        'inset': 49.23,
+        'trailingInset': 36.51,
+        'cutoutGap': 17.23,
+        'trailingCutoutGap': 10.67,
+      });
+      expect(SystemUiBar.fromJson(bar.toJson()), bar);
+      expect(bar.effectiveTrailingInset, 36.51);
+      expect(bar.effectiveTrailingCutoutGap, 10.67);
+      const SystemUiBar plain = SystemUiBar(inset: 18);
+      expect(plain.effectiveTrailingInset, 18);
+      expect(plain.effectiveCutoutGap, 18);
+      expect(plain.effectiveTrailingCutoutGap, 18);
+      expect(plain.toJson().containsKey('trailingInset'), isFalse);
+    });
+
     test('artwork may be authored as an array of lines', () {
       final SystemUiBar bar = SystemUiBar.fromJson(const <String, Object?>{
         'center': <Object?>['<svg viewBox="0 0 1 1">', '</svg>'],

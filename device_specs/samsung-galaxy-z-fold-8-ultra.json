@@ -6,8 +6,8 @@
  "platform": "android",
  "kind": "foldable",
  "portraitSize": {
-  "width": 860,
-  "height": 954
+  "width": 859.43,
+  "height": 953.9
  },
  "devicePixelRatio": 2.625,
  "portraitPadding": {
@@ -27,10 +27,10 @@
  "displayFeatures": [
   {
    "bounds": {
-    "left": 430,
+    "left": 429.715,
     "top": 0,
-    "right": 430,
-    "bottom": 954
+    "right": 429.715,
+    "bottom": 953.9
    },
    "type": "fold",
    "state": "postureFlat"
@@ -42,10 +42,10 @@
    "height": 1002
   },
   "screenOffset": {
-   "x": 23,
-   "y": 24
+   "x": 23.29,
+   "y": 24.05
   },
-  "screenPath": "M 16,0 H 844 A 16,16 0 0 1 860,16 V 938 A 16,16 0 0 1 844,954 H 16 A 16,16 0 0 1 0,938 V 16 A 16,16 0 0 1 16,0 Z",
+  "screenPath": "M 16,0 H 843.43 A 16,16 0 0 1 859.43,16 V 937.9 A 16,16 0 0 1 843.43,953.9 H 16 A 16,16 0 0 1 0,937.9 V 16 A 16,16 0 0 1 16,0 Z",
   "body": [
    "<svg viewBox=\"0 0 906 1002\">",
    "  <defs><clipPath id=\"shell\">",
@@ -100,6 +100,73 @@
     "</svg>"
    ],
    "bottomInset": 9
+  }
+ },
+ "postures": {
+  "halfOpened": {},
+  "closed": {
+   "portraitSize": {
+    "width": 411.43,
+    "height": 960
+   },
+   "physicalSize": {
+    "width": 1080,
+    "height": 2520
+   },
+   "portraitPadding": {
+    "left": 0,
+    "top": 46.86,
+    "right": 0,
+    "bottom": 24
+   },
+   "landscapePadding": {
+    "left": 46.86,
+    "top": 24,
+    "right": 0,
+    "bottom": 24
+   },
+   "portraitKeyboardHeight": 336,
+   "landscapeKeyboardHeight": 252,
+   "displayFeatures": [
+    {
+     "bounds": {
+      "left": 194.29,
+      "top": 11.43,
+      "right": 218.29,
+      "bottom": 35.43
+     },
+     "type": "cutout",
+     "state": "unknown"
+    }
+   ],
+   "frame": {
+    "size": {
+     "width": 467.05,
+     "height": 1005.71
+    },
+    "screenOffset": {
+     "x": 30.67,
+     "y": 20.95
+    },
+    "screenPath": "M 11.81,0 H 400 A 11.43,11.43 0 0 1 411.43,11.43 V 948.57 A 11.43,11.43 0 0 1 400,960 H 11.43 A 11.43,11.43 0 0 1 0,948.57 V 11.81 A 11.81,11.81 0 0 1 11.81,0 Z M 206.29,11.43 A 12,12 0 1 0 206.29,35.43 A 12,12 0 1 0 206.29,11.43 Z",
+    "body": [
+     "<svg viewBox=\"0 0 467.05 1005.71\">",
+     "  <defs><clipPath id=\"shell\">",
+     "    <path d=\"M 24.71,0 H 439.54 A 19.51,19.51 0 0 1 459.05,19.51 V 986.2 A 19.51,19.51 0 0 1 439.54,1005.71 H 19.51 A 19.51,19.51 0 0 1 0,986.2 V 24.71 A 24.71,24.71 0 0 1 24.71,0 Z\" transform=\"translate(4, 0)\"/>",
+     "  </clipPath></defs>",
+     "  <g fill=\"#3d4149\">",
+     "    <rect x=\"461.05\" y=\"261.33\" width=\"6\" height=\"121.9\" rx=\"2\"/>",
+     "    <rect x=\"461.05\" y=\"434.67\" width=\"6\" height=\"84.19\" rx=\"2\"/>",
+     "  </g>",
+     "  <path d=\"M 24.71,0 H 439.54 A 19.51,19.51 0 0 1 459.05,19.51 V 986.2 A 19.51,19.51 0 0 1 439.54,1005.71 H 19.51 A 19.51,19.51 0 0 1 0,986.2 V 24.71 A 24.71,24.71 0 0 1 24.71,0 Z\" transform=\"translate(4, 0)\" fill=\"#1f2126\"/>",
+     "  <path d=\"M 22.71,0 H 437.54 A 17.51,17.51 0 0 1 455.05,17.51 V 984.2 A 17.51,17.51 0 0 1 437.54,1001.71 H 17.51 A 17.51,17.51 0 0 1 0,984.2 V 22.71 A 22.71,22.71 0 0 1 22.71,0 Z\" transform=\"translate(6, 2)\" fill=\"#3d4149\"/>",
+     "  <g clip-path=\"url(#shell)\">",
+     "    <path d=\"M -1005.71,0 L -603.43,0 L 120.69,1005.71 L -281.6,1005.71 Z\" fill=\"#ffffff\" fill-opacity=\"0.18\"/>",
+     "  </g>",
+     "  <path d=\"M 21.21,0 H 436.04 A 16.01,16.01 0 0 1 452.05,16.01 V 982.7 A 16.01,16.01 0 0 1 436.04,998.71 H 16.01 A 16.01,16.01 0 0 1 0,982.7 V 21.21 A 21.21,21.21 0 0 1 21.21,0 Z\" transform=\"translate(7.5, 3.5)\" fill=\"#08090b\"/>",
+     "</svg>"
+    ]
+   }
   }
  }
 }

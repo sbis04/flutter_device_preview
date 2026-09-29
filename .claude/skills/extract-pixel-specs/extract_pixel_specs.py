@@ -34,12 +34,10 @@ DEVICES = {
     # Pixel 10 has its own skin but no AVD definition yet; it shares the
     # Pixel 9's 1080x2424 @2.625 panel, so that profile probes its metrics.
     "google-pixel-10": {"skin": "pixel_10", "avd_device": "pixel_9"},
-    # The fold ships two skins; `default` is the unfolded inner display,
-    # which is what the spec simulates. The probe AVD may boot on the
-    # folded outer display — soft_probe keeps the spec's metrics then.
-    "google-pixel-10-pro-fold": {"skin": "pixel_10_pro_fold/default",
-                                 "avd_device": "pixel_9_pro_fold",
-                                 "soft_probe": True},
+    # Foldables have a skin and a measured layout per posture: see the
+    # extract-foldable-specs skill, which rebuilds them from both.
+    "google-pixel-10-pro-fold": {"skip": "a foldable — rebuilt by "
+                                         "extract-foldable-specs"},
     # Android Studio defines the Pixel 9 Pro XL (sdklib's nexus.xml:
     # 1344x2992, xxhdpi -> 448x997.33 @3) but the command-line tools do not:
     # the probe AVD is a stand-in profile with that official panel written
