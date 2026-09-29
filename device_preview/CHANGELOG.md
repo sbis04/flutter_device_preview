@@ -68,6 +68,11 @@ Devices as widgets, and fourteen more of them.
 - **iPhone 18 Pro / Pro Max Dynamic Island** is their own, smaller one:
   94 × 36 pt at 14.33 pt from the top (it was the 17 Pro's 125 × 37),
   measured in Apple's iPhone 18 product bezels.
+- **`DeviceFrame.landscapeClockwise`**: a frame may turn clockwise into
+  landscape — only its artwork; the metrics keep the preset's landscape.
+  The iPhone Duo's inner frames do, as Device Hub shows the open device:
+  volume rocker along the top, power button high on the right, and in
+  portrait the chrome's own placement (volume on the left, power on top).
 - **Side buttons** on the iPhone, Pixel and Galaxy frames: the iPhones' (the iPhone Duo's in every posture)
   from Xcode's device chrome (its `inputs`, drawn where the Simulator
   slides them out under the pointer), the Pixels' from the keys their

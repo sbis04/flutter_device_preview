@@ -81,10 +81,17 @@ class DeviceFramePainter {
     }
     canvas.save();
     if (orientation == Orientation.landscape) {
-      // A quarter turn: portrait (x, y) → landscape (y, portraitWidth − x).
-      canvas
-        ..translate(0, screenSize.height)
-        ..rotate(-math.pi / 2);
+      if (frame.landscapeClockwise) {
+        // portrait (x, y) → landscape (portraitHeight − y, x).
+        canvas
+          ..translate(screenSize.width, 0)
+          ..rotate(math.pi / 2);
+      } else {
+        // A quarter turn: portrait (x, y) → landscape (y, portraitWidth − x).
+        canvas
+          ..translate(0, screenSize.height)
+          ..rotate(-math.pi / 2);
+      }
     }
     drawing.paintInto(
       canvas,
@@ -98,9 +105,13 @@ class DeviceFramePainter {
     canvas.restore();
   }
 
-  Matrix4 _landscapeTransform(ui.Size screenSize) => Matrix4.identity()
-    ..translateByDouble(0, screenSize.height, 0, 1)
-    ..rotateZ(-math.pi / 2);
+  Matrix4 _landscapeTransform(ui.Size screenSize) => frame.landscapeClockwise
+      ? (Matrix4.identity()
+          ..translateByDouble(screenSize.width, 0, 0, 1)
+          ..rotateZ(math.pi / 2))
+      : (Matrix4.identity()
+          ..translateByDouble(0, screenSize.height, 0, 1)
+          ..rotateZ(-math.pi / 2));
 
   T? _guard<T>(T Function() parse, String what) {
     try {

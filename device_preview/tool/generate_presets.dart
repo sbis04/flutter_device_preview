@@ -599,6 +599,9 @@ String _emitFrame(Object? frame, String fileName, int indent) {
         ..writeln(',');
     }
   }
+  if (frame['landscapeClockwise'] == true) {
+    buffer.writeln('$pad  landscapeClockwise: true,');
+  }
   buffer.writeln('$pad),');
   return buffer.toString();
 }

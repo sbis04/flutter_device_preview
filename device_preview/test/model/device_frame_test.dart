@@ -86,6 +86,23 @@ void main() {
       expect(bounds, const ui.Rect.fromLTRB(-10, -10, 210, 110));
     });
 
+    test('a clockwise frame turns the other way into landscape', () {
+      // An asymmetric body: 5 left, 15 right, 10 top, 20 bottom.
+      const DeviceFrame frame = DeviceFrame(
+        size: ui.Size(120, 230),
+        screenOffset: ui.Offset(5, 10),
+        landscapeClockwise: true,
+      );
+      // Portrait (-5, -10, 115, 220); clockwise (x, y) → (H − y, x), H = 200.
+      expect(
+        frame.bodyBounds(const ui.Size(200, 100), Orientation.landscape),
+        const ui.Rect.fromLTRB(-20, -5, 210, 115),
+      );
+      expect(DeviceFrame.fromJson(frame.toJson()), frame);
+      expect(frame.toJson()['landscapeClockwise'], isTrue);
+      expect(kFrame.toJson().containsKey('landscapeClockwise'), isFalse);
+    });
+
     test('the rotation matches the display feature rotation', () {
       const SimulatedDisplayFeature feature = SimulatedDisplayFeature(
         bounds: ui.Rect.fromLTRB(-10, -10, 110, 210),

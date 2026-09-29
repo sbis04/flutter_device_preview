@@ -104,6 +104,7 @@ const Set<String> kFrameKeys = <String>{
   'screenOffset',
   'screenPath',
   'body',
+  'landscapeClockwise',
 };
 
 /// `TargetPlatform` member names, as serialized by the protocol.

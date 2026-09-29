@@ -33,6 +33,7 @@ class DeviceFrame {
     this.screenOffset = ui.Offset.zero,
     this.screenPath = '',
     this.body = '',
+    this.landscapeClockwise = false,
   });
 
   /// Decodes a frame from the JSON produced by [toJson].
@@ -48,7 +49,12 @@ class DeviceFrame {
       screenPath: json['screenPath'] == null
           ? ''
           : decodeString(json['screenPath'], 'screenPath'),
-      body: json['body'] == null ? '' : decodeStringOrLines(json['body'], 'body'),
+      body: json['body'] == null
+          ? ''
+          : decodeStringOrLines(json['body'], 'body'),
+      landscapeClockwise: json['landscapeClockwise'] == null
+          ? false
+          : decodeBool(json['landscapeClockwise'], 'landscapeClockwise'),
     );
   }
 
@@ -69,6 +75,14 @@ class DeviceFrame {
   /// Drawn behind the app, so anything overlapping the screen area is hidden.
   /// Empty when the frame only rounds the screen corners.
   final String body;
+
+  /// Whether the frame turns clockwise into landscape — portrait `(x, y)` to
+  /// `(portraitHeight − y, x)` — rather than counter-clockwise, as
+  /// [bodyBounds] documents. Only the artwork turns the other way (its side
+  /// buttons end up on the opposite edges); the screen's metrics and display
+  /// features keep the preset's own landscape. The iPhone Duo's inner frame
+  /// sets it: Device Hub shows the open device turned that way.
+  final bool landscapeClockwise;
 
   /// Whether this frame carries no artwork at all.
   bool get isEmpty => screenPath.isEmpty && body.isEmpty;
@@ -92,6 +106,15 @@ class DeviceFrame {
     }
     // In landscape the screen is (portraitHeight, portraitWidth).
     final double portraitWidth = screenSize.height;
+    if (landscapeClockwise) {
+      final double portraitHeight = screenSize.width;
+      return ui.Rect.fromLTRB(
+        portraitHeight - portrait.bottom,
+        portrait.left,
+        portraitHeight - portrait.top,
+        portrait.right,
+      );
+    }
     return ui.Rect.fromLTRB(
       portrait.top,
       portraitWidth - portrait.right,
@@ -121,8 +144,8 @@ class DeviceFrame {
       return r == r.roundToDouble() ? '${r.toInt()}' : '$r';
     }
 
-    final bool mac = platform == TargetPlatform.macOS ||
-        platform == TargetPlatform.iOS;
+    final bool mac =
+        platform == TargetPlatform.macOS || platform == TargetPlatform.iOS;
     final double bar = mac ? 28 : 32;
     final double r = mac ? 12 : 8;
     final String fill = mac ? '#26282c' : '#202226';
@@ -165,6 +188,7 @@ class DeviceFrame {
     size: size,
     screenOffset: screenOffset,
     screenPath: screenPath,
+    landscapeClockwise: landscapeClockwise,
   );
 
   /// Encodes this frame as JSON. Empty artwork fields are absent.
@@ -174,6 +198,7 @@ class DeviceFrame {
       'screenOffset': encodeOffset(screenOffset),
     if (screenPath.isNotEmpty) 'screenPath': screenPath,
     if (body.isNotEmpty) 'body': body,
+    if (landscapeClockwise) 'landscapeClockwise': true,
   };
 
   @override
@@ -185,11 +210,13 @@ class DeviceFrame {
         other.size == size &&
         other.screenOffset == screenOffset &&
         other.screenPath == screenPath &&
-        other.body == body;
+        other.body == body &&
+        other.landscapeClockwise == landscapeClockwise;
   }
 
   @override
-  int get hashCode => Object.hash(size, screenOffset, screenPath, body);
+  int get hashCode =>
+      Object.hash(size, screenOffset, screenPath, body, landscapeClockwise);
 
   @override
   String toString() =>
