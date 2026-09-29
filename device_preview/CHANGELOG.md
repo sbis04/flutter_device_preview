@@ -46,6 +46,16 @@ Devices as widgets, and fourteen more of them.
     bar grown to hold the hole), the Fold8's inner screen is corrected to
     the published 1848 × 2448 (it was 1828 wide) and the Fold8 Ultra's to
     exactly 2256 × 2504.
+- **`SimulatedDevice` reads the status bar style off its child**, as
+  Flutter does on a device: the `AnnotatedRegion<SystemUiOverlayStyle>`
+  under the status bar (an `AppBar` sets one from its color) styles the
+  status bar, the one at the bottom edge the navigation bar, after every
+  frame. Where the child sets none the bars follow the simulated
+  brightness — no longer the host app's. An `overlayStyle` passed in still
+  wins.
+- **`SimulatedDevice.foreground`**: a layer over the screen drawn above the
+  system UI — a design tool's selection overlays, which the status bar
+  would otherwise cover.
 - **iPhone 18 Pro / Pro Max Dynamic Island** is their own, smaller one:
   94 × 36 pt at 14.33 pt from the top (it was the 17 Pro's 125 × 37),
   measured in Apple's iPhone 18 product bezels.

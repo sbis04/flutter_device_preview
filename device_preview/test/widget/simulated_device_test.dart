@@ -3,6 +3,7 @@ import 'dart:ui' as ui;
 import 'package:device_preview/device_preview.dart';
 import 'package:device_preview/presets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 /// SimulatedDevice: a device as a plain widget, with no binding involved —
@@ -124,6 +125,93 @@ void main() {
     final Rect painted = tester.getRect(find.byType(DevicePreviewFrame));
     expect(painted.width, closeTo(201, 0.01));
     expect(painted.height, closeTo(437, 0.01));
+  });
+
+  testWidgets('the status bar follows the style the content annotates', (
+    WidgetTester tester,
+  ) async {
+    final DeviceSimulation phone = DevicePresets.iPhone16Pro.resolve();
+    SystemUiOverlayStyle? style() => tester
+        .widget<DevicePreviewFrame>(find.byType(DevicePreviewFrame))
+        .overlayStyle!
+        .value;
+    // No annotation: the bars follow the simulated brightness.
+    await pump(
+      tester,
+      SimulatedDevice(simulation: phone, child: const SizedBox.expand()),
+    );
+    await tester.pump();
+    expect(style(), isNull);
+    // An app bar-like region under the status bar styles it; one at the
+    // bottom edge styles the navigation bar.
+    await pump(
+      tester,
+      SimulatedDevice(
+        simulation: phone,
+        child: const Column(
+          children: <Widget>[
+            AnnotatedRegion<SystemUiOverlayStyle>(
+              value: SystemUiOverlayStyle.light,
+              child: SizedBox(height: 120, width: double.infinity),
+            ),
+            Spacer(),
+            AnnotatedRegion<SystemUiOverlayStyle>(
+              value: SystemUiOverlayStyle(
+                systemNavigationBarIconBrightness: Brightness.dark,
+              ),
+              child: SizedBox(height: 40, width: double.infinity),
+            ),
+          ],
+        ),
+      ),
+    );
+    await tester.pump();
+    expect(style()!.statusBarBrightness, Brightness.dark);
+    expect(style()!.statusBarIconBrightness, Brightness.light);
+    expect(style()!.systemNavigationBarIconBrightness, Brightness.dark);
+    // A style passed in wins over the content's.
+    await pump(
+      tester,
+      SimulatedDevice(
+        simulation: phone,
+        overlayStyle: SystemUiOverlayStyle.dark,
+        child: const AnnotatedRegion<SystemUiOverlayStyle>(
+          value: SystemUiOverlayStyle.light,
+          child: SizedBox.expand(),
+        ),
+      ),
+    );
+    await tester.pump();
+    expect(style(), SystemUiOverlayStyle.dark);
+  });
+
+  testWidgets('a foreground lies on the screen, above the system UI', (
+    WidgetTester tester,
+  ) async {
+    final DeviceSimulation phone = DevicePresets.iPhone16Pro.resolve();
+    await pump(
+      tester,
+      SimulatedDevice(
+        simulation: phone,
+        foreground: const SizedBox.expand(key: ValueKey<String>('fg')),
+        child: const SizedBox.expand(key: ValueKey<String>('app')),
+      ),
+    );
+    final Rect app = tester.getRect(find.byKey(const ValueKey<String>('app')));
+    expect(tester.getRect(find.byKey(const ValueKey<String>('fg'))), app);
+    // Painted after the frame — and so after the system UI it draws.
+    final List<Element> order = <Element>[];
+    void walk(Element e) {
+      order.add(e);
+      e.visitChildren(walk);
+    }
+
+    tester.binding.rootElement!.visitChildren(walk);
+    final int frame = order.indexWhere((e) => e.widget is DevicePreviewFrame);
+    final int fg = order.indexWhere(
+      (e) => e.widget.key == const ValueKey<String>('fg'),
+    );
+    expect(fg, greaterThan(frame));
   });
 
   testWidgets('follows a new simulation', (WidgetTester tester) async {

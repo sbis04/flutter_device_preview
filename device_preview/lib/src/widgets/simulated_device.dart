@@ -1,6 +1,8 @@
 import 'dart:math' as math;
 import 'dart:ui' as ui;
 
+import 'package:flutter/rendering.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 
@@ -61,6 +63,7 @@ class SimulatedDevice extends StatefulWidget {
     required this.child,
     this.showFrame = true,
     this.overlayStyle,
+    this.foreground,
   });
 
   /// The device, orientation and posture to draw — typically
@@ -70,13 +73,24 @@ class SimulatedDevice extends StatefulWidget {
   /// The content of the screen.
   final Widget child;
 
+  /// Drawn over the screen *above* the system UI — a design tool's
+  /// selection and hover overlays, which the status bar would otherwise
+  /// cover. Laid out on the screen exactly as [child] is, with the same
+  /// `MediaQuery`, but not clipped to the screen outline and not part of the
+  /// app: its overlay styles are not read.
+  final Widget? foreground;
+
   /// Whether the device body is drawn around the screen. When false the
   /// widget is exactly the screen — clipped to its outline, with its system
   /// UI — and sizes to [DeviceSimulation.screenSize].
   final bool showFrame;
 
   /// The system overlay style tinting the simulated status bar, or null to
-  /// derive it from the simulated brightness.
+  /// read it off [child] the way Flutter does on a device: the
+  /// [AnnotatedRegion]<[SystemUiOverlayStyle]> under the status bar (an
+  /// [AppBar] provides one from its color) styles the status bar, the one
+  /// at the bottom edge the Android navigation bar; where [child] sets none,
+  /// the bars follow the simulated brightness.
   final SystemUiOverlayStyle? overlayStyle;
 
   /// The size this widget lays out at for [simulation]: the content bounds
@@ -110,6 +124,68 @@ class _SimulatedDeviceState extends State<SimulatedDevice> {
   late final ValueNotifier<SystemUiOverlayStyle?> _overlayStyle =
       ValueNotifier<SystemUiOverlayStyle?>(widget.overlayStyle);
 
+  /// The screen content's own layer, searched for overlay styles.
+  final GlobalKey _content = GlobalKey(debugLabel: 'SimulatedDevice content');
+  bool _watching = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _watchAnnotations();
+  }
+
+  /// Reads the child's overlay style after every frame it paints — as the
+  /// engine's binding does after each frame on a device. The callback only
+  /// rides frames that happen anyway; it never schedules one.
+  void _watchAnnotations() {
+    if (_watching) {
+      return;
+    }
+    _watching = true;
+    SchedulerBinding.instance.addPostFrameCallback((_) {
+      _watching = false;
+      if (!mounted) {
+        return;
+      }
+      if (widget.overlayStyle == null) {
+        _overlayStyle.value = _annotatedStyle();
+      }
+      _watchAnnotations();
+    });
+  }
+
+  /// The [SystemUiOverlayStyle] [SimulatedDevice.child] annotates: the
+  /// status bar fields from the region under the status bar, the
+  /// navigation bar fields from the region at the bottom edge — the probe
+  /// points and the merge Flutter's `RendererBinding` uses.
+  SystemUiOverlayStyle? _annotatedStyle() {
+    final RenderObject? box = _content.currentContext?.findRenderObject();
+    final DeviceSimulation? s = _simulation.value;
+    if (box is! _RenderAnnotationProbe || !box.hasSize || s == null) {
+      return null;
+    }
+    final EdgeInsets padding = s.padding ?? s.viewPadding ?? EdgeInsets.zero;
+    final double x = box.size.width / 2;
+    final SystemUiOverlayStyle? upper = box.find<SystemUiOverlayStyle>(
+      ui.Offset(x, padding.top / 2),
+    );
+    final SystemUiOverlayStyle? lower = box.find<SystemUiOverlayStyle>(
+      ui.Offset(x, box.size.height - 1),
+    );
+    if (upper == null && lower == null) {
+      return null;
+    }
+    return SystemUiOverlayStyle(
+      statusBarColor: upper?.statusBarColor,
+      statusBarBrightness: upper?.statusBarBrightness,
+      statusBarIconBrightness: upper?.statusBarIconBrightness,
+      systemNavigationBarColor: lower?.systemNavigationBarColor,
+      systemNavigationBarDividerColor: lower?.systemNavigationBarDividerColor,
+      systemNavigationBarIconBrightness:
+          lower?.systemNavigationBarIconBrightness,
+    );
+  }
+
   DeviceSimulation get _effective => widget.showFrame
       ? widget.simulation
       : widget.simulation.copyWith(frame: _screenOnly(widget.simulation));
@@ -127,7 +203,9 @@ class _SimulatedDeviceState extends State<SimulatedDevice> {
   void didUpdateWidget(SimulatedDevice oldWidget) {
     super.didUpdateWidget(oldWidget);
     _simulation.value = _effective;
-    _overlayStyle.value = widget.overlayStyle;
+    if (widget.overlayStyle != null) {
+      _overlayStyle.value = widget.overlayStyle;
+    }
   }
 
   @override
@@ -193,13 +271,43 @@ class _SimulatedDeviceState extends State<SimulatedDevice> {
                 overlayStyle: _overlayStyle,
                 child: MediaQuery(
                   data: _mediaQuery(context),
-                  child: widget.child,
+                  child: _AnnotationProbe(key: _content, child: widget.child),
                 ),
               ),
             ),
+            if (widget.foreground != null)
+              Positioned.fromRect(
+                rect: screen,
+                child: MediaQuery(
+                  data: _mediaQuery(context),
+                  child: widget.foreground!,
+                ),
+              ),
           ],
         ),
       ),
     );
+  }
+}
+
+/// A repaint boundary around the screen content whose layer can be searched
+/// for annotations — the overlay styles the content declares.
+class _AnnotationProbe extends SingleChildRenderObjectWidget {
+  const _AnnotationProbe({super.key, super.child});
+
+  @override
+  RenderObject createRenderObject(BuildContext context) =>
+      _RenderAnnotationProbe();
+}
+
+class _RenderAnnotationProbe extends RenderRepaintBoundary {
+  /// The innermost [T] annotated at [position] in this box's coordinates,
+  /// as last painted.
+  T? find<T extends Object>(ui.Offset position) {
+    final ContainerLayer? own = layer;
+    if (own is! OffsetLayer) {
+      return null;
+    }
+    return own.find<T>(position + own.offset);
   }
 }
