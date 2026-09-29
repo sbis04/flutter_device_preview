@@ -60,7 +60,12 @@ DEVICES = {
     # 17 Pro / Pro Max screen, corner radii, chrome and sensor-bar class)
     # but no installed runtime boots them yet: their own chrome, the 17
     # Pro / Pro Max metrics probed on iOS 27.1. Drop `donor` once a
-    # runtime supports them.
+    # runtime supports them. Their Dynamic Island is smaller than the 17
+    # Pro's, which the shared sensor-bar class does not say: 94 x 36 pt, top
+    # at 14.33 (43 px), centred — measured in Apple's own iPhone 18 Pro /
+    # Pro Max product bezels (developer.apple.com/design/resources,
+    # Bezel-iPhone-18.dmg), and kept across rebuilds as the spec's island
+    # subpath.
     "apple-iphone-18-pro": {"sim": "iPhone 18 Pro", "donor": True},
     "apple-iphone-18-pro-max": {"sim": "iPhone 18 Pro Max", "donor": True},
     "apple-iphone-17e": {"sim": "iPhone 17e"},

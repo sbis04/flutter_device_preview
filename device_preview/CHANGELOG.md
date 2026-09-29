@@ -46,6 +46,9 @@ Devices as widgets, and fourteen more of them.
     bar grown to hold the hole), the Fold8's inner screen is corrected to
     the published 1848 × 2448 (it was 1828 wide) and the Fold8 Ultra's to
     exactly 2256 × 2504.
+- **iPhone 18 Pro / Pro Max Dynamic Island** is their own, smaller one:
+  94 × 36 pt at 14.33 pt from the top (it was the 17 Pro's 125 × 37),
+  measured in Apple's iPhone 18 product bezels.
 - **Side buttons** on the iPhone, Pixel and Galaxy frames: the iPhones'
   from Xcode's device chrome (its `inputs`, drawn where the Simulator
   slides them out under the pointer), the Pixels' from the keys their
