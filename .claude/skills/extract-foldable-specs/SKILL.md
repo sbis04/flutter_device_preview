@@ -67,8 +67,11 @@ developer.samsung.com/galaxy-emulator-skin/galaxy-z.html (a Samsung account
 is required; the files are not redistributed). Each has a `Main_Screen` and
 a `Cover_Screen` skin; the script reads the cover one, zipped or unpacked.
 
-Their open postures are hand-authored and kept as they are. The cover is
-built to match:
+Their open postures keep their hand-authored frames and bars (`bars` in
+`measurements.json` records those insets) and gain the inner camera from
+the `Main_Screen` mask — the Fold8's skin is drawn wide, its native
+orientation, and is turned a quarter clockwise into the spec's portrait.
+The cover is built to match:
 
 - **Frame** — the open frame's template and palette (side buttons, rim,
   body, sheen, bezel), at the cover body's size, per-corner radii (from the

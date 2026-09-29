@@ -76,14 +76,64 @@
   },
   "samsung-galaxy-z-fold-8-ultra": {
     "source": "samsung",
+    "_bars": "The hand-authored open spec's bar insets, before any camera grows them.",
+    "bars": {
+      "portrait": [
+        0,
+        24,
+        0,
+        24
+      ],
+      "landscape": [
+        0,
+        24,
+        0,
+        24
+      ]
+    },
+    "main": "Galaxy_Z_Fold8_Ultra/Galaxy_Z_Fold8_Ultra_Main_Screen",
     "cover": "Galaxy_Z_Fold8_Ultra/Galaxy_Z_Fold8_Ultra_Cover_Screen"
   },
   "samsung-galaxy-z-fold-8": {
     "source": "samsung",
-    "cover": "Galaxy_Z_Fold8/Galaxy_Z_Fold8_Cover_Screen"
+    "_bars": "The hand-authored open spec's bar insets, before any camera grows them.",
+    "bars": {
+      "portrait": [
+        0,
+        24,
+        0,
+        24
+      ],
+      "landscape": [
+        0,
+        24,
+        0,
+        24
+      ]
+    },
+    "main": "Galaxy_Z_Fold8/Galaxy_Z_Fold8_Main_Screen",
+    "cover": "Galaxy_Z_Fold8/Galaxy_Z_Fold8_Cover_Screen",
+    "turn": true,
+    "_turn": "Samsung's skin draws the inner screen wide (its native orientation); the spec's portrait is it turned a quarter clockwise."
   },
   "samsung-galaxy-z-flip-8": {
     "source": "samsung",
+    "_bars": "The hand-authored open spec's bar insets, before any camera grows them.",
+    "bars": {
+      "portrait": [
+        0,
+        24,
+        0,
+        24
+      ],
+      "landscape": [
+        0,
+        24,
+        0,
+        24
+      ]
+    },
+    "main": "Galaxy_Z_Flip8/Galaxy_Z_Flip8_Main_Screen",
     "cover": "Galaxy_Z_Flip8/Galaxy_Z_Flip8_Cover_Screen"
   }
 }

@@ -12,12 +12,12 @@
  "devicePixelRatio": 2.625,
  "portraitPadding": {
   "left": 0,
-  "top": 24,
+  "top": 47.61,
   "right": 0,
   "bottom": 24
  },
  "landscapePadding": {
-  "left": 0,
+  "left": 47.61,
   "top": 24,
   "right": 0,
   "bottom": 24
@@ -34,6 +34,16 @@
    },
    "type": "fold",
    "state": "postureFlat"
+  },
+  {
+   "bounds": {
+    "left": 638.86,
+    "top": 11.81,
+    "right": 662.86,
+    "bottom": 35.81
+   },
+   "type": "cutout",
+   "state": "unknown"
   }
  ],
  "frame": {
@@ -45,7 +55,7 @@
    "x": 23.29,
    "y": 24.05
   },
-  "screenPath": "M 16,0 H 843.43 A 16,16 0 0 1 859.43,16 V 937.9 A 16,16 0 0 1 843.43,953.9 H 16 A 16,16 0 0 1 0,937.9 V 16 A 16,16 0 0 1 16,0 Z",
+  "screenPath": "M 16,0 H 843.43 A 16,16 0 0 1 859.43,16 V 937.9 A 16,16 0 0 1 843.43,953.9 H 16 A 16,16 0 0 1 0,937.9 V 16 A 16,16 0 0 1 16,0 Z M 650.86,11.81 A 12,12 0 1 0 650.86,35.81 A 12,12 0 1 0 650.86,11.81 Z",
   "body": [
    "<svg viewBox=\"0 0 906 1002\">",
    "  <defs><clipPath id=\"shell\">",

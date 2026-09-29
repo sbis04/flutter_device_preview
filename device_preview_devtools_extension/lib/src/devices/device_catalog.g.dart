@@ -2427,12 +2427,12 @@ const List<Map<String, Object?>> kDeviceSpecs =
         'devicePixelRatio': 3.0,
         'portraitPadding': <String, Object?>{
           'left': 0,
-          'top': 24,
+          'top': 40,
           'right': 0,
           'bottom': 24,
         },
         'landscapePadding': <String, Object?>{
-          'left': 0,
+          'left': 40,
           'top': 24,
           'right': 0,
           'bottom': 24,
@@ -2450,6 +2450,16 @@ const List<Map<String, Object?>> kDeviceSpecs =
             'type': 'fold',
             'state': 'postureFlat',
           },
+          <String, Object?>{
+            'bounds': <String, Object?>{
+              'left': 169.67,
+              'top': 9.67,
+              'right': 190.33,
+              'bottom': 30.33,
+            },
+            'type': 'cutout',
+            'state': 'unknown',
+          },
         ],
         'postures': <String, Object?>{
           'halfOpened': <String, Object?>{},
@@ -2466,12 +2476,12 @@ const List<Map<String, Object?>> kDeviceSpecs =
               'left': 0,
               'top': 24,
               'right': 0,
-              'bottom': 68.67,
+              'bottom': 77.67,
             },
             'landscapePadding': <String, Object?>{
               'left': 0,
               'top': 24,
-              'right': 68.67,
+              'right': 77.67,
               'bottom': 24,
             },
             'portraitKeyboardHeight': 336,
@@ -2531,7 +2541,7 @@ const List<Map<String, Object?>> kDeviceSpecs =
             'x': 18,
             'y': 18,
           },
-          'screenPath': 'M 24,0 H 336 A 24,24 0 0 1 360,24 V 816 A 24,24 0 0 1 336,840 H 24 A 24,24 0 0 1 0,816 V 24 A 24,24 0 0 1 24,0 Z',
+          'screenPath': 'M 24,0 H 336 A 24,24 0 0 1 360,24 V 816 A 24,24 0 0 1 336,840 H 24 A 24,24 0 0 1 0,816 V 24 A 24,24 0 0 1 24,0 Z M 180,9.67 A 10.33,10.33 0 1 0 180,30.33 A 10.33,10.33 0 1 0 180,9.67 Z',
           'body': '<svg viewBox="0 0 396 876">\n  <defs><clipPath id="shell">\n    <path d="M 40,0 H 356 A 36,36 0 0 1 392,36 V 840 A 36,36 0 0 1 356,876 H 40 A 36,36 0 0 1 4,840 V 36 A 36,36 0 0 1 40,0 Z"/>\n  </clipPath></defs>\n  <g fill="#3d4149">\n    <rect x="390" y="140.16" width="6" height="48.18" rx="2"/>\n    <rect x="390" y="205.86" width="6" height="70.08" rx="2"/>\n  </g>\n  <path d="M 40,0 H 356 A 36,36 0 0 1 392,36 V 840 A 36,36 0 0 1 356,876 H 40 A 36,36 0 0 1 4,840 V 36 A 36,36 0 0 1 40,0 Z" fill="#1f2126"/>\n  <path d="M 40,2 H 356 A 34,34 0 0 1 390,36 V 840 A 34,34 0 0 1 356,874 H 40 A 34,34 0 0 1 6,840 V 36 A 34,34 0 0 1 40,2 Z" fill="#3d4149"/>\n  <g clip-path="url(#shell)">\n    <path d="M -876,0 L -525.6,0 L 105.12,876 L -245.28,876 Z" fill="#ffffff" fill-opacity="0.18"/>\n  </g>\n  <path d="M 40,3.5 H 356 A 32.5,32.5 0 0 1 388.5,36 V 840 A 32.5,32.5 0 0 1 356,872.5 H 40 A 32.5,32.5 0 0 1 7.5,840 V 36 A 32.5,32.5 0 0 1 40,3.5 Z" fill="#08090b"/>\n</svg>',
         },
         'systemUi': <String, Object?>{
@@ -2560,12 +2570,12 @@ const List<Map<String, Object?>> kDeviceSpecs =
         'devicePixelRatio': 2.625,
         'portraitPadding': <String, Object?>{
           'left': 0,
-          'top': 24,
+          'top': 47.61,
           'right': 0,
           'bottom': 24,
         },
         'landscapePadding': <String, Object?>{
-          'left': 0,
+          'left': 47.61,
           'top': 24,
           'right': 0,
           'bottom': 24,
@@ -2582,6 +2592,16 @@ const List<Map<String, Object?>> kDeviceSpecs =
             },
             'type': 'fold',
             'state': 'postureFlat',
+          },
+          <String, Object?>{
+            'bounds': <String, Object?>{
+              'left': 638.86,
+              'top': 11.81,
+              'right': 662.86,
+              'bottom': 35.81,
+            },
+            'type': 'cutout',
+            'state': 'unknown',
           },
         ],
         'postures': <String, Object?>{
@@ -2644,7 +2664,7 @@ const List<Map<String, Object?>> kDeviceSpecs =
             'x': 23.29,
             'y': 24.05,
           },
-          'screenPath': 'M 16,0 H 843.43 A 16,16 0 0 1 859.43,16 V 937.9 A 16,16 0 0 1 843.43,953.9 H 16 A 16,16 0 0 1 0,937.9 V 16 A 16,16 0 0 1 16,0 Z',
+          'screenPath': 'M 16,0 H 843.43 A 16,16 0 0 1 859.43,16 V 937.9 A 16,16 0 0 1 843.43,953.9 H 16 A 16,16 0 0 1 0,937.9 V 16 A 16,16 0 0 1 16,0 Z M 650.86,11.81 A 12,12 0 1 0 650.86,35.81 A 12,12 0 1 0 650.86,11.81 Z',
           'body': '<svg viewBox="0 0 906 1002">\n  <defs><clipPath id="shell">\n    <path d="M 38,0 H 868 A 34,34 0 0 1 902,34 V 968 A 34,34 0 0 1 868,1002 H 38 A 34,34 0 0 1 4,968 V 34 A 34,34 0 0 1 38,0 Z"/>\n  </clipPath></defs>\n  <g fill="#3d4149">\n    <rect x="900" y="160.32" width="6" height="55.11" rx="2"/>\n    <rect x="900" y="235.47" width="6" height="80.16" rx="2"/>\n  </g>\n  <path d="M 38,0 H 868 A 34,34 0 0 1 902,34 V 968 A 34,34 0 0 1 868,1002 H 38 A 34,34 0 0 1 4,968 V 34 A 34,34 0 0 1 38,0 Z" fill="#1f2126"/>\n  <path d="M 38,2 H 868 A 32,32 0 0 1 900,34 V 968 A 32,32 0 0 1 868,1000 H 38 A 32,32 0 0 1 6,968 V 34 A 32,32 0 0 1 38,2 Z" fill="#3d4149"/>\n  <g clip-path="url(#shell)">\n    <path d="M -1002,0 L -601.2,0 L 120.24,1002 L -280.56,1002 Z" fill="#ffffff" fill-opacity="0.18"/>\n  </g>\n  <path d="M 38,3.5 H 868 A 30.5,30.5 0 0 1 898.5,34 V 968 A 30.5,30.5 0 0 1 868,998.5 H 38 A 30.5,30.5 0 0 1 7.5,968 V 34 A 30.5,30.5 0 0 1 38,3.5 Z" fill="#08090b"/>\n</svg>',
         },
         'systemUi': <String, Object?>{
@@ -2674,12 +2694,12 @@ const List<Map<String, Object?>> kDeviceSpecs =
         'portraitPadding': <String, Object?>{
           'left': 0,
           'top': 24,
-          'right': 0,
+          'right': 48.4,
           'bottom': 24,
         },
         'landscapePadding': <String, Object?>{
           'left': 0,
-          'top': 24,
+          'top': 48.4,
           'right': 0,
           'bottom': 24,
         },
@@ -2695,6 +2715,16 @@ const List<Map<String, Object?>> kDeviceSpecs =
             },
             'type': 'fold',
             'state': 'postureFlat',
+          },
+          <String, Object?>{
+            'bounds': <String, Object?>{
+              'left': 702.8,
+              'top': 732,
+              'right': 727.2,
+              'bottom': 756.4,
+            },
+            'type': 'cutout',
+            'state': 'unknown',
           },
         ],
         'postures': <String, Object?>{
@@ -2757,7 +2787,7 @@ const List<Map<String, Object?>> kDeviceSpecs =
             'x': 23.4,
             'y': 22.4,
           },
-          'screenPath': 'M 16,0 H 723.2 A 16,16 0 0 1 739.2,16 V 963.2 A 16,16 0 0 1 723.2,979.2 H 16 A 16,16 0 0 1 0,963.2 V 16 A 16,16 0 0 1 16,0 Z',
+          'screenPath': 'M 16,0 H 723.2 A 16,16 0 0 1 739.2,16 V 963.2 A 16,16 0 0 1 723.2,979.2 H 16 A 16,16 0 0 1 0,963.2 V 16 A 16,16 0 0 1 16,0 Z M 715,732 A 12.2,12.2 0 1 0 715,756.4 A 12.2,12.2 0 1 0 715,732 Z',
           'body': '<svg viewBox="0 0 786 1024">\n  <defs><clipPath id="shell">\n    <path d="M 40,0 H 746 A 36,36 0 0 1 782,36 V 988 A 36,36 0 0 1 746,1024 H 40 A 36,36 0 0 1 4,988 V 36 A 36,36 0 0 1 40,0 Z"/>\n  </clipPath></defs>\n  <g fill="#3d4149">\n    <rect x="780" y="163.84" width="6" height="56.32" rx="2"/>\n    <rect x="780" y="240.64" width="6" height="81.92" rx="2"/>\n  </g>\n  <path d="M 40,0 H 746 A 36,36 0 0 1 782,36 V 988 A 36,36 0 0 1 746,1024 H 40 A 36,36 0 0 1 4,988 V 36 A 36,36 0 0 1 40,0 Z" fill="#1f2126"/>\n  <path d="M 40,2 H 746 A 34,34 0 0 1 780,36 V 988 A 34,34 0 0 1 746,1022 H 40 A 34,34 0 0 1 6,988 V 36 A 34,34 0 0 1 40,2 Z" fill="#3d4149"/>\n  <g clip-path="url(#shell)">\n    <path d="M -1024,0 L -614.4,0 L 122.88,1024 L -286.72,1024 Z" fill="#ffffff" fill-opacity="0.18"/>\n  </g>\n  <path d="M 40,3.5 H 746 A 32.5,32.5 0 0 1 778.5,36 V 988 A 32.5,32.5 0 0 1 746,1020.5 H 40 A 32.5,32.5 0 0 1 7.5,988 V 36 A 32.5,32.5 0 0 1 40,3.5 Z" fill="#08090b"/>\n</svg>',
         },
         'systemUi': <String, Object?>{

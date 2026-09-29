@@ -3041,8 +3041,8 @@ abstract final class DevicePresets {
     platform: TargetPlatform.android,
     portraitSize: ui.Size(360, 840),
     devicePixelRatio: 3.0,
-    portraitPadding: EdgeInsets.only(top: 24, bottom: 24),
-    landscapePadding: EdgeInsets.only(top: 24, bottom: 24),
+    portraitPadding: EdgeInsets.only(top: 40, bottom: 24),
+    landscapePadding: EdgeInsets.only(left: 40, top: 24, bottom: 24),
     portraitKeyboardHeight: 336,
     landscapeKeyboardHeight: 252,
     displayFeatures: <SimulatedDisplayFeature>[
@@ -3051,13 +3051,18 @@ abstract final class DevicePresets {
         type: ui.DisplayFeatureType.fold,
         state: ui.DisplayFeatureState.postureFlat,
       ),
+      SimulatedDisplayFeature(
+        bounds: ui.Rect.fromLTRB(169.67, 9.67, 190.33, 30.33),
+        type: ui.DisplayFeatureType.cutout,
+        state: ui.DisplayFeatureState.unknown,
+      ),
     ],
     kind: DeviceKind.foldable,
     frame: DeviceFrame(
       size: ui.Size(396, 876),
       screenOffset: ui.Offset(18, 18),
       screenPath:
-          'M 24,0 H 336 A 24,24 0 0 1 360,24 V 816 A 24,24 0 0 1 336,840 H 24 A 24,24 0 0 1 0,816 V 24 A 24,24 0 0 1 24,0 Z',
+          'M 24,0 H 336 A 24,24 0 0 1 360,24 V 816 A 24,24 0 0 1 336,840 H 24 A 24,24 0 0 1 0,816 V 24 A 24,24 0 0 1 24,0 Z M 180,9.67 A 10.33,10.33 0 1 0 180,30.33 A 10.33,10.33 0 1 0 180,9.67 Z',
       body:
           '<svg viewBox="0 0 396 876">\n'
           '  <defs><clipPath id="shell">\n'
@@ -3117,8 +3122,8 @@ abstract final class DevicePresets {
       DevicePosture.closed: DevicePostureVariant(
         portraitSize: ui.Size(316, 349.33),
         physicalSize: ui.Size(948, 1048),
-        portraitPadding: EdgeInsets.only(top: 24, bottom: 68.67),
-        landscapePadding: EdgeInsets.only(top: 24, right: 68.67, bottom: 24),
+        portraitPadding: EdgeInsets.only(top: 24, bottom: 77.67),
+        landscapePadding: EdgeInsets.only(top: 24, right: 77.67, bottom: 24),
         portraitKeyboardHeight: 336,
         landscapeKeyboardHeight: 252,
         displayFeatures: <SimulatedDisplayFeature>[
@@ -3174,8 +3179,8 @@ abstract final class DevicePresets {
     platform: TargetPlatform.android,
     portraitSize: ui.Size(739.2, 979.2),
     devicePixelRatio: 2.5,
-    portraitPadding: EdgeInsets.only(top: 24, bottom: 24),
-    landscapePadding: EdgeInsets.only(top: 24, bottom: 24),
+    portraitPadding: EdgeInsets.only(top: 24, right: 48.4, bottom: 24),
+    landscapePadding: EdgeInsets.only(top: 48.4, bottom: 24),
     portraitKeyboardHeight: 336,
     landscapeKeyboardHeight: 252,
     displayFeatures: <SimulatedDisplayFeature>[
@@ -3184,13 +3189,18 @@ abstract final class DevicePresets {
         type: ui.DisplayFeatureType.fold,
         state: ui.DisplayFeatureState.postureFlat,
       ),
+      SimulatedDisplayFeature(
+        bounds: ui.Rect.fromLTRB(702.8, 732, 727.2, 756.4),
+        type: ui.DisplayFeatureType.cutout,
+        state: ui.DisplayFeatureState.unknown,
+      ),
     ],
     kind: DeviceKind.foldable,
     frame: DeviceFrame(
       size: ui.Size(786, 1024),
       screenOffset: ui.Offset(23.4, 22.4),
       screenPath:
-          'M 16,0 H 723.2 A 16,16 0 0 1 739.2,16 V 963.2 A 16,16 0 0 1 723.2,979.2 H 16 A 16,16 0 0 1 0,963.2 V 16 A 16,16 0 0 1 16,0 Z',
+          'M 16,0 H 723.2 A 16,16 0 0 1 739.2,16 V 963.2 A 16,16 0 0 1 723.2,979.2 H 16 A 16,16 0 0 1 0,963.2 V 16 A 16,16 0 0 1 16,0 Z M 715,732 A 12.2,12.2 0 1 0 715,756.4 A 12.2,12.2 0 1 0 715,732 Z',
       body:
           '<svg viewBox="0 0 786 1024">\n'
           '  <defs><clipPath id="shell">\n'
@@ -3297,8 +3307,8 @@ abstract final class DevicePresets {
     platform: TargetPlatform.android,
     portraitSize: ui.Size(859.43, 953.9),
     devicePixelRatio: 2.625,
-    portraitPadding: EdgeInsets.only(top: 24, bottom: 24),
-    landscapePadding: EdgeInsets.only(top: 24, bottom: 24),
+    portraitPadding: EdgeInsets.only(top: 47.61, bottom: 24),
+    landscapePadding: EdgeInsets.only(left: 47.61, top: 24, bottom: 24),
     portraitKeyboardHeight: 336,
     landscapeKeyboardHeight: 252,
     displayFeatures: <SimulatedDisplayFeature>[
@@ -3307,13 +3317,18 @@ abstract final class DevicePresets {
         type: ui.DisplayFeatureType.fold,
         state: ui.DisplayFeatureState.postureFlat,
       ),
+      SimulatedDisplayFeature(
+        bounds: ui.Rect.fromLTRB(638.86, 11.81, 662.86, 35.81),
+        type: ui.DisplayFeatureType.cutout,
+        state: ui.DisplayFeatureState.unknown,
+      ),
     ],
     kind: DeviceKind.foldable,
     frame: DeviceFrame(
       size: ui.Size(906, 1002),
       screenOffset: ui.Offset(23.29, 24.05),
       screenPath:
-          'M 16,0 H 843.43 A 16,16 0 0 1 859.43,16 V 937.9 A 16,16 0 0 1 843.43,953.9 H 16 A 16,16 0 0 1 0,937.9 V 16 A 16,16 0 0 1 16,0 Z',
+          'M 16,0 H 843.43 A 16,16 0 0 1 859.43,16 V 937.9 A 16,16 0 0 1 843.43,953.9 H 16 A 16,16 0 0 1 0,937.9 V 16 A 16,16 0 0 1 16,0 Z M 650.86,11.81 A 12,12 0 1 0 650.86,35.81 A 12,12 0 1 0 650.86,11.81 Z',
       body:
           '<svg viewBox="0 0 906 1002">\n'
           '  <defs><clipPath id="shell">\n'

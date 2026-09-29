@@ -41,9 +41,11 @@ Devices as widgets, and fourteen more of them.
   - The Samsung covers come from Samsung's official emulator skins —
     screen, corners and camera from each cover's mask, drawn in the open
     frames' style — with screen sizes checked against samsung.com's spec
-    pages. The Fold8's inner screen is corrected to the published
-    1848 × 2448 (it was 1828 wide) and the Fold8 Ultra's to exactly
-    2256 × 2504.
+    pages. The inner screens gain their cameras from the main skins'
+    masks (punched through the screen, reported as a `cutout`, the status
+    bar grown to hold the hole), the Fold8's inner screen is corrected to
+    the published 1848 × 2448 (it was 1828 wide) and the Fold8 Ultra's to
+    exactly 2256 × 2504.
 - **`SystemUiBar.trailingInset`, `cutoutGap`, `trailingCutoutGap`**: a bar's
   leading and trailing artwork may sit at different distances from the
   edge, and moves clear of any display cutout it would overlap, keeping

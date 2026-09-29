@@ -95,7 +95,14 @@ void main() {
     expect(data.viewInsets.bottom, 336);
     expect(data.padding.bottom, 0);
     expect(data.viewPadding.bottom, 24);
-    expect(data.displayFeatures.single.type, ui.DisplayFeatureType.fold);
+    // The fold, besides the inner camera's cutout.
+    expect(
+      data.displayFeatures.map((f) => f.type),
+      containsAll(<ui.DisplayFeatureType>[
+        ui.DisplayFeatureType.fold,
+        ui.DisplayFeatureType.cutout,
+      ]),
+    );
     expect(data.platformBrightness, ui.Brightness.dark);
     expect(data.textScaler.scale(10), 15);
   });

@@ -388,35 +388,50 @@ def pixel_fold(spec_id, entry, measurements):
     return spec
 
 
-def cover_padding(size, holes, open_spec):
-    """The cover's safe areas, read off its mask the way the open posture
-    lays its own out: the open spec's bar insets on every side, grown so
-    the status bar holds a top camera hole centred in it (and, turned to
-    landscape, the side bar holds it); a cutout on another edge — the
-    Flip8 cover's cameras — takes that edge's inset past it."""
+def camera_padding(size, holes, bars):
+    """Safe areas read off a screen's mask: [bars] (the device's own bar
+    insets, `[left, top, right, bottom]` for portrait and landscape) on
+    every side, the one nearest each cutout grown to hold it. A camera
+    hole sits centred in its bar — Samsung's status bar holds the punch
+    hole midway — so that bar is twice the hole's centre from the edge; a
+    large cutout (the Flip8 cover's camera rings) takes its edge's inset
+    past its far side."""
     w, h = size
-    base_p = open_spec["portraitPadding"]
-    base_l = open_spec["landscapePadding"]
-    portrait = [base_p["left"], base_p["top"], base_p["right"],
-                base_p["bottom"]]
-    landscape = [base_l["left"], base_l["top"], base_l["right"],
-                 base_l["bottom"]]
+    portrait, landscape = list(bars["portrait"]), list(bars["landscape"])
     for left, top, right, bottom in holes:
         d = {"top": top, "bottom": h - bottom, "left": left,
              "right": w - right}
         side = min(d, key=d.get)
-        if side == "top":
-            reach = top + bottom  # the hole centred in the bar
-        else:
-            reach = {"bottom": h - top, "left": right,
-                     "right": w - left}[side]
+        small = max(right - left, bottom - top) / 2 < 20
+        centre = {"top": (top + bottom) / 2, "bottom": h - (top + bottom) / 2,
+                  "left": (left + right) / 2,
+                  "right": w - (left + right) / 2}[side]
+        far = {"top": bottom, "bottom": h - top, "left": right,
+               "right": w - left}[side]
+        reach = 2 * centre if small else far
         i = ("left", "top", "right", "bottom").index(side)
         portrait[i] = max(portrait[i], reach)
         # The package's quarter turn maps portrait top -> landscape left,
         # right -> top, bottom -> right, left -> bottom.
-        j = {"top": 0, "right": 1, "bottom": 2, "left": 3}[side]
-        landscape[j] = max(landscape[j], reach)
+        k = {"top": 0, "right": 1, "bottom": 2, "left": 3}[side]
+        landscape[k] = max(landscape[k], reach)
     return portrait, landscape
+
+
+def main_camera(skin_dir, dpr, size, turn):
+    """The inner screen's camera holes from its mask, in the spec's
+    portrait (turned a quarter clockwise where the skin is drawn wide),
+    centred on the spec's screen where the two sizes differ slightly."""
+    alpha = Image.open(os.path.join(skin_dir, "fore_port.png")).size
+    geometry = mask_geometry(skin_dir, alpha)
+    sw, sh = alpha
+    holes = geometry["holes"]
+    if turn:
+        holes = [(sh - d, a, sh - b, c) for a, b, c, d in holes]
+        sw, sh = sh, sw
+    dx, dy = (sw / dpr - size[0]) / 2, (sh / dpr - size[1]) / 2
+    return [(a / dpr - dx, b / dpr - dy, c / dpr - dx, d / dpr - dy)
+            for a, b, c, d in holes]
 
 
 def samsung_skin(samsung_dir, path):
@@ -438,14 +453,34 @@ def samsung_skin(samsung_dir, path):
 
 
 def samsung_fold(spec_id, entry, measurements, samsung_dir):
-    """The Samsung spec's open posture is kept as it is; only its other
-    postures are (re)built: half-open (the same screen) and the closed
-    cover from its skin."""
+    """The Samsung spec's open posture keeps its hand-drawn frame and bars,
+    gaining the inner camera from the main skin's mask (punched through the
+    screen outline, reported as a cutout, its bar grown to hold it); the
+    half-open posture is the same screen and the closed cover is built
+    from its skin."""
     spec = json.load(open(os.path.join(SPECS, f"{spec_id}.json")))
     dpr = spec["devicePixelRatio"]
+    bars = entry["bars"]
+
+    size = (spec["portraitSize"]["width"], spec["portraitSize"]["height"])
+    holes = main_camera(samsung_skin(samsung_dir, entry["main"]), dpr, size,
+                        entry.get("turn", False))
+    portrait, landscape = camera_padding(size, holes, bars)
+    spec["portraitPadding"] = insets(portrait)
+    spec["landscapePadding"] = insets(landscape)
+    spec["displayFeatures"] = [
+        f for f in spec["displayFeatures"] if f["type"] != "cutout"
+    ] + [{"bounds": rect(c), "type": "cutout", "state": "unknown"}
+         for c in holes]
+    outline = re.split(r" (?=M )", spec["frame"]["screenPath"])[0]
+    for a, b, c, d in holes:
+        outline += " " + pixel.circle_ccw_path(
+            (a + c) / 2, (b + d) / 2, max(c - a, d - b) / 2)
+    spec["frame"]["screenPath"] = outline
+
     skin_dir = samsung_skin(samsung_dir, entry["cover"])
     frame, size, holes = samsung_cover_frame(skin_dir, dpr, spec["frame"])
-    portrait, landscape = cover_padding(size, holes, spec)
+    portrait, landscape = camera_padding(size, holes, bars)
     closed = {
         "portraitSize": {"width": rounded(size[0]), "height": rounded(size[1])},
         "physicalSize": {"width": round(size[0] * dpr),

@@ -3975,12 +3975,12 @@
       "devicePixelRatio": 3.0,
       "portraitPadding": {
         "left": 0,
-        "top": 24,
+        "top": 40,
         "right": 0,
         "bottom": 24
       },
       "landscapePadding": {
-        "left": 0,
+        "left": 40,
         "top": 24,
         "right": 0,
         "bottom": 24
@@ -3997,6 +3997,16 @@
           },
           "type": "fold",
           "state": "postureFlat"
+        },
+        {
+          "bounds": {
+            "left": 169.67,
+            "top": 9.67,
+            "right": 190.33,
+            "bottom": 30.33
+          },
+          "type": "cutout",
+          "state": "unknown"
         }
       ],
       "frame": {
@@ -4008,7 +4018,7 @@
           "x": 18,
           "y": 18
         },
-        "screenPath": "M 24,0 H 336 A 24,24 0 0 1 360,24 V 816 A 24,24 0 0 1 336,840 H 24 A 24,24 0 0 1 0,816 V 24 A 24,24 0 0 1 24,0 Z",
+        "screenPath": "M 24,0 H 336 A 24,24 0 0 1 360,24 V 816 A 24,24 0 0 1 336,840 H 24 A 24,24 0 0 1 0,816 V 24 A 24,24 0 0 1 24,0 Z M 180,9.67 A 10.33,10.33 0 1 0 180,30.33 A 10.33,10.33 0 1 0 180,9.67 Z",
         "body": [
           "<svg viewBox=\"0 0 396 876\">",
           "  <defs><clipPath id=\"shell\">",
@@ -4080,12 +4090,12 @@
             "left": 0,
             "top": 24,
             "right": 0,
-            "bottom": 68.67
+            "bottom": 77.67
           },
           "landscapePadding": {
             "left": 0,
             "top": 24,
-            "right": 68.67,
+            "right": 77.67,
             "bottom": 24
           },
           "portraitKeyboardHeight": 336,
@@ -4167,12 +4177,12 @@
       "devicePixelRatio": 2.625,
       "portraitPadding": {
         "left": 0,
-        "top": 24,
+        "top": 47.61,
         "right": 0,
         "bottom": 24
       },
       "landscapePadding": {
-        "left": 0,
+        "left": 47.61,
         "top": 24,
         "right": 0,
         "bottom": 24
@@ -4189,6 +4199,16 @@
           },
           "type": "fold",
           "state": "postureFlat"
+        },
+        {
+          "bounds": {
+            "left": 638.86,
+            "top": 11.81,
+            "right": 662.86,
+            "bottom": 35.81
+          },
+          "type": "cutout",
+          "state": "unknown"
         }
       ],
       "frame": {
@@ -4200,7 +4220,7 @@
           "x": 23.29,
           "y": 24.05
         },
-        "screenPath": "M 16,0 H 843.43 A 16,16 0 0 1 859.43,16 V 937.9 A 16,16 0 0 1 843.43,953.9 H 16 A 16,16 0 0 1 0,937.9 V 16 A 16,16 0 0 1 16,0 Z",
+        "screenPath": "M 16,0 H 843.43 A 16,16 0 0 1 859.43,16 V 937.9 A 16,16 0 0 1 843.43,953.9 H 16 A 16,16 0 0 1 0,937.9 V 16 A 16,16 0 0 1 16,0 Z M 650.86,11.81 A 12,12 0 1 0 650.86,35.81 A 12,12 0 1 0 650.86,11.81 Z",
         "body": [
           "<svg viewBox=\"0 0 906 1002\">",
           "  <defs><clipPath id=\"shell\">",
@@ -4340,12 +4360,12 @@
       "portraitPadding": {
         "left": 0,
         "top": 24,
-        "right": 0,
+        "right": 48.4,
         "bottom": 24
       },
       "landscapePadding": {
         "left": 0,
-        "top": 24,
+        "top": 48.4,
         "right": 0,
         "bottom": 24
       },
@@ -4361,6 +4381,16 @@
           },
           "type": "fold",
           "state": "postureFlat"
+        },
+        {
+          "bounds": {
+            "left": 702.8,
+            "top": 732,
+            "right": 727.2,
+            "bottom": 756.4
+          },
+          "type": "cutout",
+          "state": "unknown"
         }
       ],
       "frame": {
@@ -4372,7 +4402,7 @@
           "x": 23.4,
           "y": 22.4
         },
-        "screenPath": "M 16,0 H 723.2 A 16,16 0 0 1 739.2,16 V 963.2 A 16,16 0 0 1 723.2,979.2 H 16 A 16,16 0 0 1 0,963.2 V 16 A 16,16 0 0 1 16,0 Z",
+        "screenPath": "M 16,0 H 723.2 A 16,16 0 0 1 739.2,16 V 963.2 A 16,16 0 0 1 723.2,979.2 H 16 A 16,16 0 0 1 0,963.2 V 16 A 16,16 0 0 1 16,0 Z M 715,732 A 12.2,12.2 0 1 0 715,756.4 A 12.2,12.2 0 1 0 715,732 Z",
         "body": [
           "<svg viewBox=\"0 0 786 1024\">",
           "  <defs><clipPath id=\"shell\">",
