@@ -470,6 +470,15 @@ def main():
 
     print(f"{SPEC_ID} (from {SIM_NAME})")
     flat, inner_buttons = build_frame(dev, device_type, inner, logical(inner))
+    # Device Hub shows the open Duo turned a quarter clockwise from the
+    # inner chrome's portrait — volume rocker along the top, power button
+    # high on the right — where the package turns frames counter-clockwise
+    # into landscape (the direction the simulator's landscape safe areas and
+    # reserved regions were measured in). A half turn of the buttons in
+    # portrait puts them where Device Hub shows them in landscape.
+    fw, fh = flat["size"]["width"], flat["size"]["height"]
+    inner_buttons = [(fw - x - w, fh - y - h, w, h, color)
+                     for x, y, w, h, color in inner_buttons]
     # Half-open: the same screen, body and outline bent at the fold — bent
     # before the buttons go on, so the bend's centre is the body's.
     bent = bend_frame(flat, logical(inner), HALF_OPEN_PINCH)
