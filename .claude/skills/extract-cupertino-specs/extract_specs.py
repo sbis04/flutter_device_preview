@@ -615,15 +615,22 @@ def side_buttons(resources, chrome, body):
     return out
 
 
-def with_buttons(lines, body, buttons):
-    """[lines] (a body SVG) with [buttons] drawn under it, the view box
-    grown just enough to show them; returns the lines and the (x, y) the
-    body moved by."""
+def button_margins(body, buttons):
+    """How far [buttons] stand out past each side of a [body] box:
+    (left, top, right, bottom)."""
     bw, bh = body
-    left = max([0.0] + [-x for x, _, _, _, _ in buttons])
-    top = max([0.0] + [-y for _, y, _, _, _ in buttons])
-    right = max([0.0] + [x + w - bw for x, _, w, _, _ in buttons])
-    bottom = max([0.0] + [y + h - bh for _, y, _, h, _ in buttons])
+    return (max([0.0] + [-x for x, _, _, _, _ in buttons]),
+            max([0.0] + [-y for _, y, _, _, _ in buttons]),
+            max([0.0] + [x + w - bw for x, _, w, _, _ in buttons]),
+            max([0.0] + [y + h - bh for _, y, _, h, _ in buttons]))
+
+
+def with_buttons(lines, body, buttons, margins=None):
+    """[lines] (a body SVG) with [buttons] drawn under it, the view box
+    grown just enough to show them — or by [margins], to keep another
+    frame's box; returns the lines and the (x, y) the body moved by."""
+    bw, bh = body
+    left, top, right, bottom = margins or button_margins(body, buttons)
     if not buttons:
         return lines, (0.0, 0.0)
     w, h = bw + left + right, bh + top + bottom

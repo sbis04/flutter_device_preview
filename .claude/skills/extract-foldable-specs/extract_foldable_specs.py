@@ -378,7 +378,8 @@ def pixel_fold(spec_id, entry, measurements):
     for posture, skin in (("open", entry["skins"]["open"]),
                           ("closed", entry["skins"]["closed"])):
         skin_dir = pixel.find_skin(skin, roots)
-        frame, size = pixel.build_frame(skin_dir, dpr)
+        override = entry.get("resolution", {}).get(posture)
+        frame, size = pixel.build_frame(skin_dir, dpr, screen_px=override)
         m = measurements[posture]
         fields = build_posture(spec, m, frame, size, m.get("cutouts", []),
                                posture == "open")

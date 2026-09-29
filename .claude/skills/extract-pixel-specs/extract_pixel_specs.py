@@ -51,6 +51,17 @@ DEVICES = {
                                            "hw.lcd.height": 2992,
                                            "hw.lcd.density": 480},
                               "donor": True},
+    # The Pixel 11 line has no emulator skins or device profiles yet; its
+    # panels are the Pixel 10 line's (Google Store tech specs: 11 1080x2424,
+    # 11 Pro 1280x2856, 11 Pro XL 1344x2992 — the 10's, 10 Pro's and 10 Pro
+    # XL's), so the 10 line's official skins and profiles stand in.
+    "google-pixel-11": {"skin": "pixel_10", "avd_device": "pixel_10"},
+    "google-pixel-11-pro": {"skin": "pixel_10_pro",
+                            "avd_device": "pixel_10_pro"},
+    "google-pixel-11-pro-xl": {"skin": "pixel_10_pro_xl",
+                               "avd_device": "pixel_10_pro_xl"},
+    "google-pixel-11-pro-fold": {"skip": "a foldable — rebuilt by "
+                                         "extract-foldable-specs"},
 }
 
 SKILL_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -203,8 +214,84 @@ def analyze_back(back_path, screen_pos, screen_px):
                                               * 0.75)))),
     ])
     body, keys = body_and_keys(solid, image)
+    rims, radii, rim_color, seams = rim_and_corners(image, solid, body)
     return {"bounds": bounds, "radius": radius, "edge": edge, "face": face,
-            "body": body, "keys": keys}
+            "body": body, "keys": keys, "rims": rims, "radii": radii,
+            "rim_color": rim_color, "seams": seams}
+
+
+def rim_and_corners(image, solid, body):
+    """The metal frame around the black bezel, and the body's corners.
+
+    Each side's rim is how far in from the body edge, along the middle row
+    or column, the art stays lighter than the bezel (the first run of near
+    black); its color is the median down the middle of the right rim.
+    Each corner's radius is read along its 45° diagonal — the first solid
+    pixel sits at r (1 − 1/√2) — so a fold's squarer hinge-side corners and
+    the art's key bumps do not skew it."""
+    import numpy as np
+    rgb = np.asarray(image.convert("RGB")).astype(int)
+    lum = rgb.mean(2)
+    m = np.asarray(solid) > 0
+    x0, y0, x1, y1 = body
+    cy, cx = (y0 + y1) // 2, (x0 + x1) // 2
+
+    def rim(seq):
+        for i in range(min(len(seq) - 5, 200)):
+            if all(v < 40 for v in seq[i:i + 5]):
+                return i
+        return None
+
+    found = {"left": rim(lum[cy, x0:]), "top": rim(lum[y0:, cx]),
+             "right": rim(lum[cy, x1 - 1::-1]),
+             "bottom": rim(lum[y1 - 1::-1, cx])}
+    usable = sorted(v for v in found.values() if v)
+    fallback = usable[len(usable) // 2] if usable else 0
+    rims = {k: (v if v else fallback) for k, v in found.items()}
+    band = rgb[cy - (y1 - y0) // 6:cy + (y1 - y0) // 6,
+               x1 - 1 - max(1, rims["right"] // 2)]
+    rim_color = tuple(int(v) for v in np.median(band, 0))
+    box = m[y0:y1, x0:x1]
+
+    def diagonal(mask):
+        t = 0
+        while t < min(mask.shape) // 2 and not mask[t, t]:
+            t += 1
+        return t / (1 - 2 ** -0.5)
+
+    radii = [diagonal(box), diagonal(box[:, ::-1]),
+             diagonal(box[::-1, ::-1]), diagonal(box[::-1])]
+    # A fold's hinge side is a wide rim with the other half's edge showing
+    # through it: a dark seam run inside the metal (side, from, to) in px
+    # from the body edge.
+    seams = []
+    profiles = {"left": lum[cy, x0:], "right": lum[cy, x1 - 1::-1]}
+    for side, seq in profiles.items():
+        width = rims[side]
+        if width < 30:
+            continue
+        dark = [i for i in range(1, width - 4) if seq[i] < 90]
+        if not dark:
+            continue
+        end = dark[0]
+        while end + 1 < width and seq[end + 1] < 90:
+            end += 1
+        if end + 1 - dark[0] < width // 2:
+            seams.append((side, dark[0], end + 1))
+    return rims, radii, rim_color, seams
+
+
+def corner_path(x, y, w, h, radii):
+    """A rectangle with per-corner radii (tl, tr, br, bl), clockwise."""
+    tl, tr, br, bl = (max(0.0, min(r, w / 2, h / 2)) for r in radii)
+    return (f"M {fmt(x + tl)},{fmt(y)} H {fmt(x + w - tr)} "
+            f"A {fmt(tr)},{fmt(tr)} 0 0 1 {fmt(x + w)},{fmt(y + tr)} "
+            f"V {fmt(y + h - br)} "
+            f"A {fmt(br)},{fmt(br)} 0 0 1 {fmt(x + w - br)},{fmt(y + h)} "
+            f"H {fmt(x + bl)} "
+            f"A {fmt(bl)},{fmt(bl)} 0 0 1 {fmt(x)},{fmt(y + h - bl)} "
+            f"V {fmt(y + tl)} "
+            f"A {fmt(tl)},{fmt(tl)} 0 0 1 {fmt(x + tl)},{fmt(y)} Z")
 
 
 def body_and_keys(solid, image):
@@ -374,7 +461,11 @@ def circle_ccw_path(cx, cy, r):
             f"A {fmt(r)},{fmt(r)} 0 1 0 {fmt(cx)},{fmt(cy - r)} Z")
 
 
-def build_frame(skin_dir, dpr):
+def build_frame(skin_dir, dpr, screen_px=None):
+    """[screen_px] (w, h) overrides the skin's screen for a device that
+    shares its body but publishes a slightly different panel: the outline
+    is drawn at that size, centred where the skin's screen is, the camera
+    hole at the same place on the screen."""
     geometry = skin_geometry(skin_dir)
     back = analyze_back(geometry["back"], geometry["screen_pos"],
                         geometry["screen_px"])
@@ -384,6 +475,12 @@ def build_frame(skin_dir, dpr):
     bx0, by0, bx1, by1 = back["bounds"]
     sw, sh = geometry["screen_px"]
     sx, sy = geometry["screen_pos"]
+    if screen_px is not None:
+        dx, dy = (sw - screen_px[0]) / 2, (sh - screen_px[1]) / 2
+        sx, sy = sx + dx, sy + dy
+        # The camera keeps its place on the screen, so the cutout and bars
+        # measured for the skin's device still apply.
+        sw, sh = screen_px
 
     def dp(v):
         return v / dpr
@@ -415,15 +512,30 @@ def build_frame(skin_dir, dpr):
         body.append(f'  <rect x="{fmt(x)}" y="{fmt(dp(top - by0))}"'
                     f' width="{fmt(w)}" height="{fmt(dp(bottom - top))}"'
                     f' rx="{fmt(min(1.0, w / 2))}" fill="{hex_color(color)}"/>')
+    # The metal frame, each side as thick as the art's, and the black bezel
+    # inside it, its corners following the frame's.
+    radii = [dp(r) for r in back["radii"]]
+    rims = {k: dp(v) for k, v in back["rims"].items()}
+    inner = [max(0.0, r - max(a, b)) for r, a, b in zip(
+        radii,
+        (rims["left"], rims["right"], rims["right"], rims["left"]),
+        (rims["top"], rims["top"], rims["bottom"], rims["bottom"]))]
     body += [
-        f'  <rect x="{fmt(left)}" y="0" width="{fmt(width)}"'
-        f' height="{fmt(body_h)}" rx="{fmt(radius)}"'
-        f' fill="{hex_color(back["edge"])}"/>',
-        f'  <rect x="{fmt(left + 1)}" y="1" width="{fmt(width - 2)}"'
-        f' height="{fmt(body_h - 2)}" rx="{fmt(max(0.0, radius - 1))}"'
+        f'  <path d="{corner_path(left, 0, width, body_h, radii)}"'
+        f' fill="{hex_color(back["rim_color"])}"/>',
+        f'  <path d="{corner_path(left + rims["left"], rims["top"], width - rims["left"] - rims["right"], body_h - rims["top"] - rims["bottom"], inner)}"'
         f' fill="{hex_color(back["face"])}"/>',
-        "</svg>",
     ]
+    for side, start, end in back["seams"]:
+        # The seam runs the straight part of the side, between its corners.
+        top = radii[0] if side == "left" else radii[1]
+        bottom = radii[3] if side == "left" else radii[2]
+        x = left + dp(start) if side == "left" else left + width - dp(end)
+        body.append(f'  <rect x="{fmt(x)}" y="{fmt(top)}"'
+                    f' width="{fmt(dp(end - start))}"'
+                    f' height="{fmt(body_h - top - bottom)}"'
+                    f' fill="{hex_color(back["face"])}" fill-opacity="0.55"/>')
+    body.append("</svg>")
     return {
         "size": {"width": fmt_json(body_w), "height": fmt_json(body_h)},
         "screenOffset": {"x": fmt_json(offset[0]), "y": fmt_json(offset[1])},
@@ -458,10 +570,12 @@ class EmulatorProbe:
         images = []
         for path in glob.glob(os.path.join(self.sdk, "system-images",
                                            "android-*", "*", "*")):
-            api = int(path.split("android-")[1].split(os.sep)[0])
+            # Minor releases too: "android-37.2".
+            api = path.split("android-")[1].split(os.sep)[0]
+            order = tuple(int(p) for p in api.split(".") if p.isdigit())
             parts = path.split(os.sep)
-            images.append((api, f"system-images;android-{api};"
-                                f"{parts[-2]};{parts[-1]}"))
+            images.append((order, f"system-images;android-{api};"
+                                  f"{parts[-2]};{parts[-1]}"))
         if not images:
             sys.exit("error: no emulator system images installed")
         return max(images)[1]

@@ -7,10 +7,10 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group('DevicePresets catalog', () {
-    test('contains the 47 documented presets with unique ids', () {
-      expect(DevicePresets.all, hasLength(47));
+    test('contains the 51 documented presets with unique ids', () {
+      expect(DevicePresets.all, hasLength(51));
       final ids = DevicePresets.all.map((p) => p.id).toSet();
-      expect(ids, hasLength(47));
+      expect(ids, hasLength(51));
     });
 
     test('the Duo declares its downsampled inner panel, and nothing else', () {
@@ -65,6 +65,7 @@ void main() {
           .toList();
       expect(foldables.map((p) => p.id), <String>[
         'google-pixel-10-pro-fold',
+        'google-pixel-11-pro-fold',
         'samsung-galaxy-z-flip-8',
         'samsung-galaxy-z-fold-8',
         'samsung-galaxy-z-fold-8-ultra',

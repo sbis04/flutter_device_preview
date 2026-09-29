@@ -10,6 +10,15 @@ Devices as widgets, and fourteen more of them.
   its child. `SimulatedDevice.sizeOf` / `screenRectOf` give its geometry.
 - **`DeviceFrame.desktopWindow`** — the macOS and Windows window chrome the
   `desktop-*` presets draw, for any size.
+- **Pixel 11, 11 Pro, 11 Pro XL and 11 Pro Fold** (`DevicePresets.pixel11`,
+  `pixel11Pro`, `pixel11ProXl`, `pixel11ProFold`). Google has published no
+  emulator skins or profiles for them yet; their panels are the Pixel 10
+  line's (Google Store tech specs), so they wear the Pixel 10 / 10 Pro /
+  10 Pro XL / 10 Pro Fold skins, with metrics probed on those profiles'
+  emulator and the 11 Pro Fold's cover at its published 1080 × 2342.
+- **Pixel frames draw their metal rim**: each side as thick as the skin's,
+  in its color, with the corners read off the skin per corner — the fold
+  cover's squarer hinge-side corners and the hinge seam included.
 - **New presets**, from the iOS 26.5 / 27.1 simulators and Xcode's device
   chrome: iPhone 13, 14 Pro, 14 Pro Max, 15 Pro, 15 Pro Max, 18 Pro and
   18 Pro Max (Xcode 27.1 declares the last two with the 17 Pro / Pro Max
@@ -59,7 +68,7 @@ Devices as widgets, and fourteen more of them.
 - **iPhone 18 Pro / Pro Max Dynamic Island** is their own, smaller one:
   94 × 36 pt at 14.33 pt from the top (it was the 17 Pro's 125 × 37),
   measured in Apple's iPhone 18 product bezels.
-- **Side buttons** on the iPhone, Pixel and Galaxy frames: the iPhones'
+- **Side buttons** on the iPhone, Pixel and Galaxy frames: the iPhones' (the iPhone Duo's in every posture)
   from Xcode's device chrome (its `inputs`, drawn where the Simulator
   slides them out under the pointer), the Pixels' from the keys their
   emulator skins paint, the Galaxy Z line's from Samsung's skin layouts.

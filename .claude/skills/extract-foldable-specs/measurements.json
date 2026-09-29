@@ -74,6 +74,86 @@
       }
     }
   },
+  "google-pixel-11-pro-fold": {
+    "source": "pixel",
+    "_measured": "No emulator skin or device profile yet: the Pixel 10 Pro Fold's (same inner panel, 2076x2152; Google Store tech specs), with the cover at its published 1080x2342 (the 10 Pro Fold's is 1080x2364) and the 10 Pro Fold's measured bars.",
+    "skins": {
+      "open": "pixel_10_pro_fold/default",
+      "closed": "pixel_10_pro_fold/closed"
+    },
+    "postures": {
+      "open": {
+        "portraitPadding": [
+          0,
+          55.79,
+          0,
+          32
+        ],
+        "landscapePadding": [
+          0,
+          55.79,
+          0,
+          32
+        ],
+        "cutouts": [
+          [
+            795.9,
+            0,
+            851.69,
+            55.79
+          ]
+        ],
+        "statusBar": {
+          "inset": 49.23,
+          "trailingInset": 36.51,
+          "cutoutGap": 17.23,
+          "trailingCutoutGap": 10.67
+        },
+        "pill": {
+          "width": 220,
+          "height": 4,
+          "bottomInset": 13.95
+        }
+      },
+      "closed": {
+        "portraitPadding": [
+          0,
+          62.36,
+          0,
+          24.21
+        ],
+        "landscapePadding": [
+          62.36,
+          52.1,
+          0,
+          24.21
+        ],
+        "cutouts": [
+          [
+            198.56,
+            8.21,
+            244.51,
+            62.36
+          ]
+        ],
+        "statusBar": {
+          "inset": 17.23,
+          "trailingInset": 28.72
+        },
+        "pill": {
+          "width": 108,
+          "height": 4,
+          "bottomInset": 9.85
+        }
+      }
+    },
+    "resolution": {
+      "closed": [
+        1080,
+        2342
+      ]
+    }
+  },
   "samsung-galaxy-z-fold-8-ultra": {
     "source": "samsung",
     "_bars": "The hand-authored open spec's bar insets, before any camera grows them.",

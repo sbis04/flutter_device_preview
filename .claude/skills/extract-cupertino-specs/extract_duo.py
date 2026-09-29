@@ -46,7 +46,8 @@ import pymupdf
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from extract_specs import (  # noqa: E402
     SPECS, developer_dir, find_device_type, fmt, fmt_json, hex_color,
-    load_chrome_json, mask_subpaths)
+    load_chrome_json, mask_subpaths, side_buttons, with_buttons,
+    button_margins)
 
 SPEC_ID = "apple-iphone-duo"
 SIM_NAME = "iPhone Duo"
@@ -392,6 +393,11 @@ def build_frame(dev, device_type, display, logical, extra_path=None):
           f"{fmt(logical[0])}x{fmt(logical[1])} (x{fmt(sx)}), body "
           f"{fmt(size[0])}x{fmt(size[1])}, screen at "
           f"{fmt(screen.x0 * sx)},{fmt(screen.y0 * sy)}")
+    # The chrome's side buttons, in body coordinates (the chrome's points,
+    # scaled like the body); drawn by add_buttons once any bend is done.
+    buttons = [(x * sx, y * sy, w * sx, h * sy, color) for x, y, w, h, color
+               in side_buttons(resources, chrome, (page.rect.width,
+                                                   page.rect.height))]
     return {
         "size": {"width": fmt_json(round(size[0], 2)),
                  "height": fmt_json(round(size[1], 2))},
@@ -399,7 +405,34 @@ def build_frame(dev, device_type, display, logical, extra_path=None):
                          "y": fmt_json(round(screen.y0 * sy, 2))},
         "screenPath": path,
         "body": body,
-    }
+    }, buttons
+
+
+def add_buttons(frame, buttons, pinch=0.0, screen_size=None, margins=None):
+    """[frame] with [buttons] drawn under its body, the frame grown to show
+    them (see extract_specs.with_buttons). [pinch] > 0 is a half-open
+    frame bent at the fold: a side button moves in with the edge it sits
+    on, by the bend at its middle (bend_paths' taper)."""
+    w, h = frame["size"]["width"], frame["size"]["height"]
+    if pinch and screen_size:
+        fold_y = frame["screenOffset"]["y"] + screen_size[1] / 2
+        half = max(fold_y, h - fold_y)
+        moved = []
+        for x, y, bw, bh, color in buttons:
+            t = max(0.0, 1 - abs(y + bh / 2 - fold_y) / half)
+            shift = pinch * t if x + bw / 2 < w / 2 else -pinch * t
+            moved.append((x + shift, y, bw, bh, color))
+        buttons = moved
+    lines, (mx, my) = with_buttons(frame["body"], (w, h), buttons, margins)
+    view = lines[0].split('"')[1].split()
+    out = dict(frame)
+    out["body"] = lines
+    out["size"] = {"width": fmt_json(round(float(view[2]), 2)),
+                   "height": fmt_json(round(float(view[3]), 2))}
+    out["screenOffset"] = {
+        "x": fmt_json(round(frame["screenOffset"]["x"] + mx, 2)),
+        "y": fmt_json(round(frame["screenOffset"]["y"] + my, 2))}
+    return out
 
 
 def main():
@@ -436,13 +469,21 @@ def main():
                      f"{logical(display)[0]:g}x{logical(display)[1]:g}")
 
     print(f"{SPEC_ID} (from {SIM_NAME})")
-    spec["frame"] = build_frame(dev, device_type, inner, logical(inner))
-    # Half-open: the same screen, body and outline bent at the fold.
-    bent = bend_frame(spec["frame"], logical(inner), HALF_OPEN_PINCH)
-    spec["postures"]["halfOpened"]["frame"] = bent
-    spec["postures"]["closed"]["frame"] = build_frame(
+    flat, inner_buttons = build_frame(dev, device_type, inner, logical(inner))
+    # Half-open: the same screen, body and outline bent at the fold — bent
+    # before the buttons go on, so the bend's centre is the body's.
+    bent = bend_frame(flat, logical(inner), HALF_OPEN_PINCH)
+    spec["frame"] = add_buttons(flat, inner_buttons)
+    # The same box as open, so the device does not shift as it bends.
+    spec["postures"]["halfOpened"]["frame"] = add_buttons(
+        bent, inner_buttons, HALF_OPEN_PINCH, logical(inner),
+        margins=button_margins((flat["size"]["width"], flat["size"]["height"]),
+                               inner_buttons))
+    cover_frame, cover_buttons = build_frame(
         dev, device_type, cover, logical(cover),
         extra_path=circle_ccw(*COVER_CAMERA))
+    spec["postures"]["closed"]["frame"] = add_buttons(cover_frame,
+                                                      cover_buttons)
     if not args.dry_run:
         text = json.dumps(spec, indent=2)
         if original.endswith("\n"):

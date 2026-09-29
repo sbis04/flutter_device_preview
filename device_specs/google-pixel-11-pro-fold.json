@@ -1,8 +1,8 @@
 {
-  "id": "google-pixel-10-pro-fold",
-  "name": "Pixel 10 Pro Fold",
+  "id": "google-pixel-11-pro-fold",
+  "name": "Pixel 11 Pro Fold",
   "brand": "Google",
-  "year": 2025,
+  "year": 2026,
   "platform": "android",
   "kind": "foldable",
   "portraitSize": {
@@ -111,11 +111,11 @@
     "closed": {
       "portraitSize": {
         "width": 443.08,
-        "height": 969.85
+        "height": 960.82
       },
       "physicalSize": {
         "width": 1080,
-        "height": 2364
+        "height": 2342
       },
       "portraitPadding": {
         "left": 0,
@@ -150,9 +150,9 @@
         },
         "screenOffset": {
           "x": 33.64,
-          "y": 26.67
+          "y": 31.18
         },
-        "screenPath": "M 52.92,0 H 390.15 A 52.92,52.92 0 0 1 443.08,52.92 V 916.92 A 52.92,52.92 0 0 1 390.15,969.85 H 52.92 A 52.92,52.92 0 0 1 0,916.92 V 52.92 A 52.92,52.92 0 0 1 52.92,0 Z M 221.74,18.46 A 13.74,13.74 0 1 0 221.74,45.95 A 13.74,13.74 0 1 0 221.74,18.46 Z",
+        "screenPath": "M 52.92,0 H 390.15 A 52.92,52.92 0 0 1 443.08,52.92 V 907.9 A 52.92,52.92 0 0 1 390.15,960.82 H 52.92 A 52.92,52.92 0 0 1 0,907.9 V 52.92 A 52.92,52.92 0 0 1 52.92,0 Z M 221.74,18.46 A 13.74,13.74 0 1 0 221.74,45.95 A 13.74,13.74 0 1 0 221.74,18.46 Z",
         "body": [
           "<svg viewBox=\"0 0 505.85 1022.77\">",
           "  <rect x=\"502.38\" y=\"304\" width=\"3.46\" height=\"95.18\" rx=\"1\" fill=\"#aeb2c1\"/>",
