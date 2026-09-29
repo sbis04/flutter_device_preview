@@ -202,7 +202,46 @@ def analyze_back(back_path, screen_pos, screen_px):
         image.getpixel((cx, y1 - max(2, round((y1 - sy - screen_px[1])
                                               * 0.75)))),
     ])
-    return {"bounds": bounds, "radius": radius, "edge": edge, "face": face}
+    body, keys = body_and_keys(solid, image)
+    return {"bounds": bounds, "radius": radius, "edge": edge, "face": face,
+            "body": body, "keys": keys}
+
+
+def body_and_keys(solid, image):
+    """The body box without its side keys, and the keys: the art paints the
+    power key and the volume rocker standing proud of the body's side, so
+    each side's typical extent (the median over the middle rows) is the
+    body, and every run of rows reaching past it by a few pixels is a key
+    — (side, top, bottom, outer edge, color) in canvas px."""
+    import numpy as np
+    m = np.asarray(solid) > 0
+    rows = np.where(m.any(1))[0]
+    y0, y1 = rows.min(), rows.max() + 1
+    band = range(y0 + (y1 - y0) // 10, y1 - (y1 - y0) // 10)
+    left = np.array([np.argmax(m[y]) for y in range(m.shape[0])])
+    right = np.array([m.shape[1] - 1 - np.argmax(m[y, ::-1])
+                      for y in range(m.shape[0])])
+    body_left = int(np.median([left[y] for y in band]))
+    body_right = int(np.median([right[y] for y in band])) + 1
+    keys = []
+    for side, reach in (("right", right - (body_right - 1)),
+                        ("left", body_left - left)):
+        start = None
+        for y in range(y0, y1 + 1):
+            proud = y < y1 and m[y].any() and reach[y] > 3
+            if proud and start is None:
+                start = y
+            elif not proud and start is not None:
+                if y - start > 20:
+                    outer = (int(right[start:y].max()) + 1 if side == "right"
+                             else int(left[start:y].min()))
+                    x = (body_right + outer) // 2 if side == "right" \
+                        else (outer + body_left) // 2
+                    color = median_color([image.getpixel((x, yy)) for yy in
+                                          range(start + 4, y - 4, 7)])
+                    keys.append((side, start, y, outer, color))
+                start = None
+    return (body_left, int(y0), body_right, int(y1)), keys
 
 
 def fit_corner_radius(grid, w):
@@ -362,11 +401,25 @@ def build_frame(skin_dir, dpr):
                                       dp(hole["r"]))
 
     radius = dp(back["radius"])
-    body = [
-        f'<svg viewBox="0 0 {fmt(body_w)} {fmt(body_h)}">',
-        f'  <rect x="0" y="0" width="{fmt(body_w)}" height="{fmt(body_h)}"'
-        f' rx="{fmt(radius)}" fill="{hex_color(back["edge"])}"/>',
-        f'  <rect x="1" y="1" width="{fmt(body_w - 2)}"'
+    # The body proper, inside the box its side keys widen.
+    kx0, _, kx1, _ = back["body"]
+    left, width = dp(kx0 - bx0), dp(kx1 - kx0)
+    body = [f'<svg viewBox="0 0 {fmt(body_w)} {fmt(body_h)}">']
+    for side, top, bottom, outer, color in back["keys"]:
+        # Each key tucked 1 dp under the body's edge, standing as proud as
+        # the art draws it.
+        if side == "right":
+            x, w = dp(kx1 - bx0) - 1, dp(outer - kx1) + 1
+        else:
+            x, w = dp(outer - bx0), dp(kx0 - outer) + 1
+        body.append(f'  <rect x="{fmt(x)}" y="{fmt(dp(top - by0))}"'
+                    f' width="{fmt(w)}" height="{fmt(dp(bottom - top))}"'
+                    f' rx="{fmt(min(1.0, w / 2))}" fill="{hex_color(color)}"/>')
+    body += [
+        f'  <rect x="{fmt(left)}" y="0" width="{fmt(width)}"'
+        f' height="{fmt(body_h)}" rx="{fmt(radius)}"'
+        f' fill="{hex_color(back["edge"])}"/>',
+        f'  <rect x="{fmt(left + 1)}" y="1" width="{fmt(width - 2)}"'
         f' height="{fmt(body_h - 2)}" rx="{fmt(max(0.0, radius - 1))}"'
         f' fill="{hex_color(back["face"])}"/>',
         "</svg>",

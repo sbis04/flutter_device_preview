@@ -46,6 +46,11 @@ Devices as widgets, and fourteen more of them.
     bar grown to hold the hole), the Fold8's inner screen is corrected to
     the published 1848 × 2448 (it was 1828 wide) and the Fold8 Ultra's to
     exactly 2256 × 2504.
+- **Side buttons** on the iPhone, Pixel and Galaxy frames: the iPhones'
+  from Xcode's device chrome (its `inputs`, drawn where the Simulator
+  slides them out under the pointer), the Pixels' from the keys their
+  emulator skins paint, the Galaxy Z line's from Samsung's skin layouts.
+  The Pixel bodies no longer include the keys' width.
 - **`SystemUiBar.trailingInset`, `cutoutGap`, `trailingCutoutGap`**: a bar's
   leading and trailing artwork may sit at different distances from the
   edge, and moves clear of any display cutout it would overlap, keeping

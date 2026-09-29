@@ -571,6 +571,68 @@ def home_button(resources, chrome, body, face_color):
             ("circle", (cx, cy, r - stroke["width"]), face_color, 1.0)]
 
 
+def side_buttons(resources, chrome, body):
+    """The chrome's side buttons (action, volume, power; not the on-top
+    Home button) as (x, y, w, h, color) rectangles in body coordinates.
+
+    Each `inputs` entry anchors its image to one edge of the device's
+    padded window (`images.devicePadding` around the body) at its
+    `offsets`: at rest (`normal`) a button tucks under the body, standing
+    1 pt proud; the Simulator slides it out to `rollover` while the pointer
+    is over it. The frame draws the rollover state, so the buttons read —
+    6 pt proud on the current iPhones — colored as their own artwork."""
+    pad = chrome["images"].get("devicePadding") or {}
+    bw, bh = body
+    out = []
+    for item in chrome.get("inputs", []):
+        if item.get("type") != "button" or item.get("onTop") or \
+                item.get("anchor") not in ("left", "right", "top", "bottom"):
+            continue
+        path = os.path.join(resources, item["image"] + ".pdf")
+        if not os.path.exists(path):
+            continue
+        page = pymupdf.open(path)[0]
+        w, h = page.rect.width, page.rect.height
+        fills = [d for d in page.get_drawings() if d.get("fill")]
+        color = max(fills, key=lambda d: d["rect"].width * d["rect"].height
+                    )["fill"] if fills else (0.3, 0.3, 0.3)
+        off = item["offsets"].get("rollover") or item["offsets"]["normal"]
+        anchor, leading = item["anchor"], item.get("align") != "trailing"
+        if anchor in ("left", "right"):
+            y = off["y"] if leading else bh - off["y"] - h
+            x = (off["x"] - pad.get("left", 0) if anchor == "left"
+                 else bw + pad.get("right", 0) + off["x"] - w)
+        else:
+            x = off["x"] if leading else bw - off["x"] - w
+            y = (off["y"] - pad.get("top", 0) if anchor == "top"
+                 else bh + pad.get("bottom", 0) + off["y"] - h)
+        out.append((x, y, w, h, color))
+    return out
+
+
+def with_buttons(lines, body, buttons):
+    """[lines] (a body SVG) with [buttons] drawn under it, the view box
+    grown just enough to show them; returns the lines and the (x, y) the
+    body moved by."""
+    bw, bh = body
+    left = max([0.0] + [-x for x, _, _, _, _ in buttons])
+    top = max([0.0] + [-y for _, y, _, _, _ in buttons])
+    right = max([0.0] + [x + w - bw for x, _, w, _, _ in buttons])
+    bottom = max([0.0] + [y + h - bh for _, y, _, h, _ in buttons])
+    if not buttons:
+        return lines, (0.0, 0.0)
+    w, h = bw + left + right, bh + top + bottom
+    out = [f'<svg viewBox="0 0 {fmt(w)} {fmt(h)}">']
+    for x, y, bw_, bh_, color in buttons:
+        out.append(f'  <rect x="{fmt(x + left)}" y="{fmt(y + top)}" '
+                   f'width="{fmt(bw_)}" height="{fmt(bh_)}" '
+                   f'rx="{fmt(min(bw_, bh_) / 2)}" fill="{hex_color(color)}"/>')
+    out.append(f'  <g transform="translate({fmt(left)}, {fmt(top)})">')
+    out += ["  " + line for line in lines[1:-1]]
+    out += ["  </g>", "</svg>"]
+    return out, (left, top)
+
+
 def body_svg(size, shapes, radius):
     w, h = size
     lines = [f'<svg viewBox="0 0 {fmt(w)} {fmt(h)}">']
@@ -722,12 +784,16 @@ def update_spec(dev, spec_id, mapping, simctl, dry_run):
     if extras:
         path = " ".join([path] + extras)
 
+    lines, (mx, my) = with_buttons(body_svg(body, shapes, radius), body,
+                                   side_buttons(resources, chrome, body))
+    frame_w = float(re.search(r'viewBox="0 0 ([\d.]+)', lines[0]).group(1))
+    frame_h = float(re.search(r'viewBox="0 0 [\d.]+ ([\d.]+)', lines[0]).group(1))
     spec["frame"] = {
-        "size": {"width": fmt_json(body[0]), "height": fmt_json(body[1])},
-        "screenOffset": {"x": fmt_json(border[0]),
-                         "y": fmt_json(border[1])},
+        "size": {"width": fmt_json(frame_w), "height": fmt_json(frame_h)},
+        "screenOffset": {"x": fmt_json(border[0] + mx),
+                         "y": fmt_json(border[1] + my)},
         "screenPath": path,
-        "body": body_svg(body, shapes, radius),
+        "body": lines,
     }
 
     print(f"  frame: body {fmt(body[0])}x{fmt(body[1])} "

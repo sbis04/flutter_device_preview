@@ -93,8 +93,12 @@ From the developer dir (`$DEV`), the three relevant sources are:
      there is no composite) — corner tiles paint at **natural size**, and the
      ring insets read directly off the tile's nested fills (typically shadow
      at 0, gray hairline at 1, dark at 2, near-black from 7).
-   - Button PDFs are drawn *under* the chrome at rest (invisible); the
-     Simulator shows no protruding buttons, so specs derived here have none.
+   - Button PDFs (`inputs` of type `button`, not `onTop`) are anchored to an
+     edge of the padded window (`images.devicePadding` around the body) at
+     their `offsets`. At rest (`normal`) they tuck under the body, 1 pt
+     proud; the Simulator slides them to `rollover` under the pointer. The
+     frames draw the rollover state — 6 pt proud on current iPhones, in the
+     button artwork's own fill — and grow just enough to show them.
 
 3. **If neither is found** (future Xcode): search broadly —
    `find "$DEV/.." -iname "*bezel*" -o -iname "*chrome*"`, look for

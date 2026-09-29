@@ -73,8 +73,10 @@ divided by `devicePixelRatio` at the end:
   counter-clockwise subpath, so `nonZero` filling punches the hole — same
   convention as the iPhone Dynamic Island.
 
-Buttons in the art protrude past the silhouette box and are deliberately
-dropped, matching the iOS skill's Simulator-at-rest look.
+The side keys in the art (power, volume rocker) stand a few pixels proud of
+the body: the body box is each side's typical extent (median over the
+middle rows) and every run of rows reaching past it is a key, drawn as a
+rect in the art's key color tucked 1 dp under the body.
 
 ## 3. Probe the live metrics
 

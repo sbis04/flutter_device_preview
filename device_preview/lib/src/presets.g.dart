@@ -1058,16 +1058,21 @@ abstract final class DevicePresets {
     portraitKeyboardHeight: 335,
     landscapeKeyboardHeight: 208,
     frame: DeviceFrame(
-      size: ui.Size(434, 888),
-      screenOffset: ui.Offset(22, 22),
+      size: ui.Size(446, 888),
+      screenOffset: ui.Offset(28, 22),
       screenPath:
           'M 283.88,0 L 322.54,0 C 326.96,0 332.4,0.02 336.78,0.16 C 341.51,0.32 346.29,0.65 350.97,1.48 C 360.58,3.18 369.19,6.9 376.15,13.85 C 383.11,20.81 386.83,29.43 388.52,39.03 C 389.35,43.71 389.69,48.5 389.84,53.22 C 389.99,57.6 390,63.04 390,67.47 L 390,776.54 C 390,780.97 389.99,786.41 389.84,790.78 C 389.69,795.51 389.35,800.29 388.52,804.98 C 386.83,814.58 383.11,823.2 376.15,830.15 C 369.19,837.11 360.58,840.83 350.97,842.53 C 346.29,843.35 341.51,843.69 336.78,843.85 C 332.4,843.99 326.96,844 322.54,844 L 67.46,844 C 63.03,844 57.6,843.99 53.22,843.85 C 48.49,843.69 43.71,843.35 39.03,842.53 C 29.42,840.83 20.81,837.11 13.85,830.15 C 6.89,823.2 3.17,814.58 1.48,804.98 C 0.65,800.29 0.31,795.51 0.15,790.78 C 0.01,786.41 0,780.97 0,776.54 L 0,67.47 C 0,63.04 0.01,57.6 0.15,53.22 C 0.31,48.5 0.65,43.71 1.48,39.03 C 3.17,29.43 6.89,20.81 13.85,13.85 C 20.81,6.9 29.42,3.18 39.03,1.48 C 43.71,0.65 48.49,0.32 53.22,0.16 C 57.6,0.02 63.03,0 67.46,0 L 106.12,0 C 107.17,0 108.27,-0.05 109.46,0.18 C 110.61,0.39 111.61,0.83 112.38,1.58 C 113.15,2.34 113.61,3.32 113.85,4.47 C 114.1,5.65 114.08,6.75 114.11,7.8 C 114.19,10.17 114.22,12.38 114.61,14.83 C 114.99,17.19 115.66,19.34 116.72,21.43 C 118.01,23.94 119.83,26.24 122.03,28.14 C 124.28,30.08 126.83,31.52 129.58,32.4 C 134.09,33.86 138.57,33.67 143.32,33.67 L 246.68,33.67 C 251.43,33.67 255.91,33.86 260.42,32.4 C 263.17,31.52 265.71,30.08 267.97,28.14 C 270.17,26.24 271.99,23.94 273.28,21.43 C 274.34,19.34 275.01,17.19 275.39,14.83 C 275.78,12.38 275.81,10.17 275.88,7.8 C 275.92,6.75 275.9,5.65 276.15,4.47 C 276.39,3.32 276.85,2.34 277.62,1.58 C 278.39,0.83 279.39,0.39 280.54,0.18 C 281.73,-0.05 282.83,0 283.88,0 Z',
       body:
-          '<svg viewBox="0 0 434 888">\n'
-          '  <rect x="-4" y="-4" width="442" height="896" rx="72" fill="#000000" fill-opacity="0.15"/>\n'
-          '  <rect x="-3" y="-3" width="440" height="894" rx="71" fill="#7e7e7e"/>\n'
-          '  <rect x="-2" y="-2" width="438" height="892" rx="70" fill="#2c2c2c"/>\n'
-          '  <rect x="2" y="2" width="430" height="884" rx="66" fill="#010101"/>\n'
+          '<svg viewBox="0 0 446 888">\n'
+          '  <rect x="0" y="207" width="16" height="72" rx="8" fill="#2c2c2c"/>\n'
+          '  <rect x="0" y="291" width="16" height="72" rx="8" fill="#2c2c2c"/>\n'
+          '  <rect x="430" y="230" width="16" height="117" rx="8" fill="#2c2c2c"/>\n'
+          '  <g transform="translate(6, 0)">\n'
+          '    <rect x="-4" y="-4" width="442" height="896" rx="72" fill="#000000" fill-opacity="0.15"/>\n'
+          '    <rect x="-3" y="-3" width="440" height="894" rx="71" fill="#7e7e7e"/>\n'
+          '    <rect x="-2" y="-2" width="438" height="892" rx="70" fill="#2c2c2c"/>\n'
+          '    <rect x="2" y="2" width="430" height="884" rx="66" fill="#010101"/>\n'
+          '  </g>\n'
           '</svg>',
     ),
     systemUi: SystemUiSimulation(
@@ -1121,21 +1126,26 @@ abstract final class DevicePresets {
     portraitKeyboardHeight: 335,
     landscapeKeyboardHeight: 208,
     frame: DeviceFrame(
-      size: ui.Size(435, 894),
-      screenOffset: ui.Offset(21, 21),
+      size: ui.Size(447, 894),
+      screenOffset: ui.Offset(27, 21),
       screenPath:
           'M 318.35,0 C 322.94,0 327.52,0.02 332.11,0.19 C 337.53,0.39 342.9,0.8 348.26,1.8 C 359.07,3.82 368.91,8.19 376.86,16.14 C 384.81,24.09 389.18,33.92 391.2,44.74 C 392.2,50.1 392.61,55.47 392.81,60.9 C 392.97,65.2 393,69.5 393,73.8 L 393,74.98 L 393,777.02 C 393,781.72 392.98,786.41 392.81,791.11 C 392.61,796.53 392.2,801.9 391.2,807.26 C 389.18,818.07 384.81,827.91 376.86,835.86 C 368.91,843.81 359.08,848.18 348.26,850.2 C 342.9,851.2 337.53,851.61 332.1,851.81 C 327.8,851.97 323.5,852 319.19,852 L 318.02,852 L 74.98,852 L 73.8,852 C 69.5,852 65.2,851.97 60.89,851.81 C 55.47,851.61 50.1,851.2 44.74,850.2 C 33.93,848.18 24.09,843.81 16.14,835.86 C 8.19,827.92 3.82,818.08 1.8,807.26 C 0.8,801.9 0.39,796.53 0.19,791.1 C 0.02,786.41 0,781.72 0,777.02 L 0,74.98 L 0,73.8 C 0,69.89 0.03,65.98 0.15,62.07 L 0.19,60.89 C 0.39,55.47 0.8,50.1 1.8,44.75 C 3.82,33.93 8.19,24.09 16.14,16.14 C 24.08,8.19 33.92,3.82 44.74,1.8 C 50.1,0.8 55.47,0.39 60.9,0.19 C 65.07,0.04 69.23,0 73.4,0 L 74.65,0 L 318.35,0 Z M 240.5,11 H 152.5 A 18.5,18.5 0 0 0 152.5,48 H 240.5 A 18.5,18.5 0 0 0 240.5,11 Z',
       body:
-          '<svg viewBox="0 0 435 894">\n'
-          '  <rect x="1" y="1" width="433" height="892" rx="74" fill="#7e7e7e"/>\n'
-          '  <rect x="2" y="2" width="431" height="890" rx="73" fill="#2c2c2c"/>\n'
-          '  <rect x="7" y="7" width="421" height="880" rx="68" fill="#010101"/>\n'
-          '  <rect x="335" y="2" width="8" height="7" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
-          '  <rect x="2" y="95" width="7" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
-          '  <rect x="426" y="95" width="7" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
-          '  <rect x="2" y="792" width="7" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
-          '  <rect x="426" y="792" width="7" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
-          '  <rect x="91" y="885" width="8" height="7" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
+          '<svg viewBox="0 0 447 894">\n'
+          '  <rect x="0" y="239" width="16" height="68" rx="8" fill="#2c2c2c"/>\n'
+          '  <rect x="0" y="324" width="16" height="68" rx="8" fill="#2c2c2c"/>\n'
+          '  <rect x="431" y="284" width="16" height="108" rx="8" fill="#2c2c2c"/>\n'
+          '  <g transform="translate(6, 0)">\n'
+          '    <rect x="1" y="1" width="433" height="892" rx="74" fill="#7e7e7e"/>\n'
+          '    <rect x="2" y="2" width="431" height="890" rx="73" fill="#2c2c2c"/>\n'
+          '    <rect x="7" y="7" width="421" height="880" rx="68" fill="#010101"/>\n'
+          '    <rect x="335" y="2" width="8" height="7" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
+          '    <rect x="2" y="95" width="7" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
+          '    <rect x="426" y="95" width="7" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
+          '    <rect x="2" y="792" width="7" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
+          '    <rect x="426" y="792" width="7" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
+          '    <rect x="91" y="885" width="8" height="7" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
+          '  </g>\n'
           '</svg>',
     ),
     systemUi: SystemUiSimulation(
@@ -1189,21 +1199,26 @@ abstract final class DevicePresets {
     portraitKeyboardHeight: 345,
     landscapeKeyboardHeight: 248,
     frame: DeviceFrame(
-      size: ui.Size(470, 972),
-      screenOffset: ui.Offset(20, 20),
+      size: ui.Size(482, 972),
+      screenOffset: ui.Offset(26, 20),
       screenPath:
           'M 355.35,0 C 359.94,0 364.52,0.02 369.11,0.19 C 374.53,0.39 379.9,0.8 385.26,1.8 C 396.07,3.82 405.91,8.19 413.86,16.14 C 421.81,24.08 426.18,33.92 428.2,44.74 C 429.2,50.1 429.61,55.47 429.81,60.9 C 430,65.9 430,70.9 430,75.9 L 430,854.85 C 430,860.27 430.01,865.69 429.81,871.11 C 429.61,876.53 429.2,881.9 428.2,887.26 C 426.18,898.07 421.81,907.91 413.86,915.86 C 405.91,923.81 396.08,928.18 385.26,930.2 C 379.9,931.2 374.53,931.61 369.1,931.81 C 364.52,931.98 359.93,932 355.35,932 L 74.65,932 C 70.06,932 65.48,931.98 60.89,931.81 C 55.47,931.61 50.1,931.2 44.74,930.2 C 33.93,928.18 24.09,923.81 16.14,915.86 C 8.19,907.92 3.82,898.08 1.8,887.26 C 0.8,881.9 0.39,876.53 0.19,871.1 C 0.02,866.52 0,861.93 0,857.35 L 0,74.65 C 0,70.06 0.02,65.48 0.19,60.89 C 0.39,55.47 0.8,50.1 1.8,44.74 C 3.82,33.93 8.19,24.09 16.14,16.14 C 24.08,8.19 33.92,3.82 44.74,1.8 C 50.1,0.8 55.47,0.39 60.9,0.19 C 65.48,0.02 70.07,0 74.65,0 L 355.35,0 Z M 259,11 H 171 A 18.5,18.5 0 0 0 171,48 H 259 A 18.5,18.5 0 0 0 259,11 Z',
       body:
-          '<svg viewBox="0 0 470 972">\n'
-          '  <rect x="1" y="1" width="468" height="970" rx="73" fill="#7e7e7e"/>\n'
-          '  <rect x="2" y="2" width="466" height="968" rx="72" fill="#2c2c2c"/>\n'
-          '  <rect x="7" y="7" width="456" height="958" rx="67" fill="#010101"/>\n'
-          '  <rect x="372" y="2" width="8" height="7" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
-          '  <rect x="2" y="94" width="7" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
-          '  <rect x="461" y="94" width="7" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
-          '  <rect x="2" y="870" width="7" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
-          '  <rect x="461" y="870" width="7" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
-          '  <rect x="88" y="963" width="8" height="7" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
+          '<svg viewBox="0 0 482 972">\n'
+          '  <rect x="0" y="237" width="16" height="69" rx="8" fill="#2c2c2c"/>\n'
+          '  <rect x="0" y="322" width="16" height="69" rx="8" fill="#2c2c2c"/>\n'
+          '  <rect x="466" y="282" width="16" height="109" rx="8" fill="#2c2c2c"/>\n'
+          '  <g transform="translate(6, 0)">\n'
+          '    <rect x="1" y="1" width="468" height="970" rx="73" fill="#7e7e7e"/>\n'
+          '    <rect x="2" y="2" width="466" height="968" rx="72" fill="#2c2c2c"/>\n'
+          '    <rect x="7" y="7" width="456" height="958" rx="67" fill="#010101"/>\n'
+          '    <rect x="372" y="2" width="8" height="7" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
+          '    <rect x="2" y="94" width="7" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
+          '    <rect x="461" y="94" width="7" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
+          '    <rect x="2" y="870" width="7" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
+          '    <rect x="461" y="870" width="7" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
+          '    <rect x="88" y="963" width="8" height="7" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
+          '  </g>\n'
           '</svg>',
     ),
     systemUi: SystemUiSimulation(
@@ -1257,21 +1272,27 @@ abstract final class DevicePresets {
     portraitKeyboardHeight: 335,
     landscapeKeyboardHeight: 248,
     frame: DeviceFrame(
-      size: ui.Size(429, 888),
-      screenOffset: ui.Offset(18, 18),
+      size: ui.Size(441, 888),
+      screenOffset: ui.Offset(24, 18),
       screenPath:
           'M 318.35,0 C 322.94,0 327.52,0.02 332.11,0.19 C 337.53,0.39 342.9,0.8 348.26,1.8 C 359.07,3.82 368.91,8.19 376.86,16.14 C 384.81,24.09 389.18,33.92 391.2,44.74 C 392.2,50.1 392.61,55.47 392.81,60.9 C 392.97,65.2 393,69.5 393,73.8 L 393,74.98 L 393,777.02 C 393,781.72 392.98,786.41 392.81,791.11 C 392.61,796.53 392.2,801.9 391.2,807.26 C 389.18,818.07 384.81,827.91 376.86,835.86 C 368.91,843.81 359.08,848.18 348.26,850.2 C 342.9,851.2 337.53,851.61 332.1,851.81 C 327.8,851.97 323.5,852 319.19,852 L 318.02,852 L 74.98,852 L 73.8,852 C 69.5,852 65.2,851.97 60.89,851.81 C 55.47,851.61 50.1,851.2 44.74,850.2 C 33.93,848.18 24.09,843.81 16.14,835.86 C 8.19,827.92 3.82,818.08 1.8,807.26 C 0.8,801.9 0.39,796.53 0.19,791.1 C 0.02,786.41 0,781.72 0,777.02 L 0,74.98 L 0,73.8 C 0,69.89 0.03,65.98 0.15,62.07 L 0.19,60.89 C 0.39,55.47 0.8,50.1 1.8,44.75 C 3.82,33.93 8.19,24.09 16.14,16.14 C 24.08,8.19 33.92,3.82 44.74,1.8 C 50.1,0.8 55.47,0.39 60.9,0.19 C 65.07,0.04 69.23,0 73.4,0 L 74.65,0 L 318.35,0 Z M 240.5,11 H 152.5 A 18.5,18.5 0 0 0 152.5,48 H 240.5 A 18.5,18.5 0 0 0 240.5,11 Z',
       body:
-          '<svg viewBox="0 0 429 888">\n'
-          '  <rect x="1" y="1" width="427" height="886" rx="74" fill="#7e7e7e"/>\n'
-          '  <rect x="2" y="2" width="425" height="884" rx="73" fill="#2c2c2c"/>\n'
-          '  <rect x="7" y="7" width="415" height="874" rx="68" fill="#000000"/>\n'
-          '  <rect x="2" y="94" width="7" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
-          '  <rect x="420" y="94" width="7" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
-          '  <rect x="2" y="787" width="7" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
-          '  <rect x="420" y="787" width="7" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
-          '  <rect x="331" y="2" width="8" height="7" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
-          '  <rect x="91" y="879" width="8" height="7" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
+          '<svg viewBox="0 0 441 888">\n'
+          '  <rect x="0" y="160" width="16" height="34" rx="8" fill="#2c2c2c"/>\n'
+          '  <rect x="0" y="221" width="16" height="64" rx="8" fill="#2c2c2c"/>\n'
+          '  <rect x="0" y="300" width="16" height="64" rx="8" fill="#2c2c2c"/>\n'
+          '  <rect x="425" y="262" width="16" height="101" rx="8" fill="#2c2c2c"/>\n'
+          '  <g transform="translate(6, 0)">\n'
+          '    <rect x="1" y="1" width="427" height="886" rx="74" fill="#7e7e7e"/>\n'
+          '    <rect x="2" y="2" width="425" height="884" rx="73" fill="#2c2c2c"/>\n'
+          '    <rect x="7" y="7" width="415" height="874" rx="68" fill="#000000"/>\n'
+          '    <rect x="2" y="94" width="7" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
+          '    <rect x="420" y="94" width="7" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
+          '    <rect x="2" y="787" width="7" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
+          '    <rect x="420" y="787" width="7" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
+          '    <rect x="331" y="2" width="8" height="7" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
+          '    <rect x="91" y="879" width="8" height="7" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
+          '  </g>\n'
           '</svg>',
     ),
     systemUi: SystemUiSimulation(
@@ -1325,21 +1346,27 @@ abstract final class DevicePresets {
     portraitKeyboardHeight: 345,
     landscapeKeyboardHeight: 208,
     frame: DeviceFrame(
-      size: ui.Size(466, 968),
-      screenOffset: ui.Offset(18, 18),
+      size: ui.Size(478, 968),
+      screenOffset: ui.Offset(24, 18),
       screenPath:
           'M 355.35,0 C 359.94,0 364.52,0.02 369.11,0.19 C 374.53,0.39 379.9,0.8 385.26,1.8 C 396.07,3.82 405.91,8.19 413.86,16.14 C 421.81,24.08 426.18,33.92 428.2,44.74 C 429.2,50.1 429.61,55.47 429.81,60.9 C 430,65.9 430,70.9 430,75.9 L 430,854.85 C 430,860.27 430.01,865.69 429.81,871.11 C 429.61,876.53 429.2,881.9 428.2,887.26 C 426.18,898.07 421.81,907.91 413.86,915.86 C 405.91,923.81 396.08,928.18 385.26,930.2 C 379.9,931.2 374.53,931.61 369.1,931.81 C 364.52,931.98 359.93,932 355.35,932 L 74.65,932 C 70.06,932 65.48,931.98 60.89,931.81 C 55.47,931.61 50.1,931.2 44.74,930.2 C 33.93,928.18 24.09,923.81 16.14,915.86 C 8.19,907.92 3.82,898.08 1.8,887.26 C 0.8,881.9 0.39,876.53 0.19,871.1 C 0.02,866.52 0,861.93 0,857.35 L 0,74.65 C 0,70.06 0.02,65.48 0.19,60.89 C 0.39,55.47 0.8,50.1 1.8,44.74 C 3.82,33.93 8.19,24.09 16.14,16.14 C 24.08,8.19 33.92,3.82 44.74,1.8 C 50.1,0.8 55.47,0.39 60.9,0.19 C 65.48,0.02 70.07,0 74.65,0 L 355.35,0 Z M 259,11 H 171 A 18.5,18.5 0 0 0 171,48 H 259 A 18.5,18.5 0 0 0 259,11 Z',
       body:
-          '<svg viewBox="0 0 466 968">\n'
-          '  <rect x="1" y="1" width="464" height="966" rx="73" fill="#7e7e7e"/>\n'
-          '  <rect x="2" y="2" width="462" height="964" rx="72" fill="#2c2c2c"/>\n'
-          '  <rect x="7" y="7" width="452" height="954" rx="67" fill="#000000"/>\n'
-          '  <rect x="367" y="2" width="8" height="7" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
-          '  <rect x="2" y="97" width="7" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
-          '  <rect x="457" y="94" width="7" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
-          '  <rect x="2" y="870" width="7" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
-          '  <rect x="457" y="867" width="7" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
-          '  <rect x="91" y="959" width="8" height="7" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
+          '<svg viewBox="0 0 478 968">\n'
+          '  <rect x="0" y="175" width="16" height="34" rx="8" fill="#2c2c2c"/>\n'
+          '  <rect x="0" y="255" width="16" height="64" rx="8" fill="#2c2c2c"/>\n'
+          '  <rect x="0" y="345" width="16" height="64" rx="8" fill="#2c2c2c"/>\n'
+          '  <rect x="462" y="270" width="16" height="101" rx="8" fill="#2c2c2c"/>\n'
+          '  <g transform="translate(6, 0)">\n'
+          '    <rect x="1" y="1" width="464" height="966" rx="73" fill="#7e7e7e"/>\n'
+          '    <rect x="2" y="2" width="462" height="964" rx="72" fill="#2c2c2c"/>\n'
+          '    <rect x="7" y="7" width="452" height="954" rx="67" fill="#000000"/>\n'
+          '    <rect x="367" y="2" width="8" height="7" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
+          '    <rect x="2" y="97" width="7" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
+          '    <rect x="457" y="94" width="7" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
+          '    <rect x="2" y="870" width="7" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
+          '    <rect x="457" y="867" width="7" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
+          '    <rect x="91" y="959" width="8" height="7" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
+          '  </g>\n'
           '</svg>',
     ),
     systemUi: SystemUiSimulation(
@@ -1393,21 +1420,27 @@ abstract final class DevicePresets {
     portraitKeyboardHeight: 335,
     landscapeKeyboardHeight: 208,
     frame: DeviceFrame(
-      size: ui.Size(429, 888),
-      screenOffset: ui.Offset(18, 18),
+      size: ui.Size(441, 888),
+      screenOffset: ui.Offset(24, 18),
       screenPath:
           'M 318.35,0 C 322.94,0 327.52,0.02 332.11,0.19 C 337.53,0.39 342.9,0.8 348.26,1.8 C 359.07,3.82 368.91,8.19 376.86,16.14 C 384.81,24.09 389.18,33.92 391.2,44.74 C 392.2,50.1 392.61,55.47 392.81,60.9 C 392.97,65.2 393,69.5 393,73.8 L 393,74.98 L 393,777.02 C 393,781.72 392.98,786.41 392.81,791.11 C 392.61,796.53 392.2,801.9 391.2,807.26 C 389.18,818.07 384.81,827.91 376.86,835.86 C 368.91,843.81 359.08,848.18 348.26,850.2 C 342.9,851.2 337.53,851.61 332.1,851.81 C 327.8,851.97 323.5,852 319.19,852 L 318.02,852 L 74.98,852 L 73.8,852 C 69.5,852 65.2,851.97 60.89,851.81 C 55.47,851.61 50.1,851.2 44.74,850.2 C 33.93,848.18 24.09,843.81 16.14,835.86 C 8.19,827.92 3.82,818.08 1.8,807.26 C 0.8,801.9 0.39,796.53 0.19,791.1 C 0.02,786.41 0,781.72 0,777.02 L 0,74.98 L 0,73.8 C 0,69.89 0.03,65.98 0.15,62.07 L 0.19,60.89 C 0.39,55.47 0.8,50.1 1.8,44.75 C 3.82,33.93 8.19,24.09 16.14,16.14 C 24.08,8.19 33.92,3.82 44.74,1.8 C 50.1,0.8 55.47,0.39 60.9,0.19 C 65.07,0.04 69.23,0 73.4,0 L 74.65,0 L 318.35,0 Z M 240.5,11 H 152.5 A 18.5,18.5 0 0 0 152.5,48 H 240.5 A 18.5,18.5 0 0 0 240.5,11 Z',
       body:
-          '<svg viewBox="0 0 429 888">\n'
-          '  <rect x="1" y="1" width="427" height="886" rx="74" fill="#7e7e7e"/>\n'
-          '  <rect x="2" y="2" width="425" height="884" rx="73" fill="#2c2c2c"/>\n'
-          '  <rect x="7" y="7" width="415" height="874" rx="68" fill="#000000"/>\n'
-          '  <rect x="2" y="94" width="7" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
-          '  <rect x="420" y="94" width="7" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
-          '  <rect x="2" y="787" width="7" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
-          '  <rect x="420" y="787" width="7" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
-          '  <rect x="331" y="2" width="8" height="7" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
-          '  <rect x="91" y="879" width="8" height="7" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
+          '<svg viewBox="0 0 441 888">\n'
+          '  <rect x="0" y="160" width="16" height="34" rx="8" fill="#2c2c2c"/>\n'
+          '  <rect x="0" y="221" width="16" height="64" rx="8" fill="#2c2c2c"/>\n'
+          '  <rect x="0" y="300" width="16" height="64" rx="8" fill="#2c2c2c"/>\n'
+          '  <rect x="425" y="262" width="16" height="101" rx="8" fill="#2c2c2c"/>\n'
+          '  <g transform="translate(6, 0)">\n'
+          '    <rect x="1" y="1" width="427" height="886" rx="74" fill="#7e7e7e"/>\n'
+          '    <rect x="2" y="2" width="425" height="884" rx="73" fill="#2c2c2c"/>\n'
+          '    <rect x="7" y="7" width="415" height="874" rx="68" fill="#000000"/>\n'
+          '    <rect x="2" y="94" width="7" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
+          '    <rect x="420" y="94" width="7" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
+          '    <rect x="2" y="787" width="7" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
+          '    <rect x="420" y="787" width="7" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
+          '    <rect x="331" y="2" width="8" height="7" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
+          '    <rect x="91" y="879" width="8" height="7" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
+          '  </g>\n'
           '</svg>',
     ),
     systemUi: SystemUiSimulation(
@@ -1461,21 +1494,27 @@ abstract final class DevicePresets {
     portraitKeyboardHeight: 345,
     landscapeKeyboardHeight: 208,
     frame: DeviceFrame(
-      size: ui.Size(466, 968),
-      screenOffset: ui.Offset(18, 18),
+      size: ui.Size(478, 968),
+      screenOffset: ui.Offset(24, 18),
       screenPath:
           'M 355.35,0 C 359.94,0 364.52,0.02 369.11,0.19 C 374.53,0.39 379.9,0.8 385.26,1.8 C 396.07,3.82 405.91,8.19 413.86,16.14 C 421.81,24.08 426.18,33.92 428.2,44.74 C 429.2,50.1 429.61,55.47 429.81,60.9 C 430,65.9 430,70.9 430,75.9 L 430,854.85 C 430,860.27 430.01,865.69 429.81,871.11 C 429.61,876.53 429.2,881.9 428.2,887.26 C 426.18,898.07 421.81,907.91 413.86,915.86 C 405.91,923.81 396.08,928.18 385.26,930.2 C 379.9,931.2 374.53,931.61 369.1,931.81 C 364.52,931.98 359.93,932 355.35,932 L 74.65,932 C 70.06,932 65.48,931.98 60.89,931.81 C 55.47,931.61 50.1,931.2 44.74,930.2 C 33.93,928.18 24.09,923.81 16.14,915.86 C 8.19,907.92 3.82,898.08 1.8,887.26 C 0.8,881.9 0.39,876.53 0.19,871.1 C 0.02,866.52 0,861.93 0,857.35 L 0,74.65 C 0,70.06 0.02,65.48 0.19,60.89 C 0.39,55.47 0.8,50.1 1.8,44.74 C 3.82,33.93 8.19,24.09 16.14,16.14 C 24.08,8.19 33.92,3.82 44.74,1.8 C 50.1,0.8 55.47,0.39 60.9,0.19 C 65.48,0.02 70.07,0 74.65,0 L 355.35,0 Z M 259,11 H 171 A 18.5,18.5 0 0 0 171,48 H 259 A 18.5,18.5 0 0 0 259,11 Z',
       body:
-          '<svg viewBox="0 0 466 968">\n'
-          '  <rect x="1" y="1" width="464" height="966" rx="73" fill="#7e7e7e"/>\n'
-          '  <rect x="2" y="2" width="462" height="964" rx="72" fill="#2c2c2c"/>\n'
-          '  <rect x="7" y="7" width="452" height="954" rx="67" fill="#000000"/>\n'
-          '  <rect x="367" y="2" width="8" height="7" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
-          '  <rect x="2" y="97" width="7" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
-          '  <rect x="457" y="94" width="7" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
-          '  <rect x="2" y="870" width="7" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
-          '  <rect x="457" y="867" width="7" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
-          '  <rect x="91" y="959" width="8" height="7" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
+          '<svg viewBox="0 0 478 968">\n'
+          '  <rect x="0" y="175" width="16" height="34" rx="8" fill="#2c2c2c"/>\n'
+          '  <rect x="0" y="255" width="16" height="64" rx="8" fill="#2c2c2c"/>\n'
+          '  <rect x="0" y="345" width="16" height="64" rx="8" fill="#2c2c2c"/>\n'
+          '  <rect x="462" y="270" width="16" height="101" rx="8" fill="#2c2c2c"/>\n'
+          '  <g transform="translate(6, 0)">\n'
+          '    <rect x="1" y="1" width="464" height="966" rx="73" fill="#7e7e7e"/>\n'
+          '    <rect x="2" y="2" width="462" height="964" rx="72" fill="#2c2c2c"/>\n'
+          '    <rect x="7" y="7" width="452" height="954" rx="67" fill="#000000"/>\n'
+          '    <rect x="367" y="2" width="8" height="7" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
+          '    <rect x="2" y="97" width="7" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
+          '    <rect x="457" y="94" width="7" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
+          '    <rect x="2" y="870" width="7" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
+          '    <rect x="457" y="867" width="7" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
+          '    <rect x="91" y="959" width="8" height="7" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
+          '  </g>\n'
           '</svg>',
     ),
     systemUi: SystemUiSimulation(
@@ -1529,19 +1568,25 @@ abstract final class DevicePresets {
     portraitKeyboardHeight: 335,
     landscapeKeyboardHeight: 208,
     frame: DeviceFrame(
-      size: ui.Size(436, 908),
-      screenOffset: ui.Offset(17, 17),
+      size: ui.Size(448, 908),
+      screenOffset: ui.Offset(23, 17),
       screenPath:
           'M 317.34,0 C 322.68,0 328.02,0.02 333.37,0.21 C 339.49,0.44 345.54,0.9 351.58,2.03 C 363.77,4.3 374.86,9.23 383.81,18.19 C 392.77,27.14 397.7,38.23 399.97,50.43 C 401.1,56.46 401.56,62.51 401.79,68.62 C 401.98,73.92 402,79.21 402,84.5 L 402,789.5 C 402,794.79 401.98,800.08 401.79,805.38 C 401.56,811.49 401.1,817.54 399.97,823.57 C 397.7,835.77 392.77,846.86 383.81,855.81 C 374.86,864.77 363.77,869.7 351.58,871.97 C 345.54,873.1 339.49,873.56 333.37,873.79 C 328.02,873.98 322.68,874 317.34,874 L 84.66,874 C 79.32,874 73.98,873.98 68.63,873.79 C 62.51,873.56 56.46,873.1 50.42,871.97 C 38.23,869.7 27.14,864.77 18.19,855.81 C 9.23,846.86 4.3,835.77 2.03,823.57 C 0.9,817.54 0.44,811.49 0.21,805.38 C 0.02,800.08 0,794.79 0,789.5 L 0,84.5 C 0,79.21 0.02,73.92 0.21,68.62 C 0.44,62.51 0.9,56.46 2.03,50.43 C 4.3,38.23 9.23,27.14 18.19,18.19 C 27.14,9.23 38.23,4.3 50.42,2.03 C 56.46,0.9 62.51,0.44 68.63,0.21 C 73.98,0.02 79.32,0 84.66,0 L 317.34,0 Z M 245,11 H 157 A 18.5,18.5 0 0 0 157,48 H 245 A 18.5,18.5 0 0 0 245,11 Z',
       body:
-          '<svg viewBox="0 0 436 908">\n'
-          '  <rect x="1" y="1" width="434" height="906" rx="79" fill="#000000"/>\n'
-          '  <rect x="2" y="2" width="432" height="904" rx="78" fill="#7e7e7e"/>\n'
-          '  <rect x="16" y="16" width="404" height="876" rx="64" fill="#7e7e7e"/>\n'
-          '  <rect x="3" y="3" width="430" height="902" rx="77" fill="#2c2c2c"/>\n'
-          '  <rect x="16" y="16" width="404" height="876" rx="64" fill="#2c2c2c"/>\n'
-          '  <rect x="8" y="8" width="420" height="892" rx="72" fill="#000000"/>\n'
-          '  <rect x="16" y="16" width="404" height="876" rx="64" fill="#000000"/>\n'
+          '<svg viewBox="0 0 448 908">\n'
+          '  <rect x="0" y="160" width="16" height="34" rx="8" fill="#2c2c2c"/>\n'
+          '  <rect x="0" y="221" width="16" height="64" rx="8" fill="#2c2c2c"/>\n'
+          '  <rect x="0" y="300" width="16" height="64" rx="8" fill="#2c2c2c"/>\n'
+          '  <rect x="432" y="262" width="16" height="101" rx="8" fill="#2c2c2c"/>\n'
+          '  <g transform="translate(6, 0)">\n'
+          '    <rect x="1" y="1" width="434" height="906" rx="79" fill="#000000"/>\n'
+          '    <rect x="2" y="2" width="432" height="904" rx="78" fill="#7e7e7e"/>\n'
+          '    <rect x="16" y="16" width="404" height="876" rx="64" fill="#7e7e7e"/>\n'
+          '    <rect x="3" y="3" width="430" height="902" rx="77" fill="#2c2c2c"/>\n'
+          '    <rect x="16" y="16" width="404" height="876" rx="64" fill="#2c2c2c"/>\n'
+          '    <rect x="8" y="8" width="420" height="892" rx="72" fill="#000000"/>\n'
+          '    <rect x="16" y="16" width="404" height="876" rx="64" fill="#000000"/>\n'
+          '  </g>\n'
           '</svg>',
     ),
     systemUi: SystemUiSimulation(
@@ -1595,23 +1640,29 @@ abstract final class DevicePresets {
     portraitKeyboardHeight: 345,
     landscapeKeyboardHeight: 208,
     frame: DeviceFrame(
-      size: ui.Size(474, 990),
-      screenOffset: ui.Offset(17, 17),
+      size: ui.Size(486, 990),
+      screenOffset: ui.Offset(23, 17),
       screenPath:
           'M 354.84,0 C 360.21,0 365.59,0.02 370.96,0.21 C 377.12,0.44 383.2,0.91 389.28,2.04 C 401.54,4.33 412.7,9.29 421.7,18.3 C 430.71,27.31 435.67,38.46 437.96,50.73 C 439.09,56.8 439.56,62.88 439.79,69.03 C 439.98,74.35 440,79.68 440,85 L 440,871 C 440,876.32 439.98,881.65 439.79,886.97 C 439.56,893.12 439.09,899.2 437.96,905.27 C 435.67,917.54 430.71,928.69 421.7,937.7 C 412.7,946.71 401.54,951.67 389.28,953.96 C 383.2,955.09 377.12,955.56 370.96,955.78 C 365.59,955.98 360.21,956 354.84,956 L 85.16,956 C 79.79,956 74.41,955.98 69.04,955.78 C 62.88,955.56 56.8,955.09 50.72,953.96 C 38.46,951.67 27.3,946.71 18.3,937.7 C 9.29,928.69 4.33,917.54 2.04,905.27 C 0.91,899.2 0.44,893.12 0.22,886.97 C 0.02,881.65 0,876.32 0,871 L 0,85 C 0,79.68 0.02,74.35 0.22,69.03 C 0.44,62.88 0.91,56.8 2.04,50.73 C 4.33,38.46 9.29,27.31 18.3,18.3 C 27.3,9.29 38.46,4.33 50.72,2.04 C 56.8,0.91 62.88,0.44 69.04,0.21 C 74.41,0.02 79.79,0 85.16,0 L 354.84,0 Z M 264,11 H 176 A 18.5,18.5 0 0 0 176,48 H 264 A 18.5,18.5 0 0 0 264,11 Z',
       body:
-          '<svg viewBox="0 0 474 990">\n'
-          '  <rect x="1" y="1" width="472" height="988" rx="79" fill="#000000"/>\n'
-          '  <rect x="2" y="2" width="470" height="986" rx="78" fill="#7e7e7e"/>\n'
-          '  <rect x="3" y="3" width="468" height="984" rx="77" fill="#2c2c2c"/>\n'
-          '  <rect x="8.33" y="8.33" width="457.33" height="973.33" rx="71.67" fill="#000000"/>\n'
-          '  <rect x="16" y="16" width="442" height="958" rx="64" fill="#000000"/>\n'
-          '  <rect x="1" y="95" width="8.67" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
-          '  <rect x="1" y="888" width="9.33" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
-          '  <rect x="464.67" y="888" width="8.33" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
-          '  <rect x="92" y="980.67" width="8.33" height="8.33" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
-          '  <rect x="464.67" y="95" width="8.33" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
-          '  <rect x="374" y="1.33" width="8.33" height="8.67" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
+          '<svg viewBox="0 0 486 990">\n'
+          '  <rect x="0" y="180" width="16" height="34" rx="8" fill="#2c2c2c"/>\n'
+          '  <rect x="0" y="268" width="16" height="64" rx="8" fill="#2c2c2c"/>\n'
+          '  <rect x="0" y="354" width="16" height="64" rx="8" fill="#2c2c2c"/>\n'
+          '  <rect x="470" y="293" width="16" height="101" rx="8" fill="#2c2c2c"/>\n'
+          '  <g transform="translate(6, 0)">\n'
+          '    <rect x="1" y="1" width="472" height="988" rx="79" fill="#000000"/>\n'
+          '    <rect x="2" y="2" width="470" height="986" rx="78" fill="#7e7e7e"/>\n'
+          '    <rect x="3" y="3" width="468" height="984" rx="77" fill="#2c2c2c"/>\n'
+          '    <rect x="8.33" y="8.33" width="457.33" height="973.33" rx="71.67" fill="#000000"/>\n'
+          '    <rect x="16" y="16" width="442" height="958" rx="64" fill="#000000"/>\n'
+          '    <rect x="1" y="95" width="8.67" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
+          '    <rect x="1" y="888" width="9.33" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
+          '    <rect x="464.67" y="888" width="8.33" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
+          '    <rect x="92" y="980.67" width="8.33" height="8.33" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
+          '    <rect x="464.67" y="95" width="8.33" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
+          '    <rect x="374" y="1.33" width="8.33" height="8.67" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
+          '  </g>\n'
           '</svg>',
     ),
     systemUi: SystemUiSimulation(
@@ -1665,19 +1716,25 @@ abstract final class DevicePresets {
     portraitKeyboardHeight: 335,
     landscapeKeyboardHeight: 208,
     frame: DeviceFrame(
-      size: ui.Size(436, 908),
-      screenOffset: ui.Offset(17, 17),
+      size: ui.Size(448, 908),
+      screenOffset: ui.Offset(23, 17),
       screenPath:
           'M 317.34,0 C 322.68,0 328.02,0.02 333.37,0.21 C 339.49,0.44 345.54,0.9 351.58,2.03 C 363.77,4.3 374.86,9.23 383.81,18.19 C 392.77,27.14 397.7,38.23 399.97,50.43 C 401.1,56.46 401.56,62.51 401.79,68.62 C 401.98,73.92 402,79.21 402,84.5 L 402,789.5 C 402,794.79 401.98,800.08 401.79,805.38 C 401.56,811.49 401.1,817.54 399.97,823.57 C 397.7,835.77 392.77,846.86 383.81,855.81 C 374.86,864.77 363.77,869.7 351.58,871.97 C 345.54,873.1 339.49,873.56 333.37,873.79 C 328.02,873.98 322.68,874 317.34,874 L 84.66,874 C 79.32,874 73.98,873.98 68.63,873.79 C 62.51,873.56 56.46,873.1 50.42,871.97 C 38.23,869.7 27.14,864.77 18.19,855.81 C 9.23,846.86 4.3,835.77 2.03,823.57 C 0.9,817.54 0.44,811.49 0.21,805.38 C 0.02,800.08 0,794.79 0,789.5 L 0,84.5 C 0,79.21 0.02,73.92 0.21,68.62 C 0.44,62.51 0.9,56.46 2.03,50.43 C 4.3,38.23 9.23,27.14 18.19,18.19 C 27.14,9.23 38.23,4.3 50.42,2.03 C 56.46,0.9 62.51,0.44 68.63,0.21 C 73.98,0.02 79.32,0 84.66,0 L 317.34,0 Z M 245,11 H 157 A 18.5,18.5 0 0 0 157,48 H 245 A 18.5,18.5 0 0 0 245,11 Z',
       body:
-          '<svg viewBox="0 0 436 908">\n'
-          '  <rect x="1" y="1" width="434" height="906" rx="79" fill="#000000"/>\n'
-          '  <rect x="2" y="2" width="432" height="904" rx="78" fill="#7e7e7e"/>\n'
-          '  <rect x="16" y="16" width="404" height="876" rx="64" fill="#7e7e7e"/>\n'
-          '  <rect x="3" y="3" width="430" height="902" rx="77" fill="#2c2c2c"/>\n'
-          '  <rect x="16" y="16" width="404" height="876" rx="64" fill="#2c2c2c"/>\n'
-          '  <rect x="8" y="8" width="420" height="892" rx="72" fill="#000000"/>\n'
-          '  <rect x="16" y="16" width="404" height="876" rx="64" fill="#000000"/>\n'
+          '<svg viewBox="0 0 448 908">\n'
+          '  <rect x="0" y="160" width="16" height="34" rx="8" fill="#2c2c2c"/>\n'
+          '  <rect x="0" y="221" width="16" height="64" rx="8" fill="#2c2c2c"/>\n'
+          '  <rect x="0" y="300" width="16" height="64" rx="8" fill="#2c2c2c"/>\n'
+          '  <rect x="432" y="262" width="16" height="101" rx="8" fill="#2c2c2c"/>\n'
+          '  <g transform="translate(6, 0)">\n'
+          '    <rect x="1" y="1" width="434" height="906" rx="79" fill="#000000"/>\n'
+          '    <rect x="2" y="2" width="432" height="904" rx="78" fill="#7e7e7e"/>\n'
+          '    <rect x="16" y="16" width="404" height="876" rx="64" fill="#7e7e7e"/>\n'
+          '    <rect x="3" y="3" width="430" height="902" rx="77" fill="#2c2c2c"/>\n'
+          '    <rect x="16" y="16" width="404" height="876" rx="64" fill="#2c2c2c"/>\n'
+          '    <rect x="8" y="8" width="420" height="892" rx="72" fill="#000000"/>\n'
+          '    <rect x="16" y="16" width="404" height="876" rx="64" fill="#000000"/>\n'
+          '  </g>\n'
           '</svg>',
     ),
     systemUi: SystemUiSimulation(
@@ -1731,19 +1788,25 @@ abstract final class DevicePresets {
     portraitKeyboardHeight: 335,
     landscapeKeyboardHeight: 208,
     frame: DeviceFrame(
-      size: ui.Size(436, 908),
-      screenOffset: ui.Offset(17, 17),
+      size: ui.Size(448, 908),
+      screenOffset: ui.Offset(23, 17),
       screenPath:
           'M 317.34,0 C 322.68,0 328.02,0.02 333.37,0.21 C 339.49,0.44 345.54,0.9 351.58,2.03 C 363.77,4.3 374.86,9.23 383.81,18.19 C 392.77,27.14 397.7,38.23 399.97,50.43 C 401.1,56.46 401.56,62.51 401.79,68.62 C 401.98,73.92 402,79.21 402,84.5 L 402,789.5 C 402,794.79 401.98,800.08 401.79,805.38 C 401.56,811.49 401.1,817.54 399.97,823.57 C 397.7,835.77 392.77,846.86 383.81,855.81 C 374.86,864.77 363.77,869.7 351.58,871.97 C 345.54,873.1 339.49,873.56 333.37,873.79 C 328.02,873.98 322.68,874 317.34,874 L 84.66,874 C 79.32,874 73.98,873.98 68.63,873.79 C 62.51,873.56 56.46,873.1 50.42,871.97 C 38.23,869.7 27.14,864.77 18.19,855.81 C 9.23,846.86 4.3,835.77 2.03,823.57 C 0.9,817.54 0.44,811.49 0.21,805.38 C 0.02,800.08 0,794.79 0,789.5 L 0,84.5 C 0,79.21 0.02,73.92 0.21,68.62 C 0.44,62.51 0.9,56.46 2.03,50.43 C 4.3,38.23 9.23,27.14 18.19,18.19 C 27.14,9.23 38.23,4.3 50.42,2.03 C 56.46,0.9 62.51,0.44 68.63,0.21 C 73.98,0.02 79.32,0 84.66,0 L 317.34,0 Z M 245,11 H 157 A 18.5,18.5 0 0 0 157,48 H 245 A 18.5,18.5 0 0 0 245,11 Z',
       body:
-          '<svg viewBox="0 0 436 908">\n'
-          '  <rect x="1" y="1" width="434" height="906" rx="79" fill="#000000"/>\n'
-          '  <rect x="2" y="2" width="432" height="904" rx="78" fill="#7e7e7e"/>\n'
-          '  <rect x="16" y="16" width="404" height="876" rx="64" fill="#7e7e7e"/>\n'
-          '  <rect x="3" y="3" width="430" height="902" rx="77" fill="#2c2c2c"/>\n'
-          '  <rect x="16" y="16" width="404" height="876" rx="64" fill="#2c2c2c"/>\n'
-          '  <rect x="8" y="8" width="420" height="892" rx="72" fill="#000000"/>\n'
-          '  <rect x="16" y="16" width="404" height="876" rx="64" fill="#000000"/>\n'
+          '<svg viewBox="0 0 448 908">\n'
+          '  <rect x="0" y="160" width="16" height="34" rx="8" fill="#2c2c2c"/>\n'
+          '  <rect x="0" y="221" width="16" height="64" rx="8" fill="#2c2c2c"/>\n'
+          '  <rect x="0" y="300" width="16" height="64" rx="8" fill="#2c2c2c"/>\n'
+          '  <rect x="432" y="262" width="16" height="101" rx="8" fill="#2c2c2c"/>\n'
+          '  <g transform="translate(6, 0)">\n'
+          '    <rect x="1" y="1" width="434" height="906" rx="79" fill="#000000"/>\n'
+          '    <rect x="2" y="2" width="432" height="904" rx="78" fill="#7e7e7e"/>\n'
+          '    <rect x="16" y="16" width="404" height="876" rx="64" fill="#7e7e7e"/>\n'
+          '    <rect x="3" y="3" width="430" height="902" rx="77" fill="#2c2c2c"/>\n'
+          '    <rect x="16" y="16" width="404" height="876" rx="64" fill="#2c2c2c"/>\n'
+          '    <rect x="8" y="8" width="420" height="892" rx="72" fill="#000000"/>\n'
+          '    <rect x="16" y="16" width="404" height="876" rx="64" fill="#000000"/>\n'
+          '  </g>\n'
           '</svg>',
     ),
     systemUi: SystemUiSimulation(
@@ -1797,23 +1860,29 @@ abstract final class DevicePresets {
     portraitKeyboardHeight: 345,
     landscapeKeyboardHeight: 208,
     frame: DeviceFrame(
-      size: ui.Size(474, 990),
-      screenOffset: ui.Offset(17, 17),
+      size: ui.Size(486, 990),
+      screenOffset: ui.Offset(23, 17),
       screenPath:
           'M 354.84,0 C 360.21,0 365.59,0.02 370.96,0.21 C 377.12,0.44 383.2,0.91 389.28,2.04 C 401.54,4.33 412.7,9.29 421.7,18.3 C 430.71,27.31 435.67,38.46 437.96,50.73 C 439.09,56.8 439.56,62.88 439.79,69.03 C 439.98,74.35 440,79.68 440,85 L 440,871 C 440,876.32 439.98,881.65 439.79,886.97 C 439.56,893.12 439.09,899.2 437.96,905.27 C 435.67,917.54 430.71,928.69 421.7,937.7 C 412.7,946.71 401.54,951.67 389.28,953.96 C 383.2,955.09 377.12,955.56 370.96,955.78 C 365.59,955.98 360.21,956 354.84,956 L 85.16,956 C 79.79,956 74.41,955.98 69.04,955.78 C 62.88,955.56 56.8,955.09 50.72,953.96 C 38.46,951.67 27.3,946.71 18.3,937.7 C 9.29,928.69 4.33,917.54 2.04,905.27 C 0.91,899.2 0.44,893.12 0.22,886.97 C 0.02,881.65 0,876.32 0,871 L 0,85 C 0,79.68 0.02,74.35 0.22,69.03 C 0.44,62.88 0.91,56.8 2.04,50.73 C 4.33,38.46 9.29,27.31 18.3,18.3 C 27.3,9.29 38.46,4.33 50.72,2.04 C 56.8,0.91 62.88,0.44 69.04,0.21 C 74.41,0.02 79.79,0 85.16,0 L 354.84,0 Z M 264,11 H 176 A 18.5,18.5 0 0 0 176,48 H 264 A 18.5,18.5 0 0 0 264,11 Z',
       body:
-          '<svg viewBox="0 0 474 990">\n'
-          '  <rect x="1" y="1" width="472" height="988" rx="79" fill="#000000"/>\n'
-          '  <rect x="2" y="2" width="470" height="986" rx="78" fill="#7e7e7e"/>\n'
-          '  <rect x="3" y="3" width="468" height="984" rx="77" fill="#2c2c2c"/>\n'
-          '  <rect x="8.33" y="8.33" width="457.33" height="973.33" rx="71.67" fill="#000000"/>\n'
-          '  <rect x="16" y="16" width="442" height="958" rx="64" fill="#000000"/>\n'
-          '  <rect x="1" y="95" width="8.67" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
-          '  <rect x="1" y="888" width="9.33" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
-          '  <rect x="464.67" y="888" width="8.33" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
-          '  <rect x="92" y="980.67" width="8.33" height="8.33" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
-          '  <rect x="464.67" y="95" width="8.33" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
-          '  <rect x="374" y="1.33" width="8.33" height="8.67" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
+          '<svg viewBox="0 0 486 990">\n'
+          '  <rect x="0" y="180" width="16" height="34" rx="8" fill="#2c2c2c"/>\n'
+          '  <rect x="0" y="268" width="16" height="64" rx="8" fill="#2c2c2c"/>\n'
+          '  <rect x="0" y="354" width="16" height="64" rx="8" fill="#2c2c2c"/>\n'
+          '  <rect x="470" y="293" width="16" height="101" rx="8" fill="#2c2c2c"/>\n'
+          '  <g transform="translate(6, 0)">\n'
+          '    <rect x="1" y="1" width="472" height="988" rx="79" fill="#000000"/>\n'
+          '    <rect x="2" y="2" width="470" height="986" rx="78" fill="#7e7e7e"/>\n'
+          '    <rect x="3" y="3" width="468" height="984" rx="77" fill="#2c2c2c"/>\n'
+          '    <rect x="8.33" y="8.33" width="457.33" height="973.33" rx="71.67" fill="#000000"/>\n'
+          '    <rect x="16" y="16" width="442" height="958" rx="64" fill="#000000"/>\n'
+          '    <rect x="1" y="95" width="8.67" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
+          '    <rect x="1" y="888" width="9.33" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
+          '    <rect x="464.67" y="888" width="8.33" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
+          '    <rect x="92" y="980.67" width="8.33" height="8.33" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
+          '    <rect x="464.67" y="95" width="8.33" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
+          '    <rect x="374" y="1.33" width="8.33" height="8.67" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
+          '  </g>\n'
           '</svg>',
     ),
     systemUi: SystemUiSimulation(
@@ -1867,16 +1936,22 @@ abstract final class DevicePresets {
     portraitKeyboardHeight: 335,
     landscapeKeyboardHeight: 208,
     frame: DeviceFrame(
-      size: ui.Size(434, 888),
-      screenOffset: ui.Offset(22, 22),
+      size: ui.Size(446, 888),
+      screenOffset: ui.Offset(28, 22),
       screenPath:
           'M 283.88,0 L 322.54,0 C 326.96,0 332.4,0.02 336.78,0.16 C 341.51,0.32 346.29,0.65 350.97,1.48 C 360.58,3.18 369.19,6.9 376.15,13.85 C 383.11,20.81 386.83,29.43 388.52,39.03 C 389.35,43.71 389.69,48.5 389.84,53.22 C 389.99,57.6 390,63.04 390,67.47 L 390,776.54 C 390,780.97 389.99,786.41 389.84,790.78 C 389.69,795.51 389.35,800.29 388.52,804.98 C 386.83,814.58 383.11,823.2 376.15,830.15 C 369.19,837.11 360.58,840.83 350.97,842.53 C 346.29,843.35 341.51,843.69 336.78,843.85 C 332.4,843.99 326.96,844 322.54,844 L 67.46,844 C 63.03,844 57.6,843.99 53.22,843.85 C 48.49,843.69 43.71,843.35 39.03,842.53 C 29.42,840.83 20.81,837.11 13.85,830.15 C 6.89,823.2 3.17,814.58 1.48,804.98 C 0.65,800.29 0.31,795.51 0.15,790.78 C 0.01,786.41 0,780.97 0,776.54 L 0,67.47 C 0,63.04 0.01,57.6 0.15,53.22 C 0.31,48.5 0.65,43.71 1.48,39.03 C 3.17,29.43 6.89,20.81 13.85,13.85 C 20.81,6.9 29.42,3.18 39.03,1.48 C 43.71,0.65 48.49,0.32 53.22,0.16 C 57.6,0.02 63.03,0 67.46,0 L 106.12,0 C 107.17,0 108.27,-0.05 109.46,0.18 C 110.61,0.39 111.61,0.83 112.38,1.58 C 113.15,2.34 113.61,3.32 113.85,4.47 C 114.1,5.65 114.08,6.75 114.11,7.8 C 114.19,10.17 114.22,12.38 114.61,14.83 C 114.99,17.19 115.66,19.34 116.72,21.43 C 118.01,23.94 119.83,26.24 122.03,28.14 C 124.28,30.08 126.83,31.52 129.58,32.4 C 134.09,33.86 138.57,33.67 143.32,33.67 L 246.68,33.67 C 251.43,33.67 255.91,33.86 260.42,32.4 C 263.17,31.52 265.71,30.08 267.97,28.14 C 270.17,26.24 271.99,23.94 273.28,21.43 C 274.34,19.34 275.01,17.19 275.39,14.83 C 275.78,12.38 275.81,10.17 275.88,7.8 C 275.92,6.75 275.9,5.65 276.15,4.47 C 276.39,3.32 276.85,2.34 277.62,1.58 C 278.39,0.83 279.39,0.39 280.54,0.18 C 281.73,-0.05 282.83,0 283.88,0 Z',
       body:
-          '<svg viewBox="0 0 434 888">\n'
-          '  <rect x="-4" y="-4" width="442" height="896" rx="72" fill="#000000" fill-opacity="0.15"/>\n'
-          '  <rect x="-3" y="-3" width="440" height="894" rx="71" fill="#7e7e7e"/>\n'
-          '  <rect x="-2" y="-2" width="438" height="892" rx="70" fill="#2c2c2c"/>\n'
-          '  <rect x="2" y="2" width="430" height="884" rx="66" fill="#010101"/>\n'
+          '<svg viewBox="0 0 446 888">\n'
+          '  <rect x="0" y="160" width="16" height="32" rx="8" fill="#2c2c2c"/>\n'
+          '  <rect x="0" y="221" width="16" height="72" rx="8" fill="#2c2c2c"/>\n'
+          '  <rect x="0" y="300" width="16" height="72" rx="8" fill="#2c2c2c"/>\n'
+          '  <rect x="430" y="262" width="16" height="117" rx="8" fill="#2c2c2c"/>\n'
+          '  <g transform="translate(6, 0)">\n'
+          '    <rect x="-4" y="-4" width="442" height="896" rx="72" fill="#000000" fill-opacity="0.15"/>\n'
+          '    <rect x="-3" y="-3" width="440" height="894" rx="71" fill="#7e7e7e"/>\n'
+          '    <rect x="-2" y="-2" width="438" height="892" rx="70" fill="#2c2c2c"/>\n'
+          '    <rect x="2" y="2" width="430" height="884" rx="66" fill="#010101"/>\n'
+          '  </g>\n'
           '</svg>',
     ),
     systemUi: SystemUiSimulation(
@@ -1930,19 +2005,25 @@ abstract final class DevicePresets {
     portraitKeyboardHeight: 335,
     landscapeKeyboardHeight: 208,
     frame: DeviceFrame(
-      size: ui.Size(436, 908),
-      screenOffset: ui.Offset(17, 17),
+      size: ui.Size(448, 908),
+      screenOffset: ui.Offset(23, 17),
       screenPath:
           'M 317.34,0 C 322.68,0 328.02,0.02 333.37,0.21 C 339.49,0.44 345.54,0.9 351.58,2.03 C 363.77,4.3 374.86,9.23 383.81,18.19 C 392.77,27.14 397.7,38.23 399.97,50.43 C 401.1,56.46 401.56,62.51 401.79,68.62 C 401.98,73.92 402,79.21 402,84.5 L 402,789.5 C 402,794.79 401.98,800.08 401.79,805.38 C 401.56,811.49 401.1,817.54 399.97,823.57 C 397.7,835.77 392.77,846.86 383.81,855.81 C 374.86,864.77 363.77,869.7 351.58,871.97 C 345.54,873.1 339.49,873.56 333.37,873.79 C 328.02,873.98 322.68,874 317.34,874 L 84.66,874 C 79.32,874 73.98,873.98 68.63,873.79 C 62.51,873.56 56.46,873.1 50.42,871.97 C 38.23,869.7 27.14,864.77 18.19,855.81 C 9.23,846.86 4.3,835.77 2.03,823.57 C 0.9,817.54 0.44,811.49 0.21,805.38 C 0.02,800.08 0,794.79 0,789.5 L 0,84.5 C 0,79.21 0.02,73.92 0.21,68.62 C 0.44,62.51 0.9,56.46 2.03,50.43 C 4.3,38.23 9.23,27.14 18.19,18.19 C 27.14,9.23 38.23,4.3 50.42,2.03 C 56.46,0.9 62.51,0.44 68.63,0.21 C 73.98,0.02 79.32,0 84.66,0 L 317.34,0 Z M 245,11 H 157 A 18.5,18.5 0 0 0 157,48 H 245 A 18.5,18.5 0 0 0 245,11 Z',
       body:
-          '<svg viewBox="0 0 436 908">\n'
-          '  <rect x="1" y="1" width="434" height="906" rx="79" fill="#000000"/>\n'
-          '  <rect x="2" y="2" width="432" height="904" rx="78" fill="#7e7e7e"/>\n'
-          '  <rect x="16" y="16" width="404" height="876" rx="64" fill="#7e7e7e"/>\n'
-          '  <rect x="3" y="3" width="430" height="902" rx="77" fill="#2c2c2c"/>\n'
-          '  <rect x="16" y="16" width="404" height="876" rx="64" fill="#2c2c2c"/>\n'
-          '  <rect x="8" y="8" width="420" height="892" rx="72" fill="#000000"/>\n'
-          '  <rect x="16" y="16" width="404" height="876" rx="64" fill="#000000"/>\n'
+          '<svg viewBox="0 0 448 908">\n'
+          '  <rect x="0" y="160" width="16" height="34" rx="8" fill="#2c2c2c"/>\n'
+          '  <rect x="0" y="221" width="16" height="64" rx="8" fill="#2c2c2c"/>\n'
+          '  <rect x="0" y="300" width="16" height="64" rx="8" fill="#2c2c2c"/>\n'
+          '  <rect x="432" y="262" width="16" height="101" rx="8" fill="#2c2c2c"/>\n'
+          '  <g transform="translate(6, 0)">\n'
+          '    <rect x="1" y="1" width="434" height="906" rx="79" fill="#000000"/>\n'
+          '    <rect x="2" y="2" width="432" height="904" rx="78" fill="#7e7e7e"/>\n'
+          '    <rect x="16" y="16" width="404" height="876" rx="64" fill="#7e7e7e"/>\n'
+          '    <rect x="3" y="3" width="430" height="902" rx="77" fill="#2c2c2c"/>\n'
+          '    <rect x="16" y="16" width="404" height="876" rx="64" fill="#2c2c2c"/>\n'
+          '    <rect x="8" y="8" width="420" height="892" rx="72" fill="#000000"/>\n'
+          '    <rect x="16" y="16" width="404" height="876" rx="64" fill="#000000"/>\n'
+          '  </g>\n'
           '</svg>',
     ),
     systemUi: SystemUiSimulation(
@@ -1996,23 +2077,29 @@ abstract final class DevicePresets {
     portraitKeyboardHeight: 345,
     landscapeKeyboardHeight: 208,
     frame: DeviceFrame(
-      size: ui.Size(474, 990),
-      screenOffset: ui.Offset(17, 17),
+      size: ui.Size(486, 990),
+      screenOffset: ui.Offset(23, 17),
       screenPath:
           'M 354.84,0 C 360.21,0 365.59,0.02 370.96,0.21 C 377.12,0.44 383.2,0.91 389.28,2.04 C 401.54,4.33 412.7,9.29 421.7,18.3 C 430.71,27.31 435.67,38.46 437.96,50.73 C 439.09,56.8 439.56,62.88 439.79,69.03 C 439.98,74.35 440,79.68 440,85 L 440,871 C 440,876.32 439.98,881.65 439.79,886.97 C 439.56,893.12 439.09,899.2 437.96,905.27 C 435.67,917.54 430.71,928.69 421.7,937.7 C 412.7,946.71 401.54,951.67 389.28,953.96 C 383.2,955.09 377.12,955.56 370.96,955.78 C 365.59,955.98 360.21,956 354.84,956 L 85.16,956 C 79.79,956 74.41,955.98 69.04,955.78 C 62.88,955.56 56.8,955.09 50.72,953.96 C 38.46,951.67 27.3,946.71 18.3,937.7 C 9.29,928.69 4.33,917.54 2.04,905.27 C 0.91,899.2 0.44,893.12 0.22,886.97 C 0.02,881.65 0,876.32 0,871 L 0,85 C 0,79.68 0.02,74.35 0.22,69.03 C 0.44,62.88 0.91,56.8 2.04,50.73 C 4.33,38.46 9.29,27.31 18.3,18.3 C 27.3,9.29 38.46,4.33 50.72,2.04 C 56.8,0.91 62.88,0.44 69.04,0.21 C 74.41,0.02 79.79,0 85.16,0 L 354.84,0 Z M 264,11 H 176 A 18.5,18.5 0 0 0 176,48 H 264 A 18.5,18.5 0 0 0 264,11 Z',
       body:
-          '<svg viewBox="0 0 474 990">\n'
-          '  <rect x="1" y="1" width="472" height="988" rx="79" fill="#000000"/>\n'
-          '  <rect x="2" y="2" width="470" height="986" rx="78" fill="#7e7e7e"/>\n'
-          '  <rect x="3" y="3" width="468" height="984" rx="77" fill="#2c2c2c"/>\n'
-          '  <rect x="8.33" y="8.33" width="457.33" height="973.33" rx="71.67" fill="#000000"/>\n'
-          '  <rect x="16" y="16" width="442" height="958" rx="64" fill="#000000"/>\n'
-          '  <rect x="1" y="95" width="8.67" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
-          '  <rect x="1" y="888" width="9.33" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
-          '  <rect x="464.67" y="888" width="8.33" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
-          '  <rect x="92" y="980.67" width="8.33" height="8.33" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
-          '  <rect x="464.67" y="95" width="8.33" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
-          '  <rect x="374" y="1.33" width="8.33" height="8.67" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
+          '<svg viewBox="0 0 486 990">\n'
+          '  <rect x="0" y="180" width="16" height="34" rx="8" fill="#2c2c2c"/>\n'
+          '  <rect x="0" y="268" width="16" height="64" rx="8" fill="#2c2c2c"/>\n'
+          '  <rect x="0" y="354" width="16" height="64" rx="8" fill="#2c2c2c"/>\n'
+          '  <rect x="470" y="293" width="16" height="101" rx="8" fill="#2c2c2c"/>\n'
+          '  <g transform="translate(6, 0)">\n'
+          '    <rect x="1" y="1" width="472" height="988" rx="79" fill="#000000"/>\n'
+          '    <rect x="2" y="2" width="470" height="986" rx="78" fill="#7e7e7e"/>\n'
+          '    <rect x="3" y="3" width="468" height="984" rx="77" fill="#2c2c2c"/>\n'
+          '    <rect x="8.33" y="8.33" width="457.33" height="973.33" rx="71.67" fill="#000000"/>\n'
+          '    <rect x="16" y="16" width="442" height="958" rx="64" fill="#000000"/>\n'
+          '    <rect x="1" y="95" width="8.67" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
+          '    <rect x="1" y="888" width="9.33" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
+          '    <rect x="464.67" y="888" width="8.33" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
+          '    <rect x="92" y="980.67" width="8.33" height="8.33" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
+          '    <rect x="464.67" y="95" width="8.33" height="8" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
+          '    <rect x="374" y="1.33" width="8.33" height="8.67" rx="1" fill="#000000" fill-opacity="0.3"/>\n'
+          '  </g>\n'
           '</svg>',
     ),
     systemUi: SystemUiSimulation(
@@ -2066,17 +2153,23 @@ abstract final class DevicePresets {
     portraitKeyboardHeight: 345,
     landscapeKeyboardHeight: 208,
     frame: DeviceFrame(
-      size: ui.Size(456, 948),
-      screenOffset: ui.Offset(18, 18),
+      size: ui.Size(468, 948),
+      screenOffset: ui.Offset(24, 18),
       screenPath:
           'M 331.55,0 C 337.13,0 342.71,0.02 348.29,0.22 C 354.69,0.46 361.01,0.94 367.32,2.12 C 380.06,4.49 391.64,9.64 401,18.98 C 410.35,28.32 415.51,39.9 417.88,52.62 C 419.06,58.92 419.54,65.23 419.78,71.61 C 419.98,77.13 420,82.65 420,88.17 L 420,86.99 L 420,825.01 L 420,826.19 C 419.99,830.93 419.95,835.66 419.78,840.39 C 419.54,846.77 419.06,853.08 417.88,859.38 C 415.51,872.1 410.35,883.67 401,893.02 C 391.64,902.36 380.06,907.51 367.32,909.88 C 361.01,911.06 354.69,911.54 348.29,911.78 C 343.19,911.97 338.09,912 332.98,912 L 208.21,912 L 87.26,912 L 86.06,912 C 82.07,912 78.09,911.97 74.1,911.85 L 71.71,911.78 C 65.31,911.54 58.99,911.06 52.68,909.88 C 39.94,907.51 28.36,902.36 19,893.02 C 9.65,883.67 4.49,872.1 2.12,859.38 C 0.95,853.08 0.46,846.77 0.22,840.39 C 0.02,834.87 0,829.35 0,823.83 L 0,88.17 C 0,82.65 0.02,77.13 0.22,71.61 C 0.46,65.23 0.95,58.92 2.12,52.62 C 4.49,39.9 9.65,28.32 19,18.98 C 28.36,9.64 39.94,4.49 52.68,2.12 C 58.99,0.94 65.31,0.46 71.71,0.22 C 77.29,0.02 82.87,0 88.45,0 L 331.55,0 Z M 254,11 H 166 A 18.5,18.5 0 0 0 166,48 H 254 A 18.5,18.5 0 0 0 254,11 Z',
       body:
-          '<svg viewBox="0 0 456 948">\n'
-          '  <rect x="2" y="2" width="452" height="944" rx="78" fill="#000000"/>\n'
-          '  <rect x="3" y="3" width="450" height="942" rx="77" fill="#7e7e7e"/>\n'
-          '  <rect x="4" y="4" width="448" height="940" rx="76" fill="#2c2c2c"/>\n'
-          '  <rect x="9.33" y="9.33" width="437.34" height="929.34" rx="70.67" fill="#000000"/>\n'
-          '  <rect x="8.33" y="8.33" width="439.34" height="931.34" rx="71.67" fill="#000000"/>\n'
+          '<svg viewBox="0 0 468 948">\n'
+          '  <rect x="0" y="180" width="16" height="34" rx="8" fill="#2c2c2c"/>\n'
+          '  <rect x="0" y="268" width="16" height="64" rx="8" fill="#2c2c2c"/>\n'
+          '  <rect x="0" y="354" width="16" height="64" rx="8" fill="#2c2c2c"/>\n'
+          '  <rect x="452" y="293" width="16" height="101" rx="8" fill="#2c2c2c"/>\n'
+          '  <g transform="translate(6, 0)">\n'
+          '    <rect x="2" y="2" width="452" height="944" rx="78" fill="#000000"/>\n'
+          '    <rect x="3" y="3" width="450" height="942" rx="77" fill="#7e7e7e"/>\n'
+          '    <rect x="4" y="4" width="448" height="940" rx="76" fill="#2c2c2c"/>\n'
+          '    <rect x="9.33" y="9.33" width="437.34" height="929.34" rx="70.67" fill="#000000"/>\n'
+          '    <rect x="8.33" y="8.33" width="439.34" height="931.34" rx="71.67" fill="#000000"/>\n'
+          '  </g>\n'
           '</svg>',
     ),
     systemUi: SystemUiSimulation(
@@ -2316,19 +2409,24 @@ abstract final class DevicePresets {
     portraitKeyboardHeight: 260,
     landscapeKeyboardHeight: 206,
     frame: DeviceFrame(
-      size: ui.Size(431, 889),
-      screenOffset: ui.Offset(28, 111),
+      size: ui.Size(443, 889),
+      screenOffset: ui.Offset(34, 111),
       screenPath:
           'M 0,0 L 375,0 L 375,667 L 0,667 Z',
       body:
-          '<svg viewBox="0 0 431 889">\n'
-          '  <rect x="0" y="0" width="431" height="889" rx="61" fill="#000000" fill-opacity="0.5"/>\n'
-          '  <rect x="1" y="1" width="429" height="887" rx="60" fill="#343434"/>\n'
-          '  <rect x="2" y="2" width="427" height="885" rx="59" fill="#1f1f1f"/>\n'
-          '  <rect x="8" y="8" width="415" height="873" rx="53" fill="#161616"/>\n'
-          '  <rect x="14" y="14" width="403" height="861" rx="47" fill="#000000"/>\n'
-          '  <circle cx="215.5" cy="832.5" r="33.5" fill="#3a3a3a"/>\n'
-          '  <circle cx="215.5" cy="832.5" r="29.5" fill="#000000"/>\n'
+          '<svg viewBox="0 0 443 889">\n'
+          '  <rect x="0" y="188" width="16" height="68" rx="8" fill="#1f1f1f"/>\n'
+          '  <rect x="0" y="269" width="16" height="68" rx="8" fill="#1f1f1f"/>\n'
+          '  <rect x="427" y="188" width="16" height="68" rx="8" fill="#1f1f1f"/>\n'
+          '  <g transform="translate(6, 0)">\n'
+          '    <rect x="0" y="0" width="431" height="889" rx="61" fill="#000000" fill-opacity="0.5"/>\n'
+          '    <rect x="1" y="1" width="429" height="887" rx="60" fill="#343434"/>\n'
+          '    <rect x="2" y="2" width="427" height="885" rx="59" fill="#1f1f1f"/>\n'
+          '    <rect x="8" y="8" width="415" height="873" rx="53" fill="#161616"/>\n'
+          '    <rect x="14" y="14" width="403" height="861" rx="47" fill="#000000"/>\n'
+          '    <circle cx="215.5" cy="832.5" r="33.5" fill="#3a3a3a"/>\n'
+          '    <circle cx="215.5" cy="832.5" r="29.5" fill="#000000"/>\n'
+          '  </g>\n'
           '</svg>',
     ),
     systemUi: SystemUiSimulation(
@@ -2431,8 +2529,10 @@ abstract final class DevicePresets {
           'M 55.62,0 H 355.81 A 55.62,55.62 0 0 1 411.43,55.62 V 867.81 A 55.62,55.62 0 0 1 355.81,923.43 H 55.62 A 55.62,55.62 0 0 1 0,867.81 V 55.62 A 55.62,55.62 0 0 1 55.62,0 Z M 205.33,19.05 A 14.86,14.86 0 1 0 205.33,48.76 A 14.86,14.86 0 1 0 205.33,19.05 Z',
       body:
           '<svg viewBox="0 0 459.05 964.19">\n'
-          '  <rect x="0" y="0" width="459.05" height="964.19" rx="81.14" fill="#3b53c1"/>\n'
-          '  <rect x="1" y="1" width="457.05" height="962.19" rx="80.14" fill="#000000"/>\n'
+          '  <rect x="454.62" y="269.71" width="4.43" height="74.67" rx="1" fill="#7ea1fd"/>\n'
+          '  <rect x="454.62" y="389.33" width="4.43" height="132.19" rx="1" fill="#7ea1fe"/>\n'
+          '  <rect x="0.38" y="0" width="455.24" height="964.19" rx="81.14" fill="#3b53c1"/>\n'
+          '  <rect x="1.38" y="1" width="453.24" height="962.19" rx="80.14" fill="#000000"/>\n'
           '</svg>',
     ),
     systemUi: SystemUiSimulation(
@@ -2507,8 +2607,10 @@ abstract final class DevicePresets {
           'M 53.74,0 H 797.95 A 53.74,53.74 0 0 1 851.69,53.74 V 829.13 A 53.74,53.74 0 0 1 797.95,882.87 H 53.74 A 53.74,53.74 0 0 1 0,829.13 V 53.74 A 53.74,53.74 0 0 1 53.74,0 Z M 813.54,19.69 A 14.77,14.77 0 1 0 813.54,49.23 A 14.77,14.77 0 1 0 813.54,19.69 Z',
       body:
           '<svg viewBox="0 0 902.15 928.82">\n'
-          '  <rect x="0" y="0" width="902.15" height="928.82" rx="78.77" fill="#767b8c"/>\n'
-          '  <rect x="1" y="1" width="900.15" height="926.82" rx="77.77" fill="#060605"/>\n'
+          '  <rect x="899.51" y="278.56" width="2.64" height="80.82" rx="1" fill="#848b9b"/>\n'
+          '  <rect x="899.51" y="425.03" width="2.64" height="114.87" rx="1" fill="#737a8a"/>\n'
+          '  <rect x="0" y="0" width="900.51" height="928.82" rx="78.77" fill="#767b8c"/>\n'
+          '  <rect x="1" y="1" width="898.51" height="926.82" rx="77.77" fill="#060605"/>\n'
           '</svg>',
     ),
     systemUi: SystemUiSimulation(
@@ -2574,8 +2676,10 @@ abstract final class DevicePresets {
               'M 52.92,0 H 390.15 A 52.92,52.92 0 0 1 443.08,52.92 V 916.92 A 52.92,52.92 0 0 1 390.15,969.85 H 52.92 A 52.92,52.92 0 0 1 0,916.92 V 52.92 A 52.92,52.92 0 0 1 52.92,0 Z M 221.74,18.46 A 13.74,13.74 0 1 0 221.74,45.95 A 13.74,13.74 0 1 0 221.74,18.46 Z',
           body:
               '<svg viewBox="0 0 505.85 1022.77">\n'
-              '  <rect x="0" y="0" width="505.85" height="1022.77" rx="34.46" fill="#b4b8c7"/>\n'
-              '  <rect x="1" y="1" width="503.85" height="1020.77" rx="33.46" fill="#000000"/>\n'
+              '  <rect x="502.38" y="304" width="3.46" height="95.18" rx="1" fill="#aeb2c1"/>\n'
+              '  <rect x="502.38" y="465.23" width="3.46" height="131.69" rx="1" fill="#999dac"/>\n'
+              '  <rect x="0" y="0" width="503.38" height="1022.77" rx="34.46" fill="#b4b8c7"/>\n'
+              '  <rect x="1" y="1" width="501.38" height="1020.77" rx="33.46" fill="#000000"/>\n'
               '</svg>',
         ),
         systemUi: SystemUiSimulation(
@@ -2639,8 +2743,10 @@ abstract final class DevicePresets {
           'M 53.33,0 H 358.1 A 53.33,53.33 0 0 1 411.43,53.33 V 870.1 A 53.33,53.33 0 0 1 358.1,923.43 H 53.33 A 53.33,53.33 0 0 1 0,870.1 V 53.33 A 53.33,53.33 0 0 1 53.33,0 Z M 205.71,17.52 A 15.24,15.24 0 1 0 205.71,48 A 15.24,15.24 0 1 0 205.71,17.52 Z',
       body:
           '<svg viewBox="0 0 455.62 963.05">\n'
-          '  <rect x="0" y="0" width="455.62" height="963.05" rx="77.71" fill="#424242"/>\n'
-          '  <rect x="1" y="1" width="453.62" height="961.05" rx="76.71" fill="#000000"/>\n'
+          '  <rect x="452.33" y="262.48" width="3.29" height="74.29" rx="1" fill="#afafaf"/>\n'
+          '  <rect x="452.33" y="381.71" width="3.29" height="136.76" rx="1" fill="#afafaf"/>\n'
+          '  <rect x="0" y="0" width="453.33" height="963.05" rx="77.71" fill="#424242"/>\n'
+          '  <rect x="1" y="1" width="451.33" height="961.05" rx="76.71" fill="#000000"/>\n'
           '</svg>',
     ),
     systemUi: SystemUiSimulation(
@@ -2701,8 +2807,10 @@ abstract final class DevicePresets {
           'M 56,0 H 392 A 56,56 0 0 1 448,56 V 941.33 A 56,56 0 0 1 392,997.33 H 56 A 56,56 0 0 1 0,941.33 V 56 A 56,56 0 0 1 56,0 Z M 224,17.33 A 15.33,15.33 0 1 0 224,48 A 15.33,15.33 0 1 0 224,17.33 Z',
       body:
           '<svg viewBox="0 0 488 1033">\n'
-          '  <rect x="0" y="0" width="488" height="1033" rx="79.67" fill="#323232"/>\n'
-          '  <rect x="1" y="1" width="486" height="1031" rx="78.67" fill="#000000"/>\n'
+          '  <rect x="484.67" y="274" width="3.33" height="75" rx="1" fill="#d9d9d9"/>\n'
+          '  <rect x="484.67" y="393.67" width="3.33" height="138.33" rx="1" fill="#d7d7d7"/>\n'
+          '  <rect x="0" y="0" width="485.67" height="1033" rx="79.67" fill="#323232"/>\n'
+          '  <rect x="1" y="1" width="483.67" height="1031" rx="78.67" fill="#000000"/>\n'
           '</svg>',
     ),
     systemUi: SystemUiSimulation(
