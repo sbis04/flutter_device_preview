@@ -95,12 +95,17 @@ def samsung_layout(skin_dir):
 
 
 def samsung_body(skin_dir):
+    image, _, _ = samsung_layout(skin_dir)
+    return samsung_body_of(skin_dir, image)
+
+
+def samsung_body_of(skin_dir, image):
     """The device silhouette in a Samsung skin: its art sits on a full-bleed
     blue-grey backdrop (with the model name printed beside it), not on
     transparency, so the body is what is neutral grey or near black —
     opened to drop the thin side buttons and the label strokes — and
     connected to the screen."""
-    image, (sw, sh), (sx, sy) = samsung_layout(skin_dir)
+    _, (sw, sh), (sx, sy) = samsung_layout(skin_dir)
     rgb = np.asarray(Image.open(image).convert("RGB")).astype(int)
     r, b = rgb[..., 0], rgb[..., 2]
     device = ((b - r) < 12) | (rgb.max(2) < 24)
@@ -153,12 +158,15 @@ def rounded_path(w, h, radii):
     return " ".join(parts) + " Z"
 
 
-def mask_geometry(skin_dir, screen_px):
+def mask_geometry(skin_dir, screen_px, turn=False):
     """Screen corner radii and the cutouts (camera holes, and on the Flip's
     cover the camera rings) from a Samsung `fore_port.png`: opaque pixels
-    cover the screen. Some masks carry a hairline opaque border, ignored."""
+    cover the screen. Some masks carry a hairline opaque border, ignored.
+    [turn] reads it turned a quarter clockwise."""
     alpha = np.asarray(Image.open(os.path.join(skin_dir, "fore_port.png"))
                        .convert("RGBA"))[..., 3] >= pixel.OPAQUE
+    if turn:
+        alpha = np.rot90(alpha, k=-1)
     h, w = alpha.shape
     border = 0
     while alpha[border].mean() > 0.95 and alpha[:, border].mean() > 0.95:
@@ -232,24 +240,49 @@ def diagonal_radius(mask, corner):
     return t / (1 - 2 ** -0.5)
 
 
-def samsung_buttons(skin_dir):
-    """The skin's side buttons as (x, top, bottom) in canvas px: the power
-    key and the volume rocker (its two halves as one), as the open frames
-    draw them."""
+def samsung_buttons(skin_dir, turn=False):
+    """The skin's keys — the volume rocker (its two halves as one) and the
+    power key — as (side, start, end) in canvas px along the edge they sit
+    on, read from the skin layout's `buttons`. [turn] turns the canvas a
+    quarter clockwise, (x, y) -> (H - y, x), as the Fold8's wide main skin
+    is turned into the spec's portrait."""
     text = open(os.path.join(skin_dir, "layout")).read()
+    _, (sw, sh), (sx, sy) = samsung_layout(skin_dir)
+    canvas_h = Image.open(samsung_layout(skin_dir)[0]).size[1]
     keys = {}
     for name in ("volume-up", "volume-down", "power"):
-        m = re.search(name + r"\s*\{[^}]*image\s+(\S+)[^}]*x\s+(\d+)[^}]*y\s+(\d+)",
-                      text, re.S)
+        m = re.search(name + r"\s*\{[^}]*image\s+(\S+)[^}]*x\s+(\d+)"
+                      r"[^}]*y\s+(\d+)", text, re.S)
         if m:
-            h = Image.open(os.path.join(skin_dir, m.group(1))).size[1]
-            keys[name] = (int(m.group(2)), int(m.group(3)), int(m.group(3)) + h)
-    out = []
+            w, h = Image.open(os.path.join(skin_dir, m.group(1))).size
+            keys[name] = (int(m.group(2)), int(m.group(3)), w, h)
+    runs = []
     if "volume-up" in keys and "volume-down" in keys:
-        out.append((keys["volume-up"][0], keys["volume-up"][1],
-                    keys["volume-down"][2]))
+        ux, uy, uw, uh = keys["volume-up"]
+        dx, dy, dw, dh = keys["volume-down"]
+        runs.append((min(ux, dx), min(uy, dy), max(uw, dw),
+                     max(uy + uh, dy + dh) - min(uy, dy)))
     if "power" in keys:
-        out.append(keys["power"])
+        runs.append(keys["power"])
+    out = []
+    for x, y, w, h in runs:
+        # (side, start, end, outer): outer is the key's far edge, across.
+        if w < h:  # a key on a side edge
+            side = "right" if x > sx + sw / 2 else "left"
+            start, end = y, y + h
+            outer = x + w if side == "right" else x
+        else:
+            side = "bottom" if y > sy + sh / 2 else "top"
+            start, end = x, x + w
+            outer = y + h if side == "bottom" else y
+        if turn:
+            side = {"right": "bottom", "left": "top", "top": "right",
+                    "bottom": "left"}[side]
+            if side in ("top", "bottom"):  # was a side edge: y -> x' = H - y
+                start, end = canvas_h - end, canvas_h - start
+            else:  # was top/bottom: across y -> x' = H - y
+                outer = canvas_h - outer
+        out.append((side, start, end, outer))
     return out
 
 
@@ -257,32 +290,69 @@ def template_colors(open_body):
     """The open frame's palette, in its drawing order: buttons, rim, body,
     bezel (the sheen is white)."""
     text = "\n".join(open_body)
-    rim = re.search(r'<path d="[^"]*" fill="(#[0-9a-f]{6})"/>', text).group(1)
     button = re.search(r'<g fill="(#[0-9a-f]{6})">', text).group(1)
-    fills = re.findall(r'<path d="[^"]*" fill="(#[0-9a-f]{6})"/>', text)
-    return button, rim, fills[1], fills[-1]
+    fills = re.findall(r'<path d="[^"]*"(?: transform="[^"]*")?'
+                       r' fill="(#[0-9a-f]{6})"/>', text)
+    return button, fills[0], fills[1], fills[-1]
 
 
-def samsung_cover_frame(skin_dir, dpr, open_frame):
-    """A Samsung cover skin drawn the way the spec's open frame is — the
-    same layers and palette (side buttons, rim, body, a diagonal sheen,
-    bezel) — at the cover's own size, corners, screen position and button
-    positions, all read from the skin; the screen outline and its camera
-    cutouts come from the skin's mask."""
+def samsung_cover_frame(skin_dir, dpr, open_frame, turn=False):
+    """A Samsung skin drawn in the catalog's Samsung frame style — side keys,
+    rim, body, a diagonal sheen, bezel — at the skin's own body size,
+    corners, screen position and key positions; the screen outline and its
+    camera cutouts come from the skin's mask. [open_frame] gives the
+    palette (the frame's fills, recoloured per finish at paint time).
+    [turn] turns the skin a quarter clockwise first — the Fold8's main
+    screen is drawn wide, the spec's portrait is tall."""
     rgb, body, screen = samsung_body(skin_dir)
     sx, sy, sw, sh = screen
+    if turn:
+        h0 = body.shape[0]
+        body = np.rot90(body, k=-1)
+        rgb = np.rot90(rgb, k=-1)
+        sx, sy, sw, sh = h0 - (sy + sh), sx, sh, sw
+        screen = (sx, sy, sw, sh)
+    # The raw silhouette, keys included (the body mask has them opened
+    # away): how far the painted keys stand out.
+    raw = ((rgb[..., 2] - rgb[..., 0]) < 12) | (rgb.max(2) < 24)
     x0, y0, x1, y1 = _body_box(body, screen)
     box = body[y0:y1, x0:x1]
     radii = [diagonal_radius(box, c) / dpr for c in ("tl", "tr", "br", "bl")]
-    geometry = mask_geometry(skin_dir, (sw, sh))
+    geometry = mask_geometry(skin_dir, (sw, sh), turn=turn)
     screen_radii = [r / dpr for r in geometry["radii"]]  # tl, tr, br, bl
+    keys = samsung_buttons(skin_dir, turn=turn)
 
     def dp(v):
         return v / dpr
 
-    margin = 4  # room either side for the buttons, as in the open frames
+    # How far the keys stand out of the body on each side, as the art
+    # draws them.
+    def art_depth(side, start, end):
+        lo, hi = int(start) + 4, int(end) - 4
+        if side == "right":
+            band = raw[lo:hi, x1:x1 + 40]
+            return max((np.where(r)[0].max() + 1 if r.any() else 0)
+                       for r in band)
+        if side == "left":
+            band = raw[lo:hi, max(0, x0 - 40):x0][:, ::-1]
+            return max((np.where(r)[0].max() + 1 if r.any() else 0)
+                       for r in band)
+        if side == "bottom":
+            band = raw[y1:y1 + 40, lo:hi].T
+            return max((np.where(r)[0].max() + 1 if r.any() else 0)
+                       for r in band)
+        band = raw[max(0, y0 - 40):y0, lo:hi][::-1].T
+        return max((np.where(r)[0].max() + 1 if r.any() else 0)
+                   for r in band)
+
+    def proud(side):
+        depths = [art_depth(side, a_, b_) for s_, a_, b_, _ in keys
+                  if s_ == side]
+        return max([0.0] + [dp(d) for d in depths])
+
+    ml, mr, mt, mb = proud("left"), proud("right"), proud("top"), proud("bottom")
     bw, bh = dp(x1 - x0), dp(y1 - y0)
-    w, h = bw + 2 * margin, bh
+    w, h = bw + ml + mr, bh + mt + mb
     button, rim, face, bezel = template_colors(open_frame["body"])
 
     def outline(inset):
@@ -290,18 +360,28 @@ def samsung_cover_frame(skin_dir, dpr, open_frame):
                             [max(0.0, r - inset) for r in radii])
 
     def at(inset):
-        return f' transform="translate({fmt(margin + inset)}, {fmt(inset)})"'
+        return f' transform="translate({fmt(ml + inset)}, {fmt(mt + inset)})"'
 
     lines = [f'<svg viewBox="0 0 {fmt(w)} {fmt(h)}">',
              '  <defs><clipPath id="shell">',
              f'    <path d="{outline(0)}"{at(0)}/>',
              '  </clipPath></defs>',
              f'  <g fill="{button}">']
-    for x, top, bottom in samsung_buttons(skin_dir):
-        side_right = x > (x0 + x1) / 2
-        bx = w - 6 if side_right else 0
-        lines.append(f'    <rect x="{fmt(bx)}" y="{fmt(dp(top - y0))}" width="6"'
-                     f' height="{fmt(dp(bottom - top))}" rx="2"/>')
+    for side, start, end, _ in keys:
+        # Each key tucked 2 under the body, standing as proud as the art.
+        depth = {"left": ml, "right": mr, "top": mt, "bottom": mb}[side] + 2
+        if side in ("left", "right"):
+            x = w - depth if side == "right" else 0
+            y = mt + dp(start - y0)
+            lines.append(f'    <rect x="{fmt(x)}" y="{fmt(y)}"'
+                         f' width="{fmt(depth)}"'
+                         f' height="{fmt(dp(end - start))}" rx="1"/>')
+        else:
+            y = h - depth if side == "bottom" else 0
+            x = ml + dp(start - x0)
+            lines.append(f'    <rect x="{fmt(x)}" y="{fmt(y)}"'
+                         f' width="{fmt(dp(end - start))}"'
+                         f' height="{fmt(depth)}" rx="1"/>')
     lines += ['  </g>',
               f'  <path d="{outline(0)}"{at(0)} fill="{rim}"/>',
               f'  <path d="{outline(2)}"{at(2)} fill="{face}"/>',
@@ -321,8 +401,8 @@ def samsung_cover_frame(skin_dir, dpr, open_frame):
         holes.append((dp(a), dp(b), dp(c), dp(d)))
     return {
         "size": {"width": rounded(w), "height": rounded(h)},
-        "screenOffset": {"x": rounded(margin + dp(sx - x0)),
-                         "y": rounded(dp(sy - y0))},
+        "screenOffset": {"x": rounded(ml + dp(sx - x0)),
+                         "y": rounded(mt + dp(sy - y0))},
         "screenPath": path,
         "body": lines,
     }, (dp(sw), dp(sh)), holes
@@ -503,18 +583,22 @@ def open_buttons(frame, skin_dir, dpr, turn):
 
 
 def samsung_fold(spec_id, entry, measurements, samsung_dir):
-    """The Samsung spec's open posture keeps its hand-drawn frame and bars,
-    gaining the inner camera from the main skin's mask (punched through the
-    screen outline, reported as a cutout, its bar grown to hold it); the
-    half-open posture is the same screen and the closed cover is built
-    from its skin."""
+    """Both Samsung screens from their skins — body, corners, keys, screen
+    outline and camera — in the catalog's Samsung frame style, keeping the
+    spec's bar insets (`bars`), grown to hold each camera; the half-open
+    posture is the open screen."""
     spec = json.load(open(os.path.join(SPECS, f"{spec_id}.json")))
     dpr = spec["devicePixelRatio"]
     bars = entry["bars"]
 
-    size = (spec["portraitSize"]["width"], spec["portraitSize"]["height"])
-    holes = main_camera(samsung_skin(samsung_dir, entry["main"]), dpr, size,
-                        entry.get("turn", False))
+    # The open screen, drawn from the main skin like the cover: its body,
+    # corners, keys and camera as Samsung's art has them.
+    frame, size, holes = samsung_cover_frame(
+        samsung_skin(samsung_dir, entry["main"]), dpr, spec["frame"],
+        turn=entry.get("turn", False))
+    want = (spec["portraitSize"]["width"], spec["portraitSize"]["height"])
+    if any(abs(a - b) > 0.02 for a, b in zip(size, want)):
+        sys.exit(f"error: {spec_id} main skin screen {size} != spec {want}")
     portrait, landscape = camera_padding(size, holes, bars)
     spec["portraitPadding"] = insets(portrait)
     spec["landscapePadding"] = insets(landscape)
@@ -522,13 +606,7 @@ def samsung_fold(spec_id, entry, measurements, samsung_dir):
         f for f in spec["displayFeatures"] if f["type"] != "cutout"
     ] + [{"bounds": rect(c), "type": "cutout", "state": "unknown"}
          for c in holes]
-    outline = re.split(r" (?=M )", spec["frame"]["screenPath"])[0]
-    for a, b, c, d in holes:
-        outline += " " + pixel.circle_ccw_path(
-            (a + c) / 2, (b + d) / 2, max(c - a, d - b) / 2)
-    spec["frame"]["screenPath"] = outline
-    open_buttons(spec["frame"], samsung_skin(samsung_dir, entry["main"]),
-                 dpr, entry.get("turn", False))
+    spec["frame"] = frame
 
     skin_dir = samsung_skin(samsung_dir, entry["cover"])
     frame, size, holes = samsung_cover_frame(skin_dir, dpr, spec["frame"])
